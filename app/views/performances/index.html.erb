@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Performances</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Concession</th>
+      <th>End</th>
+      <th>Price</th>
+      <th>Start</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @performances.each do |performance| %>
+      <tr>
+        <td><%= performance.concession %></td>
+        <td><%= performance.end %></td>
+        <td><%= performance.price %></td>
+        <td><%= performance.start %></td>
+        <td><%= link_to 'Show', performance %></td>
+        <td><%= link_to 'Edit', edit_performance_path(performance) %></td>
+        <td><%= link_to 'Destroy', performance, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Performance', new_performance_path %>

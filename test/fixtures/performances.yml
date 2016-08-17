@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  concession: MyString
+  end: 2016-08-17 21:21:18
+  price: MyString
+  start: 2016-08-17 21:21:18
+
+two:
+  concession: MyString
+  end: 2016-08-17 21:21:18
+  price: MyString
+  start: 2016-08-17 21:21:18

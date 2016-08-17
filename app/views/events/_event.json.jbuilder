@@ -1,0 +1,2 @@
+json.extract! event, :id, :age_category, :artist, :code, :description, :festival, :festival_id, :genre, :latitude, :longitude, :status, :title, :updated, :url, :venue, :address, :code, :description, :name, :phone, :post_code, :website, :created_at, :updated_at
+json.url event_url(event, format: :json)

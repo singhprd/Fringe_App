@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Concession:</strong>
+  <%= @performance.concession %>
+</p>
+
+<p>
+  <strong>End:</strong>
+  <%= @performance.end %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @performance.price %>
+</p>
+
+<p>
+  <strong>Start:</strong>
+  <%= @performance.start %>
+</p>
+
+<%= link_to 'Edit', edit_performance_path(@performance) %> |
+<%= link_to 'Back', performances_path %>

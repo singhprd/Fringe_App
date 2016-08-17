@@ -1,0 +1,47 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  age_category: MyString
+  artist: MyString
+  code: MyString
+  description: MyString
+  festival: MyString
+  festival_id: MyString
+  genre: MyString
+  latitude: MyString
+  longitude: MyString
+  status: MyString
+  title: MyString
+  updated: MyString
+  url: MyString
+  venue: MyString
+  address: MyString
+  code: MyString
+  description: MyString
+  name: MyString
+  phone: MyString
+  post_code: MyString
+  website: MyString
+
+two:
+  age_category: MyString
+  artist: MyString
+  code: MyString
+  description: MyString
+  festival: MyString
+  festival_id: MyString
+  genre: MyString
+  latitude: MyString
+  longitude: MyString
+  status: MyString
+  title: MyString
+  updated: MyString
+  url: MyString
+  venue: MyString
+  address: MyString
+  code: MyString
+  description: MyString
+  name: MyString
+  phone: MyString
+  post_code: MyString
+  website: MyString
