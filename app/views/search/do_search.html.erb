@@ -1,0 +1,52 @@
+<p>Done search!</p>
+
+<% @results.each do |r| %>
+<form id="save_event_form" method="post" action="/events">
+	<br>
+    <input size="50" type="text" name="age_category" value="<%= r['age_category'] %>">  
+    <br>
+    <input size="50" type="text" name="artist" value="<%= r['artist'] %>">  
+    <br>
+    <input size="50" type="text" name="code" value="<%= r['code'] %>">  
+    <br>
+    <input size="50" type="text" name="description" value="<%= r['description'] %>">  
+    <br>
+    <input size="50" type="text" name="festival" value="<%= r['festival'] %>">  
+    <br>
+    <input size="50" type="text" name="festival_id" value="<%= r['festival_id'] %>">  
+    <br>
+    <input size="50" type="text" name="genre" value="<%= r['genre'] %>">  
+    <br>
+    <input size="50" type="text" name="latitude" value="<%= r['latitude'] %>">  
+    <br>
+    <input size="50" type="text" name="longitude" value="<%= r['longitude'] %>">  
+    <br>
+    <input size="50" type="text" name="status" value="<%= r['status'] %>">  
+    <br>
+    <input size="50" type="text" name="title" value="<%= r['title'] %>">  
+    <br>
+    <input size="50" type="text" name="updated" value="<%= r['updated'] %>">  
+    <br>
+    <input size="50" type="text" name="url" value="<%= r['url'] %>">  
+    <br>
+    <input size="50" type="text" name="venue" value="<%= r['venue'] %>">  
+    <br>
+    <input size="50" type="text" name="address" value="<%= r['address'] %>">  
+    <br>
+    <input size="50" type="text" name="name" value="<%= r['name'] %>">  
+    <br>
+    <input size="50" type="text" name="phone" value="<%= r['phone'] %>">  
+    <br>
+    <input size="50" type="text" name="post_code" value="<%= r['post_code'] %>">  
+    <br>
+    <input size="50" type="text" name="website" value="<%= r['website'] %>">  
+    <br>
+    <input size="50" type="text" name="created_at" value="<%= r['created_at'] %>">  
+    <br>
+    <input size="50" type="text" name="updated_at" value="<%= r['updated_at'] %>">  
+    <br>
+    <input type="submit" value="Save Event">
+</form>
+
+<% end %>
+

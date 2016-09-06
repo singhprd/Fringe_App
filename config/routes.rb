@@ -2,9 +2,11 @@ Rails.application.routes.draw do
   resources :searches
   resources :performances
   resources :events
-  resources :search
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  
+  post 'search' => 'search#do_search'
+  # get 'search' => 'search#index'
   root 'home#welcome'
 
-  post "search#go", to: "search#do_search"
+  resources :search
 end
