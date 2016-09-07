@@ -15,6 +15,8 @@
  		<text> Not Signed In! </text>
  	<% end %>
 
- 	<br>
+ 	<%= Emoji.find_by_alias("thumbsup").raw %>
+ 	<%= Emoji.find_by_alias("thumbsdown").raw %>
+	<br>
  	<br>
 <% end %>
