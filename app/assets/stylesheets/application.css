@@ -14,7 +14,7 @@
  *= require_self
  */
 
-#events_index_table td {
-	width: 5;
+.pure-table th {
 	border: 1px solid black;
+	background-color: tomato;
 }
