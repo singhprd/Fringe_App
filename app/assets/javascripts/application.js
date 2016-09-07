@@ -25,7 +25,7 @@ $(document).ready(function() {
 		});
 	});
 	$('.thumbsdown_button').click(function(event) {
-		console.log('posting to votes')
+		console.log('downvoting to votes')
 	    var event_id = $(event.target).attr('value')
 
 		$.post('/votes', {event_id: event_id, value: -1}, function(data, textStatus, xhr) {

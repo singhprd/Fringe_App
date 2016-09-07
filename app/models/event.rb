@@ -15,6 +15,4 @@ class Event < ApplicationRecord
 		self.upvotes() - self.downvotes()
 	end
 
-
-
 end
