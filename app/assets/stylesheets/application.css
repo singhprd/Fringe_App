@@ -18,3 +18,9 @@
 	border: 1px solid black;
 	background-color: tomato;
 }
+
+#user_actions {
+	position: absolute;
+	right: 15px;
+	top: 10px;
+}

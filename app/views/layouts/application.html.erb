@@ -9,6 +9,11 @@
   </head>
 
     <body>
+
+<!-- Devise wants some flash messages here -->
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+
   <div class="pure-menu pure-menu-horizontal">
     <ul class="pure-menu-list">
       <li class="pure-menu-item"><a href="/">Home</a></li>
@@ -17,7 +22,14 @@
       <li class="pure-menu-item"><a href="/search">Search</a></li>
       <!-- <li class="pure-menu-item"><a href="/performances">Performances</a></li> -->
     </ul> 
+
+    <ul class="pure-menu-list" id="user_actions">
+      <li class="pure-menu-item"><a href="/users/sign_in">Sign in</a></li>
+      <li class="pure-menu-item"><a href="/users/sign_out">Sign Out</a></li>
+    </ul> 
   </div>
+
+
       <%= yield %>
     </body>
   </html>

@@ -1,0 +1,13 @@
+<% @events.each do |event| %>
+	<%= event.title %>
+	<br>
+	<%= event.festival %>
+<!-- 	<%=  raw(event.description) %>
+ -->	
+ 	<br>
+ 	<text>Reviews:</text>
+ 	<%= event.reviews.count %>
+ 	<br>
+ 	<br>
+
+<% end %>
