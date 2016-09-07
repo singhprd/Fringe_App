@@ -14,3 +14,22 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$(document).ready(function() {
+	$('.thumbsup_button').click(function(event) {
+		console.log('posting to votes')
+	    var event_id = $(event.target).attr('value')
+
+		$.post('/votes', {event_id: event_id}, function(data, textStatus, xhr) {
+			/*optional stuff to do after success */
+		});
+	});
+	$('.thumbsdown_button').click(function(event) {
+		console.log('posting to votes')
+	    var event_id = $(event.target).attr('value')
+
+		$.post('/votes', {event_id: event_id}, function(data, textStatus, xhr) {
+			/*optional stuff to do after success */
+		});
+	});
+});

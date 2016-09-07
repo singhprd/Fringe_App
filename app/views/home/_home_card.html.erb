@@ -1,3 +1,4 @@
+</script>
 <% @events.each do |event| %>
 	<%= event.title %>
 	<br>
@@ -7,14 +8,26 @@
  	<br>
  	<text>Reviews:</text>
  	<%= event.reviews.count %>
+
+ 	<br>
+ 	<text>Votes:</text>
+ 	<%= event.votes.count %>
  	<br>
 
  	<% if user_signed_in? %>
- 		<text>Signed in!</text>
- 	<% else %>
- 		<text> Not Signed In! </text>
+
+  <div class="pure-menu pure-menu-horizontal">
+    <ul class="pure-menu-list">
+		<li class="pure-menu-item thumbsup_button" value="<%= event.id %>" > <%= Emoji.find_by_alias("thumbsup").raw %> </li>
+
+		<li class="pure-menu-item thumbsdown_button" value="<%= event.id %>" > <%= Emoji.find_by_alias("thumbsdown").raw %> </li>
+	</ul>
+  </div>
+ 		<% else %>
+ 			<text>Not Signed In</text>
  	<% end %>
 
  	<br>
  	<br>
 <% end %>
+
