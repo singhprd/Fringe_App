@@ -7,11 +7,11 @@
  -->	
  	<br>
  	<text>Reviews:</text>
- 	<%= event.reviews.count %>
+ 	<span> <%= event.reviews.count %> </span>
 
  	<br>
  	<text>Votes:</text>
- 	<%= event.tally_votes %>
+ 	<span> <%= event.tally_votes %> </span>
  	<br>
 
    <% if user_signed_in? %>
