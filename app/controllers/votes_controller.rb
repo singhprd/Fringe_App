@@ -27,7 +27,6 @@ class VotesController < ApplicationController
     params['user_id'] = current_user.id
     vote_params = {user_id: params['user_id'], event_id: params['event_id'], value: params['value'] }
     @vote = Vote.new(vote_params)
-
     # respond_to do |format|
     #   if @vote.save
     #     format.html { redirect_to @vote, notice: 'Vote was successfully created.' }
