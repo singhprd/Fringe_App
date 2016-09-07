@@ -15,5 +15,11 @@
   <%= @review.title %>
 </p>
 
+<p>
+  <strong>Event ID:</strong>
+  <%= @review.event_id %>
+</p>
+
+
 <%= link_to 'Edit', edit_review_path(@review) %> |
 <%= link_to 'Back', reviews_path %>

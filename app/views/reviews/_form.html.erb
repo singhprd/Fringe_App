@@ -26,6 +26,15 @@
     <%= f.text_field :title %>
   </div>
 
+  <%= f.label :review %>
+  <% if @events.present? %>
+    <select id="review_event_id" name="review[event_id]" >
+      <% @events.each do |event| %>
+        <option value="<%= event.id %>"> <%= event.title %> </option>
+      <% end  %>
+    </select>
+  <% end %>
+
   <div class="actions">
     <%= f.submit %>
   </div>

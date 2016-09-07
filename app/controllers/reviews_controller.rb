@@ -14,18 +14,20 @@ class ReviewsController < ApplicationController
 
   # GET /reviews/new
   def new
+    @events = Event.all
     @review = Review.new
   end
 
   # GET /reviews/1/edit
   def edit
+    @events = Event.all
   end
 
   # POST /reviews
   # POST /reviews.json
   def create
     @review = Review.new(review_params)
-
+    
     respond_to do |format|
       if @review.save
         format.html { redirect_to @review, notice: 'Review was successfully created.' }
@@ -69,6 +71,6 @@ class ReviewsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def review_params
-      params.require(:review).permit(:url, :stars, :title)
+      params.require(:review).permit(:url, :stars, :title, :event_id)
     end
 end
