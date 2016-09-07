@@ -87,7 +87,7 @@ ActiveRecord::Schema.define(version: 20160907215250) do
   create_table "votes", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "event_id"
-    t.binary   "value"
+    t.integer  "value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_votes_on_event_id"
