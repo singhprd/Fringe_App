@@ -20,7 +20,7 @@ $(document).ready(function() {
 		console.log('posting to votes')
 	    var event_id = $(event.target).attr('value')
 
-		$.post('/votes', {event_id: event_id}, function(data, textStatus, xhr) {
+		$.post('/votes', {event_id: event_id, value: 1}, function(data, textStatus, xhr) {
 			/*optional stuff to do after success */
 		});
 	});
@@ -28,7 +28,7 @@ $(document).ready(function() {
 		console.log('posting to votes')
 	    var event_id = $(event.target).attr('value')
 
-		$.post('/votes', {event_id: event_id}, function(data, textStatus, xhr) {
+		$.post('/votes', {event_id: event_id, value: 0}, function(data, textStatus, xhr) {
 			/*optional stuff to do after success */
 		});
 	});
