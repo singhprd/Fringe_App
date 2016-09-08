@@ -18,21 +18,35 @@
 $(document).ready(function() {
 	// var current_vote = $('#vote_count').attr("value") 
 	// console.log( event_id)
-    
+	// $("#my_id .my_class")
+
 	$('.thumbsup_button').click(function(event) {
-    	var current_vote = parseInt( $( "#vote_count" ).html() )
-	    var event_id = $(event.target).attr('value')
-		$.post('/votes', {event_id: event_id, value: 1}, function(data, textStatus, xhr) {
-			$( "#vote_count" ).text( current_vote + 1 )
+    	// var current_vote = parseInt( $( "#vote_count" ).html() )
+	    // var event_id = $(event.target).attr('value')
+		$.post('/votes', {event_id: 1, value: 1}, function(data, textStatus, xhr) {
+			console.log("data", data);
+
 		});
+
+		// $.ajax({
+		// type: 'POST',
+		// url: '/votes',
+		// data: JSON.stringify ({event_id: 1, value: -1}),
+		// success: function(data) { 
+		// 	console.log(data);
+		// },
+		// contentType: "application/json",
+		// dataType: 'json'
+		// });
+
 	});
 	
 
-	$('.thumbsdown_button').click(function(event) {
-    	var current_vote = parseInt( $( "#vote_count" ).html() )
-	    var event_id = $(event.target).attr('value')
-		$.post('/votes', {event_id: event_id, value: -1}, function(data, textStatus, xhr) {
-			$( "#vote_count" ).text( current_vote - 1 )
-		});
-	});
+	// $('.thumbsdown_button').click(function(event) {
+ //    	var current_vote = parseInt( $( "#vote_count" ).html() )
+	//     var event_id = $(event.target).attr('value')
+	// 	$.post('/votes', {event_id: event_id, value: -1}, function(data, textStatus, xhr) {
+	// 		$( "#vote_count" ).text( current_vote - 1 )
+	// 	});
+	// });
 });

@@ -28,15 +28,18 @@ class VotesController < ApplicationController
     vote_params = {user_id: params['user_id'], event_id: params['event_id'], value: params['value'] }
     @vote = Vote.new(vote_params)
     vote_tally = Event.find(params['event_id']).tally_votes
+        
     respond_to do |format|
       if @vote.save
-        # format.html { redirect_to @vote, notice: 'Vote was successfully created.' }
-        format.json { render :show, status: :created, location: @vote }
+    #     format.html { redirect_to @vote, notice: 'Vote was successfully created.' }
+    #     format.json { render :show, status: :created, location: @vote }
+        format.json { render json: {votes: vote_tally} }
       else
         format.html { render :new }
         format.json { render json: @vote.errors, status: :unprocessable_entity }
       end
     end
+
   end
 
   # PATCH/PUT /votes/1
