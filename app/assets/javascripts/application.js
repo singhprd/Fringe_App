@@ -16,19 +16,23 @@
 //= require_tree .
 
 $(document).ready(function() {
+	// var current_vote = $('#vote_count').attr("value") 
+	// console.log( event_id)
+    
 	$('.thumbsup_button').click(function(event) {
-		console.log('upvoting')
+    	var current_vote = parseInt( $( "#vote_count" ).html() )
 	    var event_id = $(event.target).attr('value')
 		$.post('/votes', {event_id: event_id, value: 1}, function(data, textStatus, xhr) {
-			/*optional stuff to do after success */
+			$( "#vote_count" ).text( current_vote + 1 )
 		});
 	});
-	$('.thumbsdown_button').click(function(event) {
-		console.log('downvoting')
-	    var event_id = $(event.target).attr('value')
+	
 
+	$('.thumbsdown_button').click(function(event) {
+    	var current_vote = parseInt( $( "#vote_count" ).html() )
+	    var event_id = $(event.target).attr('value')
 		$.post('/votes', {event_id: event_id, value: -1}, function(data, textStatus, xhr) {
-			/*optional stuff to do after success */
+			$( "#vote_count" ).text( current_vote - 1 )
 		});
 	});
 });

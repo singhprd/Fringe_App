@@ -24,3 +24,10 @@
 	right: 15px;
 	top: 10px;
 }
+
+.home_card {
+    background: rgba(25, 0, 25, .2);
+	padding: 5px;
+	margin: 10px;
+	border: 2px solid blue;
+}

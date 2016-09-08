@@ -1,5 +1,5 @@
-</script>
 <% @events.each do |event| %>
+<div class="home_card">
 	<%= event.title %>
 	<br>
 	<%= event.festival %>
@@ -11,7 +11,7 @@
 
  	<br>
  	<text>Votes:</text>
- 	<span> <%= event.tally_votes %> </span>
+ 	<span value="<%= event.id %>" id="vote_count" > <%= event.tally_votes %> </span>
  	<br>
 
    <% if user_signed_in? %>
@@ -31,5 +31,6 @@
 
  	<br>
  	<br>
+</div>
 <% end %>
 
