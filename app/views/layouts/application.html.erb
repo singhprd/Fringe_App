@@ -23,12 +23,14 @@
     </ul> 
 
     <ul class="pure-menu-list" id="user_actions">
-      <li class="pure-menu-item"><a href="/users/sign_in">Sign in</a></li>
+    <% if user_signed_in? %>
       <li class="pure-menu-item"><a href="/users/sign_out">Sign Out</a></li>
+    <% else %>
+      <li class="pure-menu-item"><a href="/users/sign_in">Sign in</a></li>
+    <% end %>
     </ul> 
   </div>
-
-
+  
       <%= yield %>
     </body>
   </html>

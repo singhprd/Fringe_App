@@ -1,5 +1,5 @@
 <% @events.each do |event| %>
-<div class="home_card" >
+<div class="home_card" id="<%= event.id %>" >
 	<%= event.title %>
 	<br>
 	<%= event.festival %>
@@ -9,19 +9,22 @@
  	<text>Reviews:</text>
  	<span> <%= event.reviews.count %> </span>
 
- 	<br>
  	<text>Votes:</text>
- 	<span value="<%= event.id %>" id="vote_count" > <%= event.tally_votes %> </span>
+ 	<span class="vote_tally" value="<%= event.id %>"> <%= event.tally_votes %> </span>
  	<br>
 
    <% if user_signed_in? %>
 
-  <div class="pure-menu pure-menu-horizontal">
+  <div class="pure-menu pure-menu-horizontal vote_buttons">
     <ul class="pure-menu-list">
 
-    	<li class="pure-menu-item thumbsup_button"><button value="<%= event.id %>" ><%= Emoji.find_by_alias("thumbsup").raw %></button></li>
+    	<li class="pure-menu-item">
+        <button class="thumbsup_button" value="<%= event.id %>" ><%= Emoji.find_by_alias("thumbsup").raw %></button>
+      </li>
 
-    	<li class="pure-menu-item thumbsdown_button"><button value="<%= event.id %>" ><%= Emoji.find_by_alias("thumbsdown").raw %></button></li>
+    	<li class="pure-menu-item">
+        <button class="thumbsdown_button" value="<%= event.id %>" ><%= Emoji.find_by_alias("thumbsdown").raw %></button>
+      </li>
 
     </ul>
   </div>
