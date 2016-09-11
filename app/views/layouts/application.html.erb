@@ -13,12 +13,25 @@
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
 
-  <div class="pure-menu pure-menu-horizontal">
+  <div class="pure-menu pure-menu-horizontal" id="navigation-bar">
     <ul class="pure-menu-list">
-      <li class="pure-menu-item"><a href="/">Home</a></li>
-      <li class="pure-menu-item"><a href="/events">Events</a></li>
-      <li class="pure-menu-item"><a href="/reviews">Reviews</a></li>
-      <li class="pure-menu-item"><a href="/search">Search</a></li>
+
+      <li class="pure-menu-item navigation-bar-item">
+      <span><a href="/">Home</a></span>
+      </li>
+
+      <li class="pure-menu-item navigation-bar-item">
+      <span><a href="/events">Events</a></span>
+      </li>
+
+      <li class="pure-menu-item navigation-bar-item">
+      <span><a href="/reviews">Reviews</a></span>
+      </li>
+
+      <li class="pure-menu-item navigation-bar-item">
+      <span><a href="/search">Search</a></span>
+      </li>
+
       <!-- <li class="pure-menu-item"><a href="/performances">Performances</a></li> -->
     </ul> 
 
@@ -30,7 +43,7 @@
     <% end %>
     </ul> 
   </div>
-  
+
       <%= yield %>
     </body>
   </html>

@@ -31,3 +31,25 @@
 	margin: 10px;
 	border: 2px solid blue;
 }
+
+#navigation-bar {
+}
+
+.navigation-bar-item {
+    /*display: inline-block;*/
+	width: 17vw;
+	height: 11vh;
+	border: 1px solid black;
+	background-color: tomato;
+	padding: 10px;
+	/*text-align: center;*/
+	font-size: 3em;
+	line-height: 10vh;
+}
+
+.navigation-bar-item span {
+	/*vertical-align: middle;*/
+
+}
+
+
