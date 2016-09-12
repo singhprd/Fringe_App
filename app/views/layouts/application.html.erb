@@ -9,17 +9,12 @@
   </head>
 
   <body>
-  <div class="row">
+    <div class="row">
       <%= render "./layouts/bootstrap_nav_bar" %>
-      <%= render "./home/navigation_bar" %>
-      <%= render "./home/user_login_options" %>
+      <%= yield %>
       <!-- Devise wants some flash messages here -->
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
-
-
-      <%= yield %>
-  </div>
-  </div>
+    </div>
   </body>
 </html>
