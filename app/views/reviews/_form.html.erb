@@ -1,41 +1,55 @@
-<%= form_for(review) do |f| %>
-  <% if review.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(review.errors.count, "error") %> prohibited this review from being saved:</h2>
+<%= form_for @review, :html => { :class => "form-horizontal review" } do |f| %>
 
-      <ul>
-      <% review.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+  <% if @review.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @review.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :url %>
-    <%= f.text_field :url %>
+  <div class="form-group">
+    <%= f.label :url, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :url, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:url) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :stars, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :stars, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:stars) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :title, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :title, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:title) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :event_id, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :event_id, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:event_id) %>
   </div>
 
-  <div class="field">
-    <%= f.label :stars %>
-    <%= f.text_field :stars %>
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                reviews_path, :class => 'btn btn-default' %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-  </div>
-
-  <%= f.label :review %>
-  <% if @events.present? %>
-    <select id="review_event_id" name="review[event_id]" >
-      <% @events.each do |event| %>
-        <option value="<%= event.id %>"> <%= event.title %> </option>
-      <% end  %>
-    </select>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>
