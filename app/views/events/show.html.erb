@@ -1,109 +1,55 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Event -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
 
-<p>
-  <strong>Age category:</strong>
-  <%= @event.age_category %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:age_category) %>:</strong></dt>
+  <dd><%= @event.age_category %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:artist) %>:</strong></dt>
+  <dd><%= @event.artist %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:code) %>:</strong></dt>
+  <dd><%= @event.code %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
+  <dd><%= @event.description %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:festival) %>:</strong></dt>
+  <dd><%= @event.festival %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:festival_id) %>:</strong></dt>
+  <dd><%= @event.festival_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:genre) %>:</strong></dt>
+  <dd><%= @event.genre %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:latitude) %>:</strong></dt>
+  <dd><%= @event.latitude %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:longitude) %>:</strong></dt>
+  <dd><%= @event.longitude %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:status) %>:</strong></dt>
+  <dd><%= @event.status %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
+  <dd><%= @event.title %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:updated) %>:</strong></dt>
+  <dd><%= @event.updated %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:url) %>:</strong></dt>
+  <dd><%= @event.url %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:venue) %>:</strong></dt>
+  <dd><%= @event.venue %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:address) %>:</strong></dt>
+  <dd><%= @event.address %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+  <dd><%= @event.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:phone) %>:</strong></dt>
+  <dd><%= @event.phone %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:post_code) %>:</strong></dt>
+  <dd><%= @event.post_code %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:website) %>:</strong></dt>
+  <dd><%= @event.website %></dd>
+</dl>
 
-<p>
-  <strong>Artist:</strong>
-  <%= @event.artist %>
-</p>
-
-<p>
-  <strong>Code:</strong>
-  <%= @event.code %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @event.description %>
-</p>
-
-<p>
-  <strong>Festival:</strong>
-  <%= @event.festival %>
-</p>
-
-<p>
-  <strong>Festival:</strong>
-  <%= @event.festival_id %>
-</p>
-
-<p>
-  <strong>Genre:</strong>
-  <%= @event.genre %>
-</p>
-
-<p>
-  <strong>Latitude:</strong>
-  <%= @event.latitude %>
-</p>
-
-<p>
-  <strong>Longitude:</strong>
-  <%= @event.longitude %>
-</p>
-
-<p>
-  <strong>Status:</strong>
-  <%= @event.status %>
-</p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @event.title %>
-</p>
-
-<p>
-  <strong>Updated:</strong>
-  <%= @event.updated %>
-</p>
-
-<p>
-  <strong>Url:</strong>
-  <%= @event.url %>
-</p>
-
-<p>
-  <strong>Venue:</strong>
-  <%= @event.venue %>
-</p>
-
-<p>
-  <strong>Address:</strong>
-  <%= @event.address %>
-</p>
-
-<p>
-  <strong>Code:</strong>
-  <%= @event.code %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @event.description %>
-</p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @event.name %>
-</p>
-
-<p>
-  <strong>Phone:</strong>
-  <%= @event.phone %>
-</p>
-
-<p>
-  <strong>Post code:</strong>
-  <%= @event.post_code %>
-</p>
-
-<p>
-  <strong>Website:</strong>
-  <%= @event.website %>
-</p>
-
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              events_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_event_path(@event), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              event_path(@event),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>

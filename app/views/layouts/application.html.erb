@@ -8,42 +8,18 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-    <body>
-<!-- Devise wants some flash messages here -->
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+  <body>
+  <div class="row">
+      <%= render "./layouts/bootstrap_nav_bar" %>
+      <%= render "./home/navigation_bar" %>
+      <%= render "./home/user_login_options" %>
+      <!-- Devise wants some flash messages here -->
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
 
-  <div class="pure-menu pure-menu-horizontal" id="navigation-bar">
-    <ul class="pure-menu-list">
-
-      <li class="pure-menu-item navigation-bar-item">
-      <span><a href="/">Home</a></span>
-      </li>
-
-      <li class="pure-menu-item navigation-bar-item">
-      <span><a href="/events">Events</a></span>
-      </li>
-
-      <li class="pure-menu-item navigation-bar-item">
-      <span><a href="/reviews">Reviews</a></span>
-      </li>
-
-      <li class="pure-menu-item navigation-bar-item">
-      <span><a href="/search">Search</a></span>
-      </li>
-
-      <!-- <li class="pure-menu-item"><a href="/performances">Performances</a></li> -->
-    </ul> 
-
-    <ul class="pure-menu-list" id="user_actions">
-    <% if user_signed_in? %>
-      <li class="pure-menu-item"><a href="/users/sign_out">Sign Out</a></li>
-    <% else %>
-      <li class="pure-menu-item"><a href="/users/sign_in">Sign in</a></li>
-    <% end %>
-    </ul> 
-  </div>
 
       <%= yield %>
-    </body>
-  </html>
+  </div>
+  </div>
+  </body>
+</html>
