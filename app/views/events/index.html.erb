@@ -13,20 +13,20 @@
       <th><%= model_class.human_attribute_name(:festival) %></th>
       <th><%= model_class.human_attribute_name(:festival_id) %></th>
       <th><%= model_class.human_attribute_name(:genre) %></th>
-      <th><%= model_class.human_attribute_name(:latitude) %></th>
-      <th><%= model_class.human_attribute_name(:longitude) %></th>
-      <th><%= model_class.human_attribute_name(:status) %></th>
+<!--       <th><%= model_class.human_attribute_name(:latitude) %></th>
+ --><!--       <th><%= model_class.human_attribute_name(:longitude) %></th>
+ -->      <th><%= model_class.human_attribute_name(:status) %></th>
       <th><%= model_class.human_attribute_name(:title) %></th>
       <th><%= model_class.human_attribute_name(:updated) %></th>
-      <th><%= model_class.human_attribute_name(:url) %></th>
+      <!-- <th><%= model_class.human_attribute_name(:url) %></th> -->
       <th><%= model_class.human_attribute_name(:venue) %></th>
       <th><%= model_class.human_attribute_name(:address) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:phone) %></th>
       <th><%= model_class.human_attribute_name(:post_code) %></th>
       <th><%= model_class.human_attribute_name(:website) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+<!--       <th><%= model_class.human_attribute_name(:created_at) %></th>
+ -->      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
@@ -40,20 +40,20 @@
         <td><%= event.festival %></td>
         <td><%= event.festival_id %></td>
         <td><%= event.genre %></td>
-        <td><%= event.latitude %></td>
-        <td><%= event.longitude %></td>
-        <td><%= event.status %></td>
+<!--         <td><%= event.latitude %></td>
+ --><!--         <td><%= event.longitude %></td>
+ -->        <td><%= event.status %></td>
         <td><%= event.title %></td>
         <td><%= event.updated %></td>
-        <td><%= event.url %></td>
-        <td><%= event.venue %></td>
+<!--         <td><%= event.url %></td>
+ -->        <td><%= event.venue %></td>
         <td><%= event.address %></td>
         <td><%= event.name %></td>
         <td><%= event.phone %></td>
         <td><%= event.post_code %></td>
         <td><%= event.website %></td>
-        <td><%=l event.created_at %></td>
-        <td>
+<!--         <td><%=l event.created_at %></td>
+ -->        <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_event_path(event), :class => 'btn btn-default btn-xs' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
