@@ -13,10 +13,10 @@
  *= require_tree .
  *= require_self
  */
-@import 'https://fonts.googleapis.com/css?family=Roboto+Condensed|Rubik+Mono+One';
+/*@import 'https://fonts.googleapis.com/css?family=Roboto+Condensed|Rubik+Mono+One';*/
 
 * {
-	font-family: 'Roboto Condensed', sans-serif;
+	/*font-family: 'Roboto Condensed', sans-serif;*/
 }
 
 #user_actions {
@@ -33,11 +33,15 @@
 
 .navigation-bar-item span {
 }
+/*
+.home-card-panel-body {
+	background-color: #337ab7;
+}*/
 
-
-
-
-
+/*.panel-heading {
+	background-color: #337ab7;
+}
+*/
 
 
 

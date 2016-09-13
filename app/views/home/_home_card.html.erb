@@ -1,40 +1,31 @@
+
 <% @events.each do |event| %>
-<div class="home_card" id="<%= event.id %>" >
-	<%= event.title %>
-	<br>
-	<%= event.festival %>
-<!-- 	<%=  raw(event.description) %>
- -->	
- 	<br>
- 	<text>Reviews:</text>
- 	<span> <%= event.reviews.count %> </span>
 
- 	<text>Votes:</text>
- 	<span class="vote_tally" value="<%= event.id %>"> <%= event.tally_votes %> </span>
- 	<br>
-
-   <% if user_signed_in? %>
-
-  <div class="pure-menu pure-menu-horizontal vote_buttons">
-    <ul class="pure-menu-list">
-
-    	<li class="pure-menu-item">
-        <button class="thumbsup_button" value="<%= event.id %>" ><%= Emoji.find_by_alias("thumbsup").raw %></button>
-      </li>
-
-    	<li class="pure-menu-item">
-        <button class="thumbsdown_button" value="<%= event.id %>" ><%= Emoji.find_by_alias("thumbsdown").raw %></button>
-      </li>
-
-    </ul>
+<div class="panel panel-primary" id="<%= event.id %>" >
+  <div class="panel-heading">
+    <h3 class="panel-title">Panel title</h3>
+  </div>  
+  <div class="panel-body">
+    <text> <%= event.title %> </text>
+    <text> <%= event.festival %> </text>
+    <br>
+    <text>Reviews:</text>
+    <span> <%= event.reviews.count %> </span>
+    <br>
+    <text>Votes:</text>
+    <span class="vote_tally" value="<%= event.id %>"> <%= event.tally_votes %> </span>
+    <br>
+    <div class="btn-group" role="group" aria-label="...">
+      <% if user_signed_in? %>
+        <button type="button" class="btn btn-default thumbsup_button" value="<%= event.id %>" ><%= Emoji.find_by_alias("thumbsup").raw %></button>
+        <button type="button" class="btn btn-default thumbsdown_button" value="<%= event.id %>" ><%= Emoji.find_by_alias("thumbsdown").raw %></button>
+      <% else %>
+        <button type="button" class="btn btn-default">Hello</button>
+      <% end %>
+    </div>
   </div>
-
-  <% else %>
-  	<p>Sign in to vote</p>
-  <% end %>
-
- 	<br>
- 	<br>
 </div>
+  <!--  <%=  raw(event.description) %>
+--> 
 <% end %>
 
