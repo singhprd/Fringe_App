@@ -1,7 +1,6 @@
-
 <% @events.each do |event| %>
 
-<div class="panel panel-primary" id="<%= event.id %>" >
+<div class="panel panel-primary home_card" id="<%= event.id %>" >
   <div class="panel-heading">
     <h3 class="panel-title"><%= event.title %></h3>
   </div>  
@@ -14,7 +13,7 @@
     <text>Votes:</text>
     <span class="vote_tally" value="<%= event.id %>"> <%= event.tally_votes %> </span>
     <br>
-    <div class="btn-group" role="group" aria-label="...">
+    <div class="btn-group vote_buttons" role="group" aria-label="...">
       <% if user_signed_in? %>
         <button type="button" class="btn btn-default thumbsup_button" value="<%= event.id %>" ><%= Emoji.find_by_alias("thumbsup").raw %></button>
         <button type="button" class="btn btn-default thumbsdown_button" value="<%= event.id %>" ><%= Emoji.find_by_alias("thumbsdown").raw %></button>
@@ -22,29 +21,7 @@
         <a href="/users/sign_in"><button type="button" class="btn btn-default">Sign in to vote</button></a>
       <% end %>
     </div>
-    <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-  See Review
-</button>
 
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-      </div>
-      <div class="modal-body">
-        <iframe width="560" height="700"  src="<%= Review.first.url %>"></iframe>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-      </div>
-    </div>
-  </div>
-</div>
   </div>
 </div>
   <!--  <%=  raw(event.description) %>

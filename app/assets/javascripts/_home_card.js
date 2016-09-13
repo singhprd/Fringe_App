@@ -5,7 +5,6 @@ $(document).on('turbolinks:load', function() {
 		 	var event_id = $(card).first().attr('id')
 			var thumbsup_button = $(card).find('.thumbsup_button')[0]
 			var thumbsdown_button = $(card).find('.thumbsdown_button')[0]
-			
 
 			$( thumbsup_button ).click(function(event) {
 				var button = event.target
