@@ -3,10 +3,9 @@
 
 <div class="panel panel-primary" id="<%= event.id %>" >
   <div class="panel-heading">
-    <h3 class="panel-title">Panel title</h3>
+    <h3 class="panel-title"><%= event.title %></h3>
   </div>  
   <div class="panel-body">
-    <text> <%= event.title %> </text>
     <text> <%= event.festival %> </text>
     <br>
     <text>Reviews:</text>
@@ -20,7 +19,7 @@
         <button type="button" class="btn btn-default thumbsup_button" value="<%= event.id %>" ><%= Emoji.find_by_alias("thumbsup").raw %></button>
         <button type="button" class="btn btn-default thumbsdown_button" value="<%= event.id %>" ><%= Emoji.find_by_alias("thumbsdown").raw %></button>
       <% else %>
-        <button type="button" class="btn btn-default">Hello</button>
+        <a href="/users/sign_in"><button type="button" class="btn btn-default">Sign in to vote</button></a>
       <% end %>
     </div>
   </div>
