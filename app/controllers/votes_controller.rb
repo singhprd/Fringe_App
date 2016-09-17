@@ -27,13 +27,17 @@ class VotesController < ApplicationController
     params['user_id'] = current_user.id
     vote_params = {user_id: params['user_id'], event_id: params['event_id'], value: params['value'] }
     @vote = Vote.new(vote_params)
-        
+    user = User.find(params['user_id'])
+    user.reduce_votes_left()
+    flash[:notice] = "Voted!" 
     respond_to do |format|
       if @vote.save
-    #     format.html { redirect_to @vote, notice: 'Vote was successfully created.' }
-    #     format.json { render :show, status: :created, location: @vote }
-        vote_tally = Event.find(params['event_id']).tally_votes
-        format.json { render json: {votes: vote_tally} }
+        format.html {redirect_to request.referrer}
+        format.js {redirect_to request.referrer}
+        # format.html { redirect_to @vote, notice: 'Vote was successfully created.' }
+        # format.json { render :show, status: :created, location: @vote }
+        # vote_tally = Event.find(params['event_id']).tally_votes
+        # format.json { render json: {votes: vote_tally} }
       else
         format.html { render :new }
         format.json { render json: @vote.errors, status: :unprocessable_entity }
