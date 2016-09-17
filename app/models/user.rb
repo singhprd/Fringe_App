@@ -8,12 +8,16 @@ class User < ApplicationRecord
 
   def reduce_votes_left()
   	current_votes = self.votes_left
-  	self.update_attributes(votes_left: (current_votes - 1) )
+    if current_votes <= 0
+      return false
+    else
+  	   return self.update_attributes(votes_left: (current_votes - 1) )
+    end
   end
 
   def reset_votes()
   	vote_reset_amount = self.vote_reset_amount
-	self.update_attributes(votes_left: vote_reset_amount )
+	   self.update_attributes(votes_left: vote_reset_amount )
   end
 
 end

@@ -20,6 +20,7 @@ $(document).on('turbolinks:load', function() {
 					data: {event_id: event_id, value: 1},
 					success: function(a,b,c){
 						$(vote_tally).html(a['votes'])
+						$("#notice").html(a['notice'])
 					},
 					error: function() {
 						console.log('failed')
@@ -37,6 +38,7 @@ $(document).on('turbolinks:load', function() {
 				data: {event_id: event_id, value: -1},
 				success: function(a,b,c){
 					$(vote_tally).html(a['votes'])
+					$("#notice").html(a['notice'])
 				},
 				error: function() {
 					console.log('failed')
