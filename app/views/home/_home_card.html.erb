@@ -16,19 +16,16 @@
         <%= render :partial => 'review_modal', :locals => { :review => r } %> 
       <% end %>
     <% else %>
-      <p>NO REVIEWS</p>
+      <span><a href="/reviews/new">Add a review?</a></span>
     <% end %>
 
     <br>
-
-
 
     <text>Votes:</text>
     <span class="vote_tally" value="<%= event.id %>"> <%= event.tally_votes %> </span>
     <br>
     <div class="btn-group vote_buttons" role="group" aria-label="...">
       <% if user_signed_in? %>
-        <!-- <a href="/votes">aasdas</a> -->
         <button type="button" class="btn btn-default thumbsup_button" value="<%= event.id %>" ><%= Emoji.find_by_alias("thumbsup").raw %></button>
         <button type="button" class="btn btn-default thumbsdown_button" value="<%= event.id %>" ><%= Emoji.find_by_alias("thumbsdown").raw %></button>
       <% else %>
@@ -38,7 +35,6 @@
 
   </div>
 </div>
-  <!--  <%=  raw(event.description) %>
---> 
+
 <% end %>
 

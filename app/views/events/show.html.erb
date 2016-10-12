@@ -4,14 +4,15 @@
 </div>
 
 <dl class="dl-horizontal">
+  <!-- <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt> -->
+  <%=  raw(@event.description) %>
+
   <dt><strong><%= model_class.human_attribute_name(:age_category) %>:</strong></dt>
   <dd><%= @event.age_category %></dd>
   <dt><strong><%= model_class.human_attribute_name(:artist) %>:</strong></dt>
   <dd><%= @event.artist %></dd>
   <dt><strong><%= model_class.human_attribute_name(:code) %>:</strong></dt>
   <dd><%= @event.code %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
-  <dd><%= @event.description %></dd>
   <dt><strong><%= model_class.human_attribute_name(:festival) %>:</strong></dt>
   <dd><%= @event.festival %></dd>
   <dt><strong><%= model_class.human_attribute_name(:festival_id) %>:</strong></dt>
@@ -29,7 +30,7 @@
   <dt><strong><%= model_class.human_attribute_name(:updated) %>:</strong></dt>
   <dd><%= @event.updated %></dd>
   <dt><strong><%= model_class.human_attribute_name(:url) %>:</strong></dt>
-  <dd><%= @event.url %></dd>
+  <dd><%= link_to( @event.url, @event.url ) %></dd>
   <dt><strong><%= model_class.human_attribute_name(:venue) %>:</strong></dt>
   <dd><%= @event.venue %></dd>
   <dt><strong><%= model_class.human_attribute_name(:address) %>:</strong></dt>
@@ -41,7 +42,7 @@
   <dt><strong><%= model_class.human_attribute_name(:post_code) %>:</strong></dt>
   <dd><%= @event.post_code %></dd>
   <dt><strong><%= model_class.human_attribute_name(:website) %>:</strong></dt>
-  <dd><%= @event.website %></dd>
+  <dd><%= link_to( @event.website, @event.website ) %></dd>
 </dl>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
