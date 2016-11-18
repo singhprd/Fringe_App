@@ -1,4 +1,4 @@
-<p>Done search!</p>
+<p> <%= @results.count %> results found: </p>
 
 <% @results.each do |r| %>
 <form id="save_event_form" method="post" action="/events">
