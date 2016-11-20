@@ -2,72 +2,74 @@
 
 <% @results.each do |r| %>
 <form id="save_event_form" method="post" action="/events">
-	<br>
-    <label for="age_category">age_category</label>
-    <input size="50" type="text" name="age_category" value="<%= r['age_category'] %>">  
-    <br>
-    <label for="artist">artist</label>
-    <input size="50" type="text" name="artist" value="<%= r['artist'] %>">  
-    <br>
-    <label for="code">code</label>
-    <input size="50" type="text" name="code" value="<%= r['code'] %>">  
-    <br>
-    <label for="description">description</label>
-    <input size="50" type="text" name="description" value="<%= r['description'] %>">  
-    <br>
-    <label for="festival">festival</label>
-    <input size="50" type="text" name="festival" value="<%= r['festival'] %>">  
-    <br>
-    <label for="festival_id">festival_id</label>
-    <input size="50" type="text" name="festival_id" value="<%= r['festival_id'] %>">  
-    <br>
-    <label for="genre">genre</label>
-    <input size="50" type="text" name="genre" value="<%= r['genre'] %>">  
-    <br>
-    <label for="latitude">latitude</label>
-    <input size="50" type="text" name="latitude" value="<%= r['latitude'] %>">  
-    <br>
-    <label for="longitude">longitude</label>
-    <input size="50" type="text" name="longitude" value="<%= r['longitude'] %>">  
-    <br>
-    <label for="status">status</label>
-    <input size="50" type="text" name="status" value="<%= r['status'] %>">  
-    <br>
-    <label for="title">title</label>
-    <input size="50" type="text" name="title" value="<%= r['title'] %>">  
-    <br>
-    <label for="updated">updated</label>
-    <input size="50" type="text" name="updated" value="<%= r['updated'] %>">  
-    <br>
-    <label for="url">url</label>
-    <input size="50" type="text" name="url" value="<%= r['url'] %>">  
-    <br>
-    <label for="venue">venue</label>
-    <input size="50" type="text" name="venue" value="<%= r['venue'] %>">  
-    <br>
-    <label for="address">address</label>
-    <input size="50" type="text" name="address" value="<%= r['address'] %>">  
-    <br>
-    <label for="name">name</label>
-    <input size="50" type="text" name="name" value="<%= r['name'] %>">  
-    <br>
-    <label for="phone">phone</label>
-    <input size="50" type="text" name="phone" value="<%= r['phone'] %>">  
-    <br>
-    <label for="post_code">post_code</label>
-    <input size="50" type="text" name="post_code" value="<%= r['post_code'] %>">  
-    <br>
-    <label for="website">website</label>
-    <input size="50" type="text" name="website" value="<%= r['website'] %>">  
-    <br>
-    <label for="created_at">created_at</label>
-    <input size="50" type="text" name="created_at" value="<%= r['created_at'] %>">  
-    <br>
-    <label for="updated_at">updated_at</label>
-    <input size="50" type="text" name="updated_at" value="<%= r['updated_at'] %>">  
-    <br>
-    <input type="submit" value="Save Event">
-</form>
 
+<%- model_class = Event -%>
+<div class="page-header">
+  <h1><%= r['title'] %></h1>
+</div>
+
+<dl class="dl-horizontal">
+
+  <dt><strong><%= model_class.human_attribute_name(:age_category) %>:</strong></dt>
+  <dd><input size="50" type="text" name="age_category" value="<%= r['age_category'] %>"></dd>
+
+  <dt><strong><%= model_class.human_attribute_name(:artist) %>:</strong></dt>
+  <dd><input size="50" type="text" name="artist" value="<%= r['artist'] %>"></dd>
+
+  <dt><strong><%= model_class.human_attribute_name(:code) %>:</strong></dt>
+  <dd><input size="50" type="text" name="code" value="<%= r['code'] %>"></dd>
+
+  <dt><strong><%= model_class.human_attribute_name(:festival) %>:</strong></dt>
+  <dd><input size="50" type="text" name="festival" value="<%= r['festival'] %>"></dd>
+
+  <dt><strong><%= model_class.human_attribute_name(:festival_id) %>:</strong></dt>
+  <dd><input size="50" type="text" name="festival_id" value="<%= r['festival_id'] %>"></dd>
+
+  <dt><strong><%= model_class.human_attribute_name(:genre) %>:</strong></dt>
+  <dd><input size="50" type="text" name="genre" value="<%= r['genre'] %>"></dd>
+
+  <dt><strong><%= model_class.human_attribute_name(:latitude) %>:</strong></dt>
+  <dd><input size="50" type="text" name="latitude" value="<%= r['latitude'] %>"></dd>
+
+  <dt><strong><%= model_class.human_attribute_name(:longitude) %>:</strong></dt>
+  <dd><input size="50" type="text" name="longitude" value="<%= r['longitude'] %>"></dd>
+
+  <dt><strong><%= model_class.human_attribute_name(:status) %>:</strong></dt>
+  <dd><input size="50" type="text" name="status" value="<%= r['status'] %>"></dd>
+
+  <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
+  <dd><input size="50" type="text" name="title" value="<%= r['title'] %>"></dd>
+
+  <dt><strong><%= model_class.human_attribute_name(:updated) %>:</strong></dt>
+  <dd><input size="50" type="text" name="updated" value="<%= r['updated'] %>"></dd>
+
+  <dt><strong><%= model_class.human_attribute_name(:url) %>:</strong></dt>
+  <dd><input size="50" type="text" name="url" value="<%= r['url'] %>"></dd>
+
+  <dt><strong><%= model_class.human_attribute_name(:venue) %>:</strong></dt>
+  <dd><input size="50" type="text" name="venue" value="<%= r['venue'] %>"></dd>
+
+  <dt><strong><%= model_class.human_attribute_name(:address) %>:</strong></dt>
+  <dd><input size="50" type="text" name="address" value="<%= r['address'] %>"></dd>
+
+  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+  <dd><input size="50" type="text" name="name" value="<%= r['name'] %>"></dd>
+
+  <dt><strong><%= model_class.human_attribute_name(:phone) %>:</strong></dt>
+  <dd><input size="50" type="text" name="phone" value="<%= r['phone'] %>"></dd>
+
+  <dt><strong><%= model_class.human_attribute_name(:post_code) %>:</strong></dt>
+  <dd><input size="50" type="text" name="post_code" value="<%= r['post_code'] %>"></dd>
+
+  <dt><strong><%= model_class.human_attribute_name(:website) %>:</strong></dt>
+  <dd><input size="50" type="text" name="website" value="<%= r['website'] %>"></dd>
+
+  <%=  raw(r['description']) %>
+  <input type="submit" value="Save Event">
+
+
+</dl>
+
+</form>
 <% end %>
 
