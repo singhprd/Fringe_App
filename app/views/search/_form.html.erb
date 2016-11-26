@@ -1,43 +1,20 @@
-<form action="/search" method="post" class="form-inline">
+<%= form_tag("/search", method: "post") do %>
 
-  	<div class="form-group">
-	  <label for="name">Name</label>
-	  <input id="name" class="form-control" placeholder="Name" type="text" name="title"></input>
+  <%= label_tag(:title_string, "Title:") %>
+  <%= text_field_tag(:title_string) %>	
 
-	  <label for="artist">Name</label>
-	  <input id="artist" class="form-control" placeholder="Artist" type="text" name="artist"></input>
-  	</div>
+  <%= label_tag(:artist, "Artist:") %>
+  <%= text_field_tag(:artist) %>
 
-  	<div class="form-group">
-  		<label for="year">Year</label>
-		<select id="year" class="form-control" name="year">
-			<option>2015</option>
-			<option>2016</option>
-			<option selected>2016</option>
-		</select>
-		
-	  <label for="festival">Name</label>
-	  <select id="festival" class="form-control" name="festival_string">
-		<option value="" selected>all</option>
-		<option>fringe</option>
-		<option>demofringe</option>
-		<option>jazz</option>
-		<option>book</option>
-		<option>international</option>
-		<option>tattoo</option>
-		<option>art</option>
-		<option>hogmanay</option>
-		<option>science</option>
-		<option>imaginate</option>
-		<option>film</option>
-		<option>mela</option>
-		<option>storytelling</option>
-	  </select>
-	 </div>
-	  <input class="btn btn-default" type='submit' value="Submit">
-  </div>
+  <%= label_tag(:year, "Year:") %>
+  <%= select_tag(:year, raw("<option>2015</option><option selected>2016</option><option>2017</option>")) %>
 
-</form>
+  <%= label_tag(:festival_string, "Year:") %>
+  <%= select_tag(:festival_string, raw("<option value="" selected>all</option><option>fringe</option><option selected>demofringe</option><option>jazz</option><option>book</option><option>international</option><option>tattoo</option><option>art</option><option>hogmanay</option><option>science</option><option>imaginate</option><option>film</option><option>mela</option><option>storytelling</option>")) %>
+
+  <%= submit_tag("Search") %>
+
+<% end %>
 
 
 

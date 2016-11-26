@@ -37,7 +37,7 @@ gem 'devise'
 # Emoji gem
 gem 'gemoji'
 
-gem 'pg'
+# gem 'pg'
 
 gem 'twitter-bootstrap-rails'
 
