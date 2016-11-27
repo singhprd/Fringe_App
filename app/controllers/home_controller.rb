@@ -1,7 +1,6 @@
 class HomeController < ApplicationController
   # GET /
   def welcome
-    # render json: "welcome home"
-    @events = Event.all
+    @events = Event.all.order(score: :desc)
   end
 end

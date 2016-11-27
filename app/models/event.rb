@@ -13,7 +13,9 @@ class Event < ApplicationRecord
 	end
 
 	def tally_votes
-		self.upvotes() - self.downvotes()
+		self.score = self.upvotes() - self.downvotes()
+		self.save
+		return self.score
 	end
 
 end
