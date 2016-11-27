@@ -10,6 +10,8 @@
 
 <dl class="dl-horizontal">
 
+  <!-- <input readonly="readonly" size="50" type="hidden" name="age_category" value="<%= r['code'] %>"> -->
+
   <dt><strong><%= model_class.human_attribute_name(:age_category) %>:</strong></dt>
   <dd><input readonly="readonly" size="50" type="text" name="age_category" value="<%= r['age_category'] %>"></dd>
 
@@ -65,7 +67,15 @@
   <dd><input readonly="readonly" size="50" type="text" name="website" value="<%= r['website'] %>"></dd>
 
   <%=  raw(r['description']) %>
-  <input class="btn btn-primary" type="submit" value="Save Event">
+
+  <br>
+
+  <% if Event.find_by_code(r['code']) %>
+    <%= link_to("<button class='btn btn-primary'>Go to Event</button>".html_safe, Event.find_by_code(r['code']) ) %>
+  <% else %>
+    <input class="btn btn-primary" type="submit" value="Save Event">
+  <% end %>
+  
 
 </dl>
 

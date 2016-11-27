@@ -37,20 +37,22 @@ gem 'devise'
 # Emoji gem
 gem 'gemoji'
 
-# gem 'pg'
+gem 'pg'
+
+# gem 'sqlite3'
 
 gem 'twitter-bootstrap-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
-  gem 'sqlite3'
+  # gem 'sqlite3'
   gem 'guard-livereload', '~> 2.5', require: false
   gem "rack-livereload", group: :development
 end
 
 group :development do
-  gem 'pg'
+  # gem 'pg'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console'
   gem 'listen', '~> 3.0.5'
