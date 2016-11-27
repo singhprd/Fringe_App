@@ -16,9 +16,9 @@
         <%= render :partial => 'review_modal', :locals => { :review => r } %> 
       <% end %>
     <% else %>
-      <span><a href="/reviews/new">Add a review?</a></span>
+      <span><a href="/reviews/new?event=<%= event.id %>">Add a review?</a></span>
     <% end %>
-
+    
     <br>
 
     <text>Votes:</text>
