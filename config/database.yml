@@ -36,7 +36,7 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: fringe_app__test
+  database: fringe_app_test
   pool: 5
   username: myapp
   password: password1
