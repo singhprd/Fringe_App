@@ -1,6 +1,6 @@
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-  <%= review.title %>
+  <%= reviews.first.title %>
 </button>
 
 <!-- Modal -->
@@ -12,7 +12,7 @@
         <h4 class="modal-title" id="myModalLabel">Modal title</h4>
       </div>
       <div class="modal-body">
-        <iframe style="height: 700px; width: 560px;" class="embed-responsive-item" src="<%= review.url %>" allowfullscreen="true"></iframe>
+        <iframe style="height: 700px; width: 560px;" class="embed-responsive-item" src="<%= reviews.first.url %>" allowfullscreen="true"></iframe>
 
       </div>
       <div class="modal-footer">

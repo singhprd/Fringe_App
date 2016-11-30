@@ -12,9 +12,9 @@
     <br>
 
     <% if event.reviews.count > 0 %>
-      <% event.reviews.each do |r| %>
-        <%= render :partial => 'review_modal', :locals => { :review => r } %> 
-      <% end %>
+    
+        <%= render :partial => 'review_modal', :locals => { :reviews => event.reviews } %> 
+
     <% else %>
       <span><a href="/reviews/new?event=<%= event.id %>">Add a review?</a></span>
     <% end %>

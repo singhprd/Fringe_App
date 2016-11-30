@@ -39,7 +39,10 @@
   <div class="form-group">
     <%= f.label :event_id, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.text_field :event_id, :class => 'form-control' %>
+
+<!--       <%= f.text_field :event_id, :class => 'form-control' %>
+ -->
+      <%= f.select(:event_id, options_for_select(@events.collect{|e| [e.title, e.id]}) ) %>
     </div>
     <%=f.error_span(:event_id) %>
   </div>

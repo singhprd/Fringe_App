@@ -14,6 +14,7 @@ class ReviewsController < ApplicationController
 
   # GET /reviews/new
   def new
+    params['event'].nil? ? @selected_event = nil : @selected_event = Event.find(params['event'])
     @events = Event.all
     @review = Review.new
   end
