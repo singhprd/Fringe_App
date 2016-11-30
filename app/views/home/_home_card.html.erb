@@ -12,9 +12,7 @@
     <br>
 
     <% if event.reviews.count > 0 %>
-    
-        <%= render :partial => 'review_modal', :locals => { :reviews => event.reviews } %> 
-
+      <%= render :partial => 'review_modal', :locals => { :reviews => event.reviews } %> 
     <% else %>
       <span><a href="/reviews/new?event=<%= event.id %>">Add a review?</a></span>
     <% end %>
@@ -37,4 +35,3 @@
 </div>
 
 <% end %>
-
