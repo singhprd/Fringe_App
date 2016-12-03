@@ -1,9 +1,13 @@
 <% @events.each do |event| %>
 
 <div class="panel panel-primary home_card" id="<%= event.id %>" >
+  
+  <a display: block, href="/events">
   <div class="panel-heading">
-    <h3 class="panel-title"><%= event.title %></h3>
+    <h3 class="panel-title"><%= link_to event.title, event, class: "" %></h3>
   </div>  
+  </a>
+
   <div class="panel-body">
     <text> Festival: <%= event.festival %> </text>
     <br>
@@ -19,7 +23,7 @@
     
     <br>
 
-    <text>Votes:</text>
+    <text>Score:</text>
     <span class="vote_tally" value="<%= event.id %>"> <%= event.tally_votes %> </span>
     <br>
     <div class="btn-group vote_buttons" role="group" aria-label="...">
@@ -35,3 +39,5 @@
 </div>
 
 <% end %>
+
+

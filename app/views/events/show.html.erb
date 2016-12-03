@@ -1,11 +1,19 @@
 <%- model_class = Event -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
-</div>
+
+<div class="panel panel-primary" id="" >
+  
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= @event.title %></h3>
+  </div>  
+
+  <div class="panel-body">
+
 
 <dl class="dl-horizontal">
-  <!-- <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt> -->
-  <%=  raw(@event.description) %>
+<!--   <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
+ -->
+
+ <%=  raw(@event.description) %>
 
   <dt><strong><%= model_class.human_attribute_name(:age_category) %>:</strong></dt>
   <dd><%= @event.age_category %></dd>
@@ -25,8 +33,6 @@
   <dd><%= @event.longitude %></dd>
   <dt><strong><%= model_class.human_attribute_name(:status) %>:</strong></dt>
   <dd><%= @event.status %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
-  <dd><%= @event.title %></dd>
   <dt><strong><%= model_class.human_attribute_name(:updated) %>:</strong></dt>
   <dd><%= @event.updated %></dd>
   <dt><strong><%= model_class.human_attribute_name(:url) %>:</strong></dt>
@@ -54,3 +60,10 @@
               :method => 'delete',
               :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
               :class => 'btn btn-danger' %>
+
+
+
+
+
+  </div>
+</div>
