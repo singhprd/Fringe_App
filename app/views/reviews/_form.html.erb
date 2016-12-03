@@ -38,11 +38,14 @@
   </div>
   <div class="form-group">
     <%= f.label :event_id, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
+  <div class="col-lg-10">
 
-<!--       <%= f.text_field :event_id, :class => 'form-control' %>
- -->
-      <%= f.select(:event_id, options_for_select(@events.collect{|e| [e.title, e.id]}) ) %>
+  <% if @selected_event %>
+  <%= f.select(:event_id, options_for_select(@events.collect{|e| [e.title, e.id]}, @selected_event.id ) ) %>
+  <% else %>
+  <%= f.select(:event_id, options_for_select(@events.collect{|e| [e.title, e.id]} ) ) %>
+  <% end %>
+
     </div>
     <%=f.error_span(:event_id) %>
   </div>
@@ -50,8 +53,7 @@
   <div class="form-group">
     <div class="col-lg-offset-2 col-lg-10">
       <%= f.submit nil, :class => 'btn btn-primary' %>
-      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                reviews_path, :class => 'btn btn-default' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")), reviews_path, :class => 'btn btn-default' %>
     </div>
   </div>
 
