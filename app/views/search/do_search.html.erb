@@ -48,9 +48,6 @@
   <dt><strong><%= model_class.human_attribute_name(:url) %>:</strong></dt>
   <dd><input readonly="readonly" size="50" type="text" name="url" value="<%= r['url'] %>"></dd>
 
-  <dt><strong><%= model_class.human_attribute_name(:venue) %>:</strong></dt>
-  <dd><input readonly="readonly" size="50" type="text" name="venue" value="<%= r['venue'] %>"></dd>
-
   <dt><strong><%= model_class.human_attribute_name(:address) %>:</strong></dt>
   <dd><input readonly="readonly" size="50" type="text" name="address" value="<%= r['address'] %>"></dd>
 
@@ -70,6 +67,17 @@
   
   <input readonly="readonly" size="50" type="text" name="description" value="<%= r['description'] %>">
 
+
+  <% if Venue.find_by_code(r['venue']['code']) %>
+    <%= r['venue'] %>
+  <% else %>
+    <h3>New Venue</h3>
+
+    <%= render :partial => 'venue_form', :locals => { :venue => r['venue'] } %> 
+
+    <dt><strong><%= model_class.human_attribute_name(:venue) %>:</strong></dt>
+    <dd><input readonly="readonly" size="50" type="text" name="venue" value="<%= r['venue'] %>"></dd>
+  <% end %>
 
   <br>
 

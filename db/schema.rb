@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161204130652) do
+ActiveRecord::Schema.define(version: 20161204132550) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,8 @@ ActiveRecord::Schema.define(version: 20161204130652) do
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
     t.integer  "score",        default: 0
+    t.integer  "venue_id"
+    t.index ["venue_id"], name: "index_events_on_venue_id", using: :btree
   end
 
   create_table "fringebots", force: :cascade do |t|
@@ -123,6 +125,7 @@ ActiveRecord::Schema.define(version: 20161204130652) do
     t.index ["user_id"], name: "index_votes_on_user_id", using: :btree
   end
 
+  add_foreign_key "events", "venues"
   add_foreign_key "performances", "events"
   add_foreign_key "reviews", "events"
   add_foreign_key "votes", "events"

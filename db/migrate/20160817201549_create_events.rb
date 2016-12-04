@@ -14,7 +14,6 @@ class CreateEvents < ActiveRecord::Migration[5.0]
       t.string :title
       t.string :updated
       t.string :url
-      t.string :venue
       t.string :address
       t.string :code
       t.string :description
