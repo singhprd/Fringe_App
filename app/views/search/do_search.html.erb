@@ -51,18 +51,6 @@
   <dt><strong><%= model_class.human_attribute_name(:url) %>:</strong></dt>
   <dd><input readonly="readonly" size="50" type="text" name="url" value="<%= r['url'] %>"></dd>
 
-  <dt><strong><%= model_class.human_attribute_name(:address) %>:</strong></dt>
-  <dd><input readonly="readonly" size="50" type="text" name="address" value="<%= r['address'] %>"></dd>
-
-  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-  <dd><input readonly="readonly" size="50" type="text" name="name" value="<%= r['name'] %>"></dd>
-
-  <dt><strong><%= model_class.human_attribute_name(:phone) %>:</strong></dt>
-  <dd><input readonly="readonly" size="50" type="text" name="phone" value="<%= r['phone'] %>"></dd>
-
-  <dt><strong><%= model_class.human_attribute_name(:post_code) %>:</strong></dt>
-  <dd><input readonly="readonly" size="50" type="text" name="post_code" value="<%= r['post_code'] %>"></dd>
-
   <dt><strong><%= model_class.human_attribute_name(:website) %>:</strong></dt>
   <dd><input readonly="readonly" size="50" type="text" name="website" value="<%= r['website'] %>"></dd>
 
@@ -70,13 +58,12 @@
   <input readonly="readonly" size="50" type="hidden" name="description" value="<%= r['description'] %>">
 
 
+  <dt><strong>Venue:</dt></strong>
   <% if Venue.find_by_code(r['venue']['code']) %>
-    <h3>Existing Venue</h3>
-    <%= r['venue'] %>
+    <%= r['venue']['code'] %>
     <input readonly="readonly" size="50" type="hidden" name="existing_venue_code" value="<%= r['venue']['code'] %>">
   <% else %>
-    <h3>New Venue</h3>
-    <p><%= r['venue']['address'] %></p>
+    <strong><%= r['venue']['address'] %></strong>
     <input readonly="readonly" size="50" type="hidden" name="venue" value="<%= r['venue'] %>">
   <% end %>
 
