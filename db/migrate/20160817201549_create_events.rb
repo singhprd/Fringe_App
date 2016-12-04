@@ -14,12 +14,8 @@ class CreateEvents < ActiveRecord::Migration[5.0]
       t.string :title
       t.string :updated
       t.string :url
-      t.string :address
       t.string :code
       t.string :description
-      t.string :name
-      t.string :phone
-      t.string :post_code
       t.string :website
 
       t.timestamps

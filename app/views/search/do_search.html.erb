@@ -8,8 +8,11 @@
   <h1><%= r['title'] %></h1>
 </div>
 
-<dl class="dl-horizontal">
+  <dl class="dl-horizontal">
 
+  <%=  raw(r['description']) %>
+  <br>
+  <br>
   <!-- <input readonly="readonly" size="50" type="hidden" name="age_category" value="<%= r['code'] %>"> -->
 
   <dt><strong><%= model_class.human_attribute_name(:age_category) %>:</strong></dt>
@@ -63,22 +66,21 @@
   <dt><strong><%= model_class.human_attribute_name(:website) %>:</strong></dt>
   <dd><input readonly="readonly" size="50" type="text" name="website" value="<%= r['website'] %>"></dd>
 
-  <%=  raw(r['description']) %>
   
-  <input readonly="readonly" size="50" type="text" name="description" value="<%= r['description'] %>">
+  <input readonly="readonly" size="50" type="hidden" name="description" value="<%= r['description'] %>">
 
 
   <% if Venue.find_by_code(r['venue']['code']) %>
+    <h3>Existing Venue</h3>
     <%= r['venue'] %>
+    <input readonly="readonly" size="50" type="hidden" name="existing_venue_code" value="<%= r['venue']['code'] %>">
   <% else %>
     <h3>New Venue</h3>
-
-    <%= render :partial => 'venue_form', :locals => { :venue => r['venue'] } %> 
-
-    <dt><strong><%= model_class.human_attribute_name(:venue) %>:</strong></dt>
-    <dd><input readonly="readonly" size="50" type="text" name="venue" value="<%= r['venue'] %>"></dd>
+    <p><%= r['venue']['address'] %></p>
+    <input readonly="readonly" size="50" type="hidden" name="venue" value="<%= r['venue'] %>">
   <% end %>
 
+  <br>
   <br>
 
   <% if Event.find_by_code(r['code']) %>

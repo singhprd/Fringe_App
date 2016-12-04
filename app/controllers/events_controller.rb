@@ -1,3 +1,4 @@
+require 'json'
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   protect_from_forgery with: :null_session
@@ -25,11 +26,20 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
-    @venue = Venue.new(venue_params)
-    @venue.save
+    # This is quite insecure as I'm trusting the API too much - Fix it later TM
+    # venue_params = JSON.parse(event_params[:venue])
+    # venue_params = eval params[:venue]
+
+    if params[:existing_venue_code].nil? 
+      venue_params = eval params[:venue]
+      @venue = Venue.new(venue_params)
+      @venue.save
+    else
+      @venue = Venue.find_by_code(params[:existing_venue_code])
+    end
     @event = Event.new(event_params)
     @event.venue = @venue
-
+    
     respond_to do |format|
       if @event.save
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
@@ -73,10 +83,10 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.permit(:event, :code, :age_category, :artist, :code, :description, :festival, :festival_id, :genre, :latitude, :longitude, :status, :title, :updated, :url, :venue_id, :address, :description, :name, :phone, :post_code, :website)
+      params.permit(:event, :code, :age_category, :artist, :code, :description, :festival, :festival_id, :genre, :latitude, :longitude, :status, :title, :updated, :url, :address, :description, :name, :phone, :post_code, :website)
     end
 
     def venue_params
-      params.permit(:id, :address, :box_office_fringe, :box_office_opening, :cafe_description, :code, :email, :fax, :has_bar, :has_booking_over_card, :has_booking_over_phone, :has_booking_over_web, :has_cafe, :name, :phone, :lat, :lon, :post_code, :web_address, :created_at, :updated_at)
+      params.permit(:event, :id, :address, :box_office_fringe, :box_office_opening, :cafe_description, :code, :email, :fax, :has_bar, :has_booking_over_card, :has_booking_over_phone, :has_booking_over_web, :has_cafe, :name, :phone, :lat, :lon, :post_code, :web_address, :created_at, :updated_at)
     end
 end

@@ -36,6 +36,7 @@ gem 'devise'
 
 # Emoji gem
 gem 'gemoji'
+gem 'json'
 
 gem 'pg'
 

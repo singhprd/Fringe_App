@@ -106,6 +106,8 @@ ActiveRecord::Schema.define(version: 20161204132550) do
     t.boolean  "has_booking_over_web"
     t.boolean  "has_cafe"
     t.string   "name"
+    t.string   "disabled_description"
+    t.string   "description"
     t.string   "phone"
     t.string   "lat"
     t.string   "lon"

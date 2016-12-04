@@ -17,6 +17,7 @@ class CreateVenues < ActiveRecord::Migration[5.0]
       t.string :phone
       t.string :lat
       t.string :lon
+      t.string :position
       t.string :post_code
       t.string :web_address
 
