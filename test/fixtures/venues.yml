@@ -1,0 +1,41 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  address: MyString
+  box_office_fringe: false
+  box_office_opening: MyString
+  cafe_description: MyString
+  code: MyString
+  email: MyString
+  fax: MyString
+  has_bar: false
+  has_booking_over_card: false
+  has_booking_over_phone: false
+  has_booking_over_web: false
+  has_cafe: false
+  name: MyString
+  phone: MyString
+  lat: MyString
+  lon: MyString
+  post_code: MyString
+  web_address: MyString
+
+two:
+  address: MyString
+  box_office_fringe: false
+  box_office_opening: MyString
+  cafe_description: MyString
+  code: MyString
+  email: MyString
+  fax: MyString
+  has_bar: false
+  has_booking_over_card: false
+  has_booking_over_phone: false
+  has_booking_over_web: false
+  has_cafe: false
+  name: MyString
+  phone: MyString
+  lat: MyString
+  lon: MyString
+  post_code: MyString
+  web_address: MyString

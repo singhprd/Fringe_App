@@ -2,6 +2,7 @@ class Event < ApplicationRecord
 	has_many :performances
 	has_many :reviews
 	has_many :votes
+	belongs_to :venue 
 	validates :code, presence: true, uniqueness: true
 
 	def upvotes

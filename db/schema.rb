@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161127180923) do
+ActiveRecord::Schema.define(version: 20161204130652) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,6 +88,29 @@ ActiveRecord::Schema.define(version: 20161127180923) do
     t.integer  "vote_reset_amount",      default: 10
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  end
+
+  create_table "venues", force: :cascade do |t|
+    t.string   "address"
+    t.boolean  "box_office_fringe"
+    t.string   "box_office_opening"
+    t.string   "cafe_description"
+    t.string   "code"
+    t.string   "email"
+    t.string   "fax"
+    t.boolean  "has_bar"
+    t.boolean  "has_booking_over_card"
+    t.boolean  "has_booking_over_phone"
+    t.boolean  "has_booking_over_web"
+    t.boolean  "has_cafe"
+    t.string   "name"
+    t.string   "phone"
+    t.string   "lat"
+    t.string   "lon"
+    t.string   "post_code"
+    t.string   "web_address"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "votes", force: :cascade do |t|

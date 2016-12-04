@@ -1,0 +1,1 @@
+rails generate scaffold Venue address:string box_office_fringe:string box_office_opening:string cafe_description:string code:string email:string fax:string has_bar:string has_booking_over_card:string has_booking_over_phone:string has_booking_over_web:string has_cafe:string name:string phone:string lat:string lon:string post_code:string web_address:string

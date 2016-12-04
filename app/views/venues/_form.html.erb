@@ -1,0 +1,107 @@
+<%= form_for(venue) do |f| %>
+  <% if venue.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(venue.errors.count, "error") %> prohibited this venue from being saved:</h2>
+
+      <ul>
+      <% venue.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :address %>
+    <%= f.text_field :address %>
+  </div>
+
+  <div class="field">
+    <%= f.label :box_office_fringe %>
+    <%= f.check_box :box_office_fringe %>
+  </div>
+
+  <div class="field">
+    <%= f.label :box_office_opening %>
+    <%= f.text_field :box_office_opening %>
+  </div>
+
+  <div class="field">
+    <%= f.label :cafe_description %>
+    <%= f.text_field :cafe_description %>
+  </div>
+
+  <div class="field">
+    <%= f.label :code %>
+    <%= f.text_field :code %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </div>
+
+  <div class="field">
+    <%= f.label :fax %>
+    <%= f.text_field :fax %>
+  </div>
+
+  <div class="field">
+    <%= f.label :has_bar %>
+    <%= f.check_box :has_bar %>
+  </div>
+
+  <div class="field">
+    <%= f.label :has_booking_over_card %>
+    <%= f.check_box :has_booking_over_card %>
+  </div>
+
+  <div class="field">
+    <%= f.label :has_booking_over_phone %>
+    <%= f.check_box :has_booking_over_phone %>
+  </div>
+
+  <div class="field">
+    <%= f.label :has_booking_over_web %>
+    <%= f.check_box :has_booking_over_web %>
+  </div>
+
+  <div class="field">
+    <%= f.label :has_cafe %>
+    <%= f.check_box :has_cafe %>
+  </div>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :phone %>
+    <%= f.text_field :phone %>
+  </div>
+
+  <div class="field">
+    <%= f.label :lat %>
+    <%= f.text_field :lat %>
+  </div>
+
+  <div class="field">
+    <%= f.label :lon %>
+    <%= f.text_field :lon %>
+  </div>
+
+  <div class="field">
+    <%= f.label :post_code %>
+    <%= f.text_field :post_code %>
+  </div>
+
+  <div class="field">
+    <%= f.label :web_address %>
+    <%= f.text_field :web_address %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
