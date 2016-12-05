@@ -19,7 +19,6 @@ class CreateVenues < ActiveRecord::Migration[5.0]
       t.string :lon
       t.string :post_code
       t.string :web_address
-
       t.timestamps
     end
   end

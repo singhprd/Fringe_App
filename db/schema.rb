@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161204224507) do
+ActiveRecord::Schema.define(version: 20161205004511) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,11 +29,6 @@ ActiveRecord::Schema.define(version: 20161204224507) do
     t.string   "title"
     t.string   "updated"
     t.string   "url"
-    t.string   "venue"
-    t.string   "address"
-    t.string   "name"
-    t.string   "phone"
-    t.string   "post_code"
     t.string   "website"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
@@ -106,8 +101,6 @@ ActiveRecord::Schema.define(version: 20161204224507) do
     t.boolean  "has_booking_over_web"
     t.boolean  "has_cafe"
     t.string   "name"
-    t.string   "disabled_description"
-    t.string   "description"
     t.string   "phone"
     t.string   "lat"
     t.string   "lon"
@@ -116,6 +109,7 @@ ActiveRecord::Schema.define(version: 20161204224507) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.string   "position"
+    t.string   "description"
   end
 
   create_table "votes", force: :cascade do |t|
