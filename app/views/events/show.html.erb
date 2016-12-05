@@ -36,13 +36,6 @@
   <dt><strong><%= model_class.human_attribute_name(:venue) %>:</strong></dt>
   <dd><%= @event.venue.code %></dd>
 
-
-  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-  <dd><%= @event.name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:phone) %>:</strong></dt>
-  <dd><%= @event.phone %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:post_code) %>:</strong></dt>
-  <dd><%= @event.post_code %></dd>
   <dt><strong><%= model_class.human_attribute_name(:website) %>:</strong></dt>
   <dd><%= link_to( @event.website, @event.website ) %></dd>
 </dl>
