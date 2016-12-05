@@ -40,6 +40,7 @@
   <dd><%= link_to( @event.website, @event.website ) %></dd>
 </dl>
 
+
 <%= link_to t('.back', :default => t("helpers.links.back")),
               events_path, :class => 'btn btn-default'  %>
 <%= link_to t('.edit', :default => t("helpers.links.edit")),
@@ -52,3 +53,4 @@
 
   </div>
 </div>
+<%= commontator_thread(@event) %>

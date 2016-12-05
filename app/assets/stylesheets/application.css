@@ -15,6 +15,9 @@
  */
 /*@import 'https://fonts.googleapis.com/css?family=Roboto+Condensed|Rubik+Mono+One';*/
 
+/**= require commontator/application*/
+
+
 * {
 	/*font-family: 'Roboto Condensed', sans-serif;*/
 }
@@ -104,3 +107,4 @@
 	/*vertical-align: middle;*/
 
 /*}*/
+

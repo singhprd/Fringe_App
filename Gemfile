@@ -36,6 +36,9 @@ gem 'devise'
 
 gem 'kaminari'
 
+gem 'commontator', '~> 4.11.1'
+
+
 # Emoji gem
 gem 'gemoji'
 gem 'json'
