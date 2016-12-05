@@ -254,7 +254,7 @@ Commontator.configure do |config|
   #   false (no mentions)
   #   true  (mentions enabled)
   # Default: false
-  config.mentions_enabled = false
+  config.mentions_enabled = true
 
   # user_mentions_proc
   # Type: Proc
@@ -275,5 +275,5 @@ Commontator.configure do |config|
   # Default: lambda { |current_user, query|
   #                   current_user.class.where('username LIKE ?', "#{query}%") }
   config.user_mentions_proc = lambda { |current_user, query|
-    current_user.class.where('username LIKE ?', "#{query}%") }
+    current_user.class.where('email LIKE ?', "#{query}%") }
 end
