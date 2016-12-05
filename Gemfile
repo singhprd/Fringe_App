@@ -34,6 +34,8 @@ gem 'jbuilder', '~> 2.5'
 # Devise for user auth
 gem 'devise'
 
+gem 'kaminari'
+
 # Emoji gem
 gem 'gemoji'
 gem 'json'
