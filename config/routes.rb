@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   mount Commontator::Engine => '/commontator'
   resources :venues
   resources :votes
-  devise_for :users
   resources :reviews
   resources :searches
   resources :performances
@@ -15,6 +14,7 @@ Rails.application.routes.draw do
   root 'home#welcome'
 
   resources :search
+  devise_for :users, controllers: { sessions: 'users/sessions' }
 
 
 end
