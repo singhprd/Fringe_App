@@ -22,6 +22,12 @@
 	/*font-family: 'Roboto Condensed', sans-serif;*/
 }
 
+body {
+	/*background-image: url(/assets/b.png);*/
+	background: #FDFCFC;
+  background-blend-mode: d
+
+}
 
 #user_actions {
 }
