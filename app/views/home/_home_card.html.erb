@@ -1,6 +1,6 @@
 <% @events.each do |event| %>
 
-<div class="panel panel-primary home_card" id="<%= event.id %>" >
+<div class="panel panel-primary home_card text-info" id="<%= event.id %>" >
   
   <a display: block, href="/events">
   <div class="panel-heading">
@@ -11,20 +11,23 @@
   <div class="panel-body">
     <text> Festival: <%= event.festival %> </text>
     <br>
+  <div>
     <text>Reviews:</text>
-    <span> <%= event.reviews.count %> </span>
+    <!-- <span> <%= event.reviews.count %> </span> -->
     <br>
 
     <% if event.reviews.count > 0 %>
-      <%= render :partial => 'review_modal', :locals => { :reviews => event.reviews } %> 
-    <% else %>
-      <span><a href="/reviews/new?event=<%= event.id %>">Add a review?</a></span>
+      <%#= render :partial => 'review_modal', :locals => { :reviews => event.reviews } %>
+      <% event.reviews.each do |r| %>
+        <a href="<%= r.url %>" class="btn btn-default btn-sm"><%= r.title %></a>
+      <% end %>
     <% end %>
-    
-    <br>
+    <a href="/reviews/new?event=<%= event.id %>" class="text-muted">Add a review...</a>
+    </div>
 
-    <text>Score:</text>
-    <span class="vote_tally" value="<%= event.id %>"> <%= event.tally_votes %> </span>
+    <text class="text-info">Score:</text>
+    <span class="vote_tally text-info" value="<%= event.id %>"> <%= event.tally_votes %> </span>
+
     <br>
     <div class="btn-group vote_buttons" role="group" aria-label="...">
       <% if user_signed_in? %>
