@@ -7,7 +7,6 @@
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:url) %></th>
-      <th><%= model_class.human_attribute_name(:stars) %></th>
       <th><%= model_class.human_attribute_name(:title) %></th>
       <th><%= model_class.human_attribute_name(:event_id) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
@@ -19,7 +18,6 @@
       <tr>
         <td><%= link_to review.id, review_path(review) %></td>
         <td><%= review.url %></td>
-        <td><%= review.stars %></td>
         <td><%= review.title %></td>
         <td><%= review.event_id %></td>
         <td><%=l review.created_at %></td>
