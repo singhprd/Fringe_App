@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161206205647) do
+ActiveRecord::Schema.define(version: 20161207200713) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,15 @@ ActiveRecord::Schema.define(version: 20161206205647) do
     t.index ["venue_id"], name: "index_events_on_venue_id", using: :btree
   end
 
+  create_table "favourites", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_favourites_on_event_id", using: :btree
+    t.index ["user_id"], name: "index_favourites_on_user_id", using: :btree
+  end
+
   create_table "fringebots", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -104,6 +113,16 @@ ActiveRecord::Schema.define(version: 20161206205647) do
   create_table "searches", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "user_favourites", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "event_id"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["event_id"], name: "index_user_favourites_on_event_id", using: :btree
+    t.index ["user_id"], name: "index_user_favourites_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -164,8 +183,12 @@ ActiveRecord::Schema.define(version: 20161206205647) do
   end
 
   add_foreign_key "events", "venues"
+  add_foreign_key "favourites", "events"
+  add_foreign_key "favourites", "users"
   add_foreign_key "performances", "events"
   add_foreign_key "reviews", "events"
+  add_foreign_key "user_favourites", "events"
+  add_foreign_key "user_favourites", "users"
   add_foreign_key "votes", "events"
   add_foreign_key "votes", "users"
 end

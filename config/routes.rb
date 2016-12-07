@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :favourites
   mount Commontator::Engine => '/commontator'
   resources :venues
   resources :votes
