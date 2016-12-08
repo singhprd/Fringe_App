@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :votes
+  has_many :favourites
   acts_as_commontator
 
   def reduce_votes_left()

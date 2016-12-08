@@ -38,6 +38,12 @@
       <% end %>
     </div>
 
+    <% if event.has_been_favourited?(current_user) %>
+      <button type="button" class="btn btn-default un_fav_vote" value="<%= event.id %>" >Unfavourite</button>
+    <% else %>
+      <button type="button" class="btn btn-default fav_vote" value="<%= event.id %>" >Favourite</button>
+    <% end %>
+
   </div>
 </div>
 

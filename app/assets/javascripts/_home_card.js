@@ -5,20 +5,39 @@ $(document).on('turbolinks:load', function() {
 		 	var event_id = $(card).first().attr('id')
 			var thumbsup_button = $(card).find('.thumbsup_button')[0]
 			var thumbsdown_button = $(card).find('.thumbsdown_button')[0]
+			var fav_vote = $(card).find('.fav_vote')[0]
+
+
+			$( fav_vote ).click(function(event) {
+				var button = event.target
+				// alert('hello')
+
+				$.ajax({
+					url: "/favourites",
+					type: "POST",
+					data: {favourite: {
+						event_id: event_id
+					}},
+					success: function(a,b,c){
+						$(vote_tally).html(a['votes'])
+						$("#notice").html(a['notice'])
+					},
+					error: function() {
+						console.log('failed')
+					}
+				});
+			});
 
 			$( thumbsup_button ).click(function(event) {
 				var button = event.target
 				var vote_tally =  $(button).closest('.vote_buttons').siblings('.vote_tally')[0];
-
-				// $.post('/votes', {event_id: event_id, value: 1}, function(data, textStatus, xhr) {
-				// 	$(vote_tally).html(data['votes'])
-				// });
 
 				$.ajax({
 					url: "/votes",
 					type: "POST",
 					data: {event_id: event_id, value: 1},
 					success: function(a,b,c){
+						console.log("a", a, "b",b, "c", c)
 						$(vote_tally).html(a['votes'])
 						$("#notice").html(a['notice'])
 					},
