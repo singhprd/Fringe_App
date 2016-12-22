@@ -43,6 +43,9 @@ gem 'commontator', '~> 4.11.1'
 gem 'gemoji'
 gem 'json'
 
+gem 'react-rails'
+
+
 gem 'pg'
 
 # gem 'sqlite3'

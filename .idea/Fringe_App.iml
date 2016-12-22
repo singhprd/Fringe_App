@@ -139,6 +139,7 @@
     <orderEntry type="library" scope="PROVIDED" name="coffee-script (v2.4.1, rbenv: 2.3.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="coffee-script-source (v1.10.0, rbenv: 2.3.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="commonjs (v0.2.7, rbenv: 2.3.2) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="commontator (v4.11.1, rbenv: 2.3.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="concurrent-ruby (v1.0.2, rbenv: 2.3.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="debug_inspector (v0.0.2, rbenv: 2.3.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="devise (v4.2.0, rbenv: 2.3.2) [gem]" level="application" />
@@ -158,6 +159,7 @@
     <orderEntry type="library" scope="PROVIDED" name="i18n (v0.7.0, rbenv: 2.3.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="jbuilder (v2.6.0, rbenv: 2.3.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="jquery-rails (v4.1.1, rbenv: 2.3.2) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="kaminari (v0.17.0, rbenv: 2.3.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="less (v2.6.0, rbenv: 2.3.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="less-rails (v2.7.1, rbenv: 2.3.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="listen (v3.0.8, rbenv: 2.3.2) [gem]" level="application" />
@@ -198,7 +200,6 @@
     <orderEntry type="library" scope="PROVIDED" name="spring-watcher-listen (v2.0.0, rbenv: 2.3.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sprockets (v3.7.0, rbenv: 2.3.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sprockets-rails (v3.1.1, rbenv: 2.3.2) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="sqlite3 (v1.3.11, rbenv: 2.3.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="thor (v0.19.1, rbenv: 2.3.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="thread_safe (v0.3.5, rbenv: 2.3.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="tilt (v2.0.5, rbenv: 2.3.2) [gem]" level="application" />
