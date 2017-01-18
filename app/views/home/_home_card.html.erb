@@ -1,51 +1,6 @@
 <% @events.each do |event| %>
 
-<div class="panel panel-primary home_card text-info" id="<%= event.id %>" >
-  
-  <a display: block, href="/events">
-  <div class="panel-heading">
-    <h3 class="panel-title"><%= link_to event.title, event, class: "" %></h3>
-  </div>  
-  </a>
-
-  <div class="panel-body">
-    <text> Festival: <%= event.festival %> </text>
-    <br>
-  <div>
-    <text>Reviews:</text>
-    <!-- <span> <%= event.reviews.count %> </span> -->
-    <br>
-
-    <% if event.reviews.count > 0 %>
-      <%#= render :partial => 'review_modal', :locals => { :reviews => event.reviews } %>
-      <% event.reviews.each do |r| %>
-        <a href="<%= r.url %>" class="btn btn-default btn-sm"><%= r.title %></a>
-      <% end %>
-    <% end %>
-    <a href="/reviews/new?event=<%= event.id %>" class="text-muted">Add a review...</a>
-    </div>
-
-    <text class="text-info">Score:</text>
-    <span class="vote_tally text-info" value="<%= event.id %>"> <%= event.tally_votes %> </span>
-
-    <br>
-    <div class="btn-group vote_buttons" role="group" aria-label="...">
-      <% if user_signed_in? %>
-        <button type="button" class="btn btn-default thumbsup_button" value="<%= event.id %>" ><%= Emoji.find_by_alias("thumbsup").raw %></button>
-        <button type="button" class="btn btn-default thumbsdown_button" value="<%= event.id %>" ><%= Emoji.find_by_alias("thumbsdown").raw %></button>
-      <% else %>
-        <a href="/users/sign_in"><button type="button" class="btn btn-default">Sign in to vote</button></a>
-      <% end %>
-    </div>
-
-    <% if current_user.nil? || event.has_been_favourited?(current_user) %>
-      <button type="button" class="btn btn-default un_fav_vote" value="<%= event.id %>" >Unfavourite</button>
-    <% else %>
-      <button type="button" class="btn btn-default fav_vote" value="<%= event.id %>" >Favourite</button>
-    <% end %>
-
-  </div>
-</div>
+<%= react_component('EventCard', id: event.id, title: event.title, event: event.to_json) %>
 
 <% end %>
 

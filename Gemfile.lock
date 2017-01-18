@@ -184,6 +184,10 @@ GEM
       execjs
       railties (>= 3.2)
       tilt
+    react-rails-hot-loader (0.7.0)
+      em-websocket
+      rails
+      react-rails
     responders (2.2.0)
       railties (>= 4.2.0, < 5.1)
     sass (3.4.22)
@@ -253,6 +257,7 @@ DEPENDENCIES
   rack-livereload
   rails (~> 5.0.0)
   react-rails
+  react-rails-hot-loader
   sass-rails (~> 5.0)
   spring
   spring-watcher-listen (~> 2.0.0)

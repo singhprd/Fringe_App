@@ -45,6 +45,7 @@ gem 'json'
 
 gem 'react-rails'
 
+gem 'react-rails-hot-loader'
 
 gem 'pg'
 
