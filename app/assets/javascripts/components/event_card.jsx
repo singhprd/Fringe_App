@@ -31,19 +31,12 @@ var EventCard = React.createClass({
 
     </dl>
 
+    <VotesComponent/>
+
     <div dangerouslySetInnerHTML={{__html: e.description}} />
     <br/>
-    <text className="text-info">Score:</text>
-    <span className="vote_tally text-info"> {e.score} </span>
-    <br/>
-    <div className="btn-group vote_buttons" role="group" aria-label="...">
-      <div className="btn-group vote_buttons" role="group" aria-label="...">
-        <button type="button" className="btn btn-default thumbsup_button">UP</button>
-        <button type="button" className="btn btn-default thumbsdown_button">DOWN</button>
-      </div>
-    </div>
+    
   </div>
-
 </div>
     );
   }
