@@ -5,7 +5,6 @@ var VotesComponent = React.createClass({
   render: function() {
     return (
 	<div>
-		<h1>Votes</h1>
 		<text className="text-info">Score:</text>
 		<span className="vote_tally text-info">  </span>
 		<br/>
