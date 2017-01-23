@@ -9,7 +9,7 @@ var VotesComponent = React.createClass({
 		type: "POST",
 		data: {event_id: this.props.event_id, value: 1},
 		success: function(a,b,c){
-			console.log("a", a, "b",b, "c", c)
+			// console.log("a", a, "b",b, "c", c)
 			votes = a['votes']
 			if (votes) {
 				this.setState({score: a['votes']})
@@ -28,7 +28,7 @@ var VotesComponent = React.createClass({
 		type: "POST",
 		data: {event_id: this.props.event_id, value: -1},
 		success: function(a,b,c){
-			console.log("a", a, "b",b, "c", c)
+			// console.log("a", a, "b",b, "c", c)
 			votes = a['votes']
 			if (votes) {
 				this.setState({score: a['votes']})
@@ -48,8 +48,8 @@ var VotesComponent = React.createClass({
 		<br/>
 		<div className="btn-group vote_buttons" role="group" aria-label="...">
 			<div className="btn-group vote_buttons" role="group" aria-label="...">
-				<button onClick={this.upvote} className="btn btn-default">UP</button>
-				<button onClick={this.downvote} className="btn btn-default">DOWN</button>
+				<button onClick={this.upvote} className="btn btn-default">👍</button>
+				<button onClick={this.downvote} className="btn btn-default">👎</button>
 			</div>
 		</div>
 	</div>

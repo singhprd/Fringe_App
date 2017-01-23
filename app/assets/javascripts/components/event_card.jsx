@@ -30,9 +30,9 @@ var EventCard = React.createClass({
 
     </dl>
 
-    <VotesComponent score={e.score} event_id={e.id}/>
 
     <div dangerouslySetInnerHTML={{__html: e.description}} />
+    <VotesComponent score={e.score} event_id={e.id}/>
     <br/>
     
   </div>
