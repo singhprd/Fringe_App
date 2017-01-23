@@ -5,7 +5,6 @@ var EventCard = React.createClass({
 
   render: function() {
   	const e = this.state.event 
-
     return (
 <div className="panel panel-primary home_card text-info" id={this.state.id} >
   <div className="panel-heading">
@@ -31,7 +30,7 @@ var EventCard = React.createClass({
 
     </dl>
 
-    <VotesComponent/>
+    <VotesComponent score={e.score} event_id={e.id}/>
 
     <div dangerouslySetInnerHTML={{__html: e.description}} />
     <br/>
