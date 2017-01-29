@@ -21,8 +21,8 @@ class Event < ApplicationRecord
 		return self.score
 	end
 
-	def has_been_favourited?(user)
-		self.favourites.exists?(user_id: user.id, event_id: self.id)
+	def self.has_been_favourited?(user, event_id)
+		Event.find(event_id).favourites.exists?(user_id: user.id, event_id: event_id)
 	end
 
 end

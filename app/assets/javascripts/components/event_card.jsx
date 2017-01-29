@@ -34,6 +34,8 @@ var EventCard = React.createClass({
     <div dangerouslySetInnerHTML={{__html: e.description}} />
     <VotesComponent score={e.score} event_id={e.id}/>
     <br/>
+
+    <UserEventStatus event_id={e.id}/>
     
   </div>
 </div>

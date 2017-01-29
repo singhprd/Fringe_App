@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   # get 'search' => 'search#index'
   root 'home#welcome'
 
+  get '/events/:id/is_favourited' => 'events#is_favourited'
+
   resources :search
   devise_for :users, controllers: { sessions: 'users/sessions' }
 

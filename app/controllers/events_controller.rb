@@ -23,6 +23,12 @@ class EventsController < ApplicationController
   def edit
   end
 
+  # GET /events/1/has_been_favourited
+  def is_favourited()
+    result = Event.has_been_favourited?(User.first, 1) 
+    render json: {bool: result}
+  end
+
   # POST /events
   # POST /events.json
   def create
