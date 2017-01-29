@@ -1,6 +1,6 @@
 <% @events.each do |event| %>
 
-<%= react_component('EventCard', id: event.id, title: event.title, event: event.to_json) %>
+<%= react_component('EventCard', event: event.to_json, venue: event.venue.to_json) %>
 
 <% end %>
 

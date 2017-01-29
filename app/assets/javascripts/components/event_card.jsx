@@ -4,7 +4,8 @@ var EventCard = React.createClass({
   },
 
   render: function() {
-  	const e = this.state.event 
+  	const e = this.state.event;
+    const v = $.parseJSON(this.props.venue);
     return (
 <div className="panel panel-primary home_card text-info" id={this.state.id} >
   <div className="panel-heading">
@@ -17,7 +18,7 @@ var EventCard = React.createClass({
     <dl className="dl-horizontal">
       
       <dt>Venue:</dt>
-      <dd>{e.venue}</dd>
+      <dd>{v.name}</dd>
 
       <dt>Artist:</dt>
       <dd>{e.artist}</dd>
@@ -29,7 +30,6 @@ var EventCard = React.createClass({
       <dd> {e.festival} </dd>
 
     </dl>
-
 
     <div dangerouslySetInnerHTML={{__html: e.description}} />
     <VotesComponent score={e.score} event_id={e.id}/>
