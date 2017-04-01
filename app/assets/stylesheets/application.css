@@ -60,6 +60,14 @@ body {
 
 #top-navbar {
 	margin-bottom: 0;
+	/*background-color: #337ab7;*/
+	/*color: #337ab7;*/
+}
+
+#top-navbar * {
+	/*margin-bottom: 0;*/
+	/*background-color: #337ab7;*/
+	color: #337ab7;
 }
 
 /** {
