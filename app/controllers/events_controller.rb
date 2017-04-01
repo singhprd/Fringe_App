@@ -1,6 +1,7 @@
 require 'json'
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :check_admin, only: [:destroy, :update, :edit]
   protect_from_forgery with: :null_session
 
   # GET /events
@@ -92,9 +93,5 @@ class EventsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
       params.permit(:event, :code, :age_category, :artist, :code, :description, :festival, :festival_id, :genre, :latitude, :longitude, :status, :title, :updated, :url, :address, :name, :phone, :post_code, :website)
-    end
-
-    def venue_params
-      params.permit(:event, :id, :address, :box_office_fringe, :box_office_opening, :cafe_description, :code, :email, :fax, :has_bar, :has_booking_over_card, :has_booking_over_phone, :has_booking_over_web, :has_cafe, :name, :phone, :lat, :lon, :post_code, :web_address, :created_at, :updated_at, :position, :description)
     end
 end

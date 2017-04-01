@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   root 'home#welcome'
 
   get '/events/:id/is_favourited' => 'events#is_favourited'
-  # get '/admin_panel'
+  get '/admin/panel' => 'admin#panel'
 
   resources :search
   devise_for :users, controllers: { sessions: 'users/sessions' }
