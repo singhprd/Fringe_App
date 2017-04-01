@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161207201520) do
+ActiveRecord::Schema.define(version: 20170401154002) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,6 +91,28 @@ ActiveRecord::Schema.define(version: 20161207201520) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "image_groups", force: :cascade do |t|
+    t.string   "identifier"
+    t.string   "orientation"
+    t.string   "image_type"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "event_id"
+    t.index ["event_id"], name: "index_image_groups_on_event_id", using: :btree
+  end
+
+  create_table "image_versions", force: :cascade do |t|
+    t.string   "version"
+    t.string   "mime"
+    t.string   "url"
+    t.integer  "width"
+    t.integer  "height"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "image_group_id"
+    t.index ["image_group_id"], name: "index_image_versions_on_image_group_id", using: :btree
+  end
+
   create_table "performances", force: :cascade do |t|
     t.string   "concession"
     t.datetime "end"
@@ -116,22 +138,33 @@ ActiveRecord::Schema.define(version: 20161207201520) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "user_favourites", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "event_id"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["event_id"], name: "index_user_favourites_on_event_id", using: :btree
+    t.index ["user_id"], name: "index_user_favourites_on_user_id", using: :btree
+  end
+
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                  default: "",    null: false
+    t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.integer  "votes_left",             default: 10
     t.integer  "vote_reset_amount",      default: 10
     t.string   "username"
+    t.boolean  "admin",                  default: false
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
     t.index ["username"], name: "index_users_on_username", unique: true, using: :btree
@@ -176,8 +209,12 @@ ActiveRecord::Schema.define(version: 20161207201520) do
   add_foreign_key "events", "venues"
   add_foreign_key "favourites", "events"
   add_foreign_key "favourites", "users"
+  add_foreign_key "image_groups", "events"
+  add_foreign_key "image_versions", "image_groups"
   add_foreign_key "performances", "events"
   add_foreign_key "reviews", "events"
+  add_foreign_key "user_favourites", "events"
+  add_foreign_key "user_favourites", "users"
   add_foreign_key "votes", "events"
   add_foreign_key "votes", "users"
 end
