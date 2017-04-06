@@ -65,8 +65,8 @@ var UserEventStatus = React.createClass({
 
   render: function() {
     return (
-      <div>
-      {this.render_appropriate_buttons()}
+      <div className="btn-group" role="group">
+        {this.render_appropriate_buttons()}
       </div>
       );
   }
