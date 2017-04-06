@@ -8,18 +8,17 @@ class User < ApplicationRecord
   has_many :favourites
   acts_as_commontator
 
-  def reduce_votes_left()
-  	current_votes = self.votes_left
+  def reduce_votes_left
+    current_votes = votes_left
     if current_votes <= 0
       return false
     else
-  	   return self.update_attributes(votes_left: (current_votes - 1) )
+      return update_attributes(votes_left: (current_votes - 1))
     end
   end
 
-  def reset_votes()
-  	vote_reset_amount = self.vote_reset_amount
-	   self.update_attributes(votes_left: vote_reset_amount )
+  def reset_votes
+    vote_reset_amount = self.vote_reset_amount
+    update_attributes(votes_left: vote_reset_amount)
   end
-
 end
