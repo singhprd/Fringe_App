@@ -91,28 +91,6 @@ ActiveRecord::Schema.define(version: 20170401154002) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "image_groups", force: :cascade do |t|
-    t.string   "identifier"
-    t.string   "orientation"
-    t.string   "image_type"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "event_id"
-    t.index ["event_id"], name: "index_image_groups_on_event_id", using: :btree
-  end
-
-  create_table "image_versions", force: :cascade do |t|
-    t.string   "version"
-    t.string   "mime"
-    t.string   "url"
-    t.integer  "width"
-    t.integer  "height"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.integer  "image_group_id"
-    t.index ["image_group_id"], name: "index_image_versions_on_image_group_id", using: :btree
-  end
-
   create_table "performances", force: :cascade do |t|
     t.string   "concession"
     t.datetime "end"
@@ -136,16 +114,6 @@ ActiveRecord::Schema.define(version: 20170401154002) do
   create_table "searches", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "user_favourites", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "event_id"
-    t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["event_id"], name: "index_user_favourites_on_event_id", using: :btree
-    t.index ["user_id"], name: "index_user_favourites_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -209,12 +177,8 @@ ActiveRecord::Schema.define(version: 20170401154002) do
   add_foreign_key "events", "venues"
   add_foreign_key "favourites", "events"
   add_foreign_key "favourites", "users"
-  add_foreign_key "image_groups", "events"
-  add_foreign_key "image_versions", "image_groups"
   add_foreign_key "performances", "events"
   add_foreign_key "reviews", "events"
-  add_foreign_key "user_favourites", "events"
-  add_foreign_key "user_favourites", "users"
   add_foreign_key "votes", "events"
   add_foreign_key "votes", "users"
 end

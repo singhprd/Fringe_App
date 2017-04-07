@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby "2.3.2"
+ruby "2.4.1"
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -35,8 +35,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise'
 
 gem 'kaminari'
-
-gem 'commontator', '~> 4.11.1'
+gem 'therubyracer'
+gem 'commontator'
 
 
 # Emoji gem
@@ -55,23 +55,27 @@ gem 'twitter-bootstrap-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platform: :mri
+  gem 'byebug'
   # gem 'sqlite3'
-  gem 'guard-livereload', '~> 2.5', require: false
-  gem "rack-livereload", group: :development
+  gem 'guard-livereload'
+  gem "rack-livereload"
+  gem 'factory_girl_rails'
+  
+  gem 'guard' # NOTE: this is necessary in newer versions
+  gem 'guard-minitest'
 end
 
 group :development do
   # gem 'pg'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console'
-  gem 'listen', '~> 3.0.5'
+  gem 'listen'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'spring-watcher-listen'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'festivals_lab', '0.0.3'
+gem 'festivals_lab'

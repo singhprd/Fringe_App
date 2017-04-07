@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  user: one
-  event: one
-  value: 
+# one:
+#   user: 1
+#   event: 1
+#   value: 
 
-two:
-  user: two
-  event: two
-  value: 
+# two:
+#   user: 1
+#   event: 1
+#   value: 1

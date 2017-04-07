@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  url: MyString
-  stars: MyString
-  title: MyString
+# one:
+#   url: MyString
+#   stars: MyString
+#   title: MyString
 
-two:
-  url: MyString
-  stars: MyString
-  title: MyString
+# two:
+#   url: MyString
+#   stars: MyString
+#   title: MyString

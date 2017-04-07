@@ -1,47 +1,37 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  age_category: MyString
-  artist: MyString
-  code: MyString
-  description: MyString
-  festival: MyString
-  festival_id: MyString
-  genre: MyString
-  latitude: MyString
-  longitude: MyString
-  status: MyString
-  title: MyString
-  updated: MyString
-  url: MyString
-  venue: MyString
-  address: MyString
-  code: MyString
-  description: MyString
-  name: MyString
-  phone: MyString
-  post_code: MyString
-  website: MyString
+event_one:
+  age_category: "Ages 14+"
+  artist: ""
+  code: "476"
+  description: "<p>Terraforming is the process of transforming a h..."
+  festival: "Edinburgh International Science Festival"
+  festival_id: "science"
+  genre: "Discussion"
+  latitude: "55.9478"
+  longitude: "-3.18767"
+  status: "active"
+  title: "Terraforming – terrifying or terrific?"
+  updated: "2016-02-09 11:57:45"
+  url: "http://api.edinburghfestivalcity.com/events/10671d..."
+  website: "http://www.sciencefestival.co.uk/event-details/ter..."
+  score: -5
+  venue: venue_one
 
-two:
-  age_category: MyString
-  artist: MyString
-  code: MyString
-  description: MyString
-  festival: MyString
-  festival_id: MyString
-  genre: MyString
-  latitude: MyString
-  longitude: MyString
-  status: MyString
-  title: MyString
-  updated: MyString
-  url: MyString
-  venue: MyString
-  address: MyString
-  code: MyString
-  description: MyString
-  name: MyString
-  phone: MyString
-  post_code: MyString
-  website: MyString
+# event_two:
+#   age_category: "18+"
+#   artist: "DEMOCarl Hutchinson"
+#   code: "2016DEMO0072_ABC"
+#   description: "DEMOone put bunch show it put rights in-demand tho..."
+#   festival: "Edinburgh Festival Fringe"
+#   festival_id: "demofringe"
+#   genre: "Comedy"
+#   latitude: ""
+#   longitude: ""
+#   status: "active"
+#   title: "FAKE Hutchinson: The Fixer Carl"
+#   updated: "2016-08-16 09:49:15"
+#   url: "http://api.edinburghfestivalcity.com/events/584834..."
+#   website: "https://www.edfringe.com/event/2016CARLHUT_AEO"
+#   score: 22
+#   # venue_id: venue_two

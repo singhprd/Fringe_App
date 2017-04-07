@@ -1,41 +1,47 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  address: MyString
+venue_one:
+  address: "Chambers Street\nEdinburgh"
   box_office_fringe: false
-  box_office_opening: MyString
-  cafe_description: MyString
-  code: MyString
-  email: MyString
-  fax: MyString
+  box_office_opening: 2
+  cafe_description: 3
+  code: "National Museum of Scotland"
+  email: 4
+  fax: 5
   has_bar: false
   has_booking_over_card: false
   has_booking_over_phone: false
   has_booking_over_web: false
-  has_cafe: false
-  name: MyString
-  phone: MyString
-  lat: MyString
-  lon: MyString
-  post_code: MyString
-  web_address: MyString
+  has_cafe: true
+  name: "National Museum of Scotland"
+  phone: 6
+  lat: 7
+  lon: 8
+  post_code: "EH1 1JF"
+  web_address: 9
+  position: 10 
+  description: 11
+  disabled_description: 12
 
-two:
-  address: MyString
-  box_office_fringe: false
-  box_office_opening: MyString
-  cafe_description: MyString
-  code: MyString
-  email: MyString
-  fax: MyString
-  has_bar: false
-  has_booking_over_card: false
-  has_booking_over_phone: false
-  has_booking_over_web: false
-  has_cafe: false
-  name: MyString
-  phone: MyString
-  lat: MyString
-  lon: MyString
-  post_code: MyString
-  web_address: MyString
+# venue_two:
+#   address: "Chambers Street\nEdinburgh"
+#   box_office_fringe: false
+#   box_office_opening: 2
+#   cafe_description: 3
+#   code: "National Museum of Scotland"
+#   email: 4
+#   fax: 5
+#   has_bar: false
+#   has_booking_over_card: false
+#   has_booking_over_phone: false
+#   has_booking_over_web: false
+#   has_cafe: false
+#   name: "National Museum of Scotland"
+#   phone: 6
+#   lat: 7
+#   lon: 8
+#   post_code: "EH1 1JF"
+#   web_address: 9
+#   position: 10 
+#   description: 11
+#   disabled_description: 12
