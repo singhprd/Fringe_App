@@ -3,6 +3,8 @@ require 'test_helper'
 class FavouritesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @favourite = favourites(:one)
+    @user_two = users(:user_two)
+    sign_in @user_two
   end
 
   # test "should get index" do
