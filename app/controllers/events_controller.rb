@@ -28,7 +28,7 @@ class EventsController < ApplicationController
   def is_favourited()
     event_id = params[:event_id]
     user = current_user
-    result = Event.has_been_favourited?(user, event_id)
+    result = Event.favourited?(user, event_id)
     render json: {bool: result}
   end
 

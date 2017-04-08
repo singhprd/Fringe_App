@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
     def check_admin
-      raise if !current_user.admin?
+      raise "User is not Admin!" if !current_user.admin?
     end
 
   protected

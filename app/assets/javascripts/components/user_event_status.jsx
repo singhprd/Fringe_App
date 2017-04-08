@@ -16,7 +16,7 @@ var UserEventStatus = React.createClass({
         // $("#notice").html(a['notice'])
       }.bind(this),
       error: function() {
-        console.log('failed')
+        console.log('failed is_favourited user_event_status.jsx')
       }
     });
   },
@@ -33,7 +33,7 @@ var UserEventStatus = React.createClass({
         this.is_favourited()
       }.bind(this),
       error: function() {
-        console.log('failed')
+        console.log('failed favourite user_event_status.jsx')
       }
     });
   },
@@ -50,7 +50,7 @@ var UserEventStatus = React.createClass({
         this.is_favourited()
       }.bind(this),
       error: function() {
-        console.log('failed')
+        console.log('failed unfavourite user_event_status.jsx')
       }
     });
   },

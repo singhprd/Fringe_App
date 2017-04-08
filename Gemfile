@@ -60,6 +60,8 @@ group :development, :test do
   gem 'guard-livereload'
   gem "rack-livereload"
   gem 'factory_girl_rails'
+  gem 'pry'
+  
   
   gem 'guard' # NOTE: this is necessary in newer versions
   gem 'guard-minitest'

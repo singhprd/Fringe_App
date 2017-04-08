@@ -35,3 +35,31 @@ event_one:
 #   website: "https://www.edfringe.com/event/2016CARLHUT_AEO"
 #   score: 22
 #   # venue_id: venue_two
+
+new_event:
+  age_category: "12+"
+  artist: "DEMOLost KPS & Found Get and Productions"
+  code: "new_code"
+  description: "DEMOGompertz, Good Show!"
+  festival: "Edinburgh Festival Fringe"
+  festival_id: "demofringe"
+  genre: "Theatre"
+  latitude: "10"
+  longitude: "10"
+  status: "active"
+  title: "FAKE Shakespeare Impromptu"
+  updated: "2016-08-16 09:49:19"
+  url: "http://api.edinburghfestivalcity.com/events/1b17ab..."
+  website: "https://www.edfringe.com/event/2016IMPROMP_JC"
+  score: 3
+  venue: venue_one
+
+
+#  {event: {age_category: @new_event.age_category, artist: @new_event.artist, code: @new_event.code, description: @new_event.description, festival: @new_event.festival, festival_id: @new_event.festival_id, genre: @new_event.genre, latitude: @new_event.latitude, longitude: @new_event.longitude, status: @new_event.status, title: @new_event.title, updated: @new_event.updated, url: @new_event.url, website: @new_event.website, score: @new_event.score, venue_id: @new_event.venue_id}}
+
+
+
+# { event: { address: @new_event.address,} }
+
+# { event: { address: @new_event.address,} }
+
