@@ -83,3 +83,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'festivals_lab'
 
 gem "font-awesome-rails"
+
+gem 'bootstrap_form'
