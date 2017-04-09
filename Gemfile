@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 ruby "2.4.1"
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0'
 # Use sqlite3 as the database for Active Record
@@ -33,38 +32,32 @@ gem 'jbuilder', '~> 2.5'
 
 # Devise for user auth
 gem 'devise'
-
 gem 'kaminari'
 gem 'therubyracer'
 gem 'commontator'
-
-
-# Emoji gem
 gem 'gemoji'
 gem 'json'
-
 gem 'react-rails'
-
 gem 'react-rails-hot-loader'
-
 gem 'pg'
-
-# gem 'sqlite3'
-
 gem 'twitter-bootstrap-rails'
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'festivals_lab'
+gem "font-awesome-rails"
+gem 'bootstrap_form'
+# gem 'sqlite3'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-  # gem 'sqlite3'
   gem 'guard-livereload'
   gem "rack-livereload"
   gem 'factory_girl_rails'
   gem 'pry'
-  
-  
   gem 'guard' # NOTE: this is necessary in newer versions
   gem 'guard-minitest'
+  # gem 'sqlite3'
 end
 
 group :development do
@@ -76,12 +69,3 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen'
 end
-
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
-gem 'festivals_lab'
-
-gem "font-awesome-rails"
-
-gem 'bootstrap_form'

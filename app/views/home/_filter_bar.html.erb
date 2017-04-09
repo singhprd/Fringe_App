@@ -1,9 +1,9 @@
 <% if current_user %>
 	<div class="btn-group">
 
-		<%= link_to 'All', {:controller => 'home', :action => 'welcome'}, {:method => :get, :class => "btn btn-primary navbar-btn #{'active' if !params[:favourites].present?}" } %>
+		<%= link_to 'All', {:controller => 'home', :action => 'welcome'}, {:method => :get, :class => "btn btn-primary navbar-btn btn-sm #{'active' if !params[:favourites].present?}" } %>
 
-		<%= link_to 'Favourites', {:controller => 'home', :action => 'welcome', :favourites => "true" }, {:method => :get, :class => "btn btn-primary navbar-btn #{'active' if params[:favourites] == 'true'}", params: {:favourites => "true" } } %>
+		<%= link_to 'Favourites', {:controller => 'home', :action => 'welcome', :favourites => "true" }, {:method => :get, :class => "btn btn-primary navbar-btn btn-sm #{'active' if params[:favourites] == 'true'}", params: {:favourites => "true" } } %>
 
 		<%#= render "search/small_form" %>
 	</div>

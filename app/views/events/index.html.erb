@@ -1,6 +1,6 @@
 <%- model_class = Event -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+  <h1><%=t '.title', :default => "All Events" %></h1>
 </div>
 <table class="table table-striped">
   <thead>
@@ -8,7 +8,7 @@
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:title) %></th>
       <th><%= model_class.human_attribute_name(:festival) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") if current_user.admin? %></th>
     </tr>
   </thead>
   <tbody>
@@ -20,18 +20,14 @@
       <!-- <td><%= event.title %></td> -->
       <td>
         <%= link_to t('.edit', :default => t("helpers.links.edit")),
-        edit_event_path(event), :class => 'btn btn-default btn-xs' %>
+        edit_event_path(event), :class => 'btn btn-default btn-xs' if current_user.admin? %>
         <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
         event_path(event),
         :method => :delete,
         :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-        :class => 'btn btn-xs btn-danger' %>
+        :class => 'btn btn-xs btn-danger' if current_user.admin? %>
       </td>
     </tr>
     <% end %>
   </tbody>
 </table>
-
-<%= link_to t('.new', :default => t("helpers.links.new")),
-new_event_path,
-:class => 'btn btn-primary' %>
