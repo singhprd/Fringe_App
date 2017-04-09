@@ -15,6 +15,11 @@ class EventsController < ApplicationController
   def show
   end
 
+  def votes
+    set_event
+    render json: {votes: @event.tally_votes}
+  end
+
   # GET /events/new
   def new
     @event = Event.new
@@ -26,9 +31,7 @@ class EventsController < ApplicationController
 
   # GET /events/1/is_favourited
   def is_favourited()
-    event_id = params[:event_id]
-    user = current_user
-    result = Event.favourited?(user, event_id)
+    result = Event.favourited?(current_user, params[:event_id])
     render json: {bool: result}
   end
 

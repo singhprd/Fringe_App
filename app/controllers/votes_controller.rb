@@ -80,4 +80,4 @@ class VotesController < ApplicationController
     def vote_params
       params.require(:vote).permit(:user_id, :event_id, :value)
     end
-end
+  end

@@ -11,7 +11,6 @@ var UserEventStatus = React.createClass({
       type: "GET",
       data: {event_id: this.props.event_id},
       success: function(a,b,c){
-        console.log(a.bool, this.props.event_id)
         this.setState({is_favourited: a.bool})
         // $("#notice").html(a['notice'])
       }.bind(this),
@@ -31,7 +30,6 @@ var UserEventStatus = React.createClass({
       type: "POST",
       data: {favourite: {event_id: this.props.event_id}},
       success: function(a,b,c){
-        console.log(a,b,c)
         this.is_favourited()
       }.bind(this),
       error: function() {
