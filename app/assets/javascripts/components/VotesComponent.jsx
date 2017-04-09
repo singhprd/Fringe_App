@@ -3,6 +3,7 @@ var VotesComponent = React.createClass({
         return { score: this.props.score };
     },
     upvote: function() {
+        this.setState({ score: this.state.score + 1 });
         var that = this;
         $.ajax({
             url: "/votes",
@@ -22,6 +23,7 @@ var VotesComponent = React.createClass({
         });
     },
     downvote: function() {
+        this.setState({ score: this.state.score - 1 });
         var that = this;
         $.ajax({
             url: "/votes",
