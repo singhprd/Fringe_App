@@ -23,6 +23,8 @@ var UserEventStatus = React.createClass({
 
   favourite: function(){
     console.log("Faved")
+    // Keen Bean Loading
+    this.setState({is_favourited: true})
     var that = this
     $.ajax({
       url: "/favourites",
@@ -40,6 +42,8 @@ var UserEventStatus = React.createClass({
 
   unfavourite: function(){
     console.log("Un-Faved")
+    // Keen Bean Loading
+    this.setState({is_favourited: false})
     var that = this
     $.ajax({
       url: "/favourites/" + this.props.event_id,
@@ -57,9 +61,9 @@ var UserEventStatus = React.createClass({
 
   render_appropriate_buttons: function(){
     if (this.state.is_favourited) {
-      return <button onClick={this.unfavourite} className="btn btn-default">❤️️</button>
+      return <button onClick={this.unfavourite} className="btn btn-default active">❤️️</button>
     } else {
-      return <button onClick={this.favourite} className="btn btn-default">fav?</button>
+      return <button onClick={this.favourite} className="btn btn-default">❤️️</button>
     }
   },
 
