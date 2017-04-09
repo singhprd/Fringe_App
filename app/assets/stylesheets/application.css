@@ -32,13 +32,10 @@
  }
 
  body {
- 	/*background-image: url(/assets/b.png);*/
- 	background: #FDFCFC;
- 	background-blend-mode: d
+ 	background-image: url(/assets/b.png);
+ 	/*background: #FDFCFC;*/
+ 	/*background-blend-mode: d*/
 
- }
-
- #user_actions {
  }
 
  .home_card {
@@ -46,7 +43,7 @@
  	/*width: 90%;*/
  	/*border: 3px solid green;*/
  	/*padding: 10px;*/
- 	width: 80vw;
+ 	/*width: 80vw;*/
  }
 
  #navigation-bar * {
