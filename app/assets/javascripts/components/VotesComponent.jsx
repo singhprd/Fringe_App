@@ -34,7 +34,7 @@ var VotesComponent = React.createClass({
             success: function(a, b, c) {
                 // console.log("a", a, "b",b, "c", c)
                 votes = a["votes"];
-                if (votes) {
+                if (votes != this.state.score) {
                     this.setState({ score: a["votes"] });
                 }
                 $("#notice").html(a["notice"]);
