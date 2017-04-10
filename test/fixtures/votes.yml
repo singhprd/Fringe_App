@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-# one:
-#   user: 1
-#   event: 1
-#   value: 
+vote_1:
+  user: 1
+  event: event_one.id
+  value: 1
 
-# two:
-#   user: 1
-#   event: 1
-#   value: 1
+vote_2:
+  user: 1
+  event: event_one.id
+  value: -1
