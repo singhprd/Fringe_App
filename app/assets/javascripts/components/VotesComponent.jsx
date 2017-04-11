@@ -4,6 +4,7 @@ var VotesComponent = React.createClass({
     },
 
     getInitialState: function() {
+        console.log(this.props.score)
         return { score: this.props.score };
     },
 
@@ -43,7 +44,7 @@ var VotesComponent = React.createClass({
                 console.log("failed");
             }
         });
-        this.get_votes()
+        // this.get_votes()
     },
     downvote: function() {
         this.setState({ score: this.state.score - 1 });
