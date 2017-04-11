@@ -30,7 +30,7 @@ class EventsController < ApplicationController
   end
 
   # GET /events/1/is_favourited
-  def is_favourited()
+  def is_favourited
     result = Event.favourited?(current_user, params[:event_id])
     render json: {bool: result}
   end

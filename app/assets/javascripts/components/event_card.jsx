@@ -8,14 +8,14 @@ var EventCard = React.createClass({
     if (this.props.user_signed_in) {
       return (
         <div className="btn-toolbar" role="toolbar">
-          <VotesComponent score={e.score} event_id={e.id} />
-          <UserEventStatus event_id={e.id} />
+          <EventVoteButtons score={e.score} event_id={e.id} />
+          <EventFavouriteStatus event_id={e.id} />
         </div>
       );
     } else {
       return (
         <div className="btn-toolbar" role="toolbar">
-          <VotesComponent score={e.score} event_id={e.id} />
+          <EventVoteButtons score={e.score} event_id={e.id} />
           <a href="/users/sign_in" type="button" className="btn btn-default">
             Sign In To Vote
           </a>

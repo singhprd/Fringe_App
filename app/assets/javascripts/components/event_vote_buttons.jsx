@@ -1,10 +1,9 @@
-var VotesComponent = React.createClass({
+var EventVoteButtons = React.createClass({
 
     componentDidMount: function() {
     },
 
     getInitialState: function() {
-        console.log(this.props.score)
         return { score: this.props.score };
     },
 
@@ -16,7 +15,6 @@ var VotesComponent = React.createClass({
             data: {event_id: "1"},
             success: function(a, b, c) {
                 votes = a["votes"];
-                console.log(votes)
                 this.setState({ score: a["votes"] });
                 $("#notice").html(a["notice"]);
             }.bind(this),

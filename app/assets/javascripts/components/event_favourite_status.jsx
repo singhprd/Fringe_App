@@ -1,5 +1,5 @@
 // event_id = this.props.event_id
-var UserEventStatus = React.createClass({
+var EventFavouriteStatus = React.createClass({
   getInitialState: function(){
     return{is_favourited: this.is_favourited()};
   },
@@ -21,7 +21,7 @@ var UserEventStatus = React.createClass({
   },
 
   favourite: function(){
-    console.log("Faved")
+    // console.log("Faved")
     // Keen Bean Loading
     this.setState({is_favourited: true})
     var that = this
@@ -39,7 +39,7 @@ var UserEventStatus = React.createClass({
   },
 
   unfavourite: function(){
-    console.log("Un-Faved")
+    // console.log("Un-Faved")
     // Keen Bean Loading
     this.setState({is_favourited: false})
     var that = this
@@ -48,7 +48,7 @@ var UserEventStatus = React.createClass({
       type: "DELETE",
       data: {favourite: {event_id: this.props.event_id}},
       success: function(a,b,c){
-        console.log(a,b,c)
+        // console.log(a,b,c)
         this.is_favourited()
       }.bind(this),
       error: function() {
