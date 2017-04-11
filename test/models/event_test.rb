@@ -2,29 +2,29 @@ require 'test_helper'
 
 class EventTest < ActiveSupport::TestCase
   setup do
-    @event = events(:event_one)
-    @user_two = users(:user_two)
-    @vote1 = votes(:vote_1)
-  	@vote2 = Vote.new({user_id: @user_two.id, event_id: @event.id, value: 1 }).save
-  	@vote3 = Vote.new({user_id: @user_two.id, event_id: @event.id, value: 1 }).save
-  	@vote4 = Vote.new({user_id: @user_two.id, event_id: @event.id, value: -1 }).save
-  	@vote5 = Vote.new({user_id: @user_two.id, event_id: @event.id, value: -1 }).save
+    @event = Fabricate(:event)
+    @user = Fabricate(:user)
+    @vote1 = Vote.create({user_id: @user.id, event_id: @event.id, value: 1 })
+  	@vote2 = Vote.create({user_id: @user.id, event_id: @event.id, value: 1 })
+  	@vote3 = Vote.create({user_id: @user.id, event_id: @event.id, value: 1 })
+  	@vote4 = Vote.create({user_id: @user.id, event_id: @event.id, value: -1 })
+  	@vote5 = Vote.create({user_id: @user.id, event_id: @event.id, value: -1 })
   end
   
   test "favourited?" do
-    assert_equal( false, Event.favourited?(@user_two, @event.id))
+    assert_equal( false, Event.favourited?(@user, @event.id))
   end
 
-  test "test_upvotes" do
-		assert_equal(2, @event.upvotes)
+  test "count upvotes" do
+		assert_equal(3, @event.upvotes)
   end
 
-  test "test_downvotes" do
+  test "count downvotes" do
   	assert_equal(2, @event.downvotes)
   end
 
-  test "test_tally_votes" do
-  	assert_equal(0, @event.tally_votes)
+  test "tally votes" do
+  	assert_equal(1, @event.tally_votes)
   end
 
 

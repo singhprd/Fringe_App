@@ -2,10 +2,12 @@ require 'test_helper'
 
 class EventsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @event = events(:event_one)
-    @new_event = events(:new_event)
-    @admin_user_one = users(:admin_user_one)
-    sign_in @admin_user_one
+    @event = Fabricate(:event)
+    # @new_event = Fabricate(:event)
+    @user = Fabricate(:user)
+    @admin_user = Fabricate(:user)
+    @admin_user.update_attributes(admin: true)
+    sign_in @admin_user
   end
 
   test "should get is_favourited?" do
@@ -23,12 +25,14 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  # TODO: Fix
+  # TODO: Need to test against the API data!
   # test "should create event" do
-  #   assert_difference('Event.count') do
-  #     post events_url, params: {event: {age_category: @new_event.age_category, artist: @new_event.artist, code: @new_event.code, description: @new_event.description, festival: @new_event.festival, festival_id: @new_event.festival_id, genre: @new_event.genre, latitude: @new_event.latitude, longitude: @new_event.longitude, status: @new_even
-  # t.status, title: @new_event.title, updated: @new_event.updated, url: @new_event.url, website: @new_event.website, score: @new_event.score, venue: @new_event.venue}}
-  #   end
+  #   # puts "somethting"
+  #   # params = Fabricate.attributes_for(:event)
+  #   # puts params
+  #   # raise
+  #   post events_url, params: Fabricate.attributes_for(:event)
+  #   assert_equal true, Fabricate.attributes_for(:event)
   # end
 
   #   assert_redirected_to event_url(Event.last)
@@ -46,26 +50,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update event" do
-    patch event_url(@event), params: {
-      event: {
-        age_category: @new_event.age_category,
-        artist: @new_event.artist,
-        code: @new_event.code,
-        description: "New description!",
-        festival: @new_event.festival,
-        festival_id: @new_event.festival_id,
-        genre: @new_event.genre,
-        latitude: @new_event.latitude,
-        longitude: @new_event.longitude,
-        status: @new_event.status,
-        title: @new_event.title,
-        updated: @new_event.updated,
-        url: @new_event.url,
-        website: @new_event.website,
-        score: @new_event.score,
-        venue: @new_event.venue
-      }
-    }
+    patch event_url(@event), params: Fabricate.attributes_for(:event)
     assert_redirected_to event_url(@event)
   end
 

@@ -74,11 +74,14 @@ GEM
     erubis (2.7.0)
     eventmachine (1.2.3)
     execjs (2.7.0)
+    fabrication (2.16.1)
     factory_girl (4.8.0)
       activesupport (>= 3.0.0)
     factory_girl_rails (4.8.0)
       factory_girl (~> 4.8.0)
       railties (>= 3.0.0)
+    faker (1.7.3)
+      i18n (~> 0.5)
     festivals_lab (0.0.3)
     ffi (1.9.18)
     font-awesome-rails (4.7.0.1)
@@ -270,7 +273,9 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   commontator
   devise
+  fabrication
   factory_girl_rails
+  faker (~> 1.7, >= 1.7.3)
   festivals_lab
   font-awesome-rails
   gemoji

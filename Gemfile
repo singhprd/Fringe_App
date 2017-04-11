@@ -58,6 +58,8 @@ group :development, :test do
   gem "pry"
   gem "rack-livereload"
   # gem 'sqlite3'
+  gem 'faker', '~> 1.7', '>= 1.7.3'
+  gem 'fabrication'
 end
 
 group :development do

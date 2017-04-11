@@ -1,0 +1,68 @@
+Fabricator(:user) do
+	email { Faker::Internet.email }
+	password { Faker::Name.name }
+	username { Faker::Name.name }
+end
+
+Fabricator(:venue) do
+	address {Faker::Address.street_address}
+	box_office_fringe {Faker::Boolean} 
+	box_office_opening {Faker::Lorem.sentences(3)}
+	cafe_description {Faker::Lorem.sentences(3)}
+	code {Faker::Number.unique.number(5)}
+	email {Faker::Internet.free_email}
+	fax {Faker::PhoneNumber.phone_number}
+	has_bar {Faker::Boolean} 
+	has_booking_over_card {Faker::Boolean}
+	has_booking_over_phone {Faker::Boolean}
+	has_booking_over_web {Faker::Boolean}
+	has_cafe {Faker::Boolean} 
+	name {Faker::LordOfTheRings.location}
+	phone {Faker::PhoneNumber}
+	lat {Faker::Address.latitude}
+	lon {Faker::Address.longitude} 
+	post_code {Faker::Address.postcode} 
+	web_address {Faker::Internet.url}
+	position {Faker::Lorem.word} 
+	description {Faker::Lorem.sentences(2)}
+	disabled_description {Faker::Lorem.sentences(2)}
+end
+
+Fabricator(:event) do
+	age_category {Faker::Lorem.sentences(4)}
+	artist {Faker::LordOfTheRings.character}
+	code {Faker::Number.unique.number(5)}
+	description {Faker::Lorem.sentences(5)}
+	festival {Faker::LordOfTheRings.location}
+	festival_id {Faker::Code.unique}
+	genre {Faker::Lorem.sentences(2)}
+	latitude {Faker::Address::latitude}
+	longitude {Faker::Address::longitude}
+	status {Faker::Color.color_name}
+	title {Faker::Book.title}
+	updated {Faker::Date.between(100.days.ago, Date.today)}
+	url {Faker::Internet.url} 
+	website {Faker::Internet.url}
+	score {Faker::Number.number(3)}
+	venue
+end
+
+# Fabricator(:favourite) do
+#   email { Faker::Internet.email }
+#   password { Faker::Name.name }
+#   username { Faker::Name.name }
+# end
+
+
+# Fabricator(:performance) do
+#   email { Faker::Internet.email }
+#   password { Faker::Name.name }
+#   username { Faker::Name.name }
+# end
+
+
+# Fabricator(:review) do
+#   email { Faker::Internet.email }
+#   password { Faker::Name.name }
+#   username { Faker::Name.name }
+# end
