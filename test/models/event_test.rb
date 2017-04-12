@@ -4,11 +4,8 @@ class EventTest < ActiveSupport::TestCase
   setup do
     @event = Fabricate(:event)
     @user = Fabricate(:user)
-    @vote1 = Vote.create({user_id: @user.id, event_id: @event.id, value: 1 })
-  	@vote2 = Vote.create({user_id: @user.id, event_id: @event.id, value: 1 })
-  	@vote3 = Vote.create({user_id: @user.id, event_id: @event.id, value: 1 })
-  	@vote4 = Vote.create({user_id: @user.id, event_id: @event.id, value: -1 })
-  	@vote5 = Vote.create({user_id: @user.id, event_id: @event.id, value: -1 })
+    10.times { Fabricate(:vote, event: @event, user: @user, value: 1) }
+    5.times { Fabricate(:vote, event: @event, user: @user, value: -1) }
   end
   
   test "favourited?" do
@@ -16,16 +13,15 @@ class EventTest < ActiveSupport::TestCase
   end
 
   test "count upvotes" do
-		assert_equal(3, @event.upvotes)
+		assert_equal(10, @event.upvotes)
   end
 
   test "count downvotes" do
-  	assert_equal(2, @event.downvotes)
+  	assert_equal(5, @event.downvotes)
   end
 
   test "tally votes" do
-  	assert_equal(1, @event.tally_votes)
+  	assert_equal(5, @event.tally_votes)
   end
-
 
 end

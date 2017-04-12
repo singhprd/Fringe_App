@@ -47,22 +47,30 @@ Fabricator(:event) do
 	venue
 end
 
-# Fabricator(:favourite) do
-#   email { Faker::Internet.email }
-#   password { Faker::Name.name }
-#   username { Faker::Name.name }
-# end
+Fabricator(:favourite) do
+	user
+	event
+end
 
 
-# Fabricator(:performance) do
-#   email { Faker::Internet.email }
-#   password { Faker::Name.name }
-#   username { Faker::Name.name }
-# end
+Fabricator(:performance) do
+	concession {Faker::Lorem.sentences(2)}
+	end_time {Faker::Time.between(10.days.ago, Date.today, :evening)}
+	price {"£#{Faker::Number.decimal(2)}"}
+	start_time {Faker::Time.between(10.days.ago, Date.today, :evening)}
+	event
+end
+
+Fabricator(:review) do
+	url {Faker::Internet.url}
+	title {Faker::ChuckNorris.fact}
+	event
+end
+
+Fabricator(:vote) do
+	user
+	event
+	value {Faker::Boolean ? 1 : 0}
+end
 
 
-# Fabricator(:review) do
-#   email { Faker::Internet.email }
-#   password { Faker::Name.name }
-#   username { Faker::Name.name }
-# end

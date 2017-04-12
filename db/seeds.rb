@@ -6,4 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# 10.times { Fabricate(:user).save }
+10.times { Fabricate(:user).save }
+10.times { Fabricate(:event).save }
+10.times { Fabricate(:favourite).save }
+10.times { Fabricate(:review).save }
+10.times { Fabricate(:vote).save }
