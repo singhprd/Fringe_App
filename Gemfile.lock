@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/singhprd/festivals_lab
+  revision: ff3cce414aeeab1f23782fb293eac4004f9b7b53
+  branch: fix-tests
+  specs:
+    festivals_lab (0.0.4)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -82,7 +89,6 @@ GEM
       railties (>= 3.0.0)
     faker (1.7.3)
       i18n (~> 0.5)
-    festivals_lab (0.0.3)
     ffi (1.9.18)
     font-awesome-rails (4.7.0.1)
       railties (>= 3.2, < 5.1)
@@ -276,7 +282,7 @@ DEPENDENCIES
   fabrication
   factory_girl_rails
   faker (~> 1.7, >= 1.7.3)
-  festivals_lab
+  festivals_lab!
   font-awesome-rails
   gemoji
   guard
