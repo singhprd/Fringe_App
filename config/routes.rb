@@ -9,9 +9,10 @@ Rails.application.routes.draw do
   resources :events
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  
-  post 'search' => 'search#do_search'
-  # get 'search' => 'search#index'
+
+  get 'search' => 'search#index' 
+  get 'search/results' => 'search#do_search' 
+
   root 'home#welcome'
 
   get '/events/:id/is_favourited' => 'events#is_favourited'
