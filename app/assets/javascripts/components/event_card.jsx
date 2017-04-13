@@ -35,7 +35,7 @@ var EventCard = React.createClass({
       >
         <div className="panel-heading">
           <h3 className="panel-title">
-            <a href={"events/" + e.id}>{e.title}</a>
+            <a href={"/events/" + e.id}>{e.title}</a>
           </h3>
         </div>
 

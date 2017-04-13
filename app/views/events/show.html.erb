@@ -1,45 +1,4 @@
-<%- model_class = Event -%>
-
-<div class="panel panel-primary" id="" >
-  
-  <div class="panel-heading">
-    <h3 class="panel-title"><%= @event.title %></h3>
-  </div>  
-
-  <div class="panel-body">
-
-
-<dl class="dl-horizontal">
-<!--   <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
- -->
-
- <%=  raw(@event.description) %>
- <br>
- <br>
-
-  <dt><strong><%= model_class.human_attribute_name(:age_category) %>:</strong></dt>
-  <dd><%= @event.age_category %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:artist) %>:</strong></dt>
-  <dd><%= @event.artist %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:festival) %>:</strong></dt>
-  <dd><%= @event.festival %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:festival_id) %>:</strong></dt>
-  <dd><%= @event.festival_id %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:genre) %>:</strong></dt>
-  <!-- TODO Add map? -->
-  <dt><strong><%= model_class.human_attribute_name(:status) %>:</strong></dt>
-  <dd><%= @event.status %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:updated) %>:</strong></dt>
-  <dd><%= @event.updated %></dd>
-
-  <!-- TODO convert this value to be stored better -->
-  <dt><strong><%= model_class.human_attribute_name(:venue) %>:</strong></dt>
-  <dd><%= @event.venue.code %></dd>
-
-  <dt><strong><%= model_class.human_attribute_name(:website) %>:</strong></dt>
-  <dd><%= link_to( @event.website, @event.website ) %></dd>
-</dl>
-
+<%= react_component('EventCard', event: @event.to_json, venue: @event.venue.to_json, user_signed_in: !current_user.nil?) %>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
               events_path, :class => 'btn btn-default'  %>
