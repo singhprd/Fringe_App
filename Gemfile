@@ -46,7 +46,7 @@ gem "bootstrap_form"
 # gem "festivals_lab"
 gem 'festivals_lab', :git => 'https://github.com/singhprd/festivals_lab', :branch => 'fix-tests'
 gem "font-awesome-rails"
-gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
+# gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 # gem 'sqlite3'
 
 group :development, :test do
