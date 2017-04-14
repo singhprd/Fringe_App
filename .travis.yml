@@ -1,2 +1,3 @@
 language: ruby
 script: 'true'
+rvm: 2.4.1
