@@ -7,12 +7,12 @@ services:
 
 test:
   adapter: postgresql
-  database: myapp
+  database: travis
   username: myapp
   encoding: utf8
   password: password1
 
 
 before_script:
-  - psql -c 'create database myapp;' -U postgres
+  - psql -c 'create database travis;' -U postgres
   - psql -c "CREATE USER myapp WITH PASSWORD 'password1';"
