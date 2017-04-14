@@ -1,3 +1,17 @@
 language: ruby
 script: 'bundle exec rake test'
 rvm: 2.4.1
+
+services:
+  - postgresql
+
+test:
+  adapter: postgresql
+  database: travis_ci_test
+  username: myapp
+  encoding: utf8
+  password: password1
+
+
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
