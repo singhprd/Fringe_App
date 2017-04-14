@@ -32,8 +32,8 @@
  }
 
  body {
- 	background-image: url(/assets/b.png);
- 	/*background: #FDFCFC;*/
+ 	/*background-image: url(/assets/b.png);*/
+ 	background: #E5E1DC;
  	/*background-blend-mode: d*/
 
  }
@@ -64,6 +64,7 @@
 	}
 
 	#top-navbar {
+		 background-color: #f4f2f1;
 		/*margin-bottom: 0;*/
 		/*background-color: #337ab7;*/
 		/*color: #337ab7;*/
