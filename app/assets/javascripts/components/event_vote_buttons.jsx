@@ -24,7 +24,7 @@ var EventVoteButtons = React.createClass({
         });
     },
     upvote: function() {
-        this.setState({ score: this.state.score + 1 });
+        // this.setState({ score: this.state.score + 1 });
         var that = this;
         $.ajax({
             url: "/votes",
@@ -45,7 +45,7 @@ var EventVoteButtons = React.createClass({
         // this.get_votes()
     },
     downvote: function() {
-        this.setState({ score: this.state.score - 1 });
+        // this.setState({ score: this.state.score - 1 });
         var that = this;
         $.ajax({
             url: "/votes",
