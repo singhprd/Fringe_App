@@ -15,4 +15,4 @@ test:
 
 before_script:
   - psql -c 'create database myapp;' -U postgres
-  - CREATE USER myapp WITH PASSWORD 'password1';
+  - psql -c 'CREATE USER myapp WITH PASSWORD 'password1';'
