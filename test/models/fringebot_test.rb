@@ -3,8 +3,8 @@ require 'test_helper'
 # TODO Give example hashes for each type
 class FringebotTest < ActiveSupport::TestCase
 	setup do
-		@fringebot = Fringebot.new({title_string: "FAKE"})
-		@fringebot_book = Fringebot.new({festival_string: "book"})
+		params = {"title_string"=>"", "artist"=>"", "year"=>"2016", "festival_string"=>"book"}
+		@fringebot = Fringebot.new(params)
 		@api_response = @fringebot.query_api
 		@results = @fringebot.get_events
 	end
@@ -30,8 +30,24 @@ class FringebotTest < ActiveSupport::TestCase
 	end
 	
 	test "filtering to book festival returns only book festival results" do
-		book_events = @fringebot_book.get_events
-		assert_equal false, book_events
+		book_params = {"title_string"=>"", "artist"=>"", "year"=>"2016", "festival_string"=>"book"}
+		book_events = Fringebot.new(book_params).get_events
+		assert_equal ["book"], book_events.map(&:festival_id).uniq
+	end
+
+	test "filtering to hogmanay returns only hogmanay festival results" do
+		hogmanay_params = {"title_string"=>"", "artist"=>"", "year"=>"2016", "festival_string"=>"hogmanay"}
+		hogmanay_events = Fringebot.new(hogmanay_params).get_events
+		assert_equal ["hogmanay"], hogmanay_events.map(&:festival_id).uniq
+	end
+
+	test "title search works for Suntan in Film Festival 2016" do
+		suntan_params = {"title_string"=>"Suntan", "artist"=>"", "year"=>"2016", "festival_string"=>""}
+		suntan_results = Fringebot.new(suntan_params).get_events
+		event = suntan_results.first
+		assert_equal 1, suntan_results.count
+		assert_equal "Film", event.genre
+		assert_equal "Suntan", event.title
 	end
 
 end
