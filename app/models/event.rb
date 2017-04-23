@@ -26,4 +26,9 @@ class Event < ApplicationRecord
       user_id: user.id, event_id: event_id
     )
   end
+
+# TODO Add year to event and scope search.
+  # def self.year(year)
+  #   Event.where(year)
+  # end
 end
