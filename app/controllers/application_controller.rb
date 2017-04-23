@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   # before_filter :authenticate_user!
 
     def check_admin
-      raise "User is not Admin!" if !current_user.admin?
+      raise "User is not Admin!" if !current_user.try(:admin?)
     end
 
   protected

@@ -23,7 +23,7 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="/users/edit">Account Options</a></li>
-            <% if current_user.admin? %>
+            <% if current_user.try(:admin?) %>
             <li><a href="/admin/panel">Admin Options</a></li>
             <% end %>
             <li role="separator" class="divider"></li>
