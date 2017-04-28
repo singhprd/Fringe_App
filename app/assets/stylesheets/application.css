@@ -32,98 +32,19 @@
  }
 
  body {
- 	/*background-image: url(/assets/b.png);*/
  	background: #eaeaea;
- 	/*background-blend-mode: d*/
 
  }
-
- .home_card {
- 	/*margin: 10px;*/
- 	/*width: 90%;*/
- 	/*border: 3px solid green;*/
- 	/*padding: 10px;*/
- 	/*width: 80vw;*/
- }
-
- #navigation-bar * {
- }
-
- .navigation-bar-item {
- }
-
- .navigation-bar-item span {
- }
-/*
-.home-card-panel-body {
-	background-color: #337ab7;
-	}*/
-
-.panel-heading {
-	/*background-color: #337ab7;*/
-}
 
 #top-navbar {
 	background-color: #428bca;
-	/*margin-bottom: 0;*/
-	/*background-color: #337ab7;*/
-	/*color: #337ab7;*/
 }
 
 #top-navbar * {
-	/*margin-bottom: 0;*/
-	/*background-color: #337ab7;*/
 	color: white;
 }
 
 #top-navbar .active * {
-	/*margin-bottom: 0;*/
 	background-color: #285e8e;
 	border-radius: 4px;
 }
-
-/** {
-	font-family: 'Roboto Condensed', sans-serif;
-	}*/
-
-/*.pure-table th {
-	border: 1px solid black;
-	background-color: tomato;
-	}*/
-
-/*#user_actions {
-	position: absolute;
-	right: 15px;
-	top: 10px;
-	}*/
-
-	/*.home_card {*/
-		/*background: rgba(25, 0, 25, .2);*/
-		/*padding: 5px;*/
-		/*margin: 10px;*/
-		/*border: 2px solid blue;*/
-		/*}*/
-
-		/*#navigation-bar * {*/
-			/*font-family: 'Rubik Mono One', sans-serif;*/
-/*	opacity: 1;
-	color: black;
-	text-decoration: none;*/
-	/*}*/
-
-	/*.navigation-bar-item {*/
-		/*display: inline-block;*/
-		/*width: 17vw;*/
-		/*height: 11vh;*/
-		/*border: 1px solid black;*/
-		/*background-color: red;*/
-		/*padding: 10px;*/
-		/*line-height: 10vh;*/
-		/*text-align: center;*/
-		/*font-size: 2.5em;*/
-		/*}*/
-
-		/*.navigation-bar-item span {*/
-			/*vertical-align: middle;*/
-
-			/*}*/
