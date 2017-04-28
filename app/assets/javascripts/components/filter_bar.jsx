@@ -9,8 +9,8 @@ var FilterBar = React.createClass({
     redirect: function(param, value) {
         var params = this.params()
         // Update the params to change the filter
-        params[param] = value
-    	window.location = "/?" + $.param( params )
+        params[param] = value;
+    	window.location = "/?" + $.param( params );
     },
     is_active: function(param, value) {
   		var params = this.params()
