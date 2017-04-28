@@ -1,6 +1,6 @@
 var FilterBar = React.createClass({
 	params: function() {
-        filter = this.props.current_filter
+        filter = this.props.current_filter;
         return {
             favourites: filter["favourites"],
             year: filter["year"]
