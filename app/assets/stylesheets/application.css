@@ -44,7 +44,27 @@
 	color: white;
 }
 
-#top-navbar .active * {
+/*#top-navbar .active * {
 	background-color: #285e8e;
 	border-radius: 4px;
+}*/
+
+#top-navbar > div > div.navbar-header > button {
+	background-color: #ddd;
+}
+
+#bs-example-navbar-collapse-1 > ul:nth-child(1) > li.active > a {
+	background-color: #285e8e;
+	border-radius: 4px;
+}
+
+#bs-example-navbar-collapse-1 #dropdown-menu {	
+	background-color: white;
+	color: black;
+}
+
+
+#bs-example-navbar-collapse-1 > ul:nth-child(2) > li > ul > li:nth-child(n) > a {
+	background-color: white;
+	color: black;
 }
