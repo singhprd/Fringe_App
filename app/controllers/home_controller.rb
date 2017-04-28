@@ -3,6 +3,7 @@ class HomeController < ApplicationController
 
   # GET /
   def welcome
+    @filter = params
     if params[:year].nil? && params[:favourites].nil?
       redirect_to '/?favourites=false&year=2017'
     end
