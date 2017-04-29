@@ -13,18 +13,13 @@
  *= require_tree .
  *= require_self
  */
+
  /*@import 'https://fonts.googleapis.com/css?family=Roboto+Condensed|Rubik+Mono+One';*/
 
  /**= require commontator/application*/
+ /**= require font-awesome*/
+ /**= require rails_bootstrap_forms*/
  /**= require bootstrap_and_overrides*/
-
-/*
- *= require font-awesome
- */
-
- /*
- *= require rails_bootstrap_forms
- */
 
  * {
  	/*font-family: 'Roboto Condensed', sans-serif;*/
@@ -33,22 +28,26 @@
 
  body {
  	background: #eaeaea;
-
  }
 
-#top-navbar {
+
+/*#top-navbar #collapsed {
 	background-color: #428bca;
 }
+*/
+/*#top-navbar > div > div.navbar-header > b > a {
+  color: white
+  }*/
 
-#top-navbar * {
-	color: white;
-}
+  /*#top-navbar * {*/
+   /*color: white;*/
+   /*}*/
 
 /*#top-navbar .active * {
 	background-color: #285e8e;
 	border-radius: 4px;
-}*/
-
+  }*/
+/*
 #top-navbar > div > div.navbar-header > button {
 	background-color: #ddd;
 }
@@ -67,4 +66,21 @@
 #bs-example-navbar-collapse-1 > ul:nth-child(2) > li > ul > li:nth-child(n) > a {
 	background-color: white;
 	color: black;
+  }*/
+
+#top-navbar > div > div.navbar-header > b > a {
+  color: #428bca;
 }
+/*
+#top-navbar * {
+  color: #428bca;
+}*/
+/*
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #428bca;
+}
+
+.navbar-default .navbar-toggle {
+  border-color: #428bca;
+}*/
+
