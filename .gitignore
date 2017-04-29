@@ -18,6 +18,8 @@
 !/tmp/.keep
 /vendor/bundle/*
 /node_modules
+public/assets/**
+
 
 # Ignore Byebug command history file.
 .byebug_history
