@@ -91,6 +91,8 @@ class EventsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_event
       @event = Event.find(params[:id])
+      @event.check_for_updates
+      return @event
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

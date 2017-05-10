@@ -27,6 +27,10 @@ class Event < ApplicationRecord
     )
   end
 
+  def check_for_updates
+    
+  end
+
 # TODO Add year to event and scope search.
   # def self.year(year)
   #   Event.where(year)

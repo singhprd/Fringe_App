@@ -19,6 +19,7 @@ var EventCard = React.createClass({
           <a href="/users/sign_in" type="button" className="btn btn-default">
             Sign In To Vote
           </a>
+          <ExtendyMapView event_id={e.id} />
         </div>
       );
     }
@@ -38,7 +39,6 @@ var EventCard = React.createClass({
             <a href={"/events/" + e.id}>{e.title}</a>
           </h3>
         </div>
-
         <div className="panel-body">
           <dl className="dl-horizontal">
 
