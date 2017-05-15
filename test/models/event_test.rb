@@ -21,7 +21,26 @@ class EventTest < ActiveSupport::TestCase
   end
 
   test "tally votes" do
-  	assert_equal(5, @event.tally_votes)
+    assert_equal(5, @event.tally_votes)
   end
+
+  test "to_fringebot_hash" do
+    result = 
+    {
+      title: @event.title,
+      festival: @event.festival,
+      year: @event.festival_year,
+      artist: @event.artist,
+      code: @event.code
+    }
+  	assert_equal(result, @event.to_fringebot_hash)
+  end
+
+  # test "check_for_updates" do
+  #   @event.update_attributes(code: "832")
+
+  #   assert_equal("823", @event.check_for_updates)
+  # end
+
 
 end

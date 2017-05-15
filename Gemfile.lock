@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/singhprd/festivals_lab
-  revision: 85029f43ec0a914f316cd1d61596079d17fd1ad1
-  branch: fix-tests
+  revision: 6ab9806bfe2deff230506d34f01b43e6be9f7fbd
+  branch: fix-get-single-event-by-uuid
   specs:
-    festivals_lab (0.0.3)
+    festivals_lab (0.0.4)
 
 GEM
   remote: https://rubygems.org/

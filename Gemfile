@@ -44,7 +44,7 @@ gem "twitter-bootstrap-rails"
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "bootstrap_form"
 # gem "festivals_lab"
-gem 'festivals_lab', :git => 'https://github.com/singhprd/festivals_lab', :branch => 'fix-tests'
+gem 'festivals_lab', :git => 'https://github.com/singhprd/festivals_lab', :branch => 'fix-get-single-event-by-uuid'
 gem "font-awesome-rails"
 # gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 # gem 'sqlite3'

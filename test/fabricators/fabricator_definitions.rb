@@ -44,6 +44,7 @@ Fabricator(:event) do
 	url {Faker::Internet.url} 
 	website {Faker::Internet.url}
 	score {Faker::Number.number(3)}
+	festival_year {Faker::Number.between(2015, 2017)}
 	venue
 end
 

@@ -27,8 +27,23 @@ class Event < ApplicationRecord
     )
   end
 
-  def check_for_updates
-    
+  def uuid
+    self.url.split("/").last
+  end
+
+  def to_fringebot_hash
+    {
+      title: self.title,
+      festival: self.festival,
+      year: self.festival_year,
+      artist: self.artist,
+      code: self.code
+    }
+  end
+
+  def update
+    @fringebot = Fringebot.new()
+    @event = @fringebot.get_single_event
   end
 
 # TODO Add year to event and scope search.
