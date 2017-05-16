@@ -41,9 +41,9 @@ class Event < ApplicationRecord
     }
   end
 
-  def update
-    @fringebot = Fringebot.new()
-    @event = @fringebot.get_single_event
+  def check_for_updates
+    @fringebot = Fringebot.new("uuid" => self.uuid)
+    @event = @fringebot.single_event
   end
 
 # TODO Add year to event and scope search.

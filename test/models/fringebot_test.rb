@@ -54,7 +54,8 @@ class FringebotTest < ActiveSupport::TestCase
 		uuid = "53cf9187f2f00583d9b4005f66ba75eddc3169ae"
 		fb = Fringebot.new({"uuid" => uuid})
 		result = fb.single_event
-		assert_equal(Hash, result.class)
+		assert_equal(Event, result.class)
+		assert_equal(uuid, result.uuid)
 	end
 
 end

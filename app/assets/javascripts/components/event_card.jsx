@@ -19,7 +19,6 @@ var EventCard = React.createClass({
           <a href="/users/sign_in" type="button" className="btn btn-default">
             Sign In To Vote
           </a>
-          <ExtendyMapView event_id={e.id} />
         </div>
       );
     }
