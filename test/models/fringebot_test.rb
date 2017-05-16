@@ -58,4 +58,30 @@ class FringebotTest < ActiveSupport::TestCase
 		assert_equal(uuid, result.uuid)
 	end
 
+	test "update" do
+		uuid = "53cf9187f2f00583d9b4005f66ba75eddc3169ae"
+		fb = Fringebot.new("uuid" => uuid)
+		event = fb.single_event
+		assert_equal(Event, event.class)
+
+		event.update_attributes(updated_at: event.updated.to_datetime - 1.day)
+		fb.update(event, {title: "New and Updated Title!"})
+		assert_equal("New and Updated Title!", event.title)
+	end
+
+	test "will_update_if_old" do
+		uuid = "53cf9187f2f00583d9b4005f66ba75eddc3169ae"
+		fb = Fringebot.new("uuid" => uuid)
+		event = fb.single_event
+		assert_equal(Event, event.class)
+		assert_equal(uuid, event.uuid)
+
+		event.update_attributes({updated_at: 3.days.ago})
+		assert_in_delta(3.days.ago, event.updated_at, 1.minute)
+
+		# Change an attribute of the event so that we update the event whe single_event is called
+		event.update_attributes(title: "Old and Wrong Title")
+		event = fb.single_event
+		assert_in_delta(DateTime.now.utc.to_i, event.reload.updated_at.utc.to_i, 1)
+	end
 end
