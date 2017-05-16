@@ -18,6 +18,9 @@
                   )
                 )
               } if current_user.try(:admin?) %>
+
+  <p></p>
+  <%= commontator_thread(@event) %>
+
   </div>
 </div>
-<%= commontator_thread(@event) %>
