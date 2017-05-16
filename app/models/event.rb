@@ -42,6 +42,7 @@ class Event < ApplicationRecord
   end
 
   def check_for_updates
+    # TODO ADD CHECK TO RETURN IF CHECKED IN LAST X HOURS
     @fringebot = Fringebot.new("uuid" => self.uuid)
     @event = @fringebot.single_event
   end
