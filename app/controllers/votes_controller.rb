@@ -24,6 +24,10 @@ class VotesController < ApplicationController
   # POST /votes
   # POST /votes.json
   def create
+    if current_user.nil?
+      render json: {notice: 'Sign in to vote'}
+      return
+    end
     params['user_id'] = current_user.id
     vote_params = {user_id: params['user_id'], event_id: params['event_id'], value: params['value'] }
     user = User.find(params['user_id'])
