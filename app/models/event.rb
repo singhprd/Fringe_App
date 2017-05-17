@@ -43,8 +43,11 @@ class Event < ApplicationRecord
 
   def check_for_updates
     # TODO ADD CHECK TO RETURN IF CHECKED IN LAST X HOURS
-    @fringebot = Fringebot.new("uuid" => self.uuid)
-    @event = @fringebot.single_event
+    return if self.last_checked_for_update&.to_datetime.to_i > 1.hour.ago.to_i
+    self.update_attributes(last_checked_for_update: DateTime.now)
+    # return if self.last_checked_for_update 
+    fringebot = Fringebot.new("uuid" => self.uuid)
+    fringebot.single_event
   end
 
 # TODO Add year to event and scope search.

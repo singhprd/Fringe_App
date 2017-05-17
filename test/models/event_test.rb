@@ -36,6 +36,18 @@ class EventTest < ActiveSupport::TestCase
   	assert_equal(result, @event.to_fringebot_hash)
   end
 
+  test "check_for_updates" do
+    fb = Fringebot.new("uuid" => "a73342c098fe74dee84822ed2916ca9efdf6b1eb")
+    test_event = fb.single_event
+    assert_equal("FAKE Schiz", test_event.reload.title)
+    
+    test_event.update_attributes(title: "A Wrong Title")
+    assert_equal("A Wrong Title", test_event.reload.title)
+
+    test_event.check_for_updates
+    assert_equal("FAKE Schiz", test_event.reload.title)
+  end
+
   # test "check_for_updates" do
   #   @event.update_attributes(code: "832")
 
