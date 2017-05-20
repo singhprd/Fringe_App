@@ -2,7 +2,7 @@ source "https://rubygems.org"
 ruby "2.4.1"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem "rails", "~> 5.0.0"
+gem "rails", "~> 5.1.1"
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3'
 # Use Puma as the app server
@@ -37,8 +37,8 @@ gem "gemoji"
 gem "json"
 gem "kaminari"
 gem "pg"
-gem "react-rails"
-gem "react-rails-hot-loader"
+# gem "react-rails"
+# gem "react-rails-hot-loader"
 gem "therubyracer"
 gem "twitter-bootstrap-rails"
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -61,6 +61,7 @@ group :development, :test do
   # gem 'sqlite3'
   gem 'faker', '~> 1.7', '>= 1.7.3'
   gem 'fabrication'
+  gem 'webpacker'
 end
 
 group :development do
