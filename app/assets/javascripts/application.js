@@ -23,4 +23,4 @@
 //= require react
 //= require react_ujs
 //= require components
-//= require react-rails-hot-loader
+= require react-rails-hot-loader

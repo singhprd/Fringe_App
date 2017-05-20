@@ -5,7 +5,7 @@ class Event < ApplicationRecord
   has_many :favourites
   belongs_to :venue
   validates :code, presence: true, uniqueness: true
-  acts_as_commontable
+  # acts_as_commontable
 
   def upvotes
     votes.where(value: 1).count
