@@ -1,7 +1,7 @@
 <%= react_component('EventCard', event: @event.to_json, venue: @event.venue.to_json, user_signed_in: !current_user.nil?) %>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
-              events_path, :class => 'btn btn-default'  %>
+              events_path, :class => 'btn btn-default' if current_user.try(:admin?) %>
 
 <%= link_to t('.edit', :default => t("helpers.links.edit")),
   edit_event_path(@event),:class => 'btn btn-default' if current_user.try(:admin?) %>
