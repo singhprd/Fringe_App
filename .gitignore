@@ -19,7 +19,6 @@
 /vendor/bundle/*
 /node_modules
 public/assets/**
-config/secrets.yml
 
 # Ignore Byebug command history file.
 .byebug_history
