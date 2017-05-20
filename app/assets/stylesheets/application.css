@@ -30,6 +30,10 @@
  	background: #eaeaea;
  }
 
+.panel-heading.favourite {
+  background-color: #3277b3;
+}
+
 
 /*#top-navbar #collapsed {
 	background-color: #428bca;
