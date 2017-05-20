@@ -1,5 +1,3 @@
-<!-- TODO: Bootstrap -->
-
 <div class="panel panel-primary home_card text-info">
 	<div class="panel-heading">
 		<h3 class="panel-title">
@@ -8,25 +6,35 @@
 	</div>
 
 	<div class="panel-body">
-		<dl class="dl-horizontal">
+		<div class="row">
+
 			<%= form_tag("/search/results", method: "get") do %>
+			<div class="form-group">
+				<div class="col-sm-6">
+					<%= label_tag(:title_string, "Title:") %>
+					<%= text_field_tag(:title_string, "", class: 'form-control') %>	
 
-			<%= label_tag(:title_string, "Title:") %>
-			<%= text_field_tag(:title_string) %>	
+					<%= label_tag(:artist, "Artist:") %>
+					<%= text_field_tag(:artist, "", class: 'form-control') %>
+				</div>
 
-			<%= label_tag(:artist, "Artist:") %>
-			<%= text_field_tag(:artist) %>
+				<div class="col-sm-5">
+					<%= label_tag(:year, "Year:") %>
+					<%= select_tag(:year, raw("<option>2015</option><option>2016</option><option selected>2017</option>"), class: "form-control") %>
 
-			<%= label_tag(:year, "Year:") %>
-			<%= select_tag(:year, raw("<option>2015</option><option>2016</option><option selected>2017</option>")) %>
+					<%= label_tag(:festival_string, "Year:") %>
+					<%= select_tag(:festival_string, raw("<option value="" selected>all</option><option>fringe</option><option selected>demofringe</option><option>jazz</option><option>book</option><option>international</option><option>tattoo</option><option>art</option><option>hogmanay</option><option>science</option><option>imaginate</option><option>film</option><option>mela</option><option>storytelling</option>"), class: "form-control") %>
+				</div>
+			</div>
+		</div>
+		<br>
+		<div class="row">
+			<div class="col-sm-6">
+				<%= submit_tag("Search", class: "btn btn-primary") %>
+			</div>
+		</div>
+		<% end %>
 
-			<%= label_tag(:festival_string, "Year:") %>
-			<%= select_tag(:festival_string, raw("<option value="" selected>all</option><option>fringe</option><option selected>demofringe</option><option>jazz</option><option>book</option><option>international</option><option>tattoo</option><option>art</option><option>hogmanay</option><option>science</option><option>imaginate</option><option>film</option><option>mela</option><option>storytelling</option>")) %>
-
-			<%= submit_tag("Search") %>
-
-			<% end %>
-		</dl>
 	</div>
-</div>
 
+</div>
