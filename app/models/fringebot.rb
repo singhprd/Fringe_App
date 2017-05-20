@@ -12,8 +12,8 @@ class Fringebot
   def initialize(my_hash)
     @params = my_hash
     @api = FestivalsLab.new(
-      Rails.application.secrets.FRINGE_API_KEY,
-      Rails.application.secrets.FRINGE_SECRET_KEY
+      ENV["FRINGE_API_KEY"],
+      ENV["FRINGE_SECRET_KEY"]
     )
   end
 
