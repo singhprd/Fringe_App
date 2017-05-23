@@ -1,3 +1,6 @@
-<%= react_component('FilterBar', user_signed_in: !current_user.nil?, current_filter: @filter) %>
+<!-- <%= react_component('FilterBar') %> -->
 
-<%= render "home_card" %>
+<%= react_component("FilterBar", props: {user_signed_in: !current_user.nil?, current_filter: @filter}, prerender: false) %>
+
+
+<!-- <%= render "home_card" %> -->
