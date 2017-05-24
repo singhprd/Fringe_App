@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-export const FilterBar = React.createClass({
+const FilterBar = React.createClass({
 	params: function() {
         var filter = this.props.current_filter;
         return {
@@ -26,7 +26,8 @@ export const FilterBar = React.createClass({
         return (
       	<div className="btn-toolbar">
         	<div className="btn-group">
-        		<button onClick={() => this.redirect("favourites", "false")} className={"btn btn-primary navbar-btn btn-sm " + (this.is_active("favourites", "false"))}>All</button>
+        		<button onClick={() => this.redirect("favourites", "false")} className={"btn btn-primary navbar-btn btn-sm " + (this.is_active("favourites", "false"))}>All
+                </button>
         		<button onClick={() => this.redirect("favourites", "true")} className={"btn btn-primary navbar-btn btn-sm " + (this.is_active("favourites", "true"))}>Favourites</button>
         	</div>
 			<div className="btn-group">
@@ -38,3 +39,5 @@ export const FilterBar = React.createClass({
             );
     }
 });
+
+module.exports = FilterBar;

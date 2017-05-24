@@ -1,3 +1,7 @@
+import React from 'react';
+var EventVoteButtons = require('./EventVoteButtons.jsx');
+var EventFavouriteStatus = require('./EventFavouriteStatus.jsx');
+
 // Entry point to React
 var EventCard = React.createClass({
   getInitialState: function() {
@@ -128,4 +132,7 @@ var EventCard = React.createClass({
       </div>
     );
   }
+
 });
+
+module.exports = EventCard;

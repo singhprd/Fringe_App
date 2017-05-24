@@ -1,3 +1,5 @@
+import React from 'react';
+
 var EventVoteButtons = React.createClass({
 
     componentDidMount: function() {
@@ -82,3 +84,6 @@ var EventVoteButtons = React.createClass({
             );
     }
 });
+
+
+module.exports = EventVoteButtons;

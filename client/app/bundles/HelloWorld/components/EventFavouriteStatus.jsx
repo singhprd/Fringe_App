@@ -1,3 +1,4 @@
+import React from 'react';
 // event_id = this.props.event_id
 var EventFavouriteStatus = React.createClass({
   getInitialState: function(){
@@ -36,3 +37,5 @@ var EventFavouriteStatus = React.createClass({
       );
   }
 });
+
+module.exports = EventFavouriteStatus;
