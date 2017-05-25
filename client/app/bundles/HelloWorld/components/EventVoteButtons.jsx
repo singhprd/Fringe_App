@@ -16,7 +16,7 @@ var EventVoteButtons = React.createClass({
             type: "GET",
             data: {event_id: "1"},
             success: function(a, b, c) {
-                votes = a["votes"];
+                var votes = a["votes"];
                 this.setState({ score: a["votes"] });
                 $("#notice").html(a["notice"]);
             }.bind(this),
@@ -33,8 +33,8 @@ var EventVoteButtons = React.createClass({
             type: "POST",
             data: { event_id: this.props.event_id, value: 1 },
             success: function(a, b, c) {
-                // console.log("a", a, "b",b, "c", c)
-                votes = a["votes"];
+                console.log("a", a, "b",b, "c", c)
+                var votes = a["votes"];
                 if (votes) {
                     this.setState({ score: a["votes"] });
                 }
@@ -55,7 +55,7 @@ var EventVoteButtons = React.createClass({
             data: { event_id: this.props.event_id, value: -1 },
             success: function(a, b, c) {
                 // console.log("a", a, "b",b, "c", c)
-                votes = a["votes"];
+                var votes = a["votes"];
                 if (votes) {
                     this.setState({ score: a["votes"] });
                 }
