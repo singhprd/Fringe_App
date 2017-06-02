@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get '/events/:id/is_favourited' => 'events#is_favourited'
   get '/admin/panel' => 'admin#panel'
   get '/events/:id/votes' => 'events#votes'
+  get '/events/:id/performances' => 'events#performances'
 
   resources :search
   devise_for :users, controllers: { sessions: 'users/sessions' }

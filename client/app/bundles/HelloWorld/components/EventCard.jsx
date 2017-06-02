@@ -1,11 +1,15 @@
 import React from 'react';
 var EventVoteButtons = require('./EventVoteButtons.jsx');
 var EventFavouriteStatus = require('./EventFavouriteStatus.jsx');
+var PerformancesPanel = require('./PerformancesPanel.jsx');
 
 // Entry point to React
 var EventCard = React.createClass({
   getInitialState: function() {
-    return { event: $.parseJSON(this.props.event), is_favourited: this.props.is_favourited};
+    return {
+      event: $.parseJSON(this.props.event),
+      is_favourited: this.props.is_favourited
+    };
   },
   signed_in: function(e, v) {
     if (this.props.user_signed_in) {
@@ -13,6 +17,7 @@ var EventCard = React.createClass({
         <div className="btn-toolbar" role="toolbar">
           <EventVoteButtons score={e.score} event_id={e.id} />
           <EventFavouriteStatus favourite={this.favourite} unfavourite={this.unfavourite} is_favourited={this.state.is_favourited} event_id={e.id} />
+          <PerformancesPanel performances={this.props.performances} event_id={this.state.event.id} />
         </div>
       );
     } else {
@@ -123,6 +128,7 @@ var EventCard = React.createClass({
             <dd> {e.festival} </dd>
 
           </dl>
+
 
           <div dangerouslySetInnerHTML={{ __html: e.description }} />
 

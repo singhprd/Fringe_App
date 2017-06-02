@@ -52,14 +52,23 @@ class Fringebot
       event.update_attributes!(venue: venue)
 
       # Performances
-      # performances = create_or_find_performances(params)
+      # performances = create_performances(params, event.id)
       return event
   end
 
-  def create_or_find_performances(params)
-    # I'm ignoring performances for the time 
-    # being. I think these should be an
-    # on demand request?
+  def performances()
+    params = @api.event(@params["uuid"])
+    performances = create_performances_params_array(params)
+    # TODO Fix!
+    # event = Event.find(event_id)
+    # event.performances.destroy_all
+    # perf_params = create_performances_params_array(params)
+
+    # perf_params.each do |perf_param|
+    #     performance = Performance.create(perf_param)
+    #     performance.update_attributes(event_id: event_id)
+    # end
+    # return "hello"
   end
 
   def create_or_find_venue(params)
@@ -105,9 +114,10 @@ class Fringebot
 
   def create_performances_params_array(result)
     @raw_array = result["performances"]
-    @performance_hashes = @raw_array.each{|hash| hash.slice("concession", "end", "start", "price")
-      hash[:end_time] = hash.delete(:end)
-      hash[:start_time] = hash.delete(:start)
+    @performance_hashes = @raw_array.each{|perf_hash|
+      perf_hash.slice("concession", "end", "start", "price")
+      perf_hash[:end_time] = perf_hash.delete("end")
+      perf_hash[:start_time] = perf_hash.delete("start")
     }
     return @performance_hashes
   end
@@ -164,3 +174,9 @@ end
 #         "phone"=>nil,
 #         "post_code"=>"EH1 1JF"},
 #         "website"=>"http://www.sciencefestival.co.uk/event-details/light-drawing"}
+
+# TODO Add concession_addtional and concession_family to performances
+# {"concession"=>10, "price"=>12, :end_time=>"2016-08-20 12:00:00", :start_time=>"2016-08-20 11:00:00"}
+# #<Performance:0x007f96d1dffb78>
+# {"concession"=>8, "concession_additional"=>false, "concession_family"=>false, "price"=>9, "title"=>nil, :end_time=>"2017-08-04 13:55:00", :start_time=>"2017-08-04 13:05:00"}
+

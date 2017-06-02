@@ -42,6 +42,11 @@ class Event < ApplicationRecord
     }
   end
 
+  def performances
+    fringebot = Fringebot.new("uuid" => self.uuid)
+    return fringebot.performances
+  end
+
   def check_for_updates
     # TODO ADD CHECK TO RETURN IF CHECKED IN LAST X HOURS
     return if self.last_checked_for_update&.to_datetime.to_i > 1.hour.ago.to_i
