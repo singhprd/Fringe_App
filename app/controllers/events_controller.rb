@@ -79,7 +79,7 @@ class EventsController < ApplicationController
 
   def performances()
     set_event
-    render json: @event.performances
+    render json: @event.performances_json
   end
 
   # DELETE /events/1

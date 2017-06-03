@@ -56,19 +56,20 @@ class Fringebot
       return event
   end
 
-  def performances()
+  def performances(event_id)
     params = @api.event(@params["uuid"])
-    performances = create_performances_params_array(params)
     # TODO Fix!
     # event = Event.find(event_id)
     # event.performances.destroy_all
-    # perf_params = create_performances_params_array(params)
+    perf_params = create_performances_params_array(params)
 
-    # perf_params.each do |perf_param|
-    #     performance = Performance.create(perf_param)
-    #     performance.update_attributes(event_id: event_id)
-    # end
-    # return "hello"
+    performances = []
+    perf_params.each do |perf_param|
+        performance = Performance.create(perf_param)
+        performance.update_attributes(event_id: event_id)
+        performances << performance
+    end
+    return performances
   end
 
   def create_or_find_venue(params)

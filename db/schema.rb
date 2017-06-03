@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170602000313) do
+ActiveRecord::Schema.define(version: 20170602212153) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,12 +69,13 @@ ActiveRecord::Schema.define(version: 20170602000313) do
     t.string   "updated"
     t.string   "url"
     t.string   "website"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.integer  "score",                   default: 0
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.integer  "score",                     default: 0
     t.integer  "venue_id"
     t.string   "festival_year"
     t.string   "last_checked_for_update"
+    t.datetime "performances_last_updated"
     t.index ["venue_id"], name: "index_events_on_venue_id", using: :btree
   end
 

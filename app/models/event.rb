@@ -42,9 +42,16 @@ class Event < ApplicationRecord
     }
   end
 
-  def performances
-    fringebot = Fringebot.new("uuid" => self.uuid)
-    return fringebot.performances
+  def performances_json
+    if self.performances_last_updated&.to_datetime.to_i > 1.hour.ago.to_i
+      return self.performances.to_json
+    else
+      self.performances.destroy_all
+      self.update_attributes(performances_last_updated: DateTime.now)
+      fringebot = Fringebot.new("uuid" => self.uuid)
+      performances = fringebot.performances(self.id)
+      return performances
+    end
   end
 
   def check_for_updates

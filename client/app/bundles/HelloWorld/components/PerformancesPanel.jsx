@@ -5,6 +5,11 @@ export class PerformancesPanel extends Component {
     super(props);
     this.state = {performances: []};
   }
+  componentDidMount(){
+		$("button").one("mouseenter", function(e){
+			this.get_performances();
+		}.bind(this));
+  }
 	get_performances(){
 		var promise = $.getJSON('/events/'+this.props.event_id+'/performances');
 
@@ -31,7 +36,7 @@ export class PerformancesPanel extends Component {
 		return (
 			<div>
 
-			<button onClick={this.get_performances.bind(this)} className="btn btn-default" type="button" data-toggle="collapse" data-target={"#performances_for_event"+this.props.event_id} aria-expanded="false" aria-controls={"performances_for_event" + this.props.event_id}>
+			<button className="btn btn-default" type="button" data-toggle="collapse" data-target={"#performances_for_event"+this.props.event_id} aria-expanded="false" aria-controls={"performances_for_event" + this.props.event_id}>
 			🗓️
 			</button>
 
