@@ -8,7 +8,9 @@ class Users::SessionsController < Devise::SessionsController
 
   # POST /resource/sign_in
   # def create
-  #   super
+    # super
+    # flash[:notice] = 'message'
+    # render json: {"1": "two"}
   # end
 
   # DELETE /resource/sign_out
