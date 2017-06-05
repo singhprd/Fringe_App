@@ -12,12 +12,12 @@ var EventCard = React.createClass({
     };
   },
   signed_in: function(e, v) {
+// <PerformancesPanel performances={this.props.performances} event_id={this.state.event.id} />
     if (this.props.user_signed_in) {
       return (
         <div className="btn-toolbar" role="toolbar">
           <EventVoteButtons score={e.score} event_id={e.id} />
           <EventFavouriteStatus favourite={this.favourite} unfavourite={this.unfavourite} is_favourited={this.state.is_favourited} event_id={e.id} />
-          <PerformancesPanel performances={this.props.performances} event_id={this.state.event.id} />
         </div>
       );
     } else {
