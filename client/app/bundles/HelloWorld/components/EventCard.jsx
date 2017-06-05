@@ -83,6 +83,7 @@ var EventCard = React.createClass({
     });
   },
   check_is_favourited: function(){
+    $('[data-toggle="tooltip"]').tooltip(); 
     var that = this
     $.ajax({
       url: "/events/" + this.state.event.id + "/is_favourited",
@@ -99,7 +100,6 @@ var EventCard = React.createClass({
     });
   },
   render: function() {
-    $('[data-toggle="tooltip"]').tooltip();
     const e = this.state.event;
     const v = $.parseJSON(this.props.venue);
     return (
