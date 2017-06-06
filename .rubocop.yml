@@ -87,7 +87,7 @@ AllCops:
   # If a value is specified for TargetRubyVersion then it is used.
   # Else if .ruby-version exists and it contains an MRI version it is used.
   # Otherwise we fallback to the oldest officially supported Ruby version (2.1).
-  TargetRubyVersion: ~
+  TargetRubyVersion: 2.4.1
   TargetRailsVersion: 5.0
 
 # Indent private/protected/public as deep as method definitions
@@ -417,6 +417,9 @@ Style/Copyright:
 Style/DocumentationMethod:
   RequireForNonPublicMethods: false
 
+Documentation:
+  Enabled: false
+
 # Multi-line method chaining should be done with leading dots.
 Style/DotPosition:
   EnforcedStyle: leading
@@ -594,7 +597,7 @@ Style/FormatString:
     - percent
 
 Style/FrozenStringLiteralComment:
-  EnforcedStyle: when_needed
+  EnforcedStyle: never
   SupportedStyles:
     # `when_needed` will add the frozen string literal comment to files
     # only when the `TargetRubyVersion` is set to 2.3+.
@@ -985,7 +988,7 @@ Style/RaiseArgs:
 
 Style/RedundantReturn:
   # When `true` allows code like `return x, y`.
-  AllowMultipleReturnValues: false
+  AllowMultipleReturnValues: true
 
 # Use `/` or `%r` around regular expressions.
 Style/RegexpLiteral:

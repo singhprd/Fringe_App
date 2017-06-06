@@ -20,7 +20,7 @@ class Event < ApplicationRecord
     save
     score
   end
-  
+
   def self.favourited?(user, event_id)
     return false if user.nil? || event_id.nil?
     Event.find(event_id).favourites.exists?(
@@ -29,41 +29,41 @@ class Event < ApplicationRecord
   end
 
   def uuid
-    self.url.split("/").last
+    url.split("/").last
   end
 
   def to_fringebot_hash
     {
-      title: self.title,
-      festival: self.festival,
-      year: self.festival_year,
-      artist: self.artist,
-      code: self.code
+      title: title,
+      festival: festival,
+      year: festival_year,
+      artist: artist,
+      code: code
     }
   end
 
   def performances_json
-    if self.performances_last_updated&.to_datetime.to_i > 1.hour.ago.to_i
-      return self.performances.to_json
+    if performances_last_updated&.to_datetime.to_i > 1.hour.ago.to_i
+      performances.to_json
     else
-      self.performances.destroy_all
-      self.update_attributes(performances_last_updated: DateTime.now)
-      fringebot = Fringebot.new("uuid" => self.uuid)
-      performances = fringebot.performances(self.id)
-      return performances
+      performances.destroy_all
+      update_attributes(performances_last_updated: DateTime.now)
+      fringebot = Fringebot.new("uuid" => uuid)
+      performances = fringebot.performances(id)
+      performances
     end
   end
 
   def check_for_updates
-    # TODO ADD CHECK TO RETURN IF CHECKED IN LAST X HOURS
-    return if self.last_checked_for_update&.to_datetime.to_i > 1.hour.ago.to_i
-    self.update_attributes(last_checked_for_update: DateTime.now)
-    # return if self.last_checked_for_update 
-    fringebot = Fringebot.new("uuid" => self.uuid)
+    # TODO: ADD CHECK TO RETURN IF CHECKED IN LAST X HOURS
+    return if last_checked_for_update&.to_datetime.to_i > 1.hour.ago.to_i
+    update_attributes(last_checked_for_update: DateTime.now)
+    # return if self.last_checked_for_update
+    fringebot = Fringebot.new("uuid" => uuid)
     fringebot.single_event
   end
 
-# TODO Add year to event and scope search.
+  # TODO: Add year to event and scope search.
   # def self.year(year)
   #   Event.where(year)
   # end
