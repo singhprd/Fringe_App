@@ -1,4 +1,4 @@
-require 'securerandom'
+require "securerandom"
 
 class Venue < ApplicationRecord
   validates :code, presence: true, uniqueness: true

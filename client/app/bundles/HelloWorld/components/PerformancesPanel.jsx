@@ -7,17 +7,17 @@ export class PerformancesPanel extends Component {
     this.state = {performances: ["loading"], has_data: false};
   }
   componentDidMount(){
-  	$('td').tooltip();
+		$('td').tooltip();
   }
   componentDidUpdate(){
 		// $("button").one("mouseenter", function(e){
-		// 	this.get_performances();
+		// 	this.getPerformances();
 		// }.bind(this));
 		$('td').tooltip();
   }
-	get_performances(){
+	getPerformances(){
 		if (this.state.has_data === true) {
-			return
+			return;
 		}
 		var promise = $.getJSON('/events/'+this.props.event_id+'/performances');
 
@@ -76,7 +76,7 @@ export class PerformancesPanel extends Component {
 	render() {
 		return (
 			<div>
-			<button onClick={this.get_performances.bind(this)} className="btn btn-default" type="button" data-toggle="collapse" data-target={"#performances_for_event"+this.props.event_id} aria-expanded="false" aria-controls={"performances_for_event" + this.props.event_id}>
+			<button onClick={this.getPerformances.bind(this)} className="btn btn-default" type="button" data-toggle="collapse" data-target={"#performances_for_event"+this.props.event_id} aria-expanded="false" aria-controls={"performances_for_event" + this.props.event_id}>
 			🗓️
 			</button>
 
