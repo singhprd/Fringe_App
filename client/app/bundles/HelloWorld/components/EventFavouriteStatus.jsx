@@ -3,14 +3,17 @@ import PropTypes from 'prop-types';
 
 export class EventFavouriteStatus extends Component {
   static propTypes = {
-    // eventId: PropTypes.number.isRequired,
+    eventId: PropTypes.number.isRequired,
+    isFavourited: PropTypes.bool,
+    unfavourite: PropTypes.func.isRequired,
+    favourite: PropTypes.func.isRequired,
   };
   constructor(props) {
     super(props);
     this.state = {isFavourited: this.props.isFavourited};
   }
   isFavourited(){
-    var that = this;
+    // var that = this;
     $.ajax({
       url: '/events/' + this.props.eventId + '/is_favourited',
       type: 'GET',
