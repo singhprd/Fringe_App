@@ -31,7 +31,7 @@ var EventVoteButtons = React.createClass({
         $.ajax({
             url: "/votes",
             type: "POST",
-            data: { event_id: this.props.event_id, value: 1 },
+            data: { event_id: this.props.eventId, value: 1 },
             success: function(a, b, c) {
                 // console.log("a", a, "b",b, "c", c)
                 var votes = a["votes"];
@@ -52,7 +52,7 @@ var EventVoteButtons = React.createClass({
         $.ajax({
             url: "/votes",
             type: "POST",
-            data: { event_id: this.props.event_id, value: -1 },
+            data: { event_id: this.props.eventId, value: -1 },
             success: function(a, b, c) {
                 // console.log("a", a, "b",b, "c", c)
                 var votes = a["votes"];
