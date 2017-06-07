@@ -1,5 +1,5 @@
 class FavouritesController < ApplicationController
-  before_action :set_favourite, only: [:show, :edit, :update, :destroy]
+  before_action :set_favourite, only: %i[show edit update destroy]
 
   # GET /favourites
   # GET /favourites.json
@@ -9,8 +9,7 @@ class FavouritesController < ApplicationController
 
   # GET /favourites/1
   # GET /favourites/1.json
-  def show
-  end
+  def show; end
 
   # GET /favourites/new
   def new
@@ -18,8 +17,7 @@ class FavouritesController < ApplicationController
   end
 
   # GET /favourites/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /favourites
   # POST /favourites.json
@@ -29,10 +27,7 @@ class FavouritesController < ApplicationController
 
     respond_to do |format|
       if @favourite.save
-        # format.html { redirect_to @favourite, notice: 'Favourite was successfully created.' }
-        # format.json { render :show, status: :created, location: @favourite }
-        format.json { render json: {notice: "Event added to favourites."} }
-
+        format.json { render json: { notice: "Event added to favourites." } }
       else
         format.html { render :new }
         format.json { render json: @favourite.errors, status: :unprocessable_entity }
@@ -45,7 +40,7 @@ class FavouritesController < ApplicationController
   def update
     respond_to do |format|
       if @favourite.update(favourite_params)
-        format.html { redirect_to @favourite, notice: 'Favourite was successfully updated.' }
+        format.html { redirect_to @favourite, notice: "Favourite was successfully updated." }
         format.json { render :show, status: :ok, location: @favourite }
       else
         format.html { render :edit }
@@ -65,13 +60,15 @@ class FavouritesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_favourite
-      @favourite = Favourite.easy_find({event_id: favourite_params[:event_id], user_id: current_user.id})
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def favourite_params
-      params.require(:favourite).permit(:user_id, :event_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_favourite
+    @favourite = Favourite.easy_find(event_id: favourite_params[:event_id], user_id: current_user.id)
+  end
+
+  # Never trust parameters from the scary internet,
+  # only allow the white list through.
+  def favourite_params
+    params.require(:favourite).permit(:user_id, :event_id)
+  end
 end

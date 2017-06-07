@@ -4,8 +4,8 @@
 props: {event: event.to_json,
  venue: event.venue.to_json,
  performances: event.performances.to_json,
- user_signed_in: !current_user.nil?,
- is_favourited: Event.favourited?(current_user, event.try(:id)) 
+ userSignedIn: !current_user.nil?,
+ isFavourited: Event.favourited?(current_user, event.try(:id)) 
 })
  %>
 

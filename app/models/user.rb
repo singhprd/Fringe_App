@@ -10,11 +10,8 @@ class User < ApplicationRecord
 
   def reduce_votes_left
     current_votes = votes_left
-    if current_votes <= 0
-      return false
-    else
-      return update_attributes(votes_left: (current_votes - 1))
-    end
+    return false if current_votes <= 0
+    update_attributes(votes_left: (current_votes - 1))
   end
 
   def reset_votes
