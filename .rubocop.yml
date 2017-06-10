@@ -9,6 +9,9 @@ inherit_from:
 AllCops:
   # Include common Ruby source files.
   Include:
+    - Rakefile
+    - config.ru
+    - lib/**/*.rake
     - '**/*.gemspec'
     - '**/*.podspec'
     - '**/*.jbuilder'
@@ -29,6 +32,7 @@ AllCops:
     - '**/*Fastfile'
   Exclude:
     - 'vendor/**/*'
+    - db/schema.rb
   # Default formatter will be used if no `-f/--format` option is given.
   DefaultFormatter: progress
   # Cop names are not displayed in offense messages by default. Change behavior
@@ -1106,7 +1110,7 @@ Style/StabbyLambdaParentheses:
     - require_no_parentheses
 
 Style/StringLiterals:
-  EnforcedStyle: single_quotes
+  EnforcedStyle: double_quotes
   SupportedStyles:
     - single_quotes
     - double_quotes
