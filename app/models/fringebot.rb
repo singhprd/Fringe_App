@@ -54,7 +54,37 @@ class Fringebot
     # Assign Venue to event if not already assigned
     event.update_attributes!(venue: venue)
 
+    # Images
+    create_images(params, event)
+
     event
+  end
+
+  def create_images(params, event)
+    return if params["images"].nil?
+
+    params["images"].each do |image_params|
+      image_params = image_params.last
+      image = Image.new()
+      image.image_hash = image_params["hash"]
+      image.image_type = image_params["type"]
+      image.orientation = image_params["orientation"]
+      image.event = event
+      image.save!
+
+      image_params["versions"].each do |version_params|
+        version_params = version_params.second
+        img_ver = ImageVersion.new
+        img_ver.height = version_params["height"]
+        img_ver.width = version_params["width"]
+        img_ver.mime = version_params["mime"]
+        img_ver.url = version_params["url"]
+        img_ver.image_type = version_params["type"]
+        img_ver.image = image
+        img_ver.save!
+      end
+
+    end
   end
 
   def performances(event_id)

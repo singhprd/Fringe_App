@@ -5,6 +5,7 @@ class CreatePerformances < ActiveRecord::Migration[5.0]
       t.datetime :end
       t.string :price
       t.datetime :start
+      t.references :image, foreign_key: true
 
       t.timestamps
     end
