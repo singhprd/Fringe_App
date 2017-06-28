@@ -6,11 +6,10 @@ class Users::SessionsController < Devise::SessionsController
   #   super
   # end
 
+  # TODO: Add flash message to failed 401 signin
   # POST /resource/sign_in
   # def create
-    # super
-    # flash[:notice] = 'message'
-    # render json: {"1": "two"}
+  #   super
   # end
 
   # DELETE /resource/sign_out

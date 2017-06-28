@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170602212153) do
+ActiveRecord::Schema.define(version: 20170611201517) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,6 +92,29 @@ ActiveRecord::Schema.define(version: 20170602212153) do
   create_table "fringebots", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "image_versions", force: :cascade do |t|
+    t.string   "description"
+    t.string   "height"
+    t.string   "mime"
+    t.string   "image_type"
+    t.string   "url"
+    t.string   "width"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "image_id"
+    t.index ["image_id"], name: "index_image_versions_on_image_id", using: :btree
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.string   "image_hash"
+    t.string   "image_type"
+    t.string   "orientation"
+    t.integer  "event_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["event_id"], name: "index_images_on_event_id", using: :btree
   end
 
   create_table "performances", force: :cascade do |t|
@@ -183,6 +206,8 @@ ActiveRecord::Schema.define(version: 20170602212153) do
   add_foreign_key "events", "venues"
   add_foreign_key "favourites", "events"
   add_foreign_key "favourites", "users"
+  add_foreign_key "image_versions", "images"
+  add_foreign_key "images", "events"
   add_foreign_key "performances", "events"
   add_foreign_key "reviews", "events"
   add_foreign_key "votes", "events"

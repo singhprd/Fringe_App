@@ -3,6 +3,7 @@ class Event < ApplicationRecord
   has_many :reviews
   has_many :votes
   has_many :favourites
+  has_many :images
   belongs_to :venue
   validates :code, presence: true, uniqueness: true
   acts_as_commontable

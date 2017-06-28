@@ -84,4 +84,5 @@ class FringebotTest < ActiveSupport::TestCase
 		event = fb.single_event
 		assert_in_delta(DateTime.now.utc.to_i, event.reload.updated_at.utc.to_i, 1)
 	end
+
 end
