@@ -62,7 +62,7 @@ class Fringebot
 
   def create_images(params, event)
     return if params["images"].nil?
-
+    event.images.destroy_all
     params["images"].each do |image_params|
       image_params = image_params.last
       image = Image.new()

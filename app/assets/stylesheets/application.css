@@ -118,3 +118,14 @@
 .well-sm {
   margin-top: 8px;
 }
+
+#footer-image {
+  height: 350px;
+  position: relative;
+  display: block;
+  margin: 0 auto;
+}
+
+#footer {
+ margin-bottom: -40px;
+}

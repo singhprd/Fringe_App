@@ -64,6 +64,12 @@ class Event < ApplicationRecord
     fringebot.single_event
   end
 
+  def image_urls
+    images.map do |image|
+      image.image_versions.first.remote_url
+    end
+  end
+
   # TODO: Add year to event and scope search.
   # def self.year(year)
   #   Event.where(year)

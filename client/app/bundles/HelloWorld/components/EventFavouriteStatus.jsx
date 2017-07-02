@@ -12,26 +12,32 @@ export class EventFavouriteStatus extends Component {
     super(props);
     this.state = {isFavourited: this.props.isFavourited};
   }
-  isFavourited(){
-    // var that = this;
-    $.ajax({
-      url: '/events/' + this.props.eventId + '/is_favourited',
-      type: 'GET',
-      data: {event_id: this.props.eventId},
-      success: function(a,b,c){
-        this.setState({isFavourited: a.bool});
-        // $("#notice").html(a['notice'])
-      }.bind(this),
-      error: function() {
-        console.log('failed isFavourited user_event_status.jsx');
-      }
-    });
+  // isFavourited(){
+  //   // var that = this;
+  //   $.ajax({
+  //     url: '/events/' + this.props.eventId + '/is_favourited',
+  //     type: 'GET',
+  //     data: {event_id: this.props.eventId},
+  //     success: function(a,b,c){
+  //       this.setState({isFavourited: a.bool});
+  //       // $("#notice").html(a['notice'])
+  //     }.bind(this),
+  //     error: function() {
+  //       console.log('failed isFavourited user_event_status.jsx');
+  //     }
+  //   });
+  // }
+  favourite() {
+    this.props.favourite(this.props.eventId);
+  }
+  unfavourite() {
+    this.props.unfavourite(this.props.eventId);
   }
   renderAppropriateButtons(){
     if (this.props.isFavourited) {
-      return <button onClick={this.props.unfavourite} className="btn btn-default active">❤️️</button>;
+      return <button onClick={this.unfavourite.bind(this)} className="btn btn-default active">❤️️</button>;
     } else {
-      return <button onClick={this.props.favourite} className="btn btn-default">❤️️</button>;
+      return <button onClick={this.favourite.bind(this)} className="btn btn-default">❤️️</button>;
     }
   }
   render() {
