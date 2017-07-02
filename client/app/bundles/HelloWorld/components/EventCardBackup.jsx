@@ -1,50 +1,41 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import EventVoteButtons from './EventVoteButtons.jsx';
-import EventFavouriteStatus from './EventFavouriteStatus.jsx';
-import PerformancesPanel from './PerformancesPanel.jsx';
+import React from 'react';
+var EventVoteButtons = require('./EventVoteButtons.jsx');
+var EventFavouriteStatus = require('./EventFavouriteStatus.jsx');
+var PerformancesPanel = require('./PerformancesPanel.jsx');
 
-export class EventCard extends Component {
-  static propTypes = {
-    event: PropTypes.string.isRequired,
-    userSignedIn: PropTypes.bool.isRequired,
-    is_favourited: PropTypes.bool.isRequired,
-  };
-  constructor(props) {
-    super(props);
-    this.state = {
+// Entry point to React
+var EventCard = React.createClass({
+  getInitialState: function() {
+    return {
       event: $.parseJSON(this.props.event),
-      isFavourited: this.props.is_favourited,
+      isFavourited: this.props.isFavourited
     };
-  }
-  signedIn(e, v) {
+  },
+  signedIn: function(e, v) {
     if (this.props.userSignedIn) {
       return (
-        <div className="btn-toolbar" role="toolbar">
-        <EventVoteButtons score={e.score} eventId={e.id} />
-        {/* <EventFavouriteStatus favourite={this.favourite} unfavourite={this.unfavourite} isFavourited={this.state.isFavourited} eventId={e.id} /> */}
-        <PerformancesPanel performances={this.props.performances} eventId={this.state.event.id} />
-        </div>
-        );
+<div className="btn-toolbar" role="toolbar">
+  <EventVoteButtons score={e.score} eventId={e.id} />
+  <EventFavouriteStatus favourite={this.favourite} unfavourite={this.unfavourite} isFavourited={this.state.isFavourited} eventId={e.id} />
+  <PerformancesPanel performances={this.props.performances} eventId={this.state.event.id} />
+</div>
+      );
     } else {
-      return (
-        <div className="btn-toolbar" role="toolbar">
-        <EventVoteButtons score={e.score} eventId={e.id} />
-        <a href="/users/sign_in" type="button" className="btn btn-default">
-        Sign In To Vote
-        </a>
-        </div>
-        );
+    return (
+<div className="btn-toolbar" role="toolbar">
+  <EventVoteButtons score={e.score} eventId={e.id} />
+  <a href="/users/sign_in" type="button" className="btn btn-default">
+    Sign In To Vote
+  </a>
+</div>
+      );
     }
-  }
-
-  favourite(){
+  },
+  favourite: function(){
     // console.log("Faved")
     // Keen Bean Loading
-    // this.updateFavouritedStatus(true);
-    var that = this;
-      console.log("this.state");
-      console.log(this.state.event);
+    this.setState({isFavourited: true});
+    // var that = this;
     $.ajax({
       url: '/favourites',
       type: 'POST',
@@ -56,12 +47,12 @@ export class EventCard extends Component {
         console.log('failed favourite user_event_status.jsx');
       }
     });
-  }
+  },
 
-  unfavourite(){
+  unfavourite: function(){
     // console.log("Un-Faved")
     // Keen Bean Loading
-    // this.setState({isFavourited: false});
+    this.setState({isFavourited: false});
     // var that = this;
     $.ajax({
       url: '/favourites/' + this.state.event.id,
@@ -75,9 +66,8 @@ export class EventCard extends Component {
         console.log('failed unfavourite user_event_status.jsx');
       }
     });
-  }
-
-  isFavourited(){
+  },
+  isFavourited: function(){
     // var that = this;
     $.ajax({
       url: '/events/' + this.state.event.id + '/is_favourited',
@@ -93,9 +83,8 @@ export class EventCard extends Component {
         console.log('failed isFavourited user_event_status.jsx');
       }
     });
-  }
-
-  checkIsFavourited(){
+  },
+  checkIsFavourited: function(){
     $('[data-toggle="tooltip"]').tooltip();
     // var that = this;
     $.ajax({
@@ -111,10 +100,8 @@ export class EventCard extends Component {
         console.log('failed isFavourited user_event_status.jsx');
       }
     });
-  }
-
-
-  render() {
+  },
+  render: function() {
     const e = this.state.event;
     const v = $.parseJSON(this.props.venue);
     const imageUrls = this.props.imageUrls;
@@ -149,7 +136,6 @@ export class EventCard extends Component {
     );
   }
 
-
-}
+});
 
 module.exports = EventCard;

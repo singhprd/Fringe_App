@@ -2,6 +2,7 @@
     props: {event: @event.to_json,
      venue: @event.venue.to_json,
      userSignedIn: !current_user.nil?,
+     imageUrls: @event.image_urls,
      is_favourited: Event.favourited?(current_user, @event.try(:id)) 
   })
 %>
