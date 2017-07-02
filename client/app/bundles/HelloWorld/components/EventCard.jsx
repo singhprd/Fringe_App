@@ -8,7 +8,7 @@ export class EventCard extends Component {
     static propTypes = {
         event: PropTypes.string.isRequired,
         userSignedIn: PropTypes.bool.isRequired,
-        isFavourited: PropTypes.bool.isRequired,
+        isFavourited: PropTypes.bool,
     };
     constructor(props) {
         super(props);
