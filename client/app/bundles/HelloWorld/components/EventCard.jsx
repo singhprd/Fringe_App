@@ -5,124 +5,117 @@ import EventFavouriteStatus from './EventFavouriteStatus.jsx';
 import PerformancesPanel from './PerformancesPanel.jsx';
 
 export class EventCard extends Component {
-  static propTypes = {
-    event: PropTypes.string.isRequired,
-    userSignedIn: PropTypes.bool.isRequired,
-    is_favourited: PropTypes.bool.isRequired,
-  };
-  constructor(props) {
-    super(props);
-    this.state = {
-      event: $.parseJSON(this.props.event),
-      isFavourited: this.props.is_favourited,
+    static propTypes = {
+        event: PropTypes.string.isRequired,
+        userSignedIn: PropTypes.bool.isRequired,
+        isFavourited: PropTypes.bool.isRequired,
     };
-  }
-  signedIn(e, v) {
-    if (this.props.userSignedIn) {
-      return (
-        <div className="btn-toolbar" role="toolbar">
+    constructor(props) {
+        super(props);
+        this.state = {
+            event: $.parseJSON(this.props.event),
+            isFavourited: this.props.isFavourited,
+        };
+        // this.onChange = this.onChange.bind(this);
+    }
+    signedIn(e, v) {
+        if (this.props.userSignedIn) {
+            return (
+                <div className="btn-toolbar" role="toolbar">
         <EventVoteButtons score={e.score} eventId={e.id} />
-        {/* <EventFavouriteStatus favourite={this.favourite} unfavourite={this.unfavourite} isFavourited={this.state.isFavourited} eventId={e.id} /> */}
+        <EventFavouriteStatus favourite={this.favourite} unfavourite={this.unfavourite} isFavourited={this.state.isFavourited} eventId={e.id} />
         <PerformancesPanel performances={this.props.performances} eventId={this.state.event.id} />
         </div>
-        );
-    } else {
-      return (
-        <div className="btn-toolbar" role="toolbar">
+            );
+        } else {
+            return (
+                <div className="btn-toolbar" role="toolbar">
         <EventVoteButtons score={e.score} eventId={e.id} />
         <a href="/users/sign_in" type="button" className="btn btn-default">
         Sign In To Vote
         </a>
         </div>
-        );
-    }
-  }
-
-  favourite(){
-    // console.log("Faved")
-    // Keen Bean Loading
-    // this.updateFavouritedStatus(true);
-    var that = this;
-      console.log("this.state");
-      console.log(this.state.event);
-    $.ajax({
-      url: '/favourites',
-      type: 'POST',
-      data: {favourite: {event_id: this.state.event.id}},
-      success: function(a,b,c){
-        this.isFavourited();
-      }.bind(this),
-      error: function() {
-        console.log('failed favourite user_event_status.jsx');
-      }
-    });
-  }
-
-  unfavourite(){
-    // console.log("Un-Faved")
-    // Keen Bean Loading
-    // this.setState({isFavourited: false});
-    // var that = this;
-    $.ajax({
-      url: '/favourites/' + this.state.event.id,
-      type: 'DELETE',
-      data: {favourite: {event_id: this.state.event.id}},
-      success: function(a,b,c){
-        // console.log(a,b,c)
-        this.isFavourited();
-      }.bind(this),
-      error: function() {
-        console.log('failed unfavourite user_event_status.jsx');
-      }
-    });
-  }
-
-  isFavourited(){
-    // var that = this;
-    $.ajax({
-      url: '/events/' + this.state.event.id + '/is_favourited',
-      type: 'GET',
-      data: {event_id: this.state.event.id},
-      success: function(a,b,c){
-        this.setState({isFavourited: a.bool});
-        // $("#notice").html(a['notice'])
-        console.log('isFavourited' + a.bool);
-
-      }.bind(this),
-      error: function() {
-        console.log('failed isFavourited user_event_status.jsx');
-      }
-    });
-  }
-
-  checkIsFavourited(){
-    $('[data-toggle="tooltip"]').tooltip();
-    // var that = this;
-    $.ajax({
-      url: '/events/' + this.state.event.id + '/is_favourited',
-      type: 'GET',
-      data: {event_id: this.state.event.id},
-      success: function(a,b,c){
-        if (a.bool) {
-          this.setState({isFavourited: 'favourite'});
+            );
         }
-      }.bind(this),
-      error: function() {
-        console.log('failed isFavourited user_event_status.jsx');
-      }
-    });
-  }
+    }
+    favourite = (event_id) => {
+    // favourite(event_id) {
+        // console.log("Faved")
+        // Keen Bean Loading
+        // this.updateFavouritedStatus(true);
+        $.ajax({
+            url: '/favourites',
+            type: 'POST',
+            data: { favourite: { event_id: event_id } },
+            success: function(a, b, c) {
+                this.setState({isFavourited: true});
+                console.log(a,b,c)
+                // this.isFavourited();
+            }.bind(this),
+            error: function() {
+                console.log('failed favourite user_event_status.jsx');
+            }
+        });
+    }
+    unfavourite = (event_id) => {
+    // unfavourite(event_id) {
+        // console.log("Un-Faved")
+        // Keen Bean Loading
+        // this.setState({isFavourited: false});
+        $.ajax({
+            url: '/favourites/' + event_id,
+            type: 'DELETE',
+            data: { favourite: { event_id: event_id } },
+            success: function(a, b, c) {
+                this.setState({isFavourited: false});
+                // console.log(a,b,c)
+                // this.isFavourited();
+            }.bind(this),
+            error: function() {
+                console.log('failed unfavourite user_event_status.jsx');
+            }
+        });
+    }
+    isFavourited() {
+        // var that = this;
+        $.ajax({
+            url: '/events/' + this.state.event.id + '/is_favourited',
+            type: 'GET',
+            data: { event_id: this.state.event.id },
+            success: function(a, b, c) {
+                this.setState({ isFavourited: a.bool });
+                // $("#notice").html(a['notice'])
+                // console.log('isFavourited' + a.bool);
 
-
-  render() {
-    const e = this.state.event;
-    const v = $.parseJSON(this.props.venue);
-    const imageUrls = this.props.imageUrls;
-    return (
-    <div
-    className="panel panel-primary home_card text-info"
-    id={this.state.id}
-    >
+            }.bind(this),
+            error: function() {
+                console.log('failed isFavourited user_event_status.jsx');
+            }
+        });
+    }
+    checkIsFavourited() {
+        $('[data-toggle="tooltip"]').tooltip();
+        // var that = this;
+        $.ajax({
+            url: '/events/' + this.state.event.id + '/is_favourited',
+            type: 'GET',
+            data: { event_id: this.state.event.id },
+            success: function(a, b, c) {
+                if (a.bool) {
+                    this.setState({ isFavourited: 'favourite' });
+                }
+            }.bind(this),
+            error: function() {
+                console.log('failed isFavourited user_event_status.jsx');
+            }
+        });
+    }
+    render() {
+        const e = this.state.event;
+        const v = $.parseJSON(this.props.venue);
+        const imageUrls = this.props.imageUrls;
+        return (
+    <div className="panel panel-primary home_card text-info" id={this.state.id}>
     <div className={'panel-heading ' + (this.state.isFavourited ? 'favourite' : '')}>
       <h3 className="panel-title">
         <a href={'/events/' + e.id}>{e.title}</a>
@@ -146,10 +139,8 @@ export class EventCard extends Component {
       {this.signedIn(e, v)}
     </div>
   </div>
-    );
-  }
-
-
+        );
+    }
 }
 
 module.exports = EventCard;
