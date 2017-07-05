@@ -20,12 +20,12 @@
 
 				<div class="col-sm-5">
 					<%= label_tag(:year, "Year:") %>
-					<%= select_tag(:year, raw("<option>2015</option><option>2016</option><option selected>2017</option>"), class: "form-control") %>
+					<%= select_tag(:year, raw("
+						<option>2015</option>
+						<option>2016</option>
+						<option selected>2017</option>
+					"), class: "form-control") %>
 
-<<<<<<< Updated upstream
-					<%= label_tag(:festival_string, "Year:") %>
-					<%= select_tag(:festival_string, raw("<option value="" selected>all</option><option>fringe</option><option>jazz</option><option>book</option><option>international</option><option>tattoo</option><option>art</option><option>hogmanay</option><option>science</option><option>imaginate</option><option>film</option><option>mela</option><option>storytelling</option>"), class: "form-control") %>
-=======
 					<%= label_tag(:festival_string, "Festival:") %>
 					<%= select_tag(:festival_string, raw("
 					<option value="" selected>All Festivals</option>
@@ -43,7 +43,6 @@
 					<option value='mela'>Edinburgh Mela</option>
 					<option value='storytelling'>Edinburgh International Storytelling Festival</option>
 					"), class: "form-control") %>
->>>>>>> Stashed changes
 				</div>
 				<div class="col-sm-5">
 					<br>
