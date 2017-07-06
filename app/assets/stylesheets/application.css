@@ -120,12 +120,19 @@
 }
 
 #footer-image {
-  height: 350px;
-  position: relative;
-  display: block;
-  margin: 0 auto;
+  /*position: relative;*/
+  width: 100%;
+  /*display: block;*/
+  /*margin-left: auto;*/
+  /*margin-right: auto;*/
+  /*border: 0.5px solid #73AD21;*/
+ margin-bottom: -40px;
 }
 
-#footer {
- margin-bottom: -40px;
+#disclaimer-text * {
+  font-family:"Helvetica Neue";
+  color: grey;
+  bottom: 0px;
+  position: relative;
+  text-decoration: none;
 }

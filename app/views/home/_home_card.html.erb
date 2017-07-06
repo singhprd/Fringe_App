@@ -14,6 +14,22 @@ props: {
 
 <%= paginate @events %>
 
-<div id="footer">
-<%= image_tag("cutout.png", :id => "footer-image") %>
+<!-- <div id="footer">
+		<div id="footer-image-div">
+			<%= image_tag("cutout.png", :id => "footer-image") %>
+		</div>
+		<div id="disclaimer-text">
+			<span>data provided courtesy of the Edinburgh Festivals Listings API</span>
+		</div>
+</div> -->
+<div class="container">
+  <div class="row">
+    <div class="col-xs-8 col-md-10" >
+			<%= image_tag("cutout.png", :id => "footer-image") %>
+
+    </div>
+    <div class="col-xs-4 col-md-2" >
+    	<span id="disclaimer-text">			<span> 👉 data provided courtesy of the </span><a href="https://api.edinburghfestivalcity.com/"> Edinburgh Festivals Listings API</a></span>
+    </div>
+  </div>
 </div>
