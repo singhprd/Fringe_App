@@ -1,9 +1,9 @@
 class Event < ApplicationRecord
-  has_many :performances
-  has_many :reviews
-  has_many :votes
-  has_many :favourites
-  has_many :images
+  has_many :performances, :dependent => :destroy
+  has_many :reviews, :dependent => :destroy
+  has_many :votes, :dependent => :destroy
+  has_many :favourites, :dependent => :destroy
+  has_many :images, :dependent => :destroy
   belongs_to :venue
   validates :code, presence: true, uniqueness: true
   acts_as_commontable

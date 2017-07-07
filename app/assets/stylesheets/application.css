@@ -119,13 +119,33 @@
   margin-top: 8px;
 }
 
-#footer-image {
-  height: 350px;
-  position: relative;
-  display: block;
-  margin: 0 auto;
+#image-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    height: 300px;
+    margin-bottom: -40px;
+
 }
 
-#footer {
+#footer-image {
+  /*position: relative;*/
+  flex-shrink: 0;
+  /*min-width: 100%;*/
+  /*min-height: 100%*/
+  height: 100%;
+  /*display: block;*/
+  /*margin-left: auto;*/
+  /*margin-right: auto;*/
+  /*border: 0.5px solid #73AD21;*/
  margin-bottom: -40px;
+}
+
+#disclaimer-text * {
+  font-family:"Helvetica Neue";
+  color: grey;
+  bottom: 0px;
+  position: relative;
+  text-decoration: none;
 }
