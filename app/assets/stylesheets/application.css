@@ -178,3 +178,7 @@
   /*padding-left: -35px;*/
   /*width: 0px;*/
 }
+
+.carousel-inner > .item > img {
+    margin: 0 auto;
+}
