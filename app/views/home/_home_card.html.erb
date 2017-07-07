@@ -1,12 +1,12 @@
 <% @events.each do |event| %>
 
-<%= react_component('EventCard',
+<%= react_component('EventCard', trace: nil,
 props: {
 	event: event.to_json,
  	venue: event.venue.to_json,
  	performances: event.performances.to_json,
  	userSignedIn: !current_user.nil?,
- 	isFavourited: Event.favourited?(current_user, event.try(:id)) 
+ 	isFavourited: Event.favourited?(current_user, event.try(:id))
 })
  %>
 
@@ -14,14 +14,6 @@ props: {
 
 <%= paginate @events %>
 
-<!-- <div id="footer">
-		<div id="footer-image-div">
-			<%= image_tag("cutout.png", :id => "footer-image") %>
-		</div>
-		<div id="disclaimer-text">
-			<span>data provided courtesy of the Edinburgh Festivals Listings API</span>
-		</div>
-</div> -->
 <div class="container">
   <div class="row">
     <div id="image-div" class="col-xs-8 col-md-10" >

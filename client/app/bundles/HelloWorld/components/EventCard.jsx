@@ -16,7 +16,6 @@ export class EventCard extends Component {
             event: $.parseJSON(this.props.event),
             isFavourited: this.props.isFavourited,
         };
-        // this.onChange = this.onChange.bind(this);
     }
     signedIn(e, v) {
         if (this.props.userSignedIn) {
@@ -24,7 +23,7 @@ export class EventCard extends Component {
         <div className="btn-toolbar" role="toolbar">
             <EventVoteButtons score={e.score} eventId={e.id} />
             <EventFavouriteStatus favourite={this.favourite} unfavourite={this.unfavourite} isFavourited={this.state.isFavourited} eventId={e.id} />
-            <PerformancesPanel performances={this.props.performances} eventId={this.state.event.id} />
+            <PerformancesPanel eventId={this.state.event.id} />
         </div>
             );
         } else {
