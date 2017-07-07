@@ -3,12 +3,14 @@ import PropTypes from 'prop-types';
 import EventVoteButtons from './EventVoteButtons.jsx';
 import EventFavouriteStatus from './EventFavouriteStatus.jsx';
 import PerformancesPanel from './PerformancesPanel.jsx';
+import ImageCarousel from './ImageCarousel.jsx';
 
 export class EventCard extends Component {
     static propTypes = {
         event: PropTypes.string.isRequired,
         userSignedIn: PropTypes.bool.isRequired,
         isFavourited: PropTypes.bool,
+        imageUrls: PropTypes.array,
     };
     constructor(props) {
         super(props);
@@ -107,7 +109,21 @@ export class EventCard extends Component {
             }
         });
     }
+    images() {
+if (typeof this.props.imageUrls === 'undefined') {
+    return
+}
+        // var imagesTags = this.props.imageUrls.map(function(url){
+        //     console.log(url);
+        // });
+        return(
+            <div>
+                <img src={this.props.imageUrls[0]} />
+            </div>
+            );
+    }
     render() {
+        console.log(this.props.imageUrls);
         const e = this.state.event;
         const v = $.parseJSON(this.props.venue);
         const imageUrls = this.props.imageUrls;
@@ -118,24 +134,41 @@ export class EventCard extends Component {
         <a href={'/events/' + e.id}>{e.title}</a>
       </h3>
     </div>
-    <div className="panel-body">
-      <dl className="dl-horizontal">
-        <dt>Venue:</dt>
-        <dd>{v.name}</dd>
 
-        <dt>Artist:</dt>
-        <dd>{e.artist}</dd>
+      <div className="container-fluid" id="home-card">
+            <div className="row">
 
-        <dt>Website:</dt>
-        <dd> <a href={e.website}>Link </a> </dd>
+                <div className="col-xs-12 col-sm-9">
+                <div className="row">
+                    <dl className="dl-horizontal">
+                    <dt>Venue:</dt>
+                    <dd>{v.name}</dd>
 
-        <dt>Festival:</dt>
-        <dd> {e.festival} </dd>
-      </dl>
-      <div dangerouslySetInnerHTML={{ __html: e.description }} />
-      {this.signedIn(e, v)}
+                    <dt>Artist:</dt>
+                    <dd>{e.artist}</dd>
+
+                    <dt>Website:</dt>
+                    <dd> <a href={e.website}>Link </a> </dd>
+
+                    <dt>Festival:</dt>
+                    <dd> {e.festival} </dd>
+                    </dl>
+                    <div dangerouslySetInnerHTML={{ __html: e.description }} />
+                </div>
+                </div>
+
+                <div className="col-xs-12 col-sm-3" id="carousel-box">
+                    <ImageCarousel />
+                </div>
+
+        <div className="row">
+            <div className="col-xs-12" id="button-bar">
+                {this.signedIn(e, v)}
+            </div>
+            </div>
+        </div>
+        </div>
     </div>
-  </div>
         );
     }
 }

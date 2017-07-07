@@ -6,6 +6,7 @@ props: {
  	venue: event.venue.to_json,
  	performances: event.performances.to_json,
  	userSignedIn: !current_user.nil?,
+ 	imageUrls: event.image_urls,
  	isFavourited: Event.favourited?(current_user, event.try(:id))
 })
  %>

@@ -23,7 +23,8 @@
 
  * {
  	/*font-family: 'Roboto Condensed', sans-serif;*/
- 	font-family:"Helvetica Neue"
+ 	font-family:"Helvetica Neue";
+  /*border: 0.5px solid #73AD21;*/
  }
 
  body {
@@ -148,4 +149,31 @@
   bottom: 0px;
   position: relative;
   text-decoration: none;
+}
+
+#carousel-box {
+  min-width: 120px;
+  display: block;
+}
+
+#myCarousel {
+  width: 100%;
+  /*width: 150px;*/
+  position: relative;
+}
+
+#button-bar {
+  /*padding: 15px;*/
+}
+
+#home-card {
+  margin: 10px;
+}
+
+#layout-base {
+  /*margin: 0px;*/
+  /*border: 0px;*/
+  padding: 0px;
+  /*padding-left: -35px;*/
+  /*width: 0px;*/
 }
