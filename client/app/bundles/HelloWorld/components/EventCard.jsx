@@ -21,19 +21,17 @@ export class EventCard extends Component {
     signedIn(e, v) {
         if (this.props.userSignedIn) {
             return (
-                <div className="btn-toolbar" role="toolbar">
-        <EventVoteButtons score={e.score} eventId={e.id} />
-        <EventFavouriteStatus favourite={this.favourite} unfavourite={this.unfavourite} isFavourited={this.state.isFavourited} eventId={e.id} />
-        <PerformancesPanel performances={this.props.performances} eventId={this.state.event.id} />
+        <div className="btn-toolbar" role="toolbar">
+            <EventVoteButtons score={e.score} eventId={e.id} />
+            <EventFavouriteStatus favourite={this.favourite} unfavourite={this.unfavourite} isFavourited={this.state.isFavourited} eventId={e.id} />
+            <PerformancesPanel performances={this.props.performances} eventId={this.state.event.id} />
         </div>
             );
         } else {
             return (
-                <div className="btn-toolbar" role="toolbar">
-        <EventVoteButtons score={e.score} eventId={e.id} />
-        <a href="/users/sign_in" type="button" className="btn btn-default">
-        Sign In To Vote
-        </a>
+        <div className="btn-toolbar" role="toolbar">
+            <EventVoteButtons score={e.score} eventId={e.id} />
+            <a href="/users/sign_in" type="button" className="btn btn-default">Sign In To Vote</a>
         </div>
             );
         }
