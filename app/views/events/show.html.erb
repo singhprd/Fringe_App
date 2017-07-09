@@ -1,8 +1,8 @@
-<%= react_component('EventCard',
+<%= react_component('EventCard', trace: nil,
     props: {event: @event.to_json,
      venue: @event.venue.to_json,
      userSignedIn: !current_user.nil?,
-     imageUrls: @event.image_urls,
+     imageUrls: @event.image_urls || Array.new,
      isFavourited: Event.favourited?(current_user, @event.try(:id)) 
   })
 %>

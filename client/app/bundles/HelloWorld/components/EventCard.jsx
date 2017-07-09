@@ -123,7 +123,6 @@ if (typeof this.props.imageUrls === 'undefined') {
             );
     }
     render() {
-        console.log(this.props.imageUrls);
         const e = this.state.event;
         const v = $.parseJSON(this.props.venue);
         const imageUrls = this.props.imageUrls;
@@ -158,7 +157,7 @@ if (typeof this.props.imageUrls === 'undefined') {
                 </div>
 
                 <div className="col-xs-12 col-sm-3" id="carousel-box">
-                    <ImageCarousel />
+                    <ImageCarousel imageUrls={imageUrls}/>
                 </div>
 
         <div className="row">
