@@ -19,13 +19,20 @@ export class EventCard extends Component {
             isFavourited: this.props.isFavourited,
         };
     }
+    isFringe(){
+        if(this.state.event.festival_id === ('demofringe' || 'fringe')){
+            return true;
+        } else {
+            return false;
+        }
+    }
     signedIn(e, v) {
         if (this.props.userSignedIn) {
             return (
         <div className="btn-toolbar" role="toolbar">
             <EventVoteButtons score={e.score} eventId={e.id} />
             <EventFavouriteStatus favourite={this.favourite} unfavourite={this.unfavourite} isFavourited={this.state.isFavourited} eventId={e.id} />
-            <PerformancesPanel eventId={this.state.event.id} />
+            <PerformancesPanel eventId={this.state.event.id} isFringe={this.isFringe()} />
         </div>
             );
         } else {

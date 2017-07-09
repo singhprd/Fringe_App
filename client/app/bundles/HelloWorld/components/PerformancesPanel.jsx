@@ -39,13 +39,13 @@ export class PerformancesPanel extends Component {
 	fringeDates(startDateString, endDateString){
 		// The Fringe API Guidence says that events finishing between midnight and 5am should be listed as being on the previous day.
 		// Saturday 14th August.
-		var dateOptions = { weekday: 'short', year: '2-digit', month: 'long', day: 'numeric' };
+		var dateOptions = { weekday: 'long', year: '2-digit', month: 'long', day: 'numeric' };
 		var timeOptions = { hour12: false, hour: 'numeric', minute: 'numeric' };
 		var startDate = new Date(startDateString);
 		var endDate = new Date(endDateString);
 		var hour = endDate.getHours();
 		var message = '';
-		if (hour >= 0 && hour < 5 ) {
+		if (hour >= 0 && hour < 6 && this.props.isFringe == true) {
 			startDate.setDate(startDate.getDate() - 1);
 			message = 'The Fringe day runs from 06:00 to 05:59, and events that start in the early hours of the morning are listed as though they are on the day before.';
 		}
