@@ -137,7 +137,11 @@ if (typeof this.props.imageUrls === 'undefined') {
       <div className="container-fluid" id="home-card">
             <div className="row">
 
-                <div className="col-xs-12 col-sm-9">
+                <div className="col-xs-2 col-sm-2" id="carousel-box">
+                    <ImageCarousel imageUrls={imageUrls} eventId={e.id} />
+                </div>
+
+                <div className="col-xs-6 col-sm-6">
                 <div className="row">
                     <dl className="dl-horizontal">
                     <dt>Venue:</dt>
@@ -152,18 +156,17 @@ if (typeof this.props.imageUrls === 'undefined') {
                     <dt>Festival:</dt>
                     <dd> {e.festival} </dd>
                     </dl>
-                    <div dangerouslySetInnerHTML={{ __html: e.description }} />
                 </div>
                 </div>
+        </div>
 
-                <div className="col-xs-12 col-sm-3" id="carousel-box">
-                    <ImageCarousel imageUrls={imageUrls}/>
-                </div>
+        <div className="row">
+            <div id="event-card-description" dangerouslySetInnerHTML={{ __html: e.description }} />
+        </div>
 
         <div className="row">
             <div className="col-xs-12" id="button-bar">
                 {this.signedIn(e, v)}
-            </div>
             </div>
         </div>
         </div>
