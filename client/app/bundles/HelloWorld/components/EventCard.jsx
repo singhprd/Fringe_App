@@ -117,9 +117,9 @@ export class EventCard extends Component {
         });
     }
     images() {
-if (typeof this.props.imageUrls === 'undefined') {
-    return
-}
+        if (typeof this.props.imageUrls === 'undefined') {
+            return
+        }
         // var imagesTags = this.props.imageUrls.map(function(url){
         //     console.log(url);
         // });

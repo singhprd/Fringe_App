@@ -70,12 +70,12 @@ export class PerformancesPanel extends Component {
 			return(
 				<tr key={index}>
 					{ this.fringeDates(perf.start_time, perf.end_time)	}
-				<td>{	this.fringePrice(perf.price, index) 						}</td>
-				<td>{	this.fringePrice(perf.concession, index) 				}</td>
 				</tr>
 			);
 		}.bind(this));
 	}
+				// <td>{	this.fringePrice(perf.price, index) 						}</td>
+				// <td>{	this.fringePrice(perf.concession, index) 				}</td>
 	render() {
 		return (
 			<div>
@@ -92,8 +92,6 @@ export class PerformancesPanel extends Component {
 						<th>Date</th>
 						<th>Start Time</th>
 						<th>End Time</th>
-						<th>Price</th>
-						<th>Concession</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -108,3 +106,5 @@ export class PerformancesPanel extends Component {
 }
 
 module.exports = PerformancesPanel;
+						// <th>Price</th>
+						// <th>Concession</th>
