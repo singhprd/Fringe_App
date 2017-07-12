@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  after_initialize :set_default_votes
+  # after_initialize :set_default_votes
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -17,11 +17,18 @@ class User < ApplicationRecord
   end
 
   def reset_votes
-    vote_reset_amount = self.vote_reset_amount
-    update_attributes(votes_left: vote_reset_amount)
+    @amount = self.vote_reset_amount + self.votes_left
+    self.votes_left = @amount
+    puts self.save!
   end
 
   def set_default_votes
     update(votes_left: 100)
+  end
+
+  def self.replenish_votes
+    User.all.each do |user|
+      self.reset_votes
+    end
   end
 end
