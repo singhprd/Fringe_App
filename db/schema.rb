@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170611201517) do
+ActiveRecord::Schema.define(version: 20170710181628) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -158,7 +158,7 @@ ActiveRecord::Schema.define(version: 20170611201517) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
-    t.integer  "votes_left",             default: 10
+    t.integer  "votes_left",             default: 100
     t.integer  "vote_reset_amount",      default: 10
     t.string   "username"
     t.boolean  "admin",                  default: false
