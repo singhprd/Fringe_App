@@ -28,7 +28,7 @@ class User < ApplicationRecord
 
   def self.replenish_votes
     User.all.each do |user|
-      self.reset_votes
+      user.reset_votes
     end
   end
 end
