@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+var Turbolinks = require("turbolinks");
+Turbolinks.start();
 
 export class FilterBar extends Component {
     static propTypes = {
@@ -25,7 +27,8 @@ export class FilterBar extends Component {
         var params = this.params();
         // Update the params to change the filter
         params[param] = value;
-        window.location = '/?' + $.param(params);
+        Turbolinks.visit('/?' + $.param(params));
+        // window.location = '/?' + $.param(params);
     }
     isActive(param, value) {
         var params = this.params();
