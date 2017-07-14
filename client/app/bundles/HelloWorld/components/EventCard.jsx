@@ -11,6 +11,8 @@ export class EventCard extends Component {
         userSignedIn: PropTypes.bool.isRequired,
         isFavourited: PropTypes.bool,
         imageUrls: PropTypes.array,
+        voteToBeat: PropTypes.number,
+        voteToStayAbove: PropTypes.number,
     };
     constructor(props) {
         super(props);
@@ -30,7 +32,7 @@ export class EventCard extends Component {
         if (this.props.userSignedIn) {
             return (
         <div className="btn-toolbar" role="toolbar">
-            <EventVoteButtons score={e.score} eventId={e.id} />
+            <EventVoteButtons voteToStayAbove={this.props.voteToStayAbove} voteToBeat={this.props.voteToBeat} score={e.score} eventId={e.id} />
             <EventFavouriteStatus favourite={this.favourite} unfavourite={this.unfavourite} isFavourited={this.state.isFavourited} eventId={e.id} />
             <PerformancesPanel eventId={this.state.event.id} isFringe={this.isFringe()} />
         </div>

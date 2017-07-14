@@ -4,10 +4,32 @@ import PropTypes from 'prop-types';
 export class EventVoteButtons extends Component {
   static propTypes = {
     eventId: PropTypes.number.isRequired,
+    voteToBeat: PropTypes.number,
+    voteToStayAbove: PropTypes.number,
 };
 constructor(props) {
     super(props);
     this.state = { score: this.props.score };
+}
+shouldBumpUp() {
+    if(this.props.voteToBeat === null) {
+        return;
+    }
+    if (this.state.score > this.props.voteToBeat) {
+        this.setState({score: "⬆️"});
+        $('.vote_buttons').find('button').prop('disabled', true);
+        location.reload();
+    }
+}
+shouldBumpDown() {
+    if(this.props.voteToStayAbove === null) {
+        return;
+    }
+    if (this.state.score < this.props.voteToStayAbove) {
+        this.setState({score: "⬇️"});
+        $('.vote_buttons').find('button').prop('disabled', true);
+        location.reload();
+    }
 }
 getVotes() {
     $.ajax({
@@ -35,6 +57,7 @@ upvote() {
                 var votes = a.votes;
                 if (votes) {
                     this.setState({ score: a.votes });
+                    this.shouldBumpUp();
                 }
                 $('#notice').html(a.notice);
             }.bind(this),
@@ -55,6 +78,7 @@ upvote() {
                 var votes = a.votes;
                 if (votes) {
                     this.setState({ score: a.votes });
+                    this.shouldBumpDown();
                 }
                 $('#notice').html(a.notice);
             }.bind(this),
