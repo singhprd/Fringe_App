@@ -1,7 +1,5 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-var Turbolinks = require("turbolinks");
-Turbolinks.start();
 
 export class FilterBar extends Component {
     static propTypes = {
