@@ -37,6 +37,9 @@ class VotesController < ApplicationController
         if @vote.save
           vote_tally = Event.find(params['event_id']).tally_votes
           format.json { render json: {votes: vote_tally, notice: "Votes left: #{user.votes_left}"} }
+          # flash.now[:notice]="You cannot edit this Page"
+          # flash.now[:alert]="You cannot edit this Page"
+          # format.js { render 'shared/flash_message', notice: "abcd"}
         else
           format.html { render :new }
           format.json { render json: @vote.errors, status: :unprocessable_entity }

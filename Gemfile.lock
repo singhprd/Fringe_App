@@ -48,10 +48,6 @@ GEM
     addressable (2.5.1)
       public_suffix (~> 2.0, >= 2.0.2)
     arel (7.1.4)
-    babel-source (5.8.35)
-    babel-transpiler (0.7.0)
-      babel-source (>= 4.0, < 6)
-      execjs (~> 2.0)
     bcrypt (3.1.11)
     bindex (0.5.0)
     bootstrap_form (2.7.0)
@@ -211,16 +207,6 @@ GEM
     rb-fsevent (0.9.8)
     rb-inotify (0.9.8)
       ffi (>= 0.5.0)
-    react-rails (2.2.0)
-      babel-transpiler (>= 0.7.0)
-      connection_pool
-      execjs
-      railties (>= 3.2)
-      tilt
-    react-rails-hot-loader (0.8.0)
-      em-websocket
-      rails
-      react-rails
     react_on_rails (7.0.4)
       addressable
       connection_pool
@@ -310,8 +296,6 @@ DEPENDENCIES
   puma (~> 3.0)
   rack-livereload
   rails (~> 5.0.0)
-  react-rails
-  react-rails-hot-loader
   react_on_rails (~> 7)
   sass-rails (~> 5.0)
   spring
