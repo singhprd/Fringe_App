@@ -6,45 +6,64 @@ require "festivals_lab"
 # puts api.events(title: "'Dino Day'").count
 
 class Fringebot
-  FESTIVALS = %w[ all fringe demofringe
-                  jazz book international tattoo
-                  art hogmanay science imaginate film
-                  mela storytelling ].freeze
-  YEARS = %w[2015 2016 2017].freeze
+  FESTIVALS = {
+    :all => {:code => "", :full =>"All Festivals"},
+    :fringe => {:code => "fringe", :full =>"Edinburgh Festival Fringe"},
+    :demofringe => {:code => "demofringe", :full =>"Edinburgh Festival Fringe (DEMO)"},
+    :jazz => {:code => "jazz", :full =>"Edinburgh Jazz & Blues Festival"},
+    :book => {:code => "book", :full =>"Edinburgh International Book Festival"},
+    :international => {:code => "international", :full =>"Edinburgh International Festival"},
+    :tattoo => {:code => "tattoo", :full =>"Royal Edinburgh Military Tattoo"},
+    :art => {:code => "art", :full =>"Edinburgh Art Festival"},
+    :hogmanay => {:code => "hogmanay", :full =>"Edinburgh's Hogmanay"},
+    :science => {:code => "science", :full =>"Edinburgh International Science Festival"},
+    :imaginate => {:code => "imaginate", :full =>"Edinburgh International Children's Festival"},
+    :film => {:code => "film", :full =>"Edinburgh International Film Festival"},
+    :mela => {:code => "mela", :full =>"Edinburgh Mela"},
+    :storytelling => {:code => "storytelling", :full =>"Edinburgh International Storytelling Festival"}
+    }.freeze
 
-  def initialize(my_hash)
-    @params = my_hash
-    @api = FestivalsLab.new(
-      ENV["FRINGE_API_KEY"],
-      ENV["FRINGE_SECRET_KEY"]
-    )
-  end
+    YEARS = %w[2015 2016 2017].freeze
 
-  def single_event
-    params = @api.event(@params["uuid"])
-    find_or_create_venue_and_event(params)
-  end
-
-  def query_api
-    @api.events(
-      title: @params["title_string"],
-      festival: @params["festival_string"],
-      year: @params["year"],
-      artist: @params["artist"],
-      code: @params["code"]
-    )
-  end
-
-  def get_events
-    api_response = query_api
-    events = []
-    api_response.each do |params|
-      events << find_or_create_venue_and_event(params)
+    def initialize(my_hash)
+      @params = my_hash
+      @api = FestivalsLab.new(
+        ENV["FRINGE_API_KEY"],
+        ENV["FRINGE_SECRET_KEY"]
+        )
     end
-    events
-  end
 
-  def find_or_create_venue_and_event(params)
+    def self.festival_options_for_select
+      FESTIVALS.map do |key, value|
+        [value[:full], value[:code]]
+      end   
+    end
+
+    def single_event
+      params = @api.event(@params["uuid"])
+      find_or_create_venue_and_event(params)
+    end
+
+    def query_api
+      @api.events(
+        title: @params["title_string"],
+        festival: @params["festival_string"],
+        year: @params["year"],
+        artist: @params["artist"],
+        code: @params["code"]
+        )
+    end
+
+    def get_events
+      api_response = query_api
+      events = []
+      api_response.each do |params|
+        events << find_or_create_venue_and_event(params)
+      end
+      events
+    end
+
+    def find_or_create_venue_and_event(params)
     # Venue
     venue = create_or_find_venue(params)
 
@@ -151,7 +170,7 @@ class Fringebot
       "url",
       "website",
       "score"
-    )
+      )
   end
 
   def create_venue_params(result)
@@ -175,7 +194,7 @@ class Fringebot
       "lon",
       "post_code",
       "web_address"
-    )
+      )
   end
 
   def create_performances_params_array(result)

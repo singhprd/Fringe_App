@@ -4,7 +4,6 @@
 			Search 
 		</h3>
 	</div>
-<%= @search %>
 	<div class="panel-body">
 		<div class="row">
 
@@ -23,22 +22,7 @@
 					<%= select_tag "year", options_for_select(["2015", "2016", "2017"], @search["year"]), class: "form-control" %>
 
 					<%= label_tag(:festival_string, "Festival:") %>
-					<%= select_tag(:festival_string, raw("
-					<option value="" selected>All Festivals</option>
-					<option value='fringe'>Edinburgh Festival Fringe</option>
-					<option value='demofringe' selected>Edinburgh Festival Fringe	(DEMO)</option>
-					<option value='jazz'>Edinburgh Jazz & Blues Festival</option>
-					<option value='book'>Edinburgh International Book Festival</option>
-					<option value='international'>Edinburgh International Festival</option>
-					<option value='tattoo'>Royal Edinburgh Military Tattoo</option>
-					<option value='art'>Edinburgh Art Festival</option>
-					<option value='hogmanay'>Edinburgh's Hogmanay</option>
-					<option value='science'>Edinburgh International Science Festival</option>
-					<option value='imaginate'>Edinburgh International Children's Festival</option>
-					<option value='film'>Edinburgh International Film Festival	</option>
-					<option value='mela'>Edinburgh Mela</option>
-					<option value='storytelling'>Edinburgh International Storytelling Festival</option>
-					"), class: "form-control") %>
+					<%= select_tag "festival_string", options_for_select(Fringebot.festival_options_for_select, @search["festival_string"]), class: "form-control" %>
 				</div>
 				<div class="col-sm-5">
 					<br>

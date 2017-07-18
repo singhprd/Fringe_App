@@ -59,6 +59,6 @@ Rails.application.configure do
   config.middleware.insert_after ActionDispatch::Static, Rack::LiveReload
 
   # config.reload_classes_only_on_change = false
-
+  config.log_level = :info
 end
 
