@@ -4,7 +4,7 @@
 			Search 
 		</h3>
 	</div>
-
+<%= @search %>
 	<div class="panel-body">
 		<div class="row">
 
@@ -12,19 +12,15 @@
 			<div class="form-group">
 				<div class="col-sm-6">
 					<%= label_tag(:title_string, "Title:") %>
-					<%= text_field_tag(:title_string, "", class: 'form-control') %>	
+					<%= text_field_tag(:title_string, @search["title_string"], class: 'form-control') %>	
 
 					<%= label_tag(:artist, "Artist:") %>
-					<%= text_field_tag(:artist, "", class: 'form-control') %>
+					<%= text_field_tag(:artist, @search["artist"], class: 'form-control') %>
 				</div>
 
 				<div class="col-sm-5">
 					<%= label_tag(:year, "Year:") %>
-					<%= select_tag(:year, raw("
-						<option>2015</option>
-						<option>2016</option>
-						<option selected>2017</option>
-					"), class: "form-control") %>
+					<%= select_tag "year", options_for_select(["2015", "2016", "2017"], @search["year"]), class: "form-control" %>
 
 					<%= label_tag(:festival_string, "Festival:") %>
 					<%= select_tag(:festival_string, raw("

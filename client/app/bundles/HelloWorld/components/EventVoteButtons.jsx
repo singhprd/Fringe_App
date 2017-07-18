@@ -11,8 +11,11 @@ constructor(props) {
     super(props);
     this.state = { score: this.props.score };
 }
+isSearch() {
+    return (window.location.pathname === "/search/results");
+}
 shouldBumpUp() {
-    if(this.props.voteToBeat === null) {
+    if((this.props.voteToBeat === null) || this.isSearch()) {
         return;
     }
     if (this.state.score > this.props.voteToBeat) {
@@ -22,7 +25,7 @@ shouldBumpUp() {
     }
 }
 shouldBumpDown() {
-    if(this.props.voteToStayAbove === null) {
+    if((this.props.voteToStayAbove === null) || this.isSearch()) {
         return;
     }
     if (this.state.score < this.props.voteToStayAbove) {

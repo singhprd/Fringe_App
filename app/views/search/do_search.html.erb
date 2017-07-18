@@ -1,15 +1,3 @@
-<%= link_to "<= back to search", :action => "index" %>
+<%= render "form" %>
 
-<% @events.each do |event| %>
-
-<%= react_component('EventCard',
-	props: {
-		event: event.to_json,
-		venue: event.venue.to_json,
-		userSignedIn: !current_user.nil?
-	})
-%>
-
-<% end %>
-
-
+<%= render "home/home_card" %>

@@ -7,8 +7,10 @@ class SearchController < ApplicationController
 	end
 
 	def do_search
-		@fringebot = Fringebot.new(search_params.to_hash)
+		@search = search_params.to_hash
+		@fringebot = Fringebot.new(@search)
 		@events = @fringebot.get_events
+		@events = Kaminari.paginate_array(@events).page(params[:page]).per(5)
 	end
 
 	# def do_search
