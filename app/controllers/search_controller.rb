@@ -3,7 +3,8 @@ class SearchController < ApplicationController
 
 
 	def index
-		# raise
+		# Search defaults
+		@search = {"title_string"=>"", "artist"=>"", "year"=>"2017", "festival_string"=>"demofringe"}
 	end
 
 	def do_search
