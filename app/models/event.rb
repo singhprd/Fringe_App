@@ -45,13 +45,13 @@ class Event < ApplicationRecord
 
   def performances_json
     if performances_last_updated&.to_datetime.to_i > 1.hour.ago.to_i
-      performances.to_json
+      performances.order(:start_time)
     else
       performances.destroy_all
       update_attributes(performances_last_updated: DateTime.now)
       fringebot = Fringebot.new("uuid" => uuid)
       performances = fringebot.performances(id)
-      performances
+      performances.order(:start_time)
     end
   end
 

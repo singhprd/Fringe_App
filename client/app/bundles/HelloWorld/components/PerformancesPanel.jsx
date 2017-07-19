@@ -25,6 +25,7 @@ export class PerformancesPanel extends Component {
 		var promise = $.getJSON('/events/' + this.props.eventId + '/performances');
 
 		promise.done(function(data) {
+
 			this.setState({performances: data, hasData: true});
 		}.bind(this));
 	}
@@ -43,7 +44,8 @@ export class PerformancesPanel extends Component {
 		var timeOptions = { hour12: false, hour: 'numeric', minute: 'numeric' };
 		var startDate = new Date(startDateString);
 		var endDate = new Date(endDateString);
-		var hour = endDate.getHours();
+		// console.log(endDate);
+		var hour = startDate.getHours();
 		var message = '';
 		if (hour >= 0 && hour < 6 && this.props.isFringe == true) {
 			startDate.setDate(startDate.getDate() - 1);
