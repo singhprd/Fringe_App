@@ -51,7 +51,7 @@ class Event < ApplicationRecord
       update_attributes(performances_last_updated: DateTime.now)
       fringebot = Fringebot.new("uuid" => uuid)
       performances = fringebot.performances(id)
-      performances.order(:start_time)
+      performances
     end
   end
 
