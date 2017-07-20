@@ -9,7 +9,7 @@ class Fringebot
   FESTIVALS = {
     :all => {:code => "", :full =>"All Festivals"},
     :fringe => {:code => "fringe", :full =>"Edinburgh Festival Fringe"},
-    :demofringe => {:code => "demofringe", :full =>"Edinburgh Festival Fringe (DEMO)"},
+    # :demofringe => {:code => "demofringe", :full =>"Edinburgh Festival Fringe (DEMO)"},
     :jazz => {:code => "jazz", :full =>"Edinburgh Jazz & Blues Festival"},
     :book => {:code => "book", :full =>"Edinburgh International Book Festival"},
     :international => {:code => "international", :full =>"Edinburgh International Festival"},
