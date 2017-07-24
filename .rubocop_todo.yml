@@ -26,7 +26,6 @@ Layout/AccessModifierIndentation:
 # Cop supports --auto-correct.
 Layout/BlockEndNewline:
   Exclude:
-    - 'config/initializers/commontator.rb'
 
 # Offense count: 5
 # Cop supports --auto-correct.
@@ -42,7 +41,6 @@ Layout/EmptyLines:
   Exclude:
     - 'app/controllers/search_controller.rb'
     - 'config/application.rb'
-    - 'config/initializers/commontator.rb'
     - 'db/migrate/20160907193532_devise_create_users.rb'
     - 'test/fabricators/fabricator_definitions.rb'
     - 'test/models/event_test.rb'
@@ -136,7 +134,6 @@ Layout/IndentationWidth:
 # SupportedStyles: symmetrical, new_line, same_line
 Layout/MultilineMethodCallBraceLayout:
   Exclude:
-    - 'config/initializers/commontator.rb'
 
 # Offense count: 16
 # Cop supports --auto-correct.
@@ -204,7 +201,6 @@ Layout/TrailingWhitespace:
     - 'app/controllers/events_controller.rb'
     - 'app/controllers/reviews_controller.rb'
     - 'config/routes.rb'
-    - 'db/migrate/20161205212231_install_commontator.commontator.rb'
     - 'test/fabricators/fabricator_definitions.rb'
     - 'test/models/event_test.rb'
     - 'test/models/favourite_test.rb'
@@ -233,7 +229,6 @@ Lint/EndAlignment:
 # Configuration parameters: IgnoreEmptyBlocks, AllowUnusedKeywordArguments.
 Lint/UnusedBlockArgument:
   Exclude:
-    - 'config/initializers/commontator.rb'
 
 # Offense count: 7
 Metrics/AbcSize:
@@ -336,7 +331,6 @@ Style/EmptyMethod:
 # SupportedStyles: format, sprintf, percent
 Style/FormatString:
   Exclude:
-    - 'config/initializers/commontator.rb'
 
 # Offense count: 19
 # Cop supports --auto-correct.
@@ -345,10 +339,8 @@ Style/FormatString:
 Style/HashSyntax:
   Exclude:
     - 'Gemfile'
-    - 'config/initializers/commontator.rb'
     - 'db/migrate/20160917114553_add_vote_limit_to_users.rb'
     - 'db/migrate/20161127180923_add_score_to_events.rb'
-    - 'db/migrate/20161205212231_install_commontator.commontator.rb'
 
 # Offense count: 8
 # Cop supports --auto-correct.
@@ -356,7 +348,6 @@ Style/HashSyntax:
 # SupportedStyles: line_count_dependent, lambda, literal
 Style/Lambda:
   Exclude:
-    - 'config/initializers/commontator.rb'
 
 # Offense count: 3
 # Cop supports --auto-correct.
@@ -416,7 +407,6 @@ Style/SymbolArray:
     - 'app/controllers/reviews_controller.rb'
     - 'app/controllers/venues_controller.rb'
     - 'app/controllers/votes_controller.rb'
-    - 'db/migrate/20161205212231_install_commontator.commontator.rb'
     - 'db/migrate/20161207201520_add_uniqueness_constraint_to_favourites.rb'
 
 # Offense count: 2

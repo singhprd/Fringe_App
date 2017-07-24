@@ -31,7 +31,6 @@ gem "jbuilder", "~> 2.5"
 # gem 'capistrano-rails', group: :development
 
 # Devise for user auth
-gem "commontator"
 gem "devise"
 gem "gemoji"
 gem "json"

@@ -18,6 +18,5 @@
 //= require turbolinks
 //= require components
 //= require_tree .
-//= require commontator/application
 
 //= require components
