@@ -2,7 +2,7 @@ source "https://rubygems.org"
 ruby "2.4.1"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem "rails", "~> 5.0.0"
+gem "rails", "~> 5.1.2"
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3'
 # Use Puma as the app server
@@ -30,6 +30,8 @@ gem "jbuilder", "~> 2.5"
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'thor'
+
 # Devise for user auth
 gem "devise"
 gem "gemoji"
@@ -51,6 +53,11 @@ gem "react_on_rails", "~> 7"
 # gem 'mini_racer', platforms: :ruby
 # gem 'libv8', "~> 5.0"
 
+group :test do
+  gem "capybara"
+  gem 'selenium-webdriver'
+  gem 'chromedriver-helper'
+end
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "byebug"
