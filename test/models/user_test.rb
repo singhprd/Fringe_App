@@ -10,13 +10,13 @@ class UserTest < ActiveSupport::TestCase
     assert(@user.username)
   end
 
-  test "test_has_10_votes_by_default" do
-    assert_equal(10, @user.votes_left)
+  test "test_has_100_votes_by_default" do
+    assert_equal(100, @user.votes_left)
   end
   
   test "reduce_votes_left" do
   	assert @user.reduce_votes_left
-    assert_equal(9, @user.votes_left)
+    assert_equal(99, @user.votes_left)
   end
 
   test "votes_dont_go_negative" do

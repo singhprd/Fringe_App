@@ -18,7 +18,7 @@ class FavouriteTest < ActiveSupport::TestCase
   end
 
   test "easy_find_returns_collection" do
-    assert(Favourite.easy_find({user_id: @user.id}).is_a?(Favourite::ActiveRecord_Associations_CollectionProxy))
+    assert(Favourite.easy_find({user_id: @user.id}).to_a.is_a?(Array))
   end
 
   test "easy_find_event" do
