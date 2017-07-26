@@ -18,4 +18,3 @@
 //= require_tree .
 
 //= require components
-//= require webpack-bundle
