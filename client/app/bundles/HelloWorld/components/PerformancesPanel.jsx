@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+var moment = require('moment');
 
 export class PerformancesPanel extends Component {
   static propTypes = {
@@ -40,12 +41,16 @@ export class PerformancesPanel extends Component {
 	fringeDates(startDateString, endDateString){
 		// The Fringe API Guidence says that events finishing between midnight and 5am should be listed as being on the previous day.
 		// Saturday 14th August.
-		var dateOptions = { weekday: 'long', year: '2-digit', month: 'long', day: 'numeric' };
-		var timeOptions = { hour12: false, hour: 'numeric', minute: 'numeric' };
-		var startDate = new Date(startDateString);
-		var endDate = new Date(endDateString);
-		// console.log(endDate);
-		var hour = startDate.getHours();
+		// var dateOptions = { weekday: 'long', year: '2-digit', month: 'long', day: 'numeric' };
+		var dateOptions = ("dddd \t Do MMMM YYYY");
+		// var timeOptions = { hour12: false, hour: 'numeric', minute: 'numeric' };
+		var timeOptions = "HH:mm";
+
+
+		var startDate = moment(startDateString, "YYYY-MM-DD HH-mm-ss");
+		var endDate = moment(endDateString, "YYYY-MM-DD HH-mm-ss");
+
+		var hour = startDate.hour();
 		var message = '';
 		if (hour >= 0 && hour < 6 && this.props.isFringe == true) {
 			startDate.setDate(startDate.getDate() - 1);
@@ -53,9 +58,9 @@ export class PerformancesPanel extends Component {
 		}
 		return(
 			[
-			<td key='date' ref='test' data-toggle='tooltip' data-placement='bottom' title={message} data-container='body'> {startDate.toLocaleString('en-GB', dateOptions)} </td>,
-			<td key='startDate'> {startDate.toLocaleString('en-GB', timeOptions)} </td>,
-			<td key='endDate'> {endDate.toLocaleString('en-GB', timeOptions)} </td>
+			<td key='date' ref='test' data-toggle='tooltip' data-placement='bottom' title={message} data-container='body'> {startDate.format(dateOptions)} </td>,
+			<td key='startDate'> {startDate.format(timeOptions)} </td>,
+			<td key='endDate'> {endDate.format( timeOptions)} </td>
 			]
 				);
 	}
