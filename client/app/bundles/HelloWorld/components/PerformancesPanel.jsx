@@ -50,10 +50,12 @@ export class PerformancesPanel extends Component {
 		var startDate = moment(startDateString, "YYYY-MM-DD HH-mm-ss");
 		var endDate = moment(endDateString, "YYYY-MM-DD HH-mm-ss");
 
+		console.log(startDate)
+
 		var hour = startDate.hour();
 		var message = '';
 		if (hour >= 0 && hour < 6 && this.props.isFringe == true) {
-			startDate.setDate(startDate.getDate() - 1);
+			startDate.subtract(1, 'days');
 			message = 'The Fringe day runs from 06:00 to 05:59, and events that start in the early hours of the morning are listed as though they are on the day before.';
 		}
 		return(

@@ -22,7 +22,8 @@ export class EventCard extends Component {
         };
     }
     isFringe(){
-        if(this.state.event.festival_id === ('demofringe' || 'fringe')){
+        var festival = this.state.event.festival_id;
+        if(festival === 'demofringe' || festival === 'fringe'){
             return true;
         } else {
             return false;
