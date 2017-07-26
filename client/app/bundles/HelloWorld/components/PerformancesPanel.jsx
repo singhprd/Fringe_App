@@ -42,7 +42,7 @@ export class PerformancesPanel extends Component {
 		// The Fringe API Guidence says that events finishing between midnight and 5am should be listed as being on the previous day.
 		// Saturday 14th August.
 		// var dateOptions = { weekday: 'long', year: '2-digit', month: 'long', day: 'numeric' };
-		var dateOptions = ("dddd \t Do MMMM YYYY");
+		var dateOptions = ("dddd Do MMMM YYYY");
 		// var timeOptions = { hour12: false, hour: 'numeric', minute: 'numeric' };
 		var timeOptions = "HH:mm";
 
