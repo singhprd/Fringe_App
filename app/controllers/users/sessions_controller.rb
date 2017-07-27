@@ -8,14 +8,28 @@ class Users::SessionsController < Devise::SessionsController
 
   # TODO: Add flash message to failed 401 signin
   # POST /resource/sign_in
-  # def create
-  #   super
-  # end
+  def create
+    # super
+    if user_signed_in?
+      render 'success.js'
+    else
+      render 'failure.js'
+    end
+  end
+    
+    # self.resource = warden.authenticate!(auth_options)
+    # raise
+    # set_flash_message!(:notice, :signed_in)
+    # sign_in(resource_name, resource)
+    # yield resource if block_given?
+    # respond_with resource, location: after_sign_in_path_for(resource)
 
   # DELETE /resource/sign_out
-  # def destroy
-  #   super
-  # end
+  def destroy
+    # super
+    sign_out @user
+    redirect_to '/'
+  end
 
   # protected
 

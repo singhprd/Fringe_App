@@ -29,7 +29,8 @@
             <li><a href="/admin/panel">Admin Options</a></li>
             <% end %>
             <li role="separator" class="divider"></li>
-            <li><%= link_to "Sign out", "/users/sign_out" %></li>
+            <li><%= link_to "Sign out", "/users/sign_out", method: :delete, remote: true %>
+            </li>
           </ul>
         </li>
         <% else %>      
