@@ -60,6 +60,7 @@ class Fringebot
       api_response.each do |params|
         events << find_or_create_venue_and_event(params)
       end
+      events.each(&:reload)
       events
     end
 
