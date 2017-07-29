@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   get '/events/:id/votes' => 'events#votes'
   get '/events/:id/performances' => 'events#performances'
 
-  resources :search
+  # resources :search
   devise_for :users, controllers: { sessions: 'users/sessions' }
 
 end

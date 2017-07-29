@@ -6,6 +6,8 @@ class Event < ApplicationRecord
   has_many :images, :dependent => :destroy
   belongs_to :venue
   validates :code, presence: true, uniqueness: true
+  has_and_belongs_to_many :searches
+
 
   def upvotes
     votes.where(value: 1).count

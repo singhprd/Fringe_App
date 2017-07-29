@@ -1,2 +1,33 @@
 class Search < ApplicationRecord
+  has_and_belongs_to_many :events
+  belongs_to :user
+
+  def initialize(params_hash, user)
+    super()
+    self.user = user
+    persist_params(params_hash)
+    search_with_fringebot
+    save!
+  end
+
+  def persist_params(params_hash)
+    self.festival_string = params_hash["festival_string"]
+    self.title_string = params_hash["title_string"]
+    self.artist = params_hash["artist"]
+    self.year = params_hash["year"]
+  end
+
+  def retrieve_params()
+    params_hash = Hash.new
+    params_hash["festival_string"] = self.festival_string
+    params_hash["title_string"] = self.title_string
+    params_hash["artist"] = self.artist
+    params_hash["year"] = self.year
+    return params_hash
+  end
+
+  def search_with_fringebot()
+    fringebot = Fringebot.new(retrieve_params)
+    self.events = fringebot.get_events
+  end
 end
