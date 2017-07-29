@@ -4,7 +4,6 @@ class Search < ApplicationRecord
 
   def initialize(params_hash, user)
     super()
-    self.user = user
     persist_params(params_hash)
     search_with_fringebot
     save!

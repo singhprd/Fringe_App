@@ -13,6 +13,7 @@ class SearchesController < ApplicationController
 
 	def create
 		@search = Search.new(search_params.to_hash, current_user)
+		@search.update(user: current_user)
 		@events = @search.events
 		redirect_to @search
 	end
