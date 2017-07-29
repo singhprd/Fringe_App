@@ -26,8 +26,22 @@ class Search < ApplicationRecord
     return params_hash
   end
 
+  def already_searched_recently
+    Search.where(
+      festival_string: self.festival_string,
+      title_string: self.title_string,
+      year: self.year,
+      artist: self.artist).where(
+      "created_at > ?", 1.days.ago
+    ).limit(10000).last
+  end
+
   def search_with_fringebot()
-    fringebot = Fringebot.new(retrieve_params)
-    self.events = fringebot.get_events
+    if already_searched_recently().present?
+      self.events = already_searched_recently.events
+    else
+      fringebot = Fringebot.new(retrieve_params)
+      self.events = fringebot.get_events
+    end
   end
 end
