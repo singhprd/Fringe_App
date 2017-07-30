@@ -10,10 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170729170724) do
+ActiveRecord::Schema.define(version: 20170730133859) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "event_lists", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "events", id: :serial, force: :cascade do |t|
     t.string "age_category"
@@ -38,6 +43,11 @@ ActiveRecord::Schema.define(version: 20170729170724) do
     t.string "last_checked_for_update"
     t.datetime "performances_last_updated"
     t.index ["venue_id"], name: "index_events_on_venue_id"
+  end
+
+  create_table "events_lists", id: false, force: :cascade do |t|
+    t.bigint "event_id", null: false
+    t.bigint "list_id", null: false
   end
 
   create_table "events_searches", id: false, force: :cascade do |t|
@@ -81,6 +91,23 @@ ActiveRecord::Schema.define(version: 20170729170724) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_images_on_event_id"
+  end
+
+  create_table "list_items", force: :cascade do |t|
+    t.bigint "event_id"
+    t.bigint "list_id"
+    t.integer "position"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_list_items_on_event_id"
+    t.index ["list_id"], name: "index_list_items_on_list_id"
+  end
+
+  create_table "lists", force: :cascade do |t|
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_lists_on_user_id"
   end
 
   create_table "performances", id: :serial, force: :cascade do |t|
@@ -182,6 +209,9 @@ ActiveRecord::Schema.define(version: 20170729170724) do
   add_foreign_key "favourites", "users"
   add_foreign_key "image_versions", "images"
   add_foreign_key "images", "events"
+  add_foreign_key "list_items", "events"
+  add_foreign_key "list_items", "lists"
+  add_foreign_key "lists", "users"
   add_foreign_key "performances", "events"
   add_foreign_key "performances", "images"
   add_foreign_key "reviews", "events"

@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :votes
   has_many :favourites
   has_many :searches
+  has_many :lists
   validates_uniqueness_of :username
 
   def reduce_votes_left
