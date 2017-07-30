@@ -2,9 +2,8 @@
     props: {event: @event.to_json,
      venue: @event.venue.to_json,
      userSignedIn: !current_user.nil?,
-     imageUrls: @event.image_urls || Array.new,
-     isFavourited: Event.favourited?(current_user, @event.try(:id)) 
-  })
+     imageUrls: @event.image_urls || Array.new
+    })
 %>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),

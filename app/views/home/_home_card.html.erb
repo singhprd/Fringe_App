@@ -7,7 +7,6 @@ props: {
  	performances: event.performances.to_json,
  	userSignedIn: !current_user.nil?,
  	imageUrls: event.image_urls,
- 	isFavourited: Event.favourited?(current_user, event.try(:id)),
   voteToBeat: index == 0 ? nil : @events.map(&:score)[index - 1],
   voteToStayAbove: index == (@events.count - 1) ? nil : @events.map(&:score)[index + 1]
 })

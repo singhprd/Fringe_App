@@ -1,6 +1,7 @@
 import ReactOnRails from 'react-on-rails';
 import HelloWorld from '../components/HelloWorld';
 import FilterBar from '../components/FilterBar';
+import List from '../components/List';
 var EventCard = require('../components/EventCard');
 var Turbolinks = require("turbolinks");
 
@@ -11,4 +12,5 @@ ReactOnRails.register({
   HelloWorld,
   FilterBar,
   EventCard,
+  List,
 });

@@ -18,8 +18,11 @@ export class EventCard extends Component {
         super(props);
         this.state = {
             event: $.parseJSON(this.props.event),
-            isFavourited: this.props.isFavourited,
+            isFavourited: false,
         };
+    }
+    componentWillMount() {
+        this.isFavourited();
     }
     isFringe(){
         var festival = this.state.event.festival_id;
@@ -51,7 +54,7 @@ export class EventCard extends Component {
     // favourite(event_id) {
         // console.log("Faved")
         // Keen Bean Loading
-        // this.updateFavouritedStatus(true);
+        this.setState({isFavourited: true});
         $.ajax({
             url: '/favourites',
             type: 'POST',
@@ -94,7 +97,7 @@ export class EventCard extends Component {
             success: function(a, b, c) {
                 this.setState({ isFavourited: a.bool });
                 // $("#notice").html(a['notice'])
-                // console.log('isFavourited' + a.bool);
+                console.log('isFavourited' + a.bool);
 
             }.bind(this),
             error: function() {
