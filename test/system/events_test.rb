@@ -56,15 +56,15 @@ class EventsTest < ApplicationSystemTestCase
     page.assert_selector('button', :text => '3', :visible => true)
 
 
-    # click_on("Home")
-    # click_button("Favourite")
+    click_on("Home")
+    click_button("Favourite")
     
-    # click_button("2016")
+    click_button("2016")
     
     # navigate().refresh();
 
-    # page.has_selector?('home_card', count: 1)
-    # assert_selector "a", text: "Concert in the Gardens"
+    page.has_selector?('home_card', count: 1)
+    assert_selector "a", text: "Concert in the Gardens"
 
     # click_link("🗓️")
     # assert_selector "#performances_for_event183"

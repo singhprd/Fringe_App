@@ -6,6 +6,7 @@ class Event < ApplicationRecord
   has_many :images, :dependent => :destroy
   belongs_to :venue
   validates :code, presence: true, uniqueness: true
+  validates :festival_year, presence: true
   has_and_belongs_to_many :searches
 
 

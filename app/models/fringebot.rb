@@ -147,10 +147,9 @@ class Fringebot
     if event.present?
       update(event, params)
     else
-      event = Event.create!(params)
+      event = Event.create!(params.merge(festival_year: @params["year"]))
     end
 
-    event.update_attributes!(festival_year: @params["year"])
     return event
   end
 

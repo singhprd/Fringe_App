@@ -25,7 +25,9 @@ export class FilterBar extends Component {
         var params = this.params();
         // Update the params to change the filter
         params[param] = value;
+        Turbolinks.clearCache();
         Turbolinks.visit('/?' + $.param(params), {"action":"replace"});
+
         // window.location = '/?' + $.param(params);
     }
     isActive(param, value) {
