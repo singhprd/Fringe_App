@@ -28,3 +28,4 @@ node_modules
 
 # Generated js bundles
 /app/assets/webpack/*
+app/assets/javascripts/webpack-bundle.js
