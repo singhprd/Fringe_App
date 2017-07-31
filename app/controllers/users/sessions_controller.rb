@@ -30,7 +30,7 @@ class Users::SessionsController < Devise::SessionsController
     sign_out @user
     redirect_to '/'
   end
-
+  
   # protected
 
   # If you have extra params to permit, append them to the sanitizer.
