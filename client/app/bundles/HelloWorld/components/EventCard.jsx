@@ -18,9 +18,14 @@ export class EventCard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            event: $.parseJSON(this.props.event),
+            event: this.getEvent(),
             isFavourited: false,
         };
+    }
+    getEvent(){
+        var event = this.props.event;
+        var event = $.parseJSON(event);
+        return event;
     }
     componentDidMount() {
         this.isFavourited();

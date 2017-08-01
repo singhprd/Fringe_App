@@ -1,7 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <%= react_component("List", props:{
-    list: @list.id,
+    listId: @list.id,
+    listItems: @list.list_items,
     events: @list.events.map(&:to_json),
     userSignedIn: !current_user.nil?,
   }) %>

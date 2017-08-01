@@ -62,6 +62,13 @@ class ListsController < ApplicationController
     end
   end
 
+  def swap_items
+    list = List.find(params[:listId].to_i)
+    list_item = list.list_items.find_by_position(params[:oldIndex].to_i)
+    list_item.insert_at(params[:newIndex].to_i)
+    render :json => {success: true}, status: 200
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_list
@@ -71,5 +78,8 @@ class ListsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def list_params
       params.require(:list).permit(:user_id)
+    end
+    def list_swap_params
+      params.permit(:oldIndex, :newIndex, :listId)
     end
 end

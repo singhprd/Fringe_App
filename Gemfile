@@ -52,6 +52,7 @@ gem "font-awesome-rails"
 gem "react_on_rails", "~> 7"
 # gem 'mini_racer', platforms: :ruby
 # gem 'libv8', "~> 5.0"
+gem 'acts_as_list'
 
 group :test do
   gem "capybara"
