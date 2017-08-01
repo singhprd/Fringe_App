@@ -22,7 +22,7 @@ export class EventCard extends Component {
             isFavourited: false,
         };
     }
-    componentWillMount() {
+    componentDidMount() {
         this.isFavourited();
     }
     isFringe(){

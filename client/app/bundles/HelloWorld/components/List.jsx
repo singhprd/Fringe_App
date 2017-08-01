@@ -42,7 +42,6 @@ class List extends Component {
     });
   };
   render() {
-    console.log(this.eventCards())
     return(
       <div>
       <SortableList items={this.state.items} onSortEnd={this.onSortEnd} />
