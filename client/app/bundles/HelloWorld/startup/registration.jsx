@@ -2,7 +2,9 @@ import ReactOnRails from 'react-on-rails';
 import HelloWorld from '../components/HelloWorld';
 import FilterBar from '../components/FilterBar';
 import List from '../components/List';
+
 var EventCard = require('../components/EventCard');
+var MultiSelectField = require('../components/MultiSelectField');
 var Turbolinks = require("turbolinks");
 
 Turbolinks.start();
@@ -13,4 +15,5 @@ ReactOnRails.register({
   FilterBar,
   EventCard,
   List,
+  MultiSelectField,
 });

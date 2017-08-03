@@ -1,27 +1,29 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Lists</h1>
+<% @lists.each do |list| %>
+<div>
+  <div class="panel panel-primary home_card text-info" id=<%= list.id %>>
+    <div class='panel-heading'>
+      <h3 class="panel-title">
+        <a href=<%= "/lists/#{list.id}"%>><%= list.name %></a>
+      </h3>
+    </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+    <div class="container-fluid" id="home-card">
+      <div class="row">
+      <table>
+        <tr>
+          <td><%= button_to 'Edit', edit_list_path(list), :class => 'btn btn-sm btn-primary' %></td>
+          <td><%= button_to 'Destroy', list, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-sm btn-danger' %></td>
+        </tr>
+      </table>
+      </div>
+    </div>
 
-  <tbody>
-    <% @lists.each do |list| %>
-      <tr>
-        <td><%= list.user %></td>
-        <td><%= link_to 'Show', list %></td>
-        <td><%= link_to 'Edit', edit_list_path(list) %></td>
-        <td><%= link_to 'Destroy', list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  </div>
+  <% end %>
 
-<br>
+  <br>
 
-<%= link_to 'New List', new_list_path %>
+  <%= link_to 'New List', new_list_path %>
+

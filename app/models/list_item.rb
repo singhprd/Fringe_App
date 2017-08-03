@@ -2,6 +2,10 @@ class ListItem < ApplicationRecord
   belongs_to :list
   acts_as_list scope: :list
   belongs_to :event
+  validates :event, presence: true
+  validates :list, presence: true
+  validates_uniqueness_of :event, scope: :list
+
 
   def self.swap_positions(list_id, position1, position2)
     list = List.find(list_id)

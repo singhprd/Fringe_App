@@ -14,11 +14,12 @@
  *= require_self
  */
 
- /*@import 'https://fonts.googleapis.com/css?family=Roboto+Condensed|Rubik+Mono+One';*/
+ @import 'https://fonts.googleapis.com/css?family=Roboto+Condensed|Rubik+Mono+One';
 
  /**= require font-awesome*/
  /**= require rails_bootstrap_forms*/
  /**= require bootstrap_and_overrides*/
+ /**= require react-select*/
 
  * {
  	/*font-family: 'Roboto Condensed', sans-serif;*/

@@ -14,20 +14,18 @@ export class PerformancesPanel extends Component {
 		$('td').tooltip();
   }
   componentDidUpdate(){
-		// $('button').one('mouseenter', function(e){
-		// 	this.getPerformances();
-		// }.bind(this));
 		$('td').tooltip();
   }
 	getPerformances(){
+		this.props.wellContent(this.performancesTable());
 		if (this.state.hasData === true) {
 			return;
 		}
 		var promise = $.getJSON('/events/' + this.props.eventId + '/performances');
 
 		promise.done(function(data) {
-
 			this.setState({performances: data, hasData: true});
+			this.props.wellContent(this.performancesTable());
 		}.bind(this));
 	}
 	fringePrice(price){
@@ -41,17 +39,10 @@ export class PerformancesPanel extends Component {
 	fringeDates(startDateString, endDateString){
 		// The Fringe API Guidence says that events finishing between midnight and 5am should be listed as being on the previous day.
 		// Saturday 14th August.
-		// var dateOptions = { weekday: 'long', year: '2-digit', month: 'long', day: 'numeric' };
 		var dateOptions = ("dddd Do MMMM YYYY");
-		// var timeOptions = { hour12: false, hour: 'numeric', minute: 'numeric' };
 		var timeOptions = "HH:mm";
-
-
 		var startDate = moment(startDateString, "YYYY-MM-DD HH-mm-ss");
 		var endDate = moment(endDateString, "YYYY-MM-DD HH-mm-ss");
-
-		console.log(startDate)
-
 		var hour = startDate.hour();
 		var message = '';
 		if (hour >= 0 && hour < 6 && this.props.isFringe == true) {
@@ -60,7 +51,7 @@ export class PerformancesPanel extends Component {
 		}
 		return(
 			[
-			<td key='date' ref='test' data-toggle='tooltip' data-placement='bottom' title={message} data-container='body'> {startDate.format(dateOptions)} </td>,
+			<td key='date' data-toggle='tooltip' data-placement='bottom' title={message} data-container='body'> {startDate.format(dateOptions)} </td>,
 			<td key='startDate'> {startDate.format(timeOptions)} </td>,
 			<td key='endDate'> {endDate.format( timeOptions)} </td>
 			]
@@ -69,32 +60,6 @@ export class PerformancesPanel extends Component {
 	performancesTable(){
 		if (this.state.hasData === false) {
 			return(
-				<tr>
-					<td className='loading'>loading</td>
-				</tr>
-				);
-		}
-		var performances = this.state.performances;
-		return performances.map( function(perf, index){
-			return(
-				<tr key={index}>
-					{ this.fringeDates(perf.start_time, perf.end_time)	}
-				</tr>
-			);
-		}.bind(this));
-	}
-				// <td>{	this.fringePrice(perf.price, index) 						}</td>
-				// <td>{	this.fringePrice(perf.concession, index) 				}</td>
-	render() {
-		return (
-			<div>
-			<button onClick={this.getPerformances.bind(this)} className='btn btn-default' type='button' data-toggle='collapse' data-target={'#performances_for_event' + this.props.eventId} aria-expanded='false' aria-controls={'performances_for_event' + this.props.eventId}>
-			🗓️
-			</button>
-
-			<div className='collapse' id={'performances_for_event' + this.props.eventId}>
-
-			<div className='well well-sm'>
 			<table className='table table-condensed'>
 				<thead>
 					<tr>
@@ -104,12 +69,39 @@ export class PerformancesPanel extends Component {
 					</tr>
 				</thead>
 				<tbody>
-					{this.performancesTable()}
+					<tr>
+						<td>Loading...</td>
+					</tr>
 				</tbody>
 			</table>
-			</div>
-			</div>
-			</div>
+			);
+		}
+		var performances = this.state.performances;
+		performances = performances.map( function(perf, index){
+				return (<tr key={index}>
+					{ this.fringeDates(perf.start_time, perf.end_time)	}
+				</tr>)
+		}.bind(this));
+			return(
+			<table className='table table-condensed'>
+				<thead>
+					<tr>
+						<th>Date</th>
+						<th>Start Time</th>
+						<th>End Time</th>
+					</tr>
+				</thead>
+				<tbody>
+					{performances}
+				</tbody>
+			</table>
+			);
+	}
+	render() {
+		return (
+			<button onClick={this.getPerformances.bind(this)} className='btn btn-default' type='button' data-toggle='collapse' data-target={'#performances_for_event' + this.props.eventId} aria-expanded='false' aria-controls={'performances_for_event' + this.props.eventId}>
+			🗓️
+			</button>
 			);
 	}
 }
@@ -117,3 +109,23 @@ export class PerformancesPanel extends Component {
 module.exports = PerformancesPanel;
 						// <th>Price</th>
 						// <th>Concession</th>
+
+
+			// <div className='collapse' id={'performances_for_event' + this.props.eventId}>
+
+			// <div className='well well-sm'>
+			// <table className='table table-condensed'>
+			// 	<thead>
+			// 		<tr>
+			// 			<th>Date</th>
+			// 			<th>Start Time</th>
+			// 			<th>End Time</th>
+			// 		</tr>
+			// 	</thead>
+			// 	<tbody>
+			// 		{this.performancesTable()}
+			// 	</tbody>
+			// </table>
+			// </div>
+			// </div>
+			// </div>

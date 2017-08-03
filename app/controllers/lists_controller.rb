@@ -26,6 +26,7 @@ class ListsController < ApplicationController
   # POST /lists.json
   def create
     @list = List.new(list_params)
+    @list.user = current_user
 
     respond_to do |format|
       if @list.save
@@ -43,7 +44,7 @@ class ListsController < ApplicationController
   def update
     respond_to do |format|
       if @list.update(list_params)
-        format.html { redirect_to @list, notice: 'List was successfully updated.' }
+        format.html { redirect_to action: "index", notice: 'List was successfully updated.' }
         format.json { render :show, status: :ok, location: @list }
       else
         format.html { render :edit }
@@ -69,6 +70,20 @@ class ListsController < ApplicationController
     render :json => {success: true}, status: 200
   end
 
+  def create_item
+    puts(params[:list_id], params[:event_id])
+    @list_item = ListItem.new(list_id: params[:list_id], event_id: params[:event_id])
+    @list_item.save!
+    # @list_item.save!
+    render :json => @list_item.to_json, status: 200
+  end
+
+  def destroy_item
+    puts(params[:list_id], params[:event_id])
+    @list_item = List.find(params[:list_id]).list_items.find_by_event_id(params[:event_id])
+    render :json => @list_item.destroy, status: 200
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_list
@@ -77,7 +92,7 @@ class ListsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def list_params
-      params.require(:list).permit(:user_id)
+      params.require(:list).permit(:user_id, :name)
     end
     def list_swap_params
       params.permit(:oldIndex, :newIndex, :listId)

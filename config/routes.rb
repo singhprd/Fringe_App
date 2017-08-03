@@ -24,6 +24,8 @@ Rails.application.routes.draw do
   get '/events/:id/performances' => 'events#performances'
 
   post '/lists/swap_items' => 'lists#swap_items'
+  post '/lists/create_item' => 'lists#create_item'
+  post '/lists/destroy_item' => 'lists#destroy_item'
 
   # resources :search
   devise_for :users, controllers: { sessions: 'users/sessions' }

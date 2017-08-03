@@ -42,9 +42,7 @@ export class EventFavouriteStatus extends Component {
   }
   render() {
     return (
-      <div className="btn-group" role="group">
-        {this.renderAppropriateButtons()}
-      </div>
+        this.renderAppropriateButtons()
       );
   }
 }

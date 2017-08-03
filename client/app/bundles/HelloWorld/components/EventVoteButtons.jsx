@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Button, ButtonGroup, DropdownButton, MenuItem, ButtonToolbar } from 'react-bootstrap';
 
 export class EventVoteButtons extends Component {
   static propTypes = {
@@ -92,8 +93,7 @@ upvote() {
     }
     render() {
         return (
-<div className="btn-group">
-    <div className="vote_buttons btn-group" role="group">
+    <ButtonGroup>
         <button onClick={this.upvote.bind(this)} className="btn btn-default">
             👍
         </button>
@@ -103,8 +103,7 @@ upvote() {
         <button onClick={this.downvote.bind(this)} className="btn btn-default">
             👎
         </button>
-    </div>
-</div>
+    </ButtonGroup>
             );
     }
 }

@@ -4,6 +4,8 @@ import EventVoteButtons from './EventVoteButtons.jsx';
 import EventFavouriteStatus from './EventFavouriteStatus.jsx';
 import PerformancesPanel from './PerformancesPanel.jsx';
 import ImageCarousel from './ImageCarousel.jsx';
+import ListPanel from './ListPanel.jsx';
+import { Button, ButtonGroup, DropdownButton, MenuItem, ButtonToolbar, Collapse } from 'react-bootstrap';
 
 export class EventCard extends Component {
     static propTypes = {
@@ -20,6 +22,8 @@ export class EventCard extends Component {
         this.state = {
             event: this.getEvent(),
             isFavourited: false,
+            wellContent: [],
+            open: false,
         };
     }
     getEvent(){
@@ -38,15 +42,62 @@ export class EventCard extends Component {
             return false;
         }
     }
+    expandPanel(performancesTable){
+        return(
+            <div className='collapse' id={'performances_for_event' + this.props.eventId}>
+
+            <div className='well well-sm'>
+            <table className='table table-condensed'>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {performancesTable}
+                </tbody>
+            </table>
+            </div>
+            </div>
+            );
+    }
+    wellContent = (content) => {
+        this.setState({wellContent: content, open: true});
+    }
+    closeWell(){
+        this.setState({open: false});
+    }
+    closeDrawerButton(){
+        if (this.state.open === true) {
+            return(<button className="btn btn-default" onClick={this.closeWell.bind(this)} >Close drawer</button>)
+        }
+    }
     signedIn(e, v) {
         if (this.props.userSignedIn) {
             return (
-        <div className="btn-toolbar" role="toolbar">
-            <EventVoteButtons voteToStayAbove={this.props.voteToStayAbove} voteToBeat={this.props.voteToBeat} score={e.score} eventId={e.id} />
-            <EventFavouriteStatus favourite={this.favourite} unfavourite={this.unfavourite} isFavourited={this.state.isFavourited} eventId={e.id} />
-            <PerformancesPanel eventId={this.state.event.id} isFringe={this.isFringe()} />
+        <div>
+        <ButtonToolbar>
+            <ButtonGroup>
+                <EventVoteButtons voteToStayAbove={this.props.voteToStayAbove} voteToBeat={this.props.voteToBeat} score={e.score} eventId={e.id} />
+                <EventFavouriteStatus favourite={this.favourite} unfavourite={this.unfavourite} isFavourited={this.state.isFavourited} eventId={e.id} />
+                <PerformancesPanel wellContent={this.wellContent} eventId={this.state.event.id} isFringe={this.isFringe()} />
+                {this.closeDrawerButton()}
+            </ButtonGroup>
+            <ButtonGroup  className="pull-right" >
+                <ListPanel eventId={this.state.event.id}/>
+            </ButtonGroup>
+        </ButtonToolbar>
+        <Collapse in={this.state.open}>
+        <div className='' id={'performances_for_event' + this.props.eventId}>
+            <div className='well well-sm' id="well-content-box">
+                {this.state.wellContent}
+            </div>
         </div>
-            );
+        </Collapse>
+        </div>
+        );
         } else {
             return (
         <div className="btn-toolbar" role="toolbar">
@@ -184,15 +235,11 @@ export class EventCard extends Component {
         );
     }
     buttonBar(e,v){
-                if (this.props.short == true) {
+        if (this.props.short == true) {
             return;
         }
         return(
-        <div className="row">
-            <div className="col-xs-12" id="button-bar">
-                {this.signedIn(e, v)}
-            </div>
-        </div>
+            this.signedIn(e, v)
         );
     }
     render() {
@@ -216,7 +263,6 @@ export class EventCard extends Component {
       {this.mainPanel(e,v)}
       {this.description(e,v)}
       {this.buttonBar(e,v)}
-
         </div>
     </div>
         );
