@@ -71,7 +71,12 @@ export class EventCard extends Component {
     }
     closeDrawerButton(){
         if (this.state.open === true) {
-            return(<button className="btn btn-default" onClick={this.closeWell.bind(this)} >Close drawer</button>)
+            return(<button className="btn btn-default" onClick={this.closeWell.bind(this)} >Close</button>);
+        }
+    }
+    ListPanel(){
+        if (this.props.short != true) {
+        return([<ButtonGroup > <ListPanel eventId={this.state.event.id}/> </ButtonGroup>]);
         }
     }
     signedIn(e, v) {
@@ -83,16 +88,14 @@ export class EventCard extends Component {
                 <EventVoteButtons voteToStayAbove={this.props.voteToStayAbove} voteToBeat={this.props.voteToBeat} score={e.score} eventId={e.id} />
                 <EventFavouriteStatus favourite={this.favourite} unfavourite={this.unfavourite} isFavourited={this.state.isFavourited} eventId={e.id} />
                 <PerformancesPanel wellContent={this.wellContent} eventId={this.state.event.id} isFringe={this.isFringe()} />
-                {this.closeDrawerButton()}
             </ButtonGroup>
-            <ButtonGroup  className="pull-right" >
-                <ListPanel eventId={this.state.event.id}/>
-            </ButtonGroup>
+            {this.ListPanel()}
         </ButtonToolbar>
         <Collapse in={this.state.open}>
         <div className='' id={'performances_for_event' + this.props.eventId}>
             <div className='well well-sm' id="well-content-box">
                 {this.state.wellContent}
+                {this.closeDrawerButton()}
             </div>
         </div>
         </Collapse>
@@ -193,9 +196,9 @@ export class EventCard extends Component {
             );
     }
     mainPanel(e,v){
-        if (this.props.short == true) {
-            return;
-        }
+        // if (this.props.short == true) {
+        //     return;
+        // }
         const imageUrls = this.props.imageUrls;
         return(
         <div className="row">
@@ -235,9 +238,9 @@ export class EventCard extends Component {
         );
     }
     buttonBar(e,v){
-        if (this.props.short == true) {
-            return;
-        }
+        // if (this.props.short == true) {
+        //     return;
+        // }
         return(
             this.signedIn(e, v)
         );

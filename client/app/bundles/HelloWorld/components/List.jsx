@@ -42,7 +42,7 @@ class List extends Component {
     var items = this.props.listItems.map(function(item, index, arr){
       var event_string = this.getEvent(item.event_id);
       // console.log(event_string);
-      return <EventCard key={index} event={event_string} venue={false} userSignedIn={false} short={true}positon={item.position} />;
+      return <EventCard key={index} event={event_string} venue={false} userSignedIn={true} short={true}positon={item.position} />;
       // return <ListItem positon={item.position} valueId={item.event_id}/>;
     }.bind(this));
     return items.sort(function(a, b){return a.props.positon - b.props.positon});
