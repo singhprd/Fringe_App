@@ -44,12 +44,16 @@ class Fringebot
       find_or_create_venue_and_event(params)
     end
 
+    def put_in_quotes(string)
+      return "\"#{string}\"" unless string.empty?
+    end
+
     def query_api
       @api.events(
-        title: @params["title_string"],
+        title: put_in_quotes(@params["title_string"]),
         festival: @params["festival_string"],
         year: @params["year"],
-        artist: @params["artist"],
+        artist: put_in_quotes(@params["artist"]),
         code: @params["code"]
         )
     end
