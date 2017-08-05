@@ -23,7 +23,7 @@ export class EventCard extends Component {
       event: this.getEvent(),
       isFavourited: false,
       wellContent: [],
-      open: false,
+      wellIsOpen: false,
     };
   }
   componentDidMount() {
@@ -64,13 +64,16 @@ export class EventCard extends Component {
   }
   wellContent = (content) => {
     // var cur = this.state.open;
-    this.setState({wellContent: content, open: true});
+    this.setState({wellContent: content, wellIsOpen: true});
   }
   ListPanel(){
     if (this.props.short !== true) {
       return(
         [<ButtonGroup > <ListPanel eventId={this.state.event.id}/> </ButtonGroup>]);
     }
+  }
+  closeWell = () => {
+    this.setState({wellIsOpen: false});
   }
   signedIn(e, v) {
     if (this.props.userSignedIn) {
@@ -92,13 +95,14 @@ export class EventCard extends Component {
               />
               <PerformancesPanel
                 wellContent={this.wellContent}
+                closeWell={this.closeWell}
                 eventId={this.state.event.id}
                 isFringe={this.isFringe()}
               />
             </ButtonGroup>
             {this.ListPanel()}
           </ButtonToolbar>
-          <Collapse in={this.state.open}>
+          <Collapse in={this.state.wellIsOpen}>
             <div className='' id={'performances_for_event' + this.props.eventId}>
               <div className='well well-sm' id="well-content-box">
                 {this.state.wellContent}

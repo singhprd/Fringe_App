@@ -5,13 +5,14 @@ var moment = require('moment');
 export class PerformancesPanel extends Component {
   static propTypes = {
     eventId: PropTypes.number.isRequired,
-    wellContent: PropTypes.number.isRequired,
+    // wellContent: PropTypes.number.isRequired,
   };
   constructor(props) {
     super(props);
     this.state = {
       performances: ['loading'],
-      hasData: false
+      hasData: false,
+      open: false
     };
   }
   componentDidMount(){
@@ -19,6 +20,15 @@ export class PerformancesPanel extends Component {
   }
   componentDidUpdate(){
     $('td').tooltip();
+  }
+  handleCalendarClick(){
+  	if (this.state.open === false) {
+  		this.setState({open: true});
+			this.getPerformances();
+  	} else {
+  		this.setState({open: false});
+  		this.props.closeWell();
+  	}
   }
   getPerformances(){
     this.props.wellContent(this.performancesTable());
@@ -104,7 +114,7 @@ export class PerformancesPanel extends Component {
   }
   render() {
     return (
-      <button onClick={this.getPerformances.bind(this)} className='btn btn-default' type='button' data-toggle='collapse' data-target={'#performances_for_event' + this.props.eventId} aria-expanded='false' aria-controls={'performances_for_event' + this.props.eventId}>
+      <button onClick={this.handleCalendarClick.bind(this)} className='btn btn-default' type='button' data-toggle='collapse' data-target={'#performances_for_event' + this.props.eventId} aria-expanded='false' aria-controls={'performances_for_event' + this.props.eventId}>
 			🗓️
       </button>
     );
