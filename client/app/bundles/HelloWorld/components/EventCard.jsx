@@ -66,7 +66,7 @@ export class EventCard extends Component {
     this.setState({wellContent: content, wellIsOpen: true});
   }
   ListPanel(){
-    if (this.props.short === true) {
+    if (!(this.props.short === true)) {
       return(
         [<ButtonGroup key="btn-group-short"> <ListPanel key={this.state.event.id} eventId={this.state.event.id}/> </ButtonGroup>]);
     }

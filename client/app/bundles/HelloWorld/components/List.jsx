@@ -43,7 +43,7 @@ class List extends Component {
   listEventCardItems(){
     var items = this.props.listItems.map(function(item, index, arr){
       var eventString = this.getEvent(item.event_id);
-      return <EventCard key={item.event_id} event={eventString} venue={false} userSignedIn shortpositon={item.position} />;
+      return <EventCard key={item.event_id} event={eventString} venue={false} userSignedIn short={true} positon={item.position} />;
     }.bind(this));
     return items.sort(function(a, b){return a.props.positon - b.props.positon;});
   }
