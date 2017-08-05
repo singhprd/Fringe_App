@@ -33,7 +33,7 @@ export class ListPanel extends Component {
     }.bind(this));
     items = this.cleanArray(items);
     if (items.length >= 1) {
-    return(
+      return(
         [<MenuItem header>Add To List</MenuItem>, items, <MenuItem divider />]
       );}
   }
@@ -50,37 +50,37 @@ export class ListPanel extends Component {
     }.bind(this));
     items = this.cleanArray(items);
     if (items.length >= 1) {
-    return(
-      [<MenuItem header>Remove from list</MenuItem>, items, <MenuItem divider />]
+      return(
+        [<MenuItem header>Remove from list</MenuItem>, items, <MenuItem divider />]
       );}
   }
   addToList(list_id){
     var event_id = this.props.eventId;
     $.ajax({
-        url: '/lists/create_item',
-        type: 'POST',
-        data: { list_id: list_id, event_id: event_id },
-        success: function(data, b, c) {
-            this.fetchLists();
-        }.bind(this),
-        error: function() {
-            console.log('failed');
-        }
+      url: '/lists/create_item',
+      type: 'POST',
+      data: { list_id: list_id, event_id: event_id },
+      success: function(data, b, c) {
+        this.fetchLists();
+      }.bind(this),
+      error: function() {
+        console.log('failed');
+      }
     });
   }
   removeFromList(list_id){
     var event_id = this.props.eventId;
     console.log(event_id);
     $.ajax({
-        url: '/lists/destroy_item',
-        type: 'POST',
-        data: { list_id: list_id, event_id: event_id },
-        success: function(data, b, c) {
-            this.fetchLists();
-        }.bind(this),
-        error: function() {
-            console.log('failed');
-        }
+      url: '/lists/destroy_item',
+      type: 'POST',
+      data: { list_id: list_id, event_id: event_id },
+      success: function(data, b, c) {
+        this.fetchLists();
+      }.bind(this),
+      error: function() {
+        console.log('failed');
+      }
     });
   }
   createList(){
@@ -101,7 +101,7 @@ export class ListPanel extends Component {
 
         <MenuItem eventKey="1" id="213" onClick={()=>this.createList()}>Create List</MenuItem>
       </DropdownButton>
-      );
+    );
   }
 }
 

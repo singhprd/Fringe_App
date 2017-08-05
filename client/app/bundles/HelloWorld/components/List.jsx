@@ -42,14 +42,14 @@ class List extends Component {
     var items = this.props.listItems.map(function(item, index, arr){
       var event_string = this.getEvent(item.event_id);
       // console.log(event_string);
-      return <EventCard key={index} event={event_string} venue={false} userSignedIn={true} short={true}positon={item.position} />;
+      return <EventCard key={index} event={event_string} venue={false} userSignedIn shortpositon={item.position} />;
       // return <ListItem positon={item.position} valueId={item.event_id}/>;
     }.bind(this));
-    return items.sort(function(a, b){return a.props.positon - b.props.positon});
+    return items.sort(function(a, b){return a.props.positon - b.props.positon;});
   }
   swapPositon(oldIndex, newIndex, listId){
     $.ajax({
-      type: "POST",
+      type: 'POST',
       url: '/lists/swap_items',
       data: {oldIndex: oldIndex, newIndex: newIndex, listId: listId}
       // success: success,
@@ -65,10 +65,10 @@ class List extends Component {
   render() {
     return(
       <div>
-      <SortableList items={this.state.items} onSortEnd={this.onSortEnd} />
+        <SortableList items={this.state.items} onSortEnd={this.onSortEnd} />
       </div>
-      );
+    );
   }
-};
+}
 
 module.exports = List;

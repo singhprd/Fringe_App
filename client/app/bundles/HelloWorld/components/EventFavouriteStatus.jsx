@@ -42,8 +42,8 @@ export class EventFavouriteStatus extends Component {
   }
   render() {
     return (
-        this.renderAppropriateButtons()
-      );
+      this.renderAppropriateButtons()
+    );
   }
 }
 

@@ -6,18 +6,28 @@
       "es6": true,
       "jquery": true, 
     },
-    "ecmaFeatures": {
-        "jsx": true,
-        "modules": true,
-        "classes": true
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true,
+            "modules": true,
+            "classes": true,
+        },
     },
     "plugins":[
         "react"
     ],
+        "settings": {
+        "html/indent": "2",
+
+    },
     "globals": {
         "module": 0,
     },
     "rules": {
+        "indent": [
+            2,
+            2
+        ],
         // React
         "react/display-name": 0,
         "react/jsx-boolean-value": 1,
@@ -33,9 +43,9 @@
         "react/jsx-uses-react": 1,
         "react/jsx-uses-vars": 1,       //Prevent variables used in JSX to be incorrectly marked as unused
         "react/no-danger": 0,
-        "react/no-set-state": 1,
-        "react/no-did-mount-set-state": 1,
-        "react/no-did-update-set-state": 1,
+        "react/no-set-state": 0,
+        "react/no-did-mount-set-state": 0,
+        "react/no-did-update-set-state": 0,
         "react/no-multi-comp": 1,
         "react/no-unknown-property": 1,
         "react/prop-types": 1,
