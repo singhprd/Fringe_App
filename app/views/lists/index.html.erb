@@ -1,29 +1,20 @@
 <p id="notice"><%= notice %></p>
 
-<% @lists.each do |list| %>
-<div>
-  <div class="panel panel-primary home_card text-info" id=<%= list.id %>>
-    <div class='panel-heading'>
-      <h3 class="panel-title">
-        <a href=<%= "/lists/#{list.id}"%>><%= list.name %></a>
-      </h3>
-    </div>
+<div class="row">
+  <div class="col-xs-12 col-md-6">
+    <ul class="list-group">
+      <% @lists.map do |list| %>
+      <a href="/lists/<%= list.id %>"> 
+        <li class="list-group-item panel-title"><%= list.name %></li>
+      </a>
+      <% end %>
+    </ul>
 
-    <div class="container-fluid" id="home-card">
-      <div class="row">
-      <table>
-        <tr>
-          <td><%= link_to 'Edit', edit_list_path(list), :class => 'btn btn-sm btn-primary' %></td>
-          <td><%= link_to 'Destroy', list, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-sm btn-danger' %></td>
-        </tr>
-      </table>
-      </div>
-    </div>
 
   </div>
-  <% end %>
+  <div class="col-xs-6 col-md-4"></div>
+</div>
+<br>
+<%= link_to 'New List', new_list_path %>
 
-  <br>
-
-  <%= link_to 'New List', new_list_path %>
 

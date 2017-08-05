@@ -63,13 +63,12 @@ export class EventCard extends Component {
     );
   }
   wellContent = (content) => {
-    // var cur = this.state.open;
     this.setState({wellContent: content, wellIsOpen: true});
   }
   ListPanel(){
     if (this.props.short !== true) {
       return(
-        [<ButtonGroup > <ListPanel eventId={this.state.event.id}/> </ButtonGroup>]);
+        [<ButtonGroup key="btn-group-short"> <ListPanel key={this.state.event.id} eventId={this.state.event.id}/> </ButtonGroup>]);
     }
   }
   closeWell = () => {
@@ -120,75 +119,61 @@ export class EventCard extends Component {
       );
     }
   }
-  favourite = (event_id) => {
-    // favourite(event_id) {
-    // console.log("Faved")
-    // Keen Bean Loading
+  favourite = (eventId) => {
     this.setState({isFavourited: true});
     $.ajax({
       url: '/favourites',
       type: 'POST',
-      data: { favourite: { event_id: event_id } },
-      success: function(a, b, c) {
+      data: { favourite: { event_id: eventId } },
+      success: function(data, status, jqXhrObj) {
         this.setState({isFavourited: true});
-        console.log(a,b,c);
-        // this.isFavourited();
       }.bind(this),
       error: function() {
-        console.log('failed favourite user_event_status.jsx');
+        this.isFavourited();
       }
     });
   }
-  unfavourite = (event_id) => {
-    // unfavourite(event_id) {
-    // console.log("Un-Faved")
-    // Keen Bean Loading
-    // this.setState({isFavourited: false});
+  unfavourite = (eventId) => {
+    this.setState({isFavourited: false});
     $.ajax({
-      url: '/favourites/' + event_id,
+      url: '/favourites/' + eventId,
       type: 'DELETE',
-      data: { favourite: { event_id: event_id } },
-      success: function(a, b, c) {
+      data: { favourite: { event_id: eventId } },
+      success: function(data, status, jqXhrObj) {
         this.setState({isFavourited: false});
-        // console.log(a,b,c)
-        // this.isFavourited();
       }.bind(this),
       error: function() {
-        console.log('failed unfavourite user_event_status.jsx');
+        this.isFavourited();
       }
     });
   }
   isFavourited() {
-    // var that = this;
+    this.setState({isFavourited: true});
     $.ajax({
       url: '/events/' + this.state.event.id + '/is_favourited',
       type: 'GET',
       data: { event_id: this.state.event.id },
-      success: function(a, b, c) {
-        this.setState({ isFavourited: a.bool });
-        // $("#notice").html(a['notice'])
-        // console.log('isFavourited' + a.bool);
-
+      success: function(data, status, jqXhrObj) {
+        this.setState({ isFavourited: data.bool });
       }.bind(this),
       error: function() {
-        console.log('failed isFavourited user_event_status.jsx');
+        this.isFavourited();
       }
     });
   }
   checkIsFavourited() {
     $('[data-toggle="tooltip"]').tooltip();
-    // var that = this;
     $.ajax({
       url: '/events/' + this.state.event.id + '/is_favourited',
       type: 'GET',
       data: { event_id: this.state.event.id },
-      success: function(a, b, c) {
-        if (a.bool) {
+      success: function(data, status, jqXhrObj) {
+        if (data.bool) {
           this.setState({ isFavourited: 'favourite' });
         }
       }.bind(this),
       error: function() {
-        console.log('failed isFavourited user_event_status.jsx');
+        console.log('checkIsFavourited failed');
       }
     });
   }
@@ -196,9 +181,6 @@ export class EventCard extends Component {
     if (typeof this.props.imageUrls === 'undefined') {
       return;
     }
-    // var imagesTags = this.props.imageUrls.map(function(url){
-    //     console.log(url);
-    // });
     return(
       <div>
         <img src={this.props.imageUrls[0]} />
@@ -206,9 +188,6 @@ export class EventCard extends Component {
     );
   }
   mainPanel(e,v){
-    // if (this.props.short == true) {
-    //     return;
-    // }
     const imageUrls = this.props.imageUrls;
     return(
       <div className="row">
@@ -238,7 +217,7 @@ export class EventCard extends Component {
     );
   }
   description(e,v){
-    if (this.props.short == true) {
+    if (this.props.short === true) {
       return;
     }
     return(
@@ -248,9 +227,6 @@ export class EventCard extends Component {
     );
   }
   buttonBar(e,v){
-    // if (this.props.short == true) {
-    //     return;
-    // }
     return(
       this.signedIn(e, v)
     );

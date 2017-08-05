@@ -3,6 +3,7 @@
 <h2><%= @list.name %></h2>
 
 <%= react_component("List", props:{
+    key: @list.id,
     listId: @list.id,
     listItems: @list.list_items,
     events: @list.events.map(&:to_json),

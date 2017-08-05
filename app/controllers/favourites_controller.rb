@@ -52,10 +52,10 @@ class FavouritesController < ApplicationController
   # DELETE /favourites/1
   # DELETE /favourites/1.json
   def destroy
-    @favourite.destroy
-    respond_to do |format|
-      # format.html { redirect_to favourites_url, notice: 'Favourite was successfully destroyed.' }
-      format.json { head :no_content }
+    if @favourite.destroy
+      render plain: "OK", status: :ok
+    else
+      format.json { render json: @favourite.errors, status: :unprocessable_entity }
     end
   end
 

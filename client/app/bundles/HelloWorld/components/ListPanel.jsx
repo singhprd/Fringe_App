@@ -5,7 +5,7 @@ import { Button, ButtonGroup, DropdownButton, MenuItem, ButtonToolbar, Collapse,
 
 export class ListPanel extends Component {
   static propTypes = {
-    // eventId: PropTypes.number.isRequired,
+    eventId: PropTypes.number.isRequired,
   };
   constructor(props) {
     super(props);
@@ -27,31 +27,31 @@ export class ListPanel extends Component {
     var items = this.state.lists.map(function(list, index){
       if (!list.event_ids.includes(this.props.eventId)) {
         return(
-          <MenuItem eventKey={index} id={list.id} onClick={()=>this.addToList(list.id)}>{list.name}</MenuItem>
+          <MenuItem key={'add-menu-item' + index} eventKey={index} id={list.id} onClick={()=>this.addToList(list.id)}>{list.name}</MenuItem>
         );
       }
     }.bind(this));
     items = this.cleanArray(items);
     if (items.length >= 1) {
       return(
-        [<MenuItem header>Add To List</MenuItem>, items, <MenuItem divider />]
+        [<MenuItem key="add-to-list" header>Add To List</MenuItem>, items, <MenuItem  key="add-to-list-divider" divider />]
       );}
   }
   cleanArray(items){
-    return $.grep(items,function(n){ return n == 0 || n; });
+    return $.grep(items,function(n){ return n === 0 || n; });
   }
   removeFromListMenuItems = () => {
     var items = this.state.lists.map(function(list, index){
       if (list.event_ids.includes(this.props.eventId)) {
         return(
-          <MenuItem eventKey={index} id={list.id} onClick={()=>this.removeFromList(list.id)}>{list.name}</MenuItem>
+          <MenuItem key={'remove-menu-item' + index} eventKey={index} id={list.id} onClick={()=>this.removeFromList(list.id)}>{list.name}</MenuItem>
         );
       }
     }.bind(this));
     items = this.cleanArray(items);
     if (items.length >= 1) {
       return(
-        [<MenuItem header>Remove from list</MenuItem>, items, <MenuItem divider />]
+        [<MenuItem key="remove-from-list" header>Remove from list</MenuItem>, items, <MenuItem  key="remove-from-divider" divider />]
       );}
   }
   addToList(list_id){
@@ -86,6 +86,13 @@ export class ListPanel extends Component {
   createList(){
     Turbolinks.visit('/lists/new');
   }
+  dropDownText(){
+    if (this.state.openDropdown === false) {
+      return 'Lists';
+    } else {
+      return 'Close';
+    }
+  }
   handleDropdownClick = (content) => {
     this.setState({openDropdown: !this.state.openDropdown});
   }
@@ -93,7 +100,7 @@ export class ListPanel extends Component {
     var addList = this.addToListMenuItems();
     var removeList = this.removeFromListMenuItems();
     return (
-      <DropdownButton pullRight title="Lists" id="dropdown-size-medium" onClick={this.handleDropdownClick} open={this.state.openDropdown}>
+      <DropdownButton pullRight title={this.dropDownText()} id="dropdown-size-medium" onClick={this.handleDropdownClick} open={this.state.openDropdown} >
 
         {this.addToListMenuItems()}
 

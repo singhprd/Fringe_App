@@ -5,7 +5,8 @@ var moment = require('moment');
 export class PerformancesPanel extends Component {
   static propTypes = {
     eventId: PropTypes.number.isRequired,
-    // wellContent: PropTypes.number.isRequired,
+    wellContent: PropTypes.func.isRequired,
+    closeWell: PropTypes.func.isRequired,
   };
   constructor(props) {
     super(props);
@@ -22,13 +23,13 @@ export class PerformancesPanel extends Component {
     $('td').tooltip();
   }
   handleCalendarClick(){
-  	if (this.state.open === false) {
-  		this.setState({open: true});
-			this.getPerformances();
-  	} else {
-  		this.setState({open: false});
-  		this.props.closeWell();
-  	}
+    if (this.state.open === false) {
+      this.setState({open: true});
+      this.getPerformances();
+    } else {
+      this.setState({open: false});
+      this.props.closeWell();
+    }
   }
   getPerformances(){
     this.props.wellContent(this.performancesTable());
@@ -94,7 +95,7 @@ export class PerformancesPanel extends Component {
     var performances = this.state.performances;
     performances = performances.map( function(perf, index){
       return (<tr key={index}>
-        { this.fringeDates(perf.start_time, perf.end_time)	}
+        { this.fringeDates(perf.start_time, perf.end_time)  }
       </tr>);
     }.bind(this));
     return(
@@ -115,7 +116,7 @@ export class PerformancesPanel extends Component {
   render() {
     return (
       <button onClick={this.handleCalendarClick.bind(this)} className='btn btn-default' type='button' data-toggle='collapse' data-target={'#performances_for_event' + this.props.eventId} aria-expanded='false' aria-controls={'performances_for_event' + this.props.eventId}>
-			🗓️
+      🗓️
       </button>
     );
   }
@@ -130,16 +131,16 @@ module.exports = PerformancesPanel;
 
 // <div className='well well-sm'>
 // <table className='table table-condensed'>
-// 	<thead>
-// 		<tr>
-// 			<th>Date</th>
-// 			<th>Start Time</th>
-// 			<th>End Time</th>
-// 		</tr>
-// 	</thead>
-// 	<tbody>
-// 		{this.performancesTable()}
-// 	</tbody>
+//  <thead>
+//    <tr>
+//      <th>Date</th>
+//      <th>Start Time</th>
+//      <th>End Time</th>
+//    </tr>
+//  </thead>
+//  <tbody>
+//    {this.performancesTable()}
+//  </tbody>
 // </table>
 // </div>
 // </div>
