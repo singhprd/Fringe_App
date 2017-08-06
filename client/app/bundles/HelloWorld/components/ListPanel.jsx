@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Select from 'react-select';
 import { Button, ButtonGroup, DropdownButton, MenuItem, ButtonToolbar, Collapse, Clearfix } from 'react-bootstrap';
 
 export class ListPanel extends Component {
   static propTypes = {
-    eventId: PropTypes.number.isRequired,
+    eventId: PropTypes.number,
   };
   constructor(props) {
     super(props);
     this.state = {
       lists: [{'name': 'nil', 'event_ids': []}],
-      openDropdown: false
+      openDropdown: false,
+      hasData: false
     };
   }
   componentDidMount(){
@@ -20,7 +20,7 @@ export class ListPanel extends Component {
   fetchLists(){
     var promise = $.getJSON('/lists');
     promise.done(function(data) {
-      this.setState({lists: data});
+      this.setState({lists: data, hasData: true});
     }.bind(this));
   }
   addToListMenuItems = () => {
@@ -54,12 +54,14 @@ export class ListPanel extends Component {
         [<MenuItem key="remove-from-list" header>Remove from list</MenuItem>, items, <MenuItem  key="remove-from-divider" divider />]
       );}
   }
-  addToList(list_id){
-    var event_id = this.props.eventId;
+  addToList(listId){
     $.ajax({
       url: '/lists/create_item',
       type: 'POST',
-      data: { list_id: list_id, event_id: event_id },
+      data: {
+        list_id: listId,
+        event_id: this.props.eventId
+      },
       success: function(data, b, c) {
         this.fetchLists();
       }.bind(this),
@@ -68,13 +70,14 @@ export class ListPanel extends Component {
       }
     });
   }
-  removeFromList(list_id){
-    var event_id = this.props.eventId;
-    console.log(event_id);
+  removeFromList(listId){
     $.ajax({
       url: '/lists/destroy_item',
       type: 'POST',
-      data: { list_id: list_id, event_id: event_id },
+      data: {
+        list_id: listId,
+        event_id: this.props.eventId
+      },
       success: function(data, b, c) {
         this.fetchLists();
       }.bind(this),
@@ -86,6 +89,17 @@ export class ListPanel extends Component {
   createList(){
     Turbolinks.visit('/lists/new');
   }
+  listMenuItems(){
+    if (this.state.hasData) {
+      var addItems = this.addToListMenuItems();
+      var removeItems = this.removeFromListMenuItems();
+      return(
+        [addItems, removeItems]
+      );
+    } else {
+      return(<h1>Loading Your Lists</h1>);
+    }
+  }
   dropDownText(){
     if (this.state.openDropdown === false) {
       return 'Lists';
@@ -96,16 +110,12 @@ export class ListPanel extends Component {
   handleDropdownClick = (content) => {
     this.setState({openDropdown: !this.state.openDropdown});
   }
+  handleToggle(e, obj){
+  }
   render() {
-    var addList = this.addToListMenuItems();
-    var removeList = this.removeFromListMenuItems();
     return (
-      <DropdownButton pullRight title={this.dropDownText()} id="dropdown-size-medium" onClick={this.handleDropdownClick} open={this.state.openDropdown} >
-
-        {this.addToListMenuItems()}
-
-        {this.removeFromListMenuItems()}
-
+      <DropdownButton pullRight title={this.dropDownText()} id="dropdown-size-medium" open={this.state.openDropdown} onToggle={this.handleToggle} onClick={this.handleDropdownClick} defaultOpen={false} >
+        {this.listMenuItems()}
         <MenuItem eventKey="1" id="213" onClick={()=>this.createList()}>Create List</MenuItem>
       </DropdownButton>
     );

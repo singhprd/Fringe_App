@@ -10,7 +10,10 @@ export class EventVoteButtons extends Component {
   };
   constructor(props) {
     super(props);
-    this.state = { score: this.props.score };
+    this.state = {
+      score: 0
+    };
+    this.getVotes();
   }
   isSearch() {
     return (window.location.pathname === '/search/results');
@@ -37,9 +40,9 @@ export class EventVoteButtons extends Component {
   }
   getVotes() {
     $.ajax({
-      url: '/events/1/votes',
+      url: '/events/' + this.props.eventId + '/votes',
       type: 'GET',
-      data: {event_id: '1'},
+      data: {id: this.props.eventId},
       success: function(a, b, c) {
         var votes = a.votes;
         this.setState({ score: a.votes });
@@ -51,13 +54,11 @@ export class EventVoteButtons extends Component {
     });
   }
   upvote() {
-    // this.setState({ score: this.state.score + 1 });
     $.ajax({
       url: '/votes',
       type: 'POST',
       data: { event_id: this.props.eventId, value: 1 },
       success: function(a, b, c) {
-        // console.log("a", a, "b",b, "c", c)
         var votes = a.votes;
         if (votes) {
           this.setState({ score: a.votes });
@@ -69,16 +70,13 @@ export class EventVoteButtons extends Component {
         console.log('failed');
       }
     });
-    // this.getVotes()
   }
   downvote() {
-    // this.setState({ score: this.state.score - 1 });
     $.ajax({
       url: '/votes',
       type: 'POST',
       data: { event_id: this.props.eventId, value: -1 },
       success: function(a, b, c) {
-        // console.log("a", a, "b",b, "c", c)
         var votes = a.votes;
         if (votes) {
           this.setState({ score: a.votes });

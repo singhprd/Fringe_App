@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 
 export class EventFavouriteStatus extends Component {
   static propTypes = {
-    eventId: PropTypes.number.isRequired,
+    eventId: PropTypes.number,
     isFavourited: PropTypes.bool,
-    unfavourite: PropTypes.func.isRequired,
-    favourite: PropTypes.func.isRequired,
+    unfavourite: PropTypes.func,
+    favourite: PropTypes.func,
   };
   constructor(props) {
     super(props);

@@ -23,7 +23,7 @@ class Event < ApplicationRecord
   def tally_votes
     self.score = upvotes - downvotes
     save
-    score
+    return self.reload.score
   end
 
   def self.favourited?(user, event_id)

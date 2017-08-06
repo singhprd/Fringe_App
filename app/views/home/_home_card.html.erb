@@ -1,18 +1,9 @@
-<% @events.each_with_index do |event, index| %>
-
-<%= react_component('EventCard', trace: nil,
-props: {
-	event: event.to_json,
- 	venue: event.venue.to_json,
- 	performances: event.performances.to_json,
- 	userSignedIn: !current_user.nil?,
- 	imageUrls: event.image_urls,
-  voteToBeat: index == 0 ? nil : @events.map(&:score)[index - 1],
-  voteToStayAbove: index == (@events.count - 1) ? nil : @events.map(&:score)[index + 1]
-})
- %>
-
-<% end %>
+<%= react_component('EventCardContainer', trace: nil,
+    props: {
+      eventIds: @events.map(&:id),
+      userSignedIn: !current_user.nil?
+    })
+%>
 
 <%= paginate @events -%>
 

@@ -4,6 +4,7 @@ import FilterBar from '../components/FilterBar';
 import List from '../components/List';
 
 var EventCard = require('../components/EventCard');
+var EventCardContainer = require('../components/EventCardContainer');
 var MultiSelectField = require('../components/MultiSelectField');
 var Turbolinks = require("turbolinks");
 
@@ -16,4 +17,5 @@ ReactOnRails.register({
   EventCard,
   List,
   MultiSelectField,
+  EventCardContainer,
 });

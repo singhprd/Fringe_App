@@ -1,11 +1,9 @@
-<%= react_component('EventCard', trace: nil,
-    props: {event: @event.to_json,
-     venue: @event.venue.to_json,
-     userSignedIn: !current_user.nil?,
-     imageUrls: @event.image_urls || Array.new
+<%= react_component('EventCardContainer', trace: nil,
+    props: {
+      eventIds: [@event.id],
+      userSignedIn: !current_user.nil?
     })
 %>
-
 <%= link_to t('.back', :default => t("helpers.links.back")),
               events_path, :class => 'btn btn-default' if current_user.try(:admin?) %>
 

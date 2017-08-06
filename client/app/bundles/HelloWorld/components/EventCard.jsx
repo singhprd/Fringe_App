@@ -9,8 +9,8 @@ import { Button, ButtonGroup, DropdownButton, MenuItem, ButtonToolbar, Collapse 
 
 export class EventCard extends Component {
   static propTypes = {
-    event: PropTypes.string.isRequired,
-    userSignedIn: PropTypes.bool.isRequired,
+    event: PropTypes.string,
+    userSignedIn: PropTypes.bool,
     isFavourited: PropTypes.bool,
     imageUrls: PropTypes.array,
     voteToBeat: PropTypes.number,
@@ -20,19 +20,28 @@ export class EventCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      event: this.getEvent(),
+      event: {},
+      venue: {},
+      imageUrls: [],
       isFavourited: false,
       wellContent: [],
       wellIsOpen: false,
     };
   }
   componentDidMount() {
+    this.fetchEvent();
     this.isFavourited();
   }
-  getEvent(){
-    var event = this.props.event;
-    var event = $.parseJSON(event);
-    return event;
+  fetchEvent(){
+    $.get( '/events/' + this.props.eventId + '.json' )
+      .done(function( data ) {
+        this.setState({
+          event: data,
+          venue: data.venue,
+          imageUrls: data.image_urls,
+          isFavourited: data.favourited
+        });
+      }.bind(this));
   }
   isFringe(){
     var festival = this.state.event.festival_id;
@@ -44,7 +53,7 @@ export class EventCard extends Component {
   }
   expandPanel(performancesTable){
     return(
-      <div className='collapse' id={'performances_for_event' + this.props.eventId}>
+      <div className='collapse' id={'performances_for_event' + this.state.event.id}>
         <div className='well well-sm'>
           <table className='table table-condensed'>
             <thead>
@@ -86,14 +95,13 @@ export class EventCard extends Component {
               <EventVoteButtons
                 voteToStayAbove={this.props.voteToStayAbove}
                 voteToBeat={this.props.voteToBeat}
-                score={e.score}
-                eventId={e.id}
+                eventId={this.props.eventId}
               />
               <EventFavouriteStatus
                 favourite={this.favourite}
                 unfavourite={this.unfavourite}
                 isFavourited={this.state.isFavourited}
-                eventId={e.id}
+                eventId={this.props.eventId}
               />
               <PerformancesPanel
                 wellContent={this.wellContent}
@@ -105,7 +113,7 @@ export class EventCard extends Component {
             {this.ListPanel()}
           </ButtonToolbar>
           <Collapse in={this.state.wellIsOpen}>
-            <div className='' id={'performances_for_event' + this.props.eventId}>
+            <div className='' id={'performances_for_event' + this.state.event.id}>
               <div className='well well-sm' id="well-content-box">
                 {this.state.wellContent}
               </div>
@@ -116,7 +124,7 @@ export class EventCard extends Component {
     } else {
       return (
         <div className="btn-toolbar" role="toolbar">
-          <EventVoteButtons score={e.score} eventId={e.id} />
+          <EventVoteButtons score={e.score} eventId={this.props.eventId} />
           <a href="/users/sign_in" type="button" className="btn btn-default">Sign In To Vote</a>
         </div>
       );
@@ -132,7 +140,7 @@ export class EventCard extends Component {
         this.setState({isFavourited: true});
       }.bind(this),
       error: function() {
-        this.isFavourited();
+        // this.isFavourited();
       }
     });
   }
@@ -151,7 +159,6 @@ export class EventCard extends Component {
     });
   }
   isFavourited() {
-    this.setState({isFavourited: true});
     $.ajax({
       url: '/events/' + this.state.event.id + '/is_favourited',
       type: 'GET',
@@ -181,17 +188,17 @@ export class EventCard extends Component {
     });
   }
   images() {
-    if (typeof this.props.imageUrls === 'undefined') {
+    if (typeof this.state.imageUrls === 'undefined') {
       return;
     }
     return(
       <div>
-        <img src={this.props.imageUrls[0]} />
+        <img src={this.state.imageUrls[0]} />
       </div>
     );
   }
   mainPanel(e,v){
-    const imageUrls = this.props.imageUrls;
+    const imageUrls = this.state.imageUrls;
     return(
       <div className="row">
 
@@ -235,13 +242,8 @@ export class EventCard extends Component {
     );
   }
   render() {
-    const e = this.state.event;
-    var v = '';
-    if (this.props.venue === false) {
-      v = {name: 'NoName'};
-    } else {
-      v = JSON.parse(this.props.venue);
-    }
+    var e = this.state.event;
+    var v = this.state.venue;
     return (
       <div className="panel panel-primary home_card text-info" id={this.state.id}>
         <div className={'panel-heading ' + (this.state.isFavourited ? 'favourite' : '')}>

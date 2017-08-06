@@ -17,7 +17,8 @@ class EventsController < ApplicationController
 
   def votes
     set_event
-    render json: {votes: @event.tally_votes}
+    vote_tally = @event.tally_votes
+    render json: {votes: vote_tally}
   end
 
   # GET /events/new

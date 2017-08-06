@@ -4,9 +4,9 @@ var moment = require('moment');
 
 export class PerformancesPanel extends Component {
   static propTypes = {
-    eventId: PropTypes.number.isRequired,
-    wellContent: PropTypes.func.isRequired,
-    closeWell: PropTypes.func.isRequired,
+    eventId: PropTypes.number,
+    wellContent: PropTypes.func,
+    closeWell: PropTypes.func,
   };
   constructor(props) {
     super(props);
