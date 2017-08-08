@@ -247,6 +247,8 @@ GEM
     selenium-webdriver (3.4.4)
       childprocess (~> 0.5)
       rubyzip (~> 1.0)
+    serviceworker-rails (0.5.5)
+      railties (>= 3.1)
     shellany (0.0.1)
     slop (3.6.0)
     spring (2.0.2)
@@ -325,6 +327,7 @@ DEPENDENCIES
   react_on_rails (~> 7)
   sass-rails (~> 5.0)
   selenium-webdriver
+  serviceworker-rails
   spring
   spring-watcher-listen
   therubyracer

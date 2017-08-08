@@ -18,3 +18,4 @@
 //= require_tree .
 
 //= require components
+//= require serviceworker-companion

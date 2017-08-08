@@ -33,15 +33,19 @@ export class EventCard extends Component {
     this.isFavourited();
   }
   fetchEvent(){
-    $.get( '/events/' + this.props.eventId + '.json' )
-      .done(function( data ) {
-        this.setState({
-          event: data,
-          venue: data.venue,
-          imageUrls: data.image_urls,
-          isFavourited: data.favourited
-        });
-      }.bind(this));
+    fetch('/events/' + this.props.eventId + '.json', {
+      method: 'get'
+    }).then(function(response) {
+      // Convert to JSON
+      return response.json();
+    }).then(function(data) {
+      this.setState({
+        event: data,
+        venue: data.venue,
+        imageUrls: data.image_urls,
+        isFavourited: data.favourited
+      });
+    }.bind(this))
   }
   isFringe(){
     var festival = this.state.event.festival_id;

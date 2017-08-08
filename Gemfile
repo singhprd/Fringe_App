@@ -54,6 +54,8 @@ gem "react_on_rails", "~> 7"
 # gem 'libv8', "~> 5.0"
 gem 'acts_as_list'
 
+gem 'serviceworker-rails'
+
 group :test do
   gem "capybara"
   gem 'selenium-webdriver'
