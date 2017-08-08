@@ -26,6 +26,10 @@ class Event < ApplicationRecord
     return self.reload.score
   end
 
+  def card_json
+    return self.to_json(include: :venue, methods: :image_urls)
+  end
+
   def self.favourited?(user, event_id)
     return false if user.nil? || event_id.nil?
     Event.find(event_id).favourites.exists?(

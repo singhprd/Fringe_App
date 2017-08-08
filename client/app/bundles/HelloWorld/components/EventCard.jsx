@@ -33,19 +33,27 @@ export class EventCard extends Component {
     this.isFavourited();
   }
   fetchEvent(){
-    fetch('/events/' + this.props.eventId + '.json', {
-      method: 'get'
-    }).then(function(response) {
-      // Convert to JSON
-      return response.json();
-    }).then(function(data) {
-      this.setState({
-        event: data,
-        venue: data.venue,
-        imageUrls: data.image_urls,
-        isFavourited: data.favourited
+    this.setState({
+        event: this.props.eventJson,
+        venue: this.props.eventJson.venue,
+        imageUrls: this.props.eventJson.image_urls,
+        isFavourited: this.props.eventJson.favourited
       });
-    }.bind(this))
+
+    // console.log(this.props.eventJson);
+    // fetch('/events/' + this.props.eventId + '.json', {
+    //   method: 'get'
+    // }).then(function(response) {
+    //   // Convert to JSON
+    //   return response.json();
+    // }).then(function(data) {
+    //   this.setState({
+    //     event: data,
+    //     venue: data.venue,
+    //     imageUrls: data.image_urls,
+    //     isFavourited: data.favourited
+    //   });
+    // }.bind(this))
   }
   isFringe(){
     var festival = this.state.event.festival_id;
@@ -97,6 +105,7 @@ export class EventCard extends Component {
           <ButtonToolbar>
             <ButtonGroup>
               <EventVoteButtons
+                score={this.state.event.score}
                 voteToStayAbove={this.props.voteToStayAbove}
                 voteToBeat={this.props.voteToBeat}
                 eventId={this.props.eventId}

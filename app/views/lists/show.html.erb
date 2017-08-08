@@ -5,7 +5,8 @@
 <%= react_component("List", props:{
     listId: @list.id,
     listItems: @list.list_items,
-    events: @list.events.map(&:to_json),
+    events: @list.events.map(&:card_json),
+
   }) %>
 
 <div class=' col-xs-12'>

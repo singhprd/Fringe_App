@@ -8,8 +8,9 @@ export class EventCardContainer extends Component {
     userSignedIn: PropTypes.bool,
   };
   eventCards(){
-    return this.props.eventIds.map(function(id){
-      return(<EventCard key={'event-card-key-' + id} eventId={id} userSignedIn={this.props.userSignedIn}/>);
+    return this.props.eventJson.map(function(event){
+      var eventJson = JSON.parse(event);
+      return(<EventCard key={'event-card-key-' + eventJson.id} eventId={eventJson.id} userSignedIn={this.props.userSignedIn} eventJson={eventJson}/>);
     }.bind(this));
   }
   render() {

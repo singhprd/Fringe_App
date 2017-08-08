@@ -38,12 +38,13 @@ class List extends Component {
       var event = JSON.parse(event);
       return event.id === id;
     });
-    return events[0];
+    return JSON.parse(events[0]);
   }
   listEventCardItems(){
     var items = this.props.listItems.map(function(item, index, arr){
-      var eventString = this.getEvent(item.event_id);
-      return <EventCard userSignedIn key={item.event_id} eventId={item.event_id} short={true} positon={item.position} />;
+      var eventJson = this.getEvent(item.event_id);
+      console.log(typeof(eventJson))
+      return <EventCard userSignedIn key={item.event_id} eventId={item.event_id} short={true} positon={item.position} eventJson={eventJson} />;
     }.bind(this));
     return items.sort(function(a, b){return a.props.positon - b.props.positon;});
   }

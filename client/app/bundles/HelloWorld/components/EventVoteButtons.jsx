@@ -7,6 +7,7 @@ export class EventVoteButtons extends Component {
     eventId: PropTypes.number.isRequired,
     voteToBeat: PropTypes.number,
     voteToStayAbove: PropTypes.number,
+    score: PropTypes.number
   };
   constructor(props) {
     super(props);
@@ -39,19 +40,20 @@ export class EventVoteButtons extends Component {
     }
   }
   getVotes() {
-    $.ajax({
-      url: '/events/' + this.props.eventId + '/votes',
-      type: 'GET',
-      data: {id: this.props.eventId},
-      success: function(a, b, c) {
-        var votes = a.votes;
-        this.setState({ score: a.votes });
-        $('#notice').html(a.notice);
-      }.bind(this),
-      error: function() {
-        console.log('failed');
-      }
-    });
+    return this.props.score;
+    // $.ajax({
+    //   url: '/events/' + this.props.eventId + '/votes',
+    //   type: 'GET',
+    //   data: {id: this.props.eventId},
+    //   success: function(a, b, c) {
+    //     var votes = a.votes;
+    //     this.setState({ score: a.votes });
+    //     $('#notice').html(a.notice);
+    //   }.bind(this),
+    //   error: function() {
+    //     console.log('failed');
+    //   }
+    // });
   }
   upvote() {
     $.ajax({

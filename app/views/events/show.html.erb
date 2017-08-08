@@ -1,9 +1,13 @@
 <%= react_component('EventCardContainer', trace: nil,
     props: {
-      eventIds: [@event.id],
+      eventJson: [@event.card_json],
       userSignedIn: !current_user.nil?
     })
 %>
+<!-- .merge!(image_urls: event.image_urls), -->
+<!-- 
+json.merge!(favourited: result = Event.favourited?(current_user, params[:event_id])) if !current_user.nil?
+ -->
 <%= link_to t('.back', :default => t("helpers.links.back")),
               events_path, :class => 'btn btn-default' if current_user.try(:admin?) %>
 
