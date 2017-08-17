@@ -9,10 +9,8 @@ import { Button, ButtonGroup, DropdownButton, MenuItem, ButtonToolbar, Collapse 
 
 export class EventCard extends Component {
   static propTypes = {
-    event: PropTypes.string,
+    eventJson: PropTypes.object,
     userSignedIn: PropTypes.bool,
-    isFavourited: PropTypes.bool,
-    imageUrls: PropTypes.array,
     voteToBeat: PropTypes.number,
     voteToStayAbove: PropTypes.number,
     short: PropTypes.bool,
@@ -34,11 +32,11 @@ export class EventCard extends Component {
   }
   fetchEvent(){
     this.setState({
-        event: this.props.eventJson,
-        venue: this.props.eventJson.venue,
-        imageUrls: this.props.eventJson.image_urls,
-        isFavourited: this.props.eventJson.favourited
-      });
+      event: this.props.eventJson,
+      venue: this.props.eventJson.venue,
+      imageUrls: this.props.eventJson.image_urls,
+      isFavourited: this.props.eventJson.favourited
+    });
 
     // console.log(this.props.eventJson);
     // fetch('/events/' + this.props.eventId + '.json', {
@@ -99,6 +97,9 @@ export class EventCard extends Component {
     this.setState({wellIsOpen: false});
   }
   signedIn(e, v) {
+    if (this.state.event.score === undefined) {
+      return
+    }
     if (this.props.userSignedIn) {
       return (
         <div>

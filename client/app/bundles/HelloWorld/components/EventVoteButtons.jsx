@@ -12,9 +12,8 @@ export class EventVoteButtons extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      score: 0
+      score: this.props.score
     };
-    this.getVotes();
   }
   isSearch() {
     return (window.location.pathname === '/search/results');
@@ -40,7 +39,6 @@ export class EventVoteButtons extends Component {
     }
   }
   getVotes() {
-    return this.props.score;
     // $.ajax({
     //   url: '/events/' + this.props.eventId + '/votes',
     //   type: 'GET',
