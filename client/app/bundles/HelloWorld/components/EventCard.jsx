@@ -21,7 +21,7 @@ export class EventCard extends Component {
       event: {},
       venue: {},
       imageUrls: [],
-      isFavourited: false,
+      isFavourited: true,
       wellContent: [],
       wellIsOpen: false,
     };
@@ -100,6 +100,7 @@ export class EventCard extends Component {
     if (this.state.event.score === undefined) {
       return
     }
+    console.log(this.props.eventJson)
     if (this.props.userSignedIn) {
       return (
         <div>

@@ -37,7 +37,7 @@ class EventTest < ActiveSupport::TestCase
   end
 
   test "check_for_updates" do
-    fb = Fringebot.new("uuid" => "a73342c098fe74dee84822ed2916ca9efdf6b1eb")
+    fb = Fringebot.new("uuid" => "a73342c098fe74dee84822ed2916ca9efdf6b1eb", year: 2017)
     test_event = fb.single_event
     assert_equal("FAKE Schiz", test_event.reload.title)
     
@@ -47,6 +47,13 @@ class EventTest < ActiveSupport::TestCase
     test_event.check_for_updates
     assert_equal("FAKE Schiz", test_event.reload.title)
   end
+
+  # test "json is correct" do
+  #   @event
+  #   render 'api/users/user', user: current_user
+  #   expect(rendered).to match('foo@bar.com')
+  #   raise
+  # end
 
   # test "check_for_updates" do
   #   @event.update_attributes(code: "832")

@@ -40,6 +40,8 @@ class Fringebot
     end
 
     def single_event
+      # year = Event.find_by_uuid(@params["uuid"]).festival_year
+      # binding.pry
       params = @api.event(@params["uuid"])
       find_or_create_venue_and_event(params)
     end

@@ -41,6 +41,10 @@ class Event < ApplicationRecord
     url.split("/").last
   end
 
+  def self.find_by_uuid(uuid)
+    Event.find_by_url("http://api.edinburghfestivalcity.com/events/#{uuid}")
+  end
+
   def to_fringebot_hash
     {
       title: title,
