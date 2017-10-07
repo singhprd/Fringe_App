@@ -31,7 +31,7 @@ development:
   database: fringe_app_development
   pool: 5
   username: myapp
-  password: password1
+  password: thepassword
 
 test:
   adapter: postgresql
@@ -39,4 +39,4 @@ test:
   database: fringe_app_test
   pool: 5
   username: myapp
-  password: password1
+  password: thepassword

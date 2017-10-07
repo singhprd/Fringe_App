@@ -11,7 +11,6 @@ class Event < ApplicationRecord
   has_many :list_items
   has_many :lists, :through => :list_items
 
-
   def upvotes
     votes.where(value: 1).count
   end
@@ -21,6 +20,7 @@ class Event < ApplicationRecord
   end
 
   def tally_votes
+    return 0 if !self.persisted?
     self.score = upvotes - downvotes
     save
     return self.reload.score
@@ -83,3 +83,10 @@ class Event < ApplicationRecord
   #   Event.where(year)
   # end
 end
+
+
+
+
+
+event = Event.new
+event.tally_votes()

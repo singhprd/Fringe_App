@@ -15,11 +15,6 @@ ActiveRecord::Schema.define(version: 20170801225834) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "event_lists", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "events", id: :serial, force: :cascade do |t|
     t.string "age_category"
     t.string "artist"
@@ -43,11 +38,6 @@ ActiveRecord::Schema.define(version: 20170801225834) do
     t.string "last_checked_for_update"
     t.datetime "performances_last_updated"
     t.index ["venue_id"], name: "index_events_on_venue_id"
-  end
-
-  create_table "events_lists", id: false, force: :cascade do |t|
-    t.bigint "event_id", null: false
-    t.bigint "list_id", null: false
   end
 
   create_table "events_searches", id: false, force: :cascade do |t|
