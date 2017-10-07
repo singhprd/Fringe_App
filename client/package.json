@@ -3,8 +3,9 @@
   "version": "0.0.1",
   "private": true,
   "engines": {
-    "node": "8.6.0",
-    "npm": "4.1.1"
+    "node": "^7.8.0 || ^8.0.0",
+    "npm": "^4.4.4 || ^5.0.0",
+    "yarn": "^1.0.0"
   },
   "scripts": {
     "build:test": "webpack --config webpack.config.js",
@@ -26,6 +27,7 @@
     "babel-runtime": "^6.25.0",
     "classnames": "^2.2.5",
     "es5-shim": "^4.5.9",
+    "eslint": "^4.10.0",
     "eslint-plugin-react": "^7.1.0",
     "expose-loader": "^0.7.3",
     "global": "^4.3.2",
@@ -40,5 +42,7 @@
     "turbolinks": "^5.0.3",
     "webpack": "^2.7.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "webpack-dashboard": "^1.0.0"
+  }
 }
