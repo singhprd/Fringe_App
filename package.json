@@ -4,6 +4,7 @@
   "private": true,
   "engines": {
     "node": "8.7.0",
+    "yarn": "^0.21",
     "npm": "4.1.1"
   },
   "scripts": {
