@@ -19,7 +19,7 @@ const config = {
 
   output: {
     filename: 'webpack-bundle.js',
-    path: pathLib.resolve(__dirname, '../app/assets/javascripts'),
+    path: pathLib.resolve(__dirname, '../app/assets/webpack'),
   },
 
   resolve: {
