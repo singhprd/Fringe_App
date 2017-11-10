@@ -56,7 +56,7 @@ gem 'acts_as_list'
 
 gem 'serviceworker-rails'
 
-gem 'webpacker', '~> 3.0'
+# gem 'webpacker', '~> 3.0'
 
 group :test do
   gem "capybara"
