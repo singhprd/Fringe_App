@@ -4,14 +4,14 @@
   "private": true,
   "engines": {
     "node": "8.7.0",
+    "yarn": "^0.21",
     "npm": "4.1.1"
   },
   "scripts": {
     "build:test": "webpack --config webpack.config.js",
     "build:production": "NODE_ENV=production webpack --config webpack.config.js",
     "build:development": "webpack -w --config webpack.config.js",
-    "dashboard": "webpack-dashboard webpack -w --config webpack.config.js",
-    "build:server": "webpack --config webpack.server.rails.build.config.js"
+    "dashboard": "webpack-dashboard webpack -w --config webpack.config.js"
   },
   "cacheDirectories": [
     "node_modules",
