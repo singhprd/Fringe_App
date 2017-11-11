@@ -31,6 +31,7 @@ gem "jbuilder", "~> 2.5"
 # gem 'capistrano-rails', group: :development
 
 gem 'thor'
+gem 'webpacker', '~> 3.0'
 
 # Devise for user auth
 gem "devise"
