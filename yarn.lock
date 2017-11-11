@@ -1038,7 +1038,7 @@ caniuse-db@^1.0.30000529, caniuse-db@^1.0.30000634, caniuse-db@^1.0.30000639:
   version "1.0.30000760"
   resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30000760.tgz#3ea29473eb78a6ccb09f2eb73ac9e1debfec528d"
 
-caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000748, caniuse-lite@^1.0.30000758:
+caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000748, caniuse-lite@^1.0.30000758, caniuse-lite@^1.0.30000760:
   version "1.0.30000760"
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000760.tgz#ec720395742f1c7ec8947fd6dd2604e77a8f98ff"
 
@@ -3207,8 +3207,8 @@ node-pre-gyp@^0.6.39:
     tar-pack "^3.4.0"
 
 node-sass@^4.5.3:
-  version "4.6.0"
-  resolved "https://registry.yarnpkg.com/node-sass/-/node-sass-4.6.0.tgz#1a54f5f4502e3cde310a26d6346266fd667271d9"
+  version "4.6.1"
+  resolved "https://registry.yarnpkg.com/node-sass/-/node-sass-4.6.1.tgz#9b331cf943ee5440f199e858941a90d13bc9bfc5"
   dependencies:
     async-foreach "^0.1.3"
     chalk "^1.1.1"
@@ -5253,7 +5253,7 @@ webpack-sources@^1.0.1:
     source-list-map "^2.0.0"
     source-map "~0.6.1"
 
-webpack@^3.5.5:
+webpack@^3.5.5, webpack@^3.8.1:
   version "3.8.1"
   resolved "https://registry.yarnpkg.com/webpack/-/webpack-3.8.1.tgz#b16968a81100abe61608b0153c9159ef8bb2bd83"
   dependencies:
