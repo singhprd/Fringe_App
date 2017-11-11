@@ -1,6 +1,8 @@
 source "https://rubygems.org"
 ruby "2.4.2"
 
+gem 'webpacker', '~> 3.0'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem "rails", "~> 5.1.2"
 # Use sqlite3 as the database for Active Record
@@ -55,8 +57,6 @@ gem "react_on_rails", "~> 7"
 gem 'acts_as_list'
 
 gem 'serviceworker-rails'
-
-gem 'webpacker', '~> 3.0'
 
 group :test do
   gem "capybara"
