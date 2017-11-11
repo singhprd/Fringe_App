@@ -19,6 +19,7 @@
 /vendor/bundle/*
 /node_modules
 public/assets/**
+public/images/**
 
 # Ignore Byebug command history file.
 .byebug_history
@@ -29,3 +30,10 @@ node_modules
 # Generated js bundles
 /app/assets/webpack/*
 /app/assets/javascripts/webpack-bundle.js
+
+# Generated js bundles
+/public/webpack/
+/public/webpack-test/
+
+# Rubymine/IntelliJ
+.idea
