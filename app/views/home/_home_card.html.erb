@@ -1,6 +1,6 @@
 <%= react_component('EventCardContainer', trace: nil,
     props: {
-      eventJson: @events.map(&:card_json),
+      eventJson: @events.map{|event| event.card_json(current_user)},
       userSignedIn: !current_user.nil?
     })
 %>

@@ -18,40 +18,13 @@ export class EventCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      event: {},
-      venue: {},
-      imageUrls: [],
-      isFavourited: false,
-      wellContent: [],
-      wellIsOpen: false,
-    };
-  }
-  componentDidMount() {
-    this.fetchEvent();
-    this.isFavourited();
-  }
-  fetchEvent(){
-    this.setState({
       event: this.props.eventJson,
       venue: this.props.eventJson.venue,
       imageUrls: this.props.eventJson.image_urls,
-      isFavourited: this.props.eventJson.favourited
-    });
-
-    // console.log(this.props.eventJson);
-    // fetch('/events/' + this.props.eventId + '.json', {
-    //   method: 'get'
-    // }).then(function(response) {
-    //   // Convert to JSON
-    //   return response.json();
-    // }).then(function(data) {
-    //   this.setState({
-    //     event: data,
-    //     venue: data.venue,
-    //     imageUrls: data.image_urls,
-    //     isFavourited: data.favourited
-    //   });
-    // }.bind(this))
+      isFavourited: this.props.eventJson.favourited,
+      wellContent: [],
+      wellIsOpen: false,
+    };
   }
   isFringe(){
     var festival = this.state.event.festival_id;
@@ -154,7 +127,7 @@ export class EventCard extends Component {
         this.setState({isFavourited: true});
       }.bind(this),
       error: function() {
-        // this.isFavourited();
+        console.log("favourite error")
       }
     });
   }
@@ -168,36 +141,7 @@ export class EventCard extends Component {
         this.setState({isFavourited: false});
       }.bind(this),
       error: function() {
-        this.isFavourited();
-      }
-    });
-  }
-  isFavourited() {
-    $.ajax({
-      url: '/events/' + this.state.event.id + '/is_favourited',
-      type: 'GET',
-      data: { event_id: this.state.event.id },
-      success: function(data, status, jqXhrObj) {
-        this.setState({ isFavourited: data.bool });
-      }.bind(this),
-      error: function() {
-        this.isFavourited();
-      }
-    });
-  }
-  checkIsFavourited() {
-    $('[data-toggle="tooltip"]').tooltip();
-    $.ajax({
-      url: '/events/' + this.state.event.id + '/is_favourited',
-      type: 'GET',
-      data: { event_id: this.state.event.id },
-      success: function(data, status, jqXhrObj) {
-        if (data.bool) {
-          this.setState({ isFavourited: 'favourite' });
-        }
-      }.bind(this),
-      error: function() {
-        console.log('checkIsFavourited failed');
+        console.log("unfavourite error")
       }
     });
   }

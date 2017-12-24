@@ -11,6 +11,8 @@ class Event < ApplicationRecord
   has_many :list_items
   has_many :lists, :through => :list_items
 
+  attr_accessor :user
+
   def upvotes
     votes.where(value: 1).count
   end
@@ -26,8 +28,17 @@ class Event < ApplicationRecord
     return self.reload.score
   end
 
-  def card_json
-    return self.to_json(include: :venue, methods: :image_urls)
+  def card_json(current_user)
+    @user = current_user
+    return self.to_json(include: :venue, methods: :favourited)
+  end
+
+  def favourited
+    return false if @user.nil?
+
+    self.favourites.exists?(
+      user_id: @user.id, event_id: self.id
+    )
   end
 
   def self.favourited?(user, event_id)
@@ -83,10 +94,3 @@ class Event < ApplicationRecord
   #   Event.where(year)
   # end
 end
-
-
-
-
-
-event = Event.new
-event.tally_votes()

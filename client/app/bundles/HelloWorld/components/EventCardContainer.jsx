@@ -10,7 +10,14 @@ export class EventCardContainer extends Component {
   eventCards(){
     return this.props.eventJson.map(function(event){
       var eventJson = JSON.parse(event);
-      return(<EventCard key={'event-card-key-' + eventJson.id} eventId={eventJson.id} userSignedIn={this.props.userSignedIn} eventJson={eventJson}/>);
+      return(
+        <EventCard
+          key={'event-card-key-' + eventJson.id}
+          eventId={eventJson.id}
+          userSignedIn={this.props.userSignedIn}
+          eventJson={eventJson}
+        />
+      );
     }.bind(this));
   }
   render() {
