@@ -30,7 +30,10 @@ class Event < ApplicationRecord
 
   def card_json(current_user)
     @user = current_user
-    return self.to_json(include: :venue, methods: :favourited)
+    return self.to_json(
+      include: :venue,
+      methods: [:favourited, :image_urls]
+    )
   end
 
   def favourited
