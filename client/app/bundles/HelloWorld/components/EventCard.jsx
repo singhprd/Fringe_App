@@ -70,6 +70,9 @@ export class EventCard extends Component {
     this.setState({wellIsOpen: false});
   }
   signedIn(e, v) {
+    if (this.props.short === true) {
+      return;
+    }
     if (this.state.event.score === undefined) {
       return
     }
@@ -156,6 +159,9 @@ export class EventCard extends Component {
     );
   }
   mainPanel(e,v){
+    if (this.props.short === true) {
+      return;
+    }
     const imageUrls = this.state.imageUrls;
     return(
       <div className="row">
@@ -199,11 +205,18 @@ export class EventCard extends Component {
       this.signedIn(e, v)
     );
   }
+  isShort(){
+    if (this.props.short === true) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   render() {
     var e = this.state.event;
     var v = this.state.venue;
     return (
-      <div className="panel panel-primary home_card text-info" id={this.state.id}>
+      <div className={"panel panel-primary home_card text-info "  + (this.isShort() ? 'event-list-item' : '')} id={this.state.id}>
         <div className={'panel-heading ' + (this.state.isFavourited ? 'favourite' : '')}>
           <h3 className="panel-title">
             <a href={'/events/' + e.id}>{e.title}</a>

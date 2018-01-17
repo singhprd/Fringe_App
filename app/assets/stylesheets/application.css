@@ -201,3 +201,7 @@ a {
     color: inherit;
     text-decoration: none;
 }
+
+.event-list-item {
+  margin-right: 25vw;
+}
