@@ -69,6 +69,9 @@ class List extends Component {
     });
   }
   swapPositon(oldIndex, newIndex, listId) {
+    oldIndex = oldIndex + 1;
+    newIndex = newIndex + 1;
+    console.log(oldIndex, newIndex)
     $.ajax({
       type: "POST",
       url: "/lists/swap_items",
