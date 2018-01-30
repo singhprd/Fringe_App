@@ -159,13 +159,14 @@ export class EventCard extends Component {
     );
   }
   mainPanel(e,v){
+    const imageUrls = this.state.imageUrls;
+
     if (this.props.short === true) {
       return;
     }
-    const imageUrls = this.state.imageUrls;
+
     return(
       <div className="row">
-
         <div className="col-xs-2 col-sm-2" id="carousel-box">
           <ImageCarousel imageUrls={imageUrls} eventId={e.id} />
         </div>
@@ -212,6 +213,18 @@ export class EventCard extends Component {
       return false;
     }
   }
+  containerContent(event, venue){
+    if (this.props.short === true) {
+      return;
+    }
+    return (
+    <div className="container-fluid" id="home-card">
+      {this.mainPanel(event,venue)}
+      {this.description(event,venue)}
+      {this.buttonBar(event,venue)}
+    </div>
+    )
+  }
   render() {
     var e = this.state.event;
     var v = this.state.venue;
@@ -223,12 +236,8 @@ export class EventCard extends Component {
           </h3>
         </div>
 
-        <div className="container-fluid" id="home-card">
+        {this.containerContent(e,v)}
 
-          {this.mainPanel(e,v)}
-          {this.description(e,v)}
-          {this.buttonBar(e,v)}
-        </div>
       </div>
     );
   }

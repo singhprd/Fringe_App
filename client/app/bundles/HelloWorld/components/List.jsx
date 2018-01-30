@@ -40,6 +40,9 @@ class List extends Component {
   state = {
     items: this.listEventCardItems()
   };
+  componentDidMount(){
+    console.log(this.state)
+  }
   getEvent(id) {
     var events = this.props.events.filter(function(event) {
       var event = JSON.parse(event);
@@ -71,7 +74,7 @@ class List extends Component {
   swapPositon(oldIndex, newIndex, listId) {
     oldIndex = oldIndex + 1;
     newIndex = newIndex + 1;
-    console.log(oldIndex, newIndex)
+
     $.ajax({
       type: "POST",
       url: "/lists/swap_items",
@@ -84,12 +87,19 @@ class List extends Component {
       items: arrayMove(this.state.items, oldIndex, newIndex)
     });
   };
+  handleShouldCancelStart(e){
+    if (e.path[0].tagName.toLowerCase() === 'a'){
+      return true;
+    } else {
+      return false;
+    }
+  }
   render() {
     return (
       <div className="container">
         <div className="row">
           <div className="col-xs-8">
-            <SortableList items={this.state.items} onSortEnd={this.onSortEnd} />
+            <SortableList items={this.state.items} onSortEnd={this.onSortEnd} shouldCancelStart={this.handleShouldCancelStart}/>
           </div>
         </div>
       </div>
