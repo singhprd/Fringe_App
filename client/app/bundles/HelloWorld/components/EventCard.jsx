@@ -5,6 +5,7 @@ import EventFavouriteStatus from './EventFavouriteStatus.jsx';
 import PerformancesPanel from './PerformancesPanel.jsx';
 import ImageCarousel from './ImageCarousel.jsx';
 import ListPanel from './ListPanel.jsx';
+import EventWell from './EventWell.jsx';
 import { Button, ButtonGroup, DropdownButton, MenuItem, ButtonToolbar, Collapse } from 'react-bootstrap';
 
 export class EventCard extends Component {
@@ -25,14 +26,6 @@ export class EventCard extends Component {
       wellContent: [],
       wellIsOpen: false,
     };
-  }
-  isFringe(){
-    var festival = this.state.event.festival_id;
-    if(festival === 'demofringe' || festival === 'fringe'){
-      return true;
-    } else {
-      return false;
-    }
   }
   expandPanel(performancesTable){
     return(
@@ -97,11 +90,14 @@ export class EventCard extends Component {
                 wellContent={this.wellContent}
                 closeWell={this.closeWell}
                 eventId={this.state.event.id}
-                isFringe={this.isFringe()}
               />
             </ButtonGroup>
             {this.ListPanel()}
           </ButtonToolbar>
+
+          <EventWell/>
+
+          
           <Collapse in={this.state.wellIsOpen}>
             <div className='' id={'performances_for_event' + this.state.event.id}>
               <div className='well well-sm' id="well-content-box">

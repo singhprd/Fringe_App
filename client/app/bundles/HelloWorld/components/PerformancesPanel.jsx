@@ -31,6 +31,14 @@ export class PerformancesPanel extends Component {
       this.props.closeWell();
     }
   }
+  isFringe(){
+    var festival = this.state.event.festival_id;
+    if(festival === 'demofringe' || festival === 'fringe'){
+      return true;
+    } else {
+      return false;
+    }
+  }
   getPerformances(){
     this.props.wellContent(this.performancesTable());
     if (this.state.hasData === true) {
@@ -61,7 +69,7 @@ export class PerformancesPanel extends Component {
     var endDate = moment(endDateString, 'YYYY-MM-DD HH-mm-ss');
     var hour = startDate.hour();
     var message = '';
-    if (hour >= 0 && hour < 6 && this.props.isFringe == true) {
+    if (hour >= 0 && hour < 6 && this.isFringe() == true) {
       startDate.subtract(1, 'days');
       message = 'The Fringe day runs from 06:00 to 05:59, and events that start in the early hours of the morning are listed as though they are on the day before.';
     }
