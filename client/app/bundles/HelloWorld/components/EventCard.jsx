@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import EventVoteButtons from './EventVoteButtons.jsx';
 import EventFavouriteStatus from './EventFavouriteStatus.jsx';
 import PerformancesPanel from './PerformancesPanel.jsx';
+import MapPanel from './MapPanel.jsx';
 import ImageCarousel from './ImageCarousel.jsx';
 import ListPanel from './ListPanel.jsx';
 import EventWell from './EventWell.jsx';
@@ -23,8 +24,9 @@ export class EventCard extends Component {
       venue: this.props.eventJson.venue,
       imageUrls: this.props.eventJson.image_urls,
       isFavourited: this.props.eventJson.favourited,
-      wellContent: [],
-      wellIsOpen: false,
+      wellContentString: "",
+      wellContent: null,
+      wellOpen: false
     };
   }
   expandPanel(performancesTable){
@@ -47,9 +49,6 @@ export class EventCard extends Component {
       </div>
     );
   }
-  wellContent = (content) => {
-    this.setState({wellContent: content, wellIsOpen: true});
-  }
   ListPanel(){
     if (!(this.props.short === true)) {
       return(
@@ -58,9 +57,6 @@ export class EventCard extends Component {
     // else {
     //   return <button type="button" className="btn btn-default">Remove from List</button>
     // }
-  }
-  closeWell = () => {
-    this.setState({wellIsOpen: false});
   }
   signedIn(e, v) {
     if (this.props.short === true) {
@@ -86,25 +82,30 @@ export class EventCard extends Component {
                 isFavourited={this.state.isFavourited}
                 eventId={this.props.eventId}
               />
-              <PerformancesPanel
-                wellContent={this.wellContent}
-                closeWell={this.closeWell}
-                eventId={this.state.event.id}
-              />
+
+                <button
+                  onClick={() => this.requestWell("calendar")}
+                  className='btn btn-default'
+                  type='button'
+                  >
+                  🗓️
+                  </button>
+
+                  <button
+                  onClick={() => this.requestWell("map")}
+                  className='btn btn-default'
+                  type='button'
+                  >
+                  📍
+                  </button>
+
+
             </ButtonGroup>
             {this.ListPanel()}
           </ButtonToolbar>
 
-          <EventWell/>
-
-          
-          <Collapse in={this.state.wellIsOpen}>
-            <div className='' id={'performances_for_event' + this.state.event.id}>
-              <div className='well well-sm' id="well-content-box">
-                {this.state.wellContent}
-              </div>
-            </div>
-          </Collapse>
+          <EventWell open={this.state.wellOpen} content={this.state.wellContent}/>
+  
         </div>
       );
     } else {
@@ -114,6 +115,32 @@ export class EventCard extends Component {
           <a href="/users/sign_in" type="button" className="btn btn-default">Sign In To Vote</a>
         </div>
       );
+    }
+  }
+  requestWell(requestType) {
+    // Close the well if it is already open
+    if (this.state.wellContentString ===  requestType) {
+      this.setState({wellOpen: false, wellContentString: "null"});
+      return;
+    }
+
+    this.setState({wellOpen: true})
+
+    switch(requestType) {
+    case "calendar":
+        this.setState({
+          wellContent:  <PerformancesPanel eventId={this.state.event.id}/>,
+          wellContentString: requestType
+          })
+        break;
+    case "map":
+        this.setState({
+          wellContent:  <MapPanel/>,
+          wellContentString: requestType
+          })
+        break;
+    default:
+        console.log("other")
     }
   }
   favourite = (eventId) => {

@@ -4,15 +4,15 @@ import { Button, ButtonGroup, DropdownButton, MenuItem, ButtonToolbar, Collapse 
 
 export class EventWell extends Component {
   static propTypes = {
-    // eventIds: PropTypes.array,
-    // userSignedIn: PropTypes.bool,
+    open: PropTypes.bool,
+    content: PropTypes.element,
   };
   render() {
     return (
-        <Collapse in={true}>
+        <Collapse in={this.props.open}>
             <div className='' id={'performances_for_event'}>
               <div className='well well-sm' id="well-content-box">
-                hello
+                {this.props.content}
               </div>
             </div>
           </Collapse>

@@ -5,8 +5,6 @@ var moment = require('moment');
 export class PerformancesPanel extends Component {
   static propTypes = {
     eventId: PropTypes.number,
-    wellContent: PropTypes.func,
-    closeWell: PropTypes.func,
   };
   constructor(props) {
     super(props);
@@ -17,19 +15,11 @@ export class PerformancesPanel extends Component {
     };
   }
   componentDidMount(){
+      this.getPerformances();
     $('td').tooltip();
   }
   componentDidUpdate(){
     $('td').tooltip();
-  }
-  handleCalendarClick(){
-    if (this.state.open === false) {
-      this.setState({open: true});
-      this.getPerformances();
-    } else {
-      this.setState({open: false});
-      this.props.closeWell();
-    }
   }
   isFringe(){
     var festival = this.state.event.festival_id;
@@ -40,15 +30,10 @@ export class PerformancesPanel extends Component {
     }
   }
   getPerformances(){
-    this.props.wellContent(this.performancesTable());
-    if (this.state.hasData === true) {
-      return;
-    }
     var promise = $.getJSON('/events/' + this.props.eventId + '/performances');
 
     promise.done(function(data) {
       this.setState({performances: data, hasData: true});
-      this.props.wellContent(this.performancesTable());
     }.bind(this));
   }
   fringePrice(price){
@@ -123,33 +108,9 @@ export class PerformancesPanel extends Component {
   }
   render() {
     return (
-      <button onClick={this.handleCalendarClick.bind(this)} className='btn btn-default' type='button' data-toggle='collapse' data-target={'#performances_for_event' + this.props.eventId} aria-expanded='false' aria-controls={'performances_for_event' + this.props.eventId}>
-      🗓️
-      </button>
+      this.performancesTable()
     );
   }
 }
 
 module.exports = PerformancesPanel;
-// <th>Price</th>
-// <th>Concession</th>
-
-
-// <div className='collapse' id={'performances_for_event' + this.props.eventId}>
-
-// <div className='well well-sm'>
-// <table className='table table-condensed'>
-//  <thead>
-//    <tr>
-//      <th>Date</th>
-//      <th>Start Time</th>
-//      <th>End Time</th>
-//    </tr>
-//  </thead>
-//  <tbody>
-//    {this.performancesTable()}
-//  </tbody>
-// </table>
-// </div>
-// </div>
-// </div>
