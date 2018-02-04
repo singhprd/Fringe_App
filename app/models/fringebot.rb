@@ -49,12 +49,20 @@ class Fringebot
     end
 
     def query_api
-      @api.events(
+      query_params = {
         title: put_in_quotes(@params["title_string"]),
         festival: @params["festival_string"],
         year: @params["year"],
         artist: put_in_quotes(@params["artist"]),
         code: @params["code"]
+      }
+
+      # Delete nil values passed from search form
+      query_params.delete_if { |k, v| v.nil? }
+
+      # Use festivals_lab to actually search the api
+      @api.events(
+        query_params
         )
     end
 
