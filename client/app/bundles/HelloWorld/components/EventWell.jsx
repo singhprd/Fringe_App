@@ -6,16 +6,15 @@ export class EventWell extends Component {
   static propTypes = {
     open: PropTypes.bool,
     content: PropTypes.element,
+    eventId: PropTypes.number,
   };
   render() {
     return (
         <Collapse in={this.props.open}>
-            <div className='' id={'performances_for_event'}>
-              <div className='well well-sm' id="well-content-box">
-                {this.props.content}
-              </div>
-            </div>
-          </Collapse>
+          <div className='well well-sm' id="well-content-box">
+            {this.props.content}
+          </div>
+        </Collapse>
     );
   }
 }

@@ -135,13 +135,16 @@ export class EventCard extends Component {
         break;
     case "map":
         this.setState({
-          wellContent:  <MapPanel/>,
+          wellContent:  <MapPanel position={this.position()}/>,
           wellContentString: requestType
           })
         break;
     default:
         console.log("other")
     }
+  }
+  position() {
+    return {lat: this.state.event.latitude, lng: this.state.event.longitude}
   }
   favourite = (eventId) => {
     this.setState({isFavourited: true});
