@@ -135,7 +135,7 @@ export class EventCard extends Component {
         break;
     case "map":
         this.setState({
-          wellContent:  <MapPanel position={this.position()}/>,
+          wellContent:  <MapPanel coords={this.coords()}/>,
           wellContentString: requestType
           })
         break;
@@ -143,7 +143,7 @@ export class EventCard extends Component {
         console.log("other")
     }
   }
-  position() {
+  coords() {
     return {lat: this.state.event.latitude, lng: this.state.event.longitude}
   }
   favourite = (eventId) => {

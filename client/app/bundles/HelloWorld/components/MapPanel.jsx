@@ -1,45 +1,68 @@
 // https://www.npmjs.com/package/google-maps-react
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react'; 
+import {Gmaps, Marker, InfoWindow, Circle} from 'react-gmaps';
+  
+const params = {v: '3.exp', key: 'AIzaSyDiKvrb_NLftxFX2UHIfXlPY0vhh4baQrw'};
  
-  const style = {
-    width: '100%',
-    height: '400px',
-    position: 'relative'
+export class MapPanel extends Component { 
+  onMapCreated(map) {
+    map.setOptions({
+      disableDefaultUI: false,
+      fullScreenControl: true,
+      panControl: true,
+      zoomControl: true,
+      mapTypeControl: false,
+      scaleControl: false,
+      streetViewControl: true,
+      overviewMapControl: true,
+      rotateControl: true
+    });
   }
-  const mapStyle = {
-  height: '100%',
-  width: '100%',
-  margin: '0px',
-  padding: '0px'
+ 
+  onDragEnd(e) {
+    console.log('onDragEnd', e);
   }
-
-  // Buggy and rubbish. Doesn't load more than one map. Replace soon.
-export class MapPanel extends Component {
-render() {
+ 
+  onCloseClick() {
+    console.log('onCloseClick');
+  }
+ 
+  onClick(e) {
+    console.log('onClick', e);
+  }
+ 
+  render() {
     return (
-      <div style={style}>
-          <Map
-          resetBoundsOnResize
-          google={window.google}
-          style={mapStyle}
-          initialCenter={this.props.position}
-          zoom={15}
-          fullscreenControl={true}
-          scrollwheel={false}
-          >
-         <Marker
-            title={'The marker`s title will appear as a tooltip.'}
-            name={'SOMA'}
-            position={this.props.position} />
-      </Map>
-      </div>
+      <Gmaps
+        width={'100%'}
+        height={'300px'}
+        lat={this.props.coords.lat}
+        lng={this.props.coords.lng}
+        zoom={15}
+        loadingMessage={'Be happy'}
+        params={params}
+        onMapCreated={this.onMapCreated}>
+        <Marker
+          lat={this.props.coords.lat}
+          lng={this.props.coords.lng}
+          draggable={true}
+          onDragEnd={this.onDragEnd} />
+      </Gmaps>
     );
   }
-}
-
-export default GoogleApiWrapper({
-  apiKey: ("AIzaSyDiKvrb_NLftxFX2UHIfXlPY0vhh4baQrw")
-})(MapPanel)
  
+};
+ 
+module.exports = MapPanel;
+
+// <InfoWindow
+//      lat={this.props.coords.lat}
+//      lng={this.props.coords.lng}
+//      content={'Hello, React :)'}
+//      onCloseClick={this.onCloseClick} />
+//    <Circle
+//      lat={this.props.coords.lat}
+//      lng={this.props.coords.lng}
+//      radius={500}
+//      onClick={this.onClick} />
