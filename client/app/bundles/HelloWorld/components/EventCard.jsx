@@ -4,6 +4,7 @@ import EventVoteButtons from './EventVoteButtons.jsx';
 import EventFavouriteStatus from './EventFavouriteStatus.jsx';
 import PerformancesPanel from './PerformancesPanel.jsx';
 import MapPanel from './MapPanel.jsx';
+import CommentsPanel from './CommentsPanel.jsx';
 import ImageCarousel from './ImageCarousel.jsx';
 import ListPanel from './ListPanel.jsx';
 import EventWell from './EventWell.jsx';
@@ -99,12 +100,21 @@ export class EventCard extends Component {
                   📍
                   </button>
 
+                  <button
+                  onClick={() => this.requestWell("comments")}
+                  className='btn btn-default'
+                  type='button'
+                  >
+                  💭
+                  </button>
+
 
             </ButtonGroup>
             {this.ListPanel()}
           </ButtonToolbar>
 
           <EventWell open={this.state.wellOpen} content={this.state.wellContent}/>
+          <EventWell open={true} content={<CommentsPanel />}/>
   
         </div>
       );
@@ -139,6 +149,12 @@ export class EventCard extends Component {
           wellContentString: requestType
           })
         break;
+    case "comments":
+      this.setState({
+        wellContent:  <CommentsPanel />,
+        wellContentString: requestType
+        })
+    break;
     default:
         console.log("other")
     }

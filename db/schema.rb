@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170801225834) do
+ActiveRecord::Schema.define(version: 20180209201251) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comments", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "event_id"
+    t.text "text"
+    t.integer "in_reply_to"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_comments_on_event_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
 
   create_table "events", id: :serial, force: :cascade do |t|
     t.string "age_category"
@@ -195,6 +206,8 @@ ActiveRecord::Schema.define(version: 20170801225834) do
     t.index ["user_id"], name: "index_votes_on_user_id"
   end
 
+  add_foreign_key "comments", "events"
+  add_foreign_key "comments", "users"
   add_foreign_key "events", "venues"
   add_foreign_key "favourites", "events"
   add_foreign_key "favourites", "users"
