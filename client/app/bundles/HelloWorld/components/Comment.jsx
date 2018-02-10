@@ -4,12 +4,13 @@ import PropTypes from "prop-types";
 
 export class Comment extends Component {
 	static propTypes = {
-		text: PropTypes.string
+		text: PropTypes.string,
+		username: PropTypes.string
 	};
 	render() {
 		return (
 			<div>
-				<h5>Peter says:</h5>
+				<h5>{this.props.username} says:</h5>
 				<p>{this.props.text}</p>
 			</div>
 		);

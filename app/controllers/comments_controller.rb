@@ -28,9 +28,6 @@ class CommentsController < ApplicationController
   def create
     # TODO add in_reply_to
   	# in_reply_to = comment_params[:in_reply_to]
-    puts "batman"
-    puts comment_params
-
     @comment = Comment.new(comment_params)
     @comment.user = current_user
 

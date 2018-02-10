@@ -28,7 +28,7 @@ export class CommentsPanel extends Component {
 			success: function(data, b, c) {
 				Object.keys(data).map(function(comment) {
 					this.setState({comments: this.state.comments.concat(
-						[<Comment key={"comment" + data[comment]["id"]} text={data[comment]["text"]}/>]
+						[<Comment key={"comment" + data[comment]["id"]} username={data[comment]["user"]["username"]} text={data[comment]["text"]} />]
 					)});
 				}.bind(this));
 			}.bind(this),

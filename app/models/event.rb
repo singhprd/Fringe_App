@@ -37,6 +37,10 @@ class Event < ApplicationRecord
     )
   end
 
+  def comments_json
+    self.comments.to_json(:include => { :user => {:only => :username} } ) 
+  end
+
   def favourited
     return false if @user.nil?
 
