@@ -28,6 +28,9 @@ class CommentsController < ApplicationController
   def create
     # TODO add in_reply_to
   	# in_reply_to = comment_params[:in_reply_to]
+    puts "batman"
+    puts comment_params
+
     @comment = Comment.new(comment_params)
     @comment.user = current_user
 
@@ -77,7 +80,7 @@ class CommentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def comment_params
-      params.permit(:"event_id")
+      params.permit(:"event_id", :"text", :"in_reply_to")
       # params.fetch(:comment, {})
     end
 end

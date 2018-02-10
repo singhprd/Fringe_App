@@ -7,7 +7,7 @@ class EventsController < ApplicationController
 
     # GET /events/1/comments
   def comments
-    comments = @events.comments
+    comments = @event.comments
     render json: comments.to_json
   end
 

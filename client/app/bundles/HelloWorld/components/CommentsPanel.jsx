@@ -6,14 +6,43 @@ import PropTypes from "prop-types";
 
 export class CommentsPanel extends Component {
 	static propTypes = {
-		eventId: PropTypes.number,
+		eventId: PropTypes.number
 	};
+	constructor(props) {
+		super(props);
+		this.state = {
+			comments: []
+		};
+	}
+	componentDidMount() {
+		this.getComments();
+	}
+	refreshComments() {
+		this.state.comments = [];
+		this.getComments();
+	}
+	getComments() {
+		$.ajax({
+			url: "/events/" + this.props.eventId + "/comments",
+			type: "GET",
+			success: function(data, b, c) {
+				Object.keys(data).map(function(comment) {
+					this.setState({comments: this.state.comments.concat(
+						[<Comment key={"comment" + data[comment]["id"]} text={data[comment]["text"]}/>]
+					)});
+				}.bind(this));
+			}.bind(this),
+			error: function() {
+				console.log("failed to create comment");
+			}
+		});
+	}
 	render() {
 		return (
 			<div>
 				<h4>What did you think?</h4>
-				<Comment />
-				<CommentReplyBox eventId={this.props.eventId}/>
+				{this.state.comments}
+				<CommentReplyBox eventId={this.props.eventId} refreshComments={this.refreshComments.bind(this)} />
 			</div>
 		);
 	}

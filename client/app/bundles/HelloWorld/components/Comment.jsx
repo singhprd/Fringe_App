@@ -1,15 +1,18 @@
 // https://www.npmjs.com/package/google-maps-react
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 export class Comment extends Component {
-  render() {
-    return (
-      <div>
-      	<h5>Peter says:</h5>
-      	<p>Comment</p>
-      </div>
-      );
-  }
+	static propTypes = {
+		text: PropTypes.string
+	};
+	render() {
+		return (
+			<div>
+				<h5>Peter says:</h5>
+				<p>{this.props.text}</p>
+			</div>
+		);
+	}
 }
 module.exports = Comment;
