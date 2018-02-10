@@ -5,20 +5,22 @@ import CommentReplyBox from "./CommentReplyBox.jsx";
 import PropTypes from "prop-types";
 
 export class CommentsPanel extends Component {
-	static propTypes = {
-		eventId: PropTypes.number
-	};
 	constructor(props) {
 		super(props);
 		this.state = {
-			comments: []
+			comments: [],
+			showAll: false,
 		};
 	}
+	static propTypes = {
+		eventId: PropTypes.number
+	};
 	componentDidMount() {
 		this.getComments();
 	}
 	refreshComments() {
 		this.state.comments = [];
+		this.setState({showAll: true})
 		this.getComments();
 	}
 	getComments() {
@@ -30,18 +32,37 @@ export class CommentsPanel extends Component {
 					this.setState({comments: this.state.comments.concat(
 						[<Comment key={"comment" + data[comment]["id"]} username={data[comment]["user"]["username"]} text={data[comment]["text"]} />]
 					)});
-				}.bind(this));
+			}.bind(this));
 			}.bind(this),
 			error: function() {
 				console.log("failed to create comment");
 			}
 		});
 	}
+	showAllComments() {
+		this.setState({showAll: true});
+		this.showAllButtonText.style.visibility = "hidden";
+	}
+	showAllButton() {
+		if ((this.state.comments.length <= 3) && (this.state.showAll == false)) {
+			return;
+		} else {
+			return( <a ref={(a) => { this.showAllButtonText = a; }} onClick={this.showAllComments.bind(this)} >Show all</a> )
+		}
+	}
+	comments() {
+		if (this.state.showAll == true) {
+			return(this.state.comments)
+		} else {
+			return(this.state.comments.slice(0, 3))
+		}
+	}
 	render() {
 		return (
 			<div>
 				<h4>What did you think?</h4>
-				{this.state.comments}
+				{this.comments()}
+				{this.showAllButton()}
 				<CommentReplyBox eventId={this.props.eventId} refreshComments={this.refreshComments.bind(this)} />
 			</div>
 		);
