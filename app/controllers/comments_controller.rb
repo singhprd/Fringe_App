@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
   protect_from_forgery with: :null_session
+  before_action :authenticate_user!
 
   # GET /comments
   # GET /comments.json
@@ -25,12 +26,14 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
-  	# user = current_user
-  	# event = comment_params[:event_id]
-  	# text = comment_params[:text]
+    # TODO add in_reply_to
   	# in_reply_to = comment_params[:in_reply_to]
     @comment = Comment.new(comment_params)
-    render json: {"cat" => "dog"}, status: 200
+    @comment.user = current_user
+
+    @comment.save!
+
+    render json: {"valid" => @comment.valid?}, status: 200
 
 
     # respond_to do |format|
@@ -74,6 +77,7 @@ class CommentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def comment_params
-      params.fetch(:comment, {})
+      params.permit(:"event_id")
+      # params.fetch(:comment, {})
     end
 end

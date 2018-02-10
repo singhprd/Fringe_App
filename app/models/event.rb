@@ -10,6 +10,7 @@ class Event < ApplicationRecord
   has_and_belongs_to_many :searches
   has_many :list_items
   has_many :lists, :through => :list_items
+  has_many :comments
 
   attr_accessor :user
 

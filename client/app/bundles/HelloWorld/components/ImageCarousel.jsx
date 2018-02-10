@@ -21,7 +21,7 @@ export class ImageCarousel extends Component {
   }
   render() {
     return (
-      <div id="myCarousel" className="carousel slide" data-ride="carousel">
+      <div id="myCarousel" className="carousel slide" data-interval="false">
         <div className="carousel-inner">
           {this.items()}
         </div>

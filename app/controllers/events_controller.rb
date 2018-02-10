@@ -1,8 +1,15 @@
 require 'json'
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_event, only: [:show, :edit, :update, :destroy, :comments]
   before_action :check_admin, only: [:destroy, :update, :edit]
   protect_from_forgery with: :null_session
+  before_action :authenticate_user!, only: [:comments]
+
+    # GET /events/1/comments
+  def comments
+    comments = @events.comments
+    render json: comments.to_json
+  end
 
   # GET /events
   # GET /events.json

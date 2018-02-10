@@ -19,6 +19,7 @@ Rails.application.routes.draw do
 
   root 'home#welcome'
 
+  get '/events/:id/comments' => 'events#comments'
   get '/events/:id/is_favourited' => 'events#is_favourited'
   get '/admin/panel' => 'admin#panel'
   get '/events/:id/votes' => 'events#votes'
