@@ -40,7 +40,7 @@ export class MapPanel extends Component {
         lat={this.props.coords.lat}
         lng={this.props.coords.lng}
         zoom={15}
-        loadingMessage={'Be happy'}
+        loadingMessage={'Loading...'}
         params={params}
         onMapCreated={this.onMapCreated}>
         <Marker
