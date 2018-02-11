@@ -20,7 +20,7 @@ export class CommentsPanel extends Component {
 	}
 	refreshComments() {
 		this.state.comments = [];
-		this.setState({showAll: true})
+		this.setState({showAll: true});
 		this.getComments();
 	}
 	getComments() {
@@ -44,7 +44,10 @@ export class CommentsPanel extends Component {
 		this.showAllButtonText.style.visibility = "hidden";
 	}
 	showAllButton() {
-		if ((this.state.comments.length <= 3) && (this.state.showAll == false)) {
+		if (this.state.comments.length <= 3) {
+			return;
+		}
+		if (this.state.showAll == true) {
 			return;
 		} else {
 			return( <a ref={(a) => { this.showAllButtonText = a; }} onClick={this.showAllComments.bind(this)} >Show all</a> )
