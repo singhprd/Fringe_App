@@ -33,26 +33,12 @@ class Event < ApplicationRecord
     @user = current_user
     return self.to_json(
       include: :venue,
-      methods: [:favourited, :image_urls]
+      methods: [:favourited, :image_urls],
     )
   end
 
-  # def as_json(options={})
-    # super(:include => {:comments => {:methods => [:votes, :current_user_comment_vote]} } )
-  # end
-
-
-  def comments_json
-    self.comments.to_json(
-      :include => {
-        :comments => {:methods => [:votes, :current_user_comment_vote, :username]}
-      }
-      # :include => { :user => {:only => :username} }
-    ) 
-  end
-
-  def user_vote
-    current_user.id
+  def comments_json(current_user)
+    self.comments.as_json(current_user)
   end
 
   def favourited

@@ -15,12 +15,34 @@ export class CommentVotesBox extends Component {
     // eventId: PropTypes.number,
     // refreshComments: PropTypes.func
   };
+  topButton(){
+    if (this.props.user_vote == "1") {
+      return(
+        <div>😊</div>
+      )
+    } else {
+      return  (
+        <div>⬆️</div>
+        )
+    }
+  }
+  bottomButton(){
+    if (this.props.user_vote == "-1") {
+      return(
+        <div>😠</div>
+      )
+    } else {
+      return  (
+        <div>⬇️</div>
+        )
+    }
+  }
   render() {
     return (
       <div className="col-2">
-        ⬆️
-        0
-        ⬇️
+        {this.topButton()}
+        <div>[{this.props.votes}]</div>
+        {this.bottomButton()}
       </div>
     );
   }

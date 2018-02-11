@@ -7,8 +7,14 @@ class EventsController < ApplicationController
 
     # GET /events/1/comments
   def comments
-    comments = @event.comments_json
-    render json: comments
+    # puts Comment.event_json(@event, current_user)
+
+    comments_json = @event.comments.map{|comment| 
+      comment.comment_json_with_user_vote(current_user)
+    }
+
+    # comments = @event.comments_json(current_user)
+    render json: comments_json
   end
 
   # GET /events

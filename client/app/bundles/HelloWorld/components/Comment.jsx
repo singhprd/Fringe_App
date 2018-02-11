@@ -11,8 +11,8 @@ export class Comment extends Component {
     };
   }
 	static propTypes = {
-		text: PropTypes.string,
-		username: PropTypes.string
+		// votes: PropTypes.string,
+		// username: PropTypes.string
 	};
 	expandPanel() {
 		this.setState({expanded: true})
@@ -26,15 +26,15 @@ export class Comment extends Component {
 		return (
 			<div className="panel panel-primary" onClick={this.expandPanel.bind(this)}>
 				<div className="panel-heading comment-panel">
-					<h5 className="panel-title">{this.props.username} says:</h5>
+					<h5 className="panel-title">{this.props.comment.user.username} says:</h5>
 				</div>
 				<div className="container-fluid" id="comment-card">
 				  <div className="row"  id="comment-card">
 				    <div className="col-xs-1">
-				      <CommentVotesBox />
+				      <CommentVotesBox votes={this.props.comment.votes} user_vote={this.props.user_vote} />
 				    </div>
-				    <div className="col-xs-1">
-				      {this.props.text}
+				    <div className="col-xs-10">
+				      {this.props.comment.text}
 				    </div>
 				  </div>	
 				</div>
