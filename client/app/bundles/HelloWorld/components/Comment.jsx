@@ -29,10 +29,12 @@ export class Comment extends Component {
 				</div>
 				<div className="container-fluid" id="home-card">
 					{this.props.text}
-					{this.replies()}
+					
 				</div>
 			</div>
 		);
 	}
 }
 module.exports = Comment;
+
+// {this.replies()}
