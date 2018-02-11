@@ -37,8 +37,22 @@ class Event < ApplicationRecord
     )
   end
 
+  # def as_json(options={})
+    # super(:include => {:comments => {:methods => [:votes, :current_user_comment_vote]} } )
+  # end
+
+
   def comments_json
-    self.comments.to_json(:include => { :user => {:only => :username} } ) 
+    self.comments.to_json(
+      :include => {
+        :comments => {:methods => [:votes, :current_user_comment_vote, :username]}
+      }
+      # :include => { :user => {:only => :username} }
+    ) 
+  end
+
+  def user_vote
+    current_user.id
   end
 
   def favourited

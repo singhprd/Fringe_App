@@ -1,6 +1,7 @@
 // https://www.npmjs.com/package/google-maps-react
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import CommentVotesBox from "./CommentVotesBox.jsx";
 
 export class Comment extends Component {
 	  constructor(props) {
@@ -27,9 +28,15 @@ export class Comment extends Component {
 				<div className="panel-heading comment-panel">
 					<h5 className="panel-title">{this.props.username} says:</h5>
 				</div>
-				<div className="container-fluid" id="home-card">
-					{this.props.text}
-					
+				<div className="container-fluid" id="comment-card">
+				  <div className="row"  id="comment-card">
+				    <div className="col-xs-1">
+				      <CommentVotesBox />
+				    </div>
+				    <div className="col-xs-1">
+				      {this.props.text}
+				    </div>
+				  </div>	
 				</div>
 			</div>
 		);
@@ -38,3 +45,7 @@ export class Comment extends Component {
 module.exports = Comment;
 
 // {this.replies()}
+
+// <CommentVotesBox />
+
+// {this.props.text}

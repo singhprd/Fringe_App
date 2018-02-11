@@ -28,6 +28,7 @@ export class CommentsPanel extends Component {
 			url: "/events/" + this.props.eventId + "/comments",
 			type: "GET",
 			success: function(data, b, c) {
+				console.log(data)
 				Object.keys(data).map(function(comment) {
 					this.setState({comments: this.state.comments.concat(
 						[<Comment key={"comment" + data[comment]["id"]} username={data[comment]["user"]["username"]} text={data[comment]["text"]} />]
