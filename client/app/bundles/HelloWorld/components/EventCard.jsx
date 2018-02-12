@@ -115,21 +115,6 @@ export class EventCard extends Component {
 
           <EventWell open={this.state.wellOpen} content={this.state.wellContent}/>
 
-
-
-
-          <EventWell open={true} content={<CommentsPanel eventId={this.state.event.id}/>}/>
-
-
-
-
-
-
-
-
-
-          
-  
         </div>
       );
     } else {

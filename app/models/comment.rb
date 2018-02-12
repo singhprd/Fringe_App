@@ -1,7 +1,7 @@
 class Comment < ApplicationRecord
 	belongs_to :user
 	belongs_to :event
-	has_many :comment_votes
+	has_many :comment_votes, :dependent => :destroy
 
 	validates :event, presence: true
 	validates :user, presence: true

@@ -31,7 +31,7 @@ export class Comment extends Component {
 				<div className="container-fluid" id="comment-card">
 				  <div className="row"  id="comment-card">
 				    <div className="col-xs-1">
-				      <CommentVotesBox votes={this.props.comment.votes} user_vote={this.props.user_vote} />
+				      <CommentVotesBox commentId={this.props.comment.id} votes={this.props.comment.votes} user_vote={this.props.user_vote} getComments={this.props.getComments} />
 				    </div>
 				    <div className="col-xs-10">
 				      {this.props.comment.text}
@@ -43,9 +43,3 @@ export class Comment extends Component {
 	}
 }
 module.exports = Comment;
-
-// {this.replies()}
-
-// <CommentVotesBox />
-
-// {this.props.text}

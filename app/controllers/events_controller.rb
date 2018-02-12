@@ -9,7 +9,9 @@ class EventsController < ApplicationController
   def comments
     # puts Comment.event_json(@event, current_user)
 
-    comments_json = @event.comments.map{|comment| 
+    comments_json = @event.comments
+    .sort_by{|comment| comment.votes }.reverse
+    .map{|comment| 
       comment.comment_json_with_user_vote(current_user)
     }
 

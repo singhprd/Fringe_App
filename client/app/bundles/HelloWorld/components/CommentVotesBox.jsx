@@ -15,25 +15,50 @@ export class CommentVotesBox extends Component {
     // eventId: PropTypes.number,
     // refreshComments: PropTypes.func
   };
+  handleUpvote(event){
+    this.handleSubmit(event, "1")
+  }
+  handleDownvote(event){
+    this.handleSubmit(event, "-1")
+  }
+  handleSubmit(event, vote) {
+    event.preventDefault();
+
+    $.ajax({
+      url: "/comment_vote",
+      type: "POST",
+      data: {
+        comment_id: this.props.commentId,
+        vote: vote
+      },
+      success: function(data, b, c) {
+        console.log(data)
+        this.props.getComments();
+      }.bind(this),
+      error: function(error) {
+        console.log(error)
+      }.bind(this)
+    });
+  }
   topButton(){
     if (this.props.user_vote == "1") {
       return(
-        <div>😊</div>
+        <div><button className="btn btn-small comment-vote-button disabled">😊</button></div>
       )
     } else {
       return  (
-        <div>⬆️</div>
+        <div><button className="btn btn-small comment-vote-button" onClick={this.handleUpvote.bind(this)}>⬆️</button></div>
         )
     }
   }
   bottomButton(){
     if (this.props.user_vote == "-1") {
       return(
-        <div>😠</div>
+        <div><button className="btn btn-small comment-vote-button disabled">😠</button></div>
       )
     } else {
       return  (
-        <div>⬇️</div>
+        <div><button className="btn btn-small comment-vote-button" onClick={this.handleDownvote.bind(this)}>⬇️</button></div>
         )
     }
   }
@@ -41,7 +66,7 @@ export class CommentVotesBox extends Component {
     return (
       <div className="col-2">
         {this.topButton()}
-        <div>[{this.props.votes}]</div>
+        <div><button className="btn btn-small comment-vote-button disabled">&#8239;{this.props.votes}</button></div>
         {this.bottomButton()}
       </div>
     );

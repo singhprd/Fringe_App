@@ -220,3 +220,21 @@ a {
   padding-bottom: 5px;
   padding-top: 6px;
 }
+
+.comment-vote-button {
+  padding: 0px;
+  outline:none;
+}
+
+
+/*Remove ALL button highlighting when clicked*/
+a, a:active, a:focus, 
+button, button:focus, button:active, 
+.btn, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn.focus:active, .btn.active.focus {
+    outline: none;
+    outline: 0;
+}
+
+input::-moz-focus-inner {
+    border: 0;
+}

@@ -23,6 +23,10 @@ export class CommentsPanel extends Component {
 		this.setState({showAll: true});
 		this.getComments();
 	}
+	refreshCommentsForVote(){
+		this.state.comments = [];
+		this.getComments();
+	}
 	getComments() {
 		$.ajax({
 			url: "/events/" + this.props.eventId + "/comments",
@@ -30,7 +34,7 @@ export class CommentsPanel extends Component {
 			success: function(data, b, c) {
 				Object.keys(data).map(function(comment) {
 					this.setState({comments: this.state.comments.concat(
-						[<Comment key={"comment" + data[comment]["id"]} comment={data[comment]} user_vote={data[comment]["user_vote"]} />]
+						[<Comment key={"comment" + data[comment]["id"]} comment={data[comment]} user_vote={data[comment]["user_vote"]} getComments={this.refreshCommentsForVote.bind(this)}/>]
 					)});
 			}.bind(this));
 			}.bind(this),
