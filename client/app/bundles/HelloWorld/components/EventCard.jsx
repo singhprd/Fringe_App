@@ -110,7 +110,6 @@ export class EventCard extends Component {
 
 
             </ButtonGroup>
-            {this.ListPanel()}
           </ButtonToolbar>
 
           <EventWell open={this.state.wellOpen} content={this.state.wellContent}/>
@@ -126,6 +125,8 @@ export class EventCard extends Component {
       );
     }
   }
+  // TODO Re-impliment better
+  // {this.ListPanel()}
   requestWell(requestType) {
     // Close the well if it is already open
     if (this.state.wellContentString ===  requestType) {
