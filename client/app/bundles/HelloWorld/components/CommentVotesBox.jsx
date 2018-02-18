@@ -2,13 +2,14 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import classNames from 'classnames';
-
-
+// TODO Add refresh comments button
+// this.props.refreshAllComments();
 export class CommentVotesBox extends Component {
     constructor(props) {
     super(props);
     this.state = {
-      // formError: false
+      userVote: this.props.user_vote,
+      totalVotes: this.props.votes
     };
   }
   static propTypes = {
@@ -16,14 +17,14 @@ export class CommentVotesBox extends Component {
     // refreshComments: PropTypes.func
   };
   handleUpvote(event){
-    this.handleSubmit(event, "1")
+    this.setState({userVote: this.state.userVote + 1, totalVotes: this.state.totalVotes + 1})
+    this.handleSubmit("1")
   }
   handleDownvote(event){
-    this.handleSubmit(event, "-1")
+    this.setState({userVote: this.state.userVote - 1, totalVotes: this.state.totalVotes - 1})
+    this.handleSubmit("-1")
   }
-  handleSubmit(event, vote) {
-    event.preventDefault();
-
+  handleSubmit(vote) {
     $.ajax({
       url: "/comment_vote",
       type: "POST",
@@ -33,7 +34,7 @@ export class CommentVotesBox extends Component {
       },
       success: function(data, b, c) {
         console.log(data)
-        this.props.getComments();
+        this.setState({userVote: data})
       }.bind(this),
       error: function(error) {
         console.log(error)
@@ -41,7 +42,7 @@ export class CommentVotesBox extends Component {
     });
   }
   topButton(){
-    if (this.props.user_vote == "1") {
+    if (this.state.userVote == "1") {
       return(
         <div><button className="btn btn-small comment-vote-button disabled">😊</button></div>
       )
@@ -52,7 +53,7 @@ export class CommentVotesBox extends Component {
     }
   }
   bottomButton(){
-    if (this.props.user_vote == "-1") {
+    if (this.state.userVote == "-1") {
       return(
         <div><button className="btn btn-small comment-vote-button disabled">😠</button></div>
       )
@@ -66,7 +67,7 @@ export class CommentVotesBox extends Component {
     return (
       <div className="col-2">
         {this.topButton()}
-        <div><button className="btn btn-small comment-vote-button disabled">&#8239;{this.props.votes}</button></div>
+        <div><button className="btn btn-small comment-vote-button disabled">&#8239;{this.state.totalVotes}</button></div>
         {this.bottomButton()}
       </div>
     );

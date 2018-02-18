@@ -2,14 +2,15 @@ class CommentVoteController < ApplicationController
 	def create
 
 		duplicate = CommentVote.where(user: current_user, comment_id: comment_vote_params[:comment_id])
-		if !duplicate.empty?
+		if duplicate.present?
 			duplicate.destroy_all
-			render json: {"valid" => "true"}, status: 200
+			render json: 0, status: 200
 		else
 			vote = CommentVote.new(comment_vote_params)
 			vote.user = current_user
 			vote.save!
-			render json: {"valid" => "true"}, status: 200
+			user_vote = Comment.find(params[:comment_id]).user_vote(current_user)
+			render json: user_vote, status: 200
 		end
 	end
 
