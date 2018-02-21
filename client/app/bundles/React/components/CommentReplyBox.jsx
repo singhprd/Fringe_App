@@ -3,7 +3,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import classNames from 'classnames';
 
-
 export class CommentReplyBox extends Component {
     constructor(props) {
     super(props);
@@ -15,11 +14,14 @@ export class CommentReplyBox extends Component {
     eventId: PropTypes.number,
     refreshComments: PropTypes.func
   };
+  componentDidMount(){
+  }
   handleSubmit(event) {
     event.preventDefault();
-    const data = new FormData(event.target);
 
-    if (data.get("text") == "") {
+    var commentField = event.target.elements.commentField.value;
+
+    if (commentField == "") {
       this.setState({formError: true})
       return;
     }
@@ -28,8 +30,8 @@ export class CommentReplyBox extends Component {
       url: "/comments",
       type: "POST",
       data: {
-        event_id: data.get("event_id"),
-        text: data.get("text")
+        event_id: this.props.eventId,
+        text: commentField
       },
       success: function(data, b, c) {
         this.setState({formError: false})
@@ -43,7 +45,6 @@ export class CommentReplyBox extends Component {
   clearForm() {
     this.textInput.value = "";
     this.props.refreshComments();
-    this.textInput.focus();
   }
   render() {
       const textAreaClasses = classNames({
@@ -58,11 +59,10 @@ export class CommentReplyBox extends Component {
               ref={input => {
                 this.textInput = input;
               }}
-              name="text"
+              name="commentField"
               className="form-control"
               rows="3"
             />
-            <input type="hidden" name="event_id" value={this.props.eventId} />
           </div>
           <button type="submit" className="btn btn-primary">
             Comment
