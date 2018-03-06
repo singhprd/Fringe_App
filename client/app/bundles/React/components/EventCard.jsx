@@ -8,6 +8,7 @@ import CommentsPanel from './CommentsPanel.jsx';
 import ImageCarousel from './ImageCarousel.jsx';
 import ListPanel from './ListPanel.jsx';
 import EventWell from './EventWell.jsx';
+import ReviewPanel from './ReviewPanel.jsx';
 import { Button, ButtonGroup, DropdownButton, MenuItem, ButtonToolbar, Collapse } from 'react-bootstrap';
 
 export class EventCard extends Component {
@@ -108,6 +109,8 @@ export class EventCard extends Component {
                   💭
                   </button>
 
+                  {this.reviews_button()}
+
 
             </ButtonGroup>
           </ButtonToolbar>
@@ -125,6 +128,19 @@ export class EventCard extends Component {
       );
     }
   }
+  reviews_button(){
+    if (this.state.event.get_reviews.length >= 1) {
+      return (
+        <button
+          onClick={() => this.requestWell("reviews")}
+          className='btn btn-default'
+          type='button'
+          >
+          📰
+        </button>
+      )
+    }
+  }
   // TODO Re-impliment better
   // {this.ListPanel()}
   requestWell(requestType) {
@@ -135,6 +151,7 @@ export class EventCard extends Component {
     }
 
     this.setState({wellOpen: true})
+
 
     switch(requestType) {
     case "calendar":
@@ -154,7 +171,13 @@ export class EventCard extends Component {
         wellContent:  <CommentsPanel eventId={this.state.event.id}/>,
         wellContentString: requestType
         })
-    break;
+        break;
+    case "reviews":
+      this.setState({
+        wellContent:  <ReviewPanel eventId={this.state.event.id} get_reviews={this.state.event.get_reviews}/>,
+        wellContentString: requestType
+      })
+      break;
     default:
         console.log("other")
     }

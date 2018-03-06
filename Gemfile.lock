@@ -142,6 +142,7 @@ GEM
     guard-minitest (2.4.6)
       guard-compat (~> 1.2)
       minitest (>= 3.0)
+    guess_html_encoding (0.0.11)
     http_parser.rb (0.6.0)
     i18n (0.9.1)
       concurrent-ruby (~> 1.0)
@@ -252,6 +253,9 @@ GEM
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
+    ruby-readability (0.7.0)
+      guess_html_encoding (>= 0.0.4)
+      nokogiri (>= 1.6.0)
     ruby_dep (1.5.0)
     rubyzip (1.2.1)
     sass (3.5.3)
@@ -356,6 +360,7 @@ DEPENDENCIES
   rack-livereload
   rails (~> 5.1.2)
   react_on_rails (~> 7)
+  ruby-readability
   sass-rails (~> 5.0)
   selenium-webdriver
   serviceworker-rails

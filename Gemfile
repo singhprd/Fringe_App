@@ -99,3 +99,4 @@ end
 
 
 # gem 'mini_racer', platforms: :ruby
+gem "ruby-readability", :require => 'readability'

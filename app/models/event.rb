@@ -14,6 +14,23 @@ class Event < ApplicationRecord
 
   attr_accessor :user
 
+  REVIEW_SOURCES = [
+    "broadwaybaby.com/shows",
+    "edinburghfestival.list.co.uk",
+    "theskinny.co.uk",
+    "chortle.co.uk/review",
+    "scotsman.com/lifestyle/culture/edinburgh-festivals/reviews"
+  ]
+
+  def get_reviews
+    return [] unless festival_id == "fringe"
+    reviews = []
+    REVIEW_SOURCES.each do |source|
+      reviews << Review.new().get_or_build_review(source, self.id)
+    end
+    reviews.select { |review| review.has_data? }
+  end
+
   def upvotes
     votes.where(value: 1).count
   end
@@ -33,7 +50,7 @@ class Event < ApplicationRecord
     @user = current_user
     return self.to_json(
       include: :venue,
-      methods: [:favourited, :image_urls],
+      methods: [:favourited, :image_urls, :get_reviews],
     )
   end
 

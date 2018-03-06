@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180211171254) do
+ActiveRecord::Schema.define(version: 20180228001233) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -144,6 +144,10 @@ ActiveRecord::Schema.define(version: 20180211171254) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "event_id"
+    t.string "content"
+    t.string "search_engine_content"
+    t.string "source"
+    t.boolean "has_data"
     t.index ["event_id"], name: "index_reviews_on_event_id"
   end
 

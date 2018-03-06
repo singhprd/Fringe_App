@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   get '/admin/panel' => 'admin#panel'
   get '/events/:id/votes' => 'events#votes'
   get '/events/:id/performances' => 'events#performances'
+  get '/events/:id/reviews' => 'events#reviews'
 
   post '/lists/swap_items' => 'lists#swap_items'
   post '/lists/create_item' => 'lists#create_item'

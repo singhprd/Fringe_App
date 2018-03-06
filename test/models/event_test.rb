@@ -48,6 +48,12 @@ class EventTest < ActiveSupport::TestCase
     assert_equal("FAKE Schiz", test_event.reload.title)
   end
 
+  test "getting reviews" do
+    @event.update(title: "Red Bastard: Lie With Me")
+    @event.get_reviews
+    assert_equal Review.where(event: @event).count, Event::REVIEW_SOURCES.count
+  end
+
   # test "check_for_updates" do
   #   @event.update_attributes(code: "832")
 
