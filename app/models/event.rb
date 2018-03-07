@@ -23,12 +23,13 @@ class Event < ApplicationRecord
   ]
 
   def get_reviews
-    return [] unless festival_id == "fringe"
-    reviews = []
-    REVIEW_SOURCES.each do |source|
-      reviews << Review.new().get_or_build_review(source, self.id)
-    end
-    reviews.select { |review| review.has_data? }
+    # return [] unless festival_id == "fringe"
+    # reviews = []
+    # REVIEW_SOURCES.each do |source|
+    #   reviews << Review.new().get_or_build_review(source, self.id)
+    # end
+    # reviews.select { |review| review.has_data? }
+    []
   end
 
   def upvotes
