@@ -30,6 +30,14 @@
 <meta name="apple-mobile-web-app-capable" content="yes"></head>
 <body>
   <%= render "./layouts/bootstrap_nav_bar" %>
+
+  <div id="flash-container">
+    <div id="flash">
+      <span id="notice" ><%= notice %></span>
+      <span id="alert"><%= alert %></span>
+    </div>
+  </div>
+
   <div class="container" id="layout-base">
     <%= yield %>
   </div>
