@@ -33,7 +33,6 @@ export class CommentVotesBox extends Component {
         vote: vote
       },
       success: function(data, b, c) {
-        console.log(data)
         this.setState({userVote: data})
       }.bind(this),
       error: function(error) {

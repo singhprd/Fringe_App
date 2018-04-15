@@ -2,6 +2,7 @@ class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
   protect_from_forgery with: :null_session
   before_action :authenticate_user!
+  before_action :check_permissions, only: [:edit, :update, :destroy]
 
   # GET /comments
   # GET /comments.json
@@ -51,7 +52,7 @@ class CommentsController < ApplicationController
     respond_to do |format|
       if @comment.update(comment_params)
         format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
-        format.json { render :show, status: :ok, location: @comment }
+        format.json { render json: @comment, status: :ok }
       else
         format.html { render :edit }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
@@ -79,5 +80,11 @@ class CommentsController < ApplicationController
     def comment_params
       params.permit(:"event_id", :"text", :"in_reply_to")
       # params.fetch(:comment, {})
+    end
+
+    def check_permissions 
+      unless (@comment.user == current_user || current_user.try(:admin?))
+        raise "You are not permitted to edit this comment!"
+      end
     end
 end

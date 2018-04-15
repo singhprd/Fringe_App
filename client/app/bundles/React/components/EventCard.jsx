@@ -14,7 +14,6 @@ import { Button, ButtonGroup, DropdownButton, MenuItem, ButtonToolbar, Collapse 
 export class EventCard extends Component {
   static propTypes = {
     eventJson: PropTypes.object,
-    userSignedIn: PropTypes.bool,
     voteToBeat: PropTypes.number,
     voteToStayAbove: PropTypes.number,
     short: PropTypes.bool,
@@ -60,6 +59,9 @@ export class EventCard extends Component {
     //   return <button type="button" className="btn btn-default">Remove from List</button>
     // }
   }
+  isUserSignedIn() {
+    (this.props.currentUserId !== undefined)
+  }
   signedIn(e, v) {
     if (this.props.short === true) {
       return;
@@ -67,7 +69,7 @@ export class EventCard extends Component {
     if (this.state.event.score === undefined) {
       return
     }
-    if (this.props.userSignedIn) {
+    if (this.isUserSignedIn) {
       return (
         <div>
           <ButtonToolbar>
@@ -168,7 +170,7 @@ export class EventCard extends Component {
         break;
     case "comments":
       this.setState({
-        wellContent:  <CommentsPanel eventId={this.state.event.id}/>,
+        wellContent:  <CommentsPanel eventId={this.state.event.id} currentUserId={this.props.currentUserId}/>,
         wellContentString: requestType
         })
         break;

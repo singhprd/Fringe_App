@@ -5,7 +5,7 @@ import EventCard from './EventCard.jsx';
 export class EventCardContainer extends Component {
   static propTypes = {
     eventIds: PropTypes.array,
-    userSignedIn: PropTypes.bool,
+    currentUserId: PropTypes.number
   };
   eventCards(){
     return this.props.eventJson.map(function(event){
@@ -14,7 +14,7 @@ export class EventCardContainer extends Component {
         <EventCard
           key={'event-card-key-' + eventJson.id}
           eventId={eventJson.id}
-          userSignedIn={this.props.userSignedIn}
+          currentUserId={this.props.currentUserId}
           eventJson={eventJson}
         />
       );

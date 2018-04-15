@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 
 export class FilterBar extends Component {
     static propTypes = {
-      current_filter: PropTypes.object.isRequired,
+      current_filter: PropTypes.object,
       // userSignedIn: PropTypes.bool.isRequired,
       // is_favourited: PropTypes.bool.isRequired,
     };
