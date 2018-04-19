@@ -43,6 +43,21 @@ export class CommentsPanel extends Component {
 			}
 		});
 	}
+	userSignedIn() {
+		return(!(this.props.currentUserId == null))
+	}
+	CommentReplyArea(){
+		console.warn(this.userSignedIn())
+		if (this.userSignedIn()) {
+			return(
+				<CommentReplyBox
+					eventId={this.props.eventId}
+					refreshComments={this.refreshComments.bind(this)}
+				/>)
+		} else {
+			return(<h5><a href="/users/sign_in"> Sign in to commment</a></h5>)
+		}
+	}
 	// user_vote(data){
 	// 	console.log(data)
 	// }
@@ -73,7 +88,7 @@ export class CommentsPanel extends Component {
 				<h4>What did you think?</h4>
 				{this.comments()}
 				{this.showAllButton()}
-				<CommentReplyBox eventId={this.props.eventId} refreshComments={this.refreshComments.bind(this)} />
+				{this.CommentReplyArea()}
 			</div>
 		);
 	}
