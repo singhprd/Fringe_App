@@ -29,20 +29,12 @@ gem "jbuilder", "~> 2.5"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
 gem 'thor'
-
-# Devise for user auth
 gem "devise"
 gem "gemoji"
 gem "json"
 gem "kaminari"
 gem "pg"
-# gem "react-rails"
-# gem "react-rails-hot-loader"
-# gem "therubyracer"
 gem "twitter-bootstrap-rails"
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "bootstrap_form"
@@ -55,15 +47,10 @@ gem "react_on_rails", "~> 7"
 # gem 'libv8', "~> 5.0"
 gem 'acts_as_list'
 gem "font-awesome-rails"
-
-
 gem 'serviceworker-rails'
+gem "ruby-readability", :require => 'readability'
+# gem 'mini_racer', platforms: :ruby
 
-group :test do
-  gem "capybara"
-  gem 'selenium-webdriver'
-  gem 'chromedriver-helper'
-end
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "byebug"
@@ -78,8 +65,13 @@ group :development, :test do
   gem 'fabrication'
 end
 
+group :test do
+  gem "capybara"
+  gem 'selenium-webdriver'
+  gem 'chromedriver-helper'
+end
+
 group :development do
-  # gem 'pg'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem "listen"
   gem "web-console"
@@ -93,10 +85,3 @@ group :development do
   gem 'capistrano-rvm'
 end
 
-group :production do
-  gem 'pg'
-end
-
-
-# gem 'mini_racer', platforms: :ruby
-gem "ruby-readability", :require => 'readability'
