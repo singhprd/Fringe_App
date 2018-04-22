@@ -23,13 +23,17 @@ class SessionsTest < ApplicationSystemTestCase
 
     click_button("Log in")
 
-    has_current_path?('/')
-    page.has_text?("Sign out")
+    assert has_current_path?('/')
+
+    click_on("Account")
+    assert page.has_text?("Sign out")
   end
 
   test "logging in with helper" do
-    sign_in(create(:user))
-    has_current_path?('/')
-    page.has_text?("Sign out")
+    user = create(:user)
+    sign_in(user)
+    assert has_current_path?('/')
+    click_on("Account")
+    assert page.has_text?("Sign out")
   end
 end

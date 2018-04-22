@@ -83,5 +83,8 @@ group :development do
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'capistrano-rvm'
+  gem 'meta_request'
 end
+
+
 
