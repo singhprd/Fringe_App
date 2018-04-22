@@ -42,7 +42,7 @@ class FringebotTest < ActiveSupport::TestCase
 	end
 
 	test "title search works for Suntan in Film Festival 2016" do
-		suntan_params = {"title_string"=>"Suntan", "artist"=>"", "year"=>"2016", "festival_string"=>""}
+		suntan_params = {"title_string"=>"Suntan", "artist"=>"", "year"=>"2016", "festival_string"=>"Film"}
 		suntan_results = Fringebot.new(suntan_params).get_events
 		event = suntan_results.first
 		assert_equal 1, suntan_results.count
@@ -52,7 +52,7 @@ class FringebotTest < ActiveSupport::TestCase
 
 	test "single_event" do
 		uuid = "53cf9187f2f00583d9b4005f66ba75eddc3169ae"
-		fb = Fringebot.new({"uuid" => uuid})
+		fb = Fringebot.new({"uuid" => uuid, "year" => "2016"})
 		result = fb.single_event
 		assert_equal(Event, result.class)
 		assert_equal(uuid, result.uuid)
@@ -60,7 +60,7 @@ class FringebotTest < ActiveSupport::TestCase
 
 	test "update" do
 		uuid = "53cf9187f2f00583d9b4005f66ba75eddc3169ae"
-		fb = Fringebot.new("uuid" => uuid)
+		fb = Fringebot.new("uuid" => uuid, "year" => "2016")
 		event = fb.single_event
 		assert_equal(Event, event.class)
 
@@ -71,7 +71,7 @@ class FringebotTest < ActiveSupport::TestCase
 
 	test "will_update_if_old" do
 		uuid = "53cf9187f2f00583d9b4005f66ba75eddc3169ae"
-		fb = Fringebot.new("uuid" => uuid)
+		fb = Fringebot.new("uuid" => uuid, "year" => "2016")
 		event = fb.single_event
 		assert_equal(Event, event.class)
 		assert_equal(uuid, event.uuid)

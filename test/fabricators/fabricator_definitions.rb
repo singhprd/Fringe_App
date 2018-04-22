@@ -53,7 +53,6 @@ Fabricator(:favourite) do
 	event
 end
 
-
 Fabricator(:performance) do
 	concession {Faker::Lorem.sentences(2)}
 	end_time {Faker::Time.between(10.days.ago, Date.today, :evening)}

@@ -11,7 +11,7 @@ class FringebotTest < ActiveSupport::TestCase
 
 	test "will create image and image versions for event" do
 		uuid = "53cf9187f2f00583d9b4005f66ba75eddc3169ae"
-		fb = Fringebot.new("uuid" => uuid)
+		fb = Fringebot.new("uuid" => uuid, "year" => "2016")
 		event = fb.single_event
 	end
 end

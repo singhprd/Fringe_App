@@ -1,9 +1,9 @@
 require 'test_helper'
 
 class PerformancesControllerTest < ActionDispatch::IntegrationTest
-  setup do
-    @performance = performances(:one)
-  end
+  # setup do
+  #   @performance = performances(:one)
+  # end
 
   # test "should get index" do
   #   get performances_url

@@ -1,9 +1,9 @@
 require 'test_helper'
 
 class SearchesControllerTest < ActionDispatch::IntegrationTest
-  setup do
-    @search = searches(:one)
-  end
+  # setup do
+  #   @search = searches(:one)
+  # end
 
   # test "should get index" do
   #   get searches_url

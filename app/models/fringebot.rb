@@ -36,7 +36,7 @@ class Fringebot
     def self.festival_options_for_select
       FESTIVALS.map do |key, value|
         [value[:full], value[:code]]
-      end   
+      end
     end
 
     def single_event
