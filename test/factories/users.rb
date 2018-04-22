@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :comment_vote do
+  factory :user do
     user nil
     comment nil
     vote 1
