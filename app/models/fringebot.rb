@@ -58,7 +58,7 @@ class Fringebot
       }
 
       # Delete nil values passed from search form
-      query_params.delete_if { |k, v| v.nil? }
+      query_params.delete_if { |k, v| v.nil? || v.empty?}
 
       # Use festivals_lab to actually search the api
       @api.events(
