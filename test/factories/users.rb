@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :user do
-    user nil
-    comment nil
-    vote 1
+    email Faker::Internet.email
+    username Faker::LordOfTheRings.character
+    password 'password'
   end
 end

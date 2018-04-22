@@ -4,6 +4,7 @@ class UserTest < ActiveSupport::TestCase
 	setup do
     @event = Fabricate(:event)
     @user = Fabricate(:user)
+    # user = create(:user)
   end
   
   test "user has a username" do
@@ -28,5 +29,4 @@ class UserTest < ActiveSupport::TestCase
     assert_equal false, @user.reduce_votes_left
     assert_equal 0, @user.votes_left
   end
-
 end
