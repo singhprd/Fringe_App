@@ -4,7 +4,7 @@ class HomeController < ApplicationController
   # GET /
   def welcome
     params[:favourites] ||= "false"
-    params[:year] ||= "2017"
+    params[:year] ||= Fringebot::YEARS.last
 
     @filter = params.permit(:favourites, :year, :controller, :action)
 

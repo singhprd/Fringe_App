@@ -17,7 +17,7 @@
 
         <div class="col-sm-5">
           <%= label_tag(:year, "Year:") %>
-          <%= select_tag "year", options_for_select(["2015", "2016", "2017"], @search_params["year"]), class: "form-control" %>
+          <%= select_tag "year", options_for_select(Fringebot::YEARS, @search_params["year"]), class: "form-control" %>
           <%= label_tag(:festival_string, "Festival:") %>
           <%= select_tag "festival_string", options_for_select(Fringebot.festival_options_for_select, @search_params["festival_string"]), class: "form-control" %>
         </div>
