@@ -1,5 +1,5 @@
 # config valid for current version and patch releases of Capistrano
-lock "~> 3.10.1"
+lock "~> 3.11.0"
 
 # set :application, "fringeapp"
 # set :repo_url, "git@github.com:singhprd/FringeRetrospective.git"
@@ -46,7 +46,7 @@ set :stage, :production
 
 set :application, 'fringeapp'
 set :repo_url, "git@github.com:singhprd/FringeRetrospective.git"
-set :deploy_to, '/home/rails/fringeapp'
+set :deploy_to, '/home/deploy/fringeapp'
 set :scm, :git
 set :branch, 'master'
 
@@ -55,7 +55,9 @@ set :use_sudo, false
 set :rails_env, 'production'
 set :deploy_via, :copy
 
-set :linked_files, %w{config/database.yml config/secrets.yml}
+append :linked_files, "config/database.yml", "config/secrets.yml"
+append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bundle", "public/system", "public/uploads"
+
 
 set :format, :pretty
 set :log_level, :debug
