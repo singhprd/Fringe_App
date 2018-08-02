@@ -1,11 +1,9 @@
 # Define roles, user and IP address of deployment server
 # role :name, %{[user]@[IP adde.]}
-role :app, %w{deploy@165.227.232.115}
-role :web, %w{deploy@165.227.232.115}
-role :db,  %w{deploy@165.227.232.115}
 
 # Define server(s)
-server '165.227.232.115', user: 'deploy', roles: %w{web}
+server '178.128.173.170', user: 'deploy', roles: %w{app db web}
+
 
 # SSH Options
 # See the example commented out section in the file
@@ -17,7 +15,7 @@ server '165.227.232.115', user: 'deploy', roles: %w{web}
 #     user: 'deploy',
 # }
 
-# server '165.227.232.115', roles: [:web, :app, :db], primary: true, user: "deploy"
+# server '178.128.173.170', roles: [:web, :app, :db], primary: true, user: "deploy"
 
 # set :repo_url,        'git@github.com:singhprd/FringeRetrospective.git'
 
