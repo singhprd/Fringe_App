@@ -8,7 +8,7 @@ class SearchesController < ApplicationController
 		end
 		
 		# Search defaults
-		@search_params = {"title_string"=>"", "artist"=>"", "year"=>"2017", "festival_string"=>"fringe"}
+		@search_params = {"title_string"=>"", "artist"=>"", "year"=>"2018", "festival_string"=>"fringe"}
 	end
 
 	def create
