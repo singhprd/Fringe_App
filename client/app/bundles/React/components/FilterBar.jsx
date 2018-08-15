@@ -3,16 +3,10 @@ import React, { Component } from 'react';
 
 export class FilterBar extends Component {
     static propTypes = {
-      current_filter: PropTypes.object,
-      // userSignedIn: PropTypes.bool.isRequired,
-      // is_favourited: PropTypes.bool.isRequired,
+      current_filter: PropTypes.object
     };
     constructor(props) {
       super(props);
-      // this.state = {
-      //   event: $.parseJSON(this.props.event),
-      //   isFavourited: this.props.is_favourited,
-      // };
     }
     params() {
       var filter = this.props.current_filter;
@@ -27,8 +21,6 @@ export class FilterBar extends Component {
       params[param] = value;
       Turbolinks.clearCache();
       Turbolinks.visit('/?' + $.param(params), {'action':'replace'});
-
-      // window.location = '/?' + $.param(params);
     }
     isActive(param, value) {
       var params = this.params();
