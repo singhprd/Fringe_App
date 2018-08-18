@@ -30,6 +30,9 @@ export class FilterBar extends Component {
         return 'active';
       }
     }
+    redirect_to_search() {
+      Turbolinks.visit('/searches/new', {'action':'replace'});
+    }
     render() {
       return (
         <div className="btn-toolbar">
@@ -43,6 +46,9 @@ export class FilterBar extends Component {
             <button onClick={() => this.redirect('year', '2016')} className={'btn btn-primary navbar-btn btn-sm ' + (this.isActive('year', '2016'))}>2016</button>
             <button onClick={() => this.redirect('year', '2017')} className={'btn btn-primary navbar-btn btn-sm ' + (this.isActive('year', '2017'))}>2017</button>
             <button onClick={() => this.redirect('year', '2018')} className={'btn btn-primary navbar-btn btn-sm ' + (this.isActive('year', '2018'))}>2018</button>
+          </div>
+          <div className="btn-group">
+            <button onClick={() => this.redirect_to_search() } className={'btn btn-primary navbar-btn btn-sm'}>Search</button>
           </div>
         </div>
       );
