@@ -1,19 +1,21 @@
+# frozen_string_literal: true
+
 require 'json'
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy, :comments, :reviews]
-  before_action :check_admin, only: [:destroy, :update, :edit]
+  before_action :set_event, only: %i[show edit update destroy comments reviews]
+  before_action :check_admin, only: %i[destroy update edit]
   protect_from_forgery with: :null_session
   before_action :authenticate_user!, only: [:comments]
 
-    # GET /events/1/comments
+  # GET /events/1/comments
   def comments
     # puts Comment.event_json(@event, current_user)
 
     comments_json = @event.comments
-    .sort_by{|comment| comment.votes }.reverse
-    .map{|comment| 
+                          .sort_by(&:votes).reverse
+                          .map do |comment|
       comment.comment_json_with_user_vote(current_user)
-    }
+    end
 
     # comments = @event.comments_json(current_user)
     render json: comments_json
@@ -32,13 +34,12 @@ class EventsController < ApplicationController
 
   # GET /events/1
   # GET /events/1.json
-  def show
-  end
+  def show; end
 
   def votes
     set_event
     vote_tally = @event.tally_votes
-    render json: {votes: vote_tally}
+    render json: { votes: vote_tally }
   end
 
   # GET /events/new
@@ -47,13 +48,12 @@ class EventsController < ApplicationController
   end
 
   # GET /events/1/edit
-  def edit
-  end
+  def edit; end
 
   # GET /events/1/is_favourited
   def is_favourited
     result = Event.favourited?(current_user, params[:event_id])
-    render json: {bool: result}
+    render json: { bool: result }
   end
 
   # POST /events
@@ -63,7 +63,7 @@ class EventsController < ApplicationController
     # venue_params = JSON.parse(event_params[:venue])
     # venue_params = eval params[:venue]
 
-    if params[:existing_venue_code].nil? 
+    if params[:existing_venue_code].nil?
       venue_params = eval params[:venue]
       @venue = Venue.new(venue_params)
       @venue.save
@@ -98,7 +98,7 @@ class EventsController < ApplicationController
     end
   end
 
-  def performances()
+  def performances
     set_event
     render json: @event.performances_json
   end
@@ -114,15 +114,16 @@ class EventsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_event
-      @event = Event.find(params[:id])
-      @event.check_for_updates
-      return @event
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def event_params
-      params.permit(:event, :code, :age_category, :artist, :code, :description, :festival, :festival_id, :genre, :latitude, :longitude, :status, :title, :updated, :url, :address, :name, :phone, :post_code, :website)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_event
+    @event = Event.find(params[:id])
+    @event.check_for_updates
+    @event
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def event_params
+    params.permit(:event, :code, :age_category, :artist, :code, :description, :festival, :festival_id, :genre, :latitude, :longitude, :status, :title, :updated, :url, :address, :name, :phone, :post_code, :website)
+  end
 end

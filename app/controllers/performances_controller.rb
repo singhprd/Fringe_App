@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class PerformancesController < ApplicationController
-  before_action :set_performance, only: [:show, :edit, :update, :destroy]
+  before_action :set_performance, only: %i[show edit update destroy]
 
   # GET /performances
   # GET /performances.json
@@ -9,8 +11,7 @@ class PerformancesController < ApplicationController
 
   # GET /performances/1
   # GET /performances/1.json
-  def show
-  end
+  def show; end
 
   # GET /performances/new
   def new
@@ -18,8 +19,7 @@ class PerformancesController < ApplicationController
   end
 
   # GET /performances/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /performances
   # POST /performances.json
@@ -62,13 +62,14 @@ class PerformancesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_performance
-      @performance = Performance.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def performance_params
-      params.require(:performance).permit(:concession, :end, :price, :start)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_performance
+    @performance = Performance.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def performance_params
+    params.require(:performance).permit(:concession, :end, :price, :start)
+  end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Rails.application.configure do
 #   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -54,7 +56,6 @@
 # end
 
 # --------------------
-
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -113,10 +114,12 @@ Rails.application.configure do
   # Because Devise
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
+  config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.perform_deliveries = true
+
   # Add Rack::LiveReload to the bottom of the middleware stack with the default options:
   config.middleware.insert_after ActionDispatch::Static, Rack::LiveReload
 
   # config.reload_classes_only_on_change = false
   config.log_level = :info
 end
-

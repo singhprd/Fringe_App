@@ -1,9 +1,10 @@
+# frozen_string_literal: true
+
 # Define roles, user and IP address of deployment server
 # role :name, %{[user]@[IP adde.]}
 
 # Define server(s)
-server '178.128.173.170', user: 'deploy', roles: %w{app db web}
-
+server '178.128.173.170', user: 'deploy', roles: %w[app db web]
 
 # SSH Options
 # See the example commented out section in the file
@@ -28,8 +29,6 @@ server '178.128.173.170', user: 'deploy', roles: %w{app db web}
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
 
-
-
 # role-based syntax
 # ==================
 
@@ -42,8 +41,6 @@ server '178.128.173.170', user: 'deploy', roles: %w{app db web}
 # role :web, %w{user1@primary.com user2@additional.com}, other_property: :other_value
 # role :db,  %w{deploy@example.com}
 
-
-
 # Configuration
 # =============
 # You can set any configuration variable like in config/deploy.rb
@@ -51,8 +48,6 @@ server '178.128.173.170', user: 'deploy', roles: %w{app db web}
 # For available Capistrano configuration variables see the documentation page.
 # http://capistranorb.com/documentation/getting-started/configuration/
 # Feel free to add new variables to customise your setup.
-
-
 
 # Custom SSH Options
 # ==================

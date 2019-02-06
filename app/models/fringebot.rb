@@ -1,4 +1,6 @@
-require "festivals_lab"
+# frozen_string_literal: true
+
+require 'festivals_lab'
 # api.events # The first page of events (using the API's default of 25 per page)
 
 # puts api.events(festival: 'book', size: 50, from: 100)
@@ -7,76 +9,76 @@ require "festivals_lab"
 
 class Fringebot
   FESTIVALS = {
-    :all => {:code => "", :full =>"All Festivals"},
-    :fringe => {:code => "fringe", :full =>"Edinburgh Festival Fringe"},
+    all: { code: '', full: 'All Festivals' },
+    fringe: { code: 'fringe', full: 'Edinburgh Festival Fringe' },
     # :demofringe => {:code => "demofringe", :full =>"Edinburgh Festival Fringe (DEMO)"},
-    :jazz => {:code => "jazz", :full =>"Edinburgh Jazz & Blues Festival"},
-    :book => {:code => "book", :full =>"Edinburgh International Book Festival"},
-    :international => {:code => "international", :full =>"Edinburgh International Festival"},
-    :tattoo => {:code => "tattoo", :full =>"Royal Edinburgh Military Tattoo"},
-    :art => {:code => "art", :full =>"Edinburgh Art Festival"},
-    :hogmanay => {:code => "hogmanay", :full =>"Edinburgh's Hogmanay"},
-    :science => {:code => "science", :full =>"Edinburgh International Science Festival"},
-    :imaginate => {:code => "imaginate", :full =>"Edinburgh International Children's Festival"},
-    :film => {:code => "film", :full =>"Edinburgh International Film Festival"},
-    :mela => {:code => "mela", :full =>"Edinburgh Mela"},
-    :storytelling => {:code => "storytelling", :full =>"Edinburgh International Storytelling Festival"}
-    }.freeze
+    jazz: { code: 'jazz', full: 'Edinburgh Jazz & Blues Festival' },
+    book: { code: 'book', full: 'Edinburgh International Book Festival' },
+    international: { code: 'international', full: 'Edinburgh International Festival' },
+    tattoo: { code: 'tattoo', full: 'Royal Edinburgh Military Tattoo' },
+    art: { code: 'art', full: 'Edinburgh Art Festival' },
+    hogmanay: { code: 'hogmanay', full: "Edinburgh's Hogmanay" },
+    science: { code: 'science', full: 'Edinburgh International Science Festival' },
+    imaginate: { code: 'imaginate', full: "Edinburgh International Children's Festival" },
+    film: { code: 'film', full: 'Edinburgh International Film Festival' },
+    mela: { code: 'mela', full: 'Edinburgh Mela' },
+    storytelling: { code: 'storytelling', full: 'Edinburgh International Storytelling Festival' }
+  }.freeze
 
-    YEARS = %w[2015 2016 2017 2018].freeze
+  YEARS = %w[2015 2016 2017 2018].freeze
 
-    def initialize(my_hash)
-      @params = my_hash
-      @api = FestivalsLab.new(
-        ENV["FRINGE_API_KEY"],
-        ENV["FRINGE_SECRET_KEY"]
-        )
+  def initialize(my_hash)
+    @params = my_hash
+    @api = FestivalsLab.new(
+      ENV['FRINGE_API_KEY'],
+      ENV['FRINGE_SECRET_KEY']
+    )
+  end
+
+  def self.festival_options_for_select
+    FESTIVALS.map do |_key, value|
+      [value[:full], value[:code]]
     end
+  end
 
-    def self.festival_options_for_select
-      FESTIVALS.map do |key, value|
-        [value[:full], value[:code]]
-      end
+  def single_event
+    params = @api.event(@params['uuid'])
+    find_or_create_venue_and_event(params)
+  end
+
+  def put_in_quotes(string)
+    return "\"#{string}\"" unless string.empty?
+  end
+
+  def query_api
+    query_params = {
+      title: put_in_quotes(@params['title_string']),
+      festival: @params['festival_string'],
+      year: @params['year'],
+      artist: put_in_quotes(@params['artist']),
+      code: @params['code']
+    }
+
+    # Delete nil values passed from search form
+    query_params.delete_if { |_k, v| v.nil? || v.empty? }
+
+    # Use festivals_lab to actually search the api
+    @api.events(
+      query_params
+    )
+  end
+
+  def get_events
+    api_response = query_api
+    events = []
+    api_response.each do |params|
+      events << find_or_create_venue_and_event(params)
     end
+    events.each(&:reload)
+    events
+  end
 
-    def single_event
-      params = @api.event(@params["uuid"])
-      find_or_create_venue_and_event(params)
-    end
-
-    def put_in_quotes(string)
-      return "\"#{string}\"" unless string.empty?
-    end
-
-    def query_api
-      query_params = {
-        title: put_in_quotes(@params["title_string"]),
-        festival: @params["festival_string"],
-        year: @params["year"],
-        artist: put_in_quotes(@params["artist"]),
-        code: @params["code"]
-      }
-
-      # Delete nil values passed from search form
-      query_params.delete_if { |k, v| v.nil? || v.empty?}
-
-      # Use festivals_lab to actually search the api
-      @api.events(
-        query_params
-        )
-    end
-
-    def get_events
-      api_response = query_api
-      events = []
-      api_response.each do |params|
-        events << find_or_create_venue_and_event(params)
-      end
-      events.each(&:reload)
-      events
-    end
-
-    def find_or_create_venue_and_event(params)
+  def find_or_create_venue_and_event(params)
     # Venue
     venue = create_or_find_venue(params)
 
@@ -90,37 +92,37 @@ class Fringebot
     create_images(params, event)
 
     event
-  end
+end
 
   def create_images(params, event)
-    return if params["images"].nil?
+    return if params['images'].nil?
+
     event.images.destroy_all
-    params["images"].each do |image_params|
+    params['images'].each do |image_params|
       image_params = image_params.last
-      image = Image.new()
-      image.image_hash = image_params["hash"]
-      image.image_type = image_params["type"]
-      image.orientation = image_params["orientation"]
+      image = Image.new
+      image.image_hash = image_params['hash']
+      image.image_type = image_params['type']
+      image.orientation = image_params['orientation']
       image.event = event
       image.save!
 
-      image_params["versions"].each do |version_params|
+      image_params['versions'].each do |version_params|
         version_params = version_params.second
         img_ver = ImageVersion.new
-        img_ver.height = version_params["height"]
-        img_ver.width = version_params["width"]
-        img_ver.mime = version_params["mime"]
-        img_ver.url = version_params["url"]
-        img_ver.image_type = version_params["type"]
+        img_ver.height = version_params['height']
+        img_ver.width = version_params['width']
+        img_ver.mime = version_params['mime']
+        img_ver.url = version_params['url']
+        img_ver.image_type = version_params['type']
         img_ver.image = image
         img_ver.save!
       end
-
     end
   end
 
   def performances(event_id)
-    params = @api.event(@params["uuid"])
+    params = @api.event(@params['uuid'])
     perf_params = create_performances_params_array(params)
     performances = []
 
@@ -130,18 +132,18 @@ class Fringebot
       performances << performance
     end
 
-    return performances
+    performances
   end
 
   def create_or_find_venue(params)
     params = create_venue_params(params)
-    venue = Venue.find_by_code(params["code"])
+    venue = Venue.find_by_code(params['code'])
     if venue.present?
       update(venue, params)
     else
       venue = Venue.create!(params)
     end
-    return venue
+    venue
   end
 
   def update(thing, new_params)
@@ -150,71 +152,71 @@ class Fringebot
     # the last time the app has updated the thing
     # return if thing.updated.to_datetime < thing.updated_at
     thing.update_attributes(new_params)
-    return thing
+    thing
   end
 
   def create_or_find_event(params)
     params = create_event_params(params)
-    event = Event.find_by_code(params["code"])
+    event = Event.find_by_code(params['code'])
     if event.present?
       update(event, params)
     else
-      event = Event.create!(params.merge(festival_year: @params["year"]))
+      event = Event.create!(params.merge(festival_year: @params['year']))
     end
 
-    return event
+    event
   end
 
   def create_event_params(result)
     result.slice(
-      "age_category",
-      "artist",
-      "code",
-      "description",
-      "festival",
-      "festival_id",
-      "genre",
-      "latitude",
-      "longitude",
-      "status",
-      "title",
-      "updated",
-      "url",
-      "website",
-      "score"
-      )
+      'age_category',
+      'artist',
+      'code',
+      'description',
+      'festival',
+      'festival_id',
+      'genre',
+      'latitude',
+      'longitude',
+      'status',
+      'title',
+      'updated',
+      'url',
+      'website',
+      'score'
+    )
   end
 
   def create_venue_params(result)
-    result = result["venue"]
+    result = result['venue']
     result.slice(
-      "address",
-      "box_office_fringe",
-      "box_office_opening",
-      "cafe_description",
-      "code",
-      "email",
-      "fax",
-      "has_bar",
-      "has_booking_over_card",
-      "has_booking_over_phone",
-      "has_booking_over_web",
-      "has_cafe",
-      "name",
-      "phone",
-      "lat",
-      "lon",
-      "post_code",
-      "web_address"
-      )
+      'address',
+      'box_office_fringe',
+      'box_office_opening',
+      'cafe_description',
+      'code',
+      'email',
+      'fax',
+      'has_bar',
+      'has_booking_over_card',
+      'has_booking_over_phone',
+      'has_booking_over_web',
+      'has_cafe',
+      'name',
+      'phone',
+      'lat',
+      'lon',
+      'post_code',
+      'web_address'
+    )
   end
 
   def create_performances_params_array(result)
-    @raw_array = result["performances"]
+    @raw_array = result['performances']
     @performance_hashes = @raw_array.each do |perf_hash|
-      perf_hash.slice("concession", "end", "start", "price")
-      perf_hash[:end_time] = perf_hash.delete("end")
-      perf_hash[:start_time] = perf_hash.delete("start")
+      perf_hash.slice('concession', 'end', 'start', 'price')
+      perf_hash[:end_time] = perf_hash.delete('end')
+      perf_hash[:start_time] = perf_hash.delete('start')
     end
     @performance_hashes
   end

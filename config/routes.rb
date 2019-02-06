@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   resources :lists
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -15,8 +17,8 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  get 'search' => 'search#index' 
-  get 'search/results' => 'search#do_search' 
+  get 'search' => 'search#index'
+  get 'search/results' => 'search#do_search'
 
   root 'home#welcome'
 
@@ -33,5 +35,4 @@ Rails.application.routes.draw do
 
   # resources :search
   devise_for :users, controllers: { sessions: 'users/sessions' }
-
 end
