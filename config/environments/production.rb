@@ -59,7 +59,7 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "fringe_#{Rails.env}"
   config.action_mailer.perform_caching = false
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.default_url_options = { :host => '178.128.173.170' }
+  config.action_mailer.default_url_options = { :host => 'edinfringe.co.uk' }
   config.action_mailer.delivery_method = :mailgun
 
   config.action_mailer.mailgun_settings = {
