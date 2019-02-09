@@ -12,7 +12,10 @@ class User < ApplicationRecord
   has_many :favourites
   has_many :searches
   has_many :lists
+  has_many :credentials
   validates_uniqueness_of :username
+
+  attr_accessor :no_password_required
 
   def reduce_votes_left
     current_votes = votes_left
@@ -33,5 +36,11 @@ class User < ApplicationRecord
 
   def self.replenish_votes
     User.all.each(&:reset_votes)
+  end
+
+  protected
+
+  def password_required?
+    no_password_required ? false : super
   end
 end

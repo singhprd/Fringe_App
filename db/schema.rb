@@ -86,11 +86,6 @@ ActiveRecord::Schema.define(version: 20190209212815) do
     t.index ["user_id"], name: "index_favourites_on_user_id"
   end
 
-  create_table "friend_favourites", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "fringebots", id: :serial, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

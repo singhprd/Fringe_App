@@ -5,7 +5,7 @@ class RegistrationsController < ApplicationController
   end
 
   def create
-    user = User.new(username: registration_params[:username])
+    user = User.find_or_initialize_by_email(params[:email])
 
     credential_options = WebAuthn.credential_creation_options
     credential_options[:user][:id] = Base64.strict_encode64(registration_params[:username])

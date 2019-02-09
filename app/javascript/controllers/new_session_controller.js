@@ -2,7 +2,7 @@ import { Controller } from "stimulus"
 import * as Credential from "credential";
 import * as Encoder from "encoder";
 
-import { MDCTextField } from '@material/textfield';
+// import { MDCTextField } from '@material/textfield';
 
 export default class extends Controller {
   static targets = ["usernameField"]
