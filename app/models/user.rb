@@ -8,11 +8,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :votes
-  has_many :favourites
-  has_many :searches
-  has_many :lists
-  has_many :credentials
+  has_many :votes, dependent: :destroy
+  has_many :favourites, dependent: :destroy
+  has_many :searches, dependent: :destroy
+  has_many :lists, dependent: :destroy
+  has_many :credentials, dependent: :destroy
   validates_uniqueness_of :username
 
   attr_accessor :no_password_required

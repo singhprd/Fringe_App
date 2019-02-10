@@ -32,4 +32,12 @@ class ApplicationController < ActionController::Base
       )
     end
   end
+
+  def str_to_bin(str)
+    Base64.strict_decode64(str)
+  end
+
+  def bin_to_str(bin)
+    Base64.strict_encode64(bin)
+  end
 end

@@ -1,30 +1,39 @@
 # frozen_string_literal: true
 
-class RegistrationsController < ApplicationController
+class Webauthn::RegistrationsController < ApplicationController
   def new
   end
 
   def create
-    user = User.find_or_initialize_by_email(params[:email])
+    user = User.new(email: "tes22t@user.com", username: "122342x")
+    user.no_password_required = true
+    user.save
+
+    # byebug
+
+    # user = User.last
 
     credential_options = WebAuthn.credential_creation_options
-    credential_options[:user][:id] = Base64.strict_encode64(registration_params[:username])
-    credential_options[:user][:name] = registration_params[:username]
-    credential_options[:user][:displayName] = registration_params[:username]
+    credential_options[:user][:id] = Base64.strict_encode64(user.id.to_s)
+    credential_options[:user][:name] = "registration_params[:username]"
+    credential_options[:user][:displayName] = "registration_params[:username]"
 
     credential_options[:challenge] = bin_to_str(credential_options[:challenge])
+    user.update(current_challenge: credential_options[:challenge])
 
-    if user.update(current_challenge: credential_options[:challenge])
-      session[:username] = registration_params[:username]
+    # if user.update(current_challenge: credential_options[:challenge])
+      # session[:username] = registration_params[:username]
+
+      # byebug
 
       respond_to do |format|
         format.json { render json: credential_options }
       end
-    else
-      respond_to do |format|
-        format.json { render json: { errors: user.errors.full_messages }, status: :unprocessable_entity }
-      end
-    end
+    # else
+      # respond_to do |format|
+        # format.json { render json: { errors: user.errors.full_messages }, status: :unprocessable_entity }
+      # end
+    # end
   end
 
   def callback

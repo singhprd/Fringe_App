@@ -2,6 +2,7 @@
 
 class CredentialsController < ApplicationController
   def create
+    current_user = User.last
     credential_options = WebAuthn.credential_creation_options
     credential_options[:user][:id] = Base64.strict_encode64(current_user.username)
     credential_options[:user][:name] = current_user.username
