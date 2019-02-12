@@ -5,6 +5,7 @@ class HomeController < ApplicationController
 
   # GET /
   def welcome
+    # binding.pry
     params[:favourites] ||= 'false'
     params[:year] ||= Fringebot::YEARS.last
 
