@@ -93,7 +93,7 @@ export class FilterBar extends Component {
               <div className="btn-group">
               <form onSubmit={this.handleSearch.bind(this)}>
                 <div className="input-group">
-                  <input id="searchInput" style={divStyle} type="submit" className="form-control btn btn-default navbar-btn btn-sm"  placeholder="Search"/>
+                  <input id="searchInput" style={divStyle} className="form-control navbar-btn btn-sm"  placeholder="Search"/>
                   <div className="input-group-btn">
                     <button id="searchInput" className="btn btn-default navbar-btn btn-sm" type="submit" style={divStyle}>
                       <i className="glyphicon glyphicon-search"></i>
