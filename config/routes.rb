@@ -33,6 +33,8 @@ Rails.application.routes.draw do
   post '/lists/create_item' => 'lists#create_item'
   post '/lists/destroy_item' => 'lists#destroy_item'
 
+  get '/home/search' => 'home#search', as: 'home_page_search'
+
   # resources :search
   devise_for :users, controllers: { sessions: 'users/sessions' }
 end

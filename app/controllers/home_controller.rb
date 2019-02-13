@@ -25,4 +25,34 @@ class HomeController < ApplicationController
 
     @events = events_data.page(params[:page]).per(5)
   end
+
+  def search
+    search_params = {
+      'title_string' => 'bbc',
+      'artist' => '',
+      'year' => '2018',
+      'festival_string' => 'all'
+    }
+
+    params[:favourites] ||= 'false'
+    params[:year] ||= Fringebot::YEARS.last
+
+    @filter = params.permit(:favourites, :year, :controller, :action, :term)
+
+    @search = Search.new(search_params.to_hash, current_user)
+    @search.update(user: current_user)
+    # @events = @search.events
+    # redirect_to @search
+    # @search_params = @search.retrieve_params
+    # @events = @search.events
+    # @events = Kaminari.paginate_array(@search.events)
+    @events = @search.events.page(params[:page]).per(5)
+    # @events = Kaminari.paginate_array(@events).page(params[:page]).per(5)
+    # @events = @search.events
+    render "home/welcome.html.erb"
+  end
+
+  # def search_params
+  #   params.permit('title_string', 'artist', 'year', 'festival_string')
+  # end
 end

@@ -38,13 +38,33 @@ export class FilterBar extends Component {
         return 'active';
       }
     }
-    search() {
-      var params = this.params();
+    handleSearch(e) {
+      e.preventDefault()
+
+      var params = this.params()
+      var merged = {...params, ...{"term": "bbc"}};
       // Update the params to change the filter
       // params[param] = value;
-      params["searchTerm"] = document.getElementById("searchInput").value()
-      Turbolinks.clearCache();
-      Turbolinks.visit('/?' + $.param(params), {'action':'replace'});      
+
+      var searchTerm = document.getElementById('searchInput').value
+
+
+      // fetch('/home/search', {
+      //   method: "POST",
+      //   body: JSON.stringify(body),
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //     "Accept": "application/json",
+      //     "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').getAttribute("content")
+      //   },
+      //   credentials: 'same-origin'
+      // }).then(function(response) {
+      //   // window.location.replace("/")
+      //   console.log(response.status)
+      //   console.log(response)
+      // });
+      // Turbolinks.clearCache();
+      Turbolinks.visit('/?' + $.param(merged), {'action':'replace'});      
     }
     render() {
       var divStyle = {
@@ -71,11 +91,11 @@ export class FilterBar extends Component {
 
             <div className="col-sm-6">
               <div className="btn-group">
-              <form>
+              <form onSubmit={this.handleSearch.bind(this)}>
                 <div className="input-group">
-                  <input style={divStyle} type="text" className="form-control btn btn-default navbar-btn btn-sm"  placeholder="Search"/>
+                  <input id="searchInput" style={divStyle} type="submit" className="form-control btn btn-default navbar-btn btn-sm"  placeholder="Search"/>
                   <div className="input-group-btn">
-                    <button id="searchInput" onClick={() => this.search()} className="btn btn-default navbar-btn btn-sm" type="submit" style={divStyle}>
+                    <button id="searchInput" className="btn btn-default navbar-btn btn-sm" type="submit" style={divStyle}>
                       <i className="glyphicon glyphicon-search"></i>
                     </button>
                   </div>
