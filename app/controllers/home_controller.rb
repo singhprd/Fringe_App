@@ -28,10 +28,10 @@ class HomeController < ApplicationController
 
   def search
     search_params = {
-      'title_string' => 'bbc',
+      'title_string' => params["term"],
       'artist' => '',
-      'year' => '2018',
-      'festival_string' => 'all'
+      'year' => params["year"],
+      'festival_string' => ''
     }
 
     params[:favourites] ||= 'false'
@@ -47,6 +47,9 @@ class HomeController < ApplicationController
     # @events = @search.events
     # @events = Kaminari.paginate_array(@search.events)
     @events = @search.events.page(params[:page]).per(5)
+
+    # binding.pry
+
     # @events = Kaminari.paginate_array(@events).page(params[:page]).per(5)
     # @events = @search.events
     render "home/welcome.html.erb"

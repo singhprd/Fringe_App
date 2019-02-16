@@ -14,11 +14,18 @@ export class FilterBar extends Component {
       //   isFavourited: this.props.is_favourited,
       // };
     }
+    componentDidMount() {
+      if (this.props.current_filter.term) {
+        document.getElementById('searchInput').value = this.props.current_filter.term || "";
+        document.getElementById('searchInput').focus()
+      }
+    }
     params() {
       var filter = this.props.current_filter;
       return {
         favourites: filter.favourites,
-        year: filter.year
+        year: filter.year,
+        term: filter.term
       };
     }
     redirect(param, value) {
@@ -38,37 +45,33 @@ export class FilterBar extends Component {
         return 'active';
       }
     }
+    clearButton() {
+      var divStyle = {
+        height: '30px'
+      };
+
+      if (this.props.current_filter.term) {
+        return (
+          <button id="searchInput" className="btn btn-danger navbar-btn btn-sm" type="submit" style={divStyle}>
+            Clear
+          </button>
+        )
+      }
+    }
     handleSearch(e) {
-      e.preventDefault()
+      e.preventDefault();
 
-      var params = this.params()
-      var merged = {...params, ...{"term": "bbc"}};
-      // Update the params to change the filter
-      // params[param] = value;
-
+      var params = this.params();
+      
       var searchTerm = document.getElementById('searchInput').value
-
-
-      // fetch('/home/search', {
-      //   method: "POST",
-      //   body: JSON.stringify(body),
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //     "Accept": "application/json",
-      //     "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').getAttribute("content")
-      //   },
-      //   credentials: 'same-origin'
-      // }).then(function(response) {
-      //   // window.location.replace("/")
-      //   console.log(response.status)
-      //   console.log(response)
-      // });
-      // Turbolinks.clearCache();
-      Turbolinks.visit('/?' + $.param(merged), {'action':'replace'});      
+      var merged = {...params, ...{"term": searchTerm}};
+      // Turbolinks.visit('/home/search?' + $.param(merged), {'action':'replace'});
+      var url = '/home/search?' + $.param(merged);
+      window.location.href = url
     }
     render() {
       var divStyle = {
-        height: '30px',
+        height: '30px'
       };
       var group1style = {
         marginRight:'5px',
@@ -93,7 +96,7 @@ export class FilterBar extends Component {
               <div className="btn-group">
               <form onSubmit={this.handleSearch.bind(this)}>
                 <div className="input-group">
-                  <input id="searchInput" style={divStyle} className="form-control navbar-btn btn-sm"  placeholder="Search"/>
+                  <input ref={this.searchInputRef} id="searchInput" style={divStyle} className="form-control navbar-btn btn-sm" placeholder="Search"/>
                   <div className="input-group-btn">
                     <button id="searchInput" className="btn btn-default navbar-btn btn-sm" type="submit" style={divStyle}>
                       <i className="glyphicon glyphicon-search"></i>

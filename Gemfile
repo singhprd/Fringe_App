@@ -58,10 +58,10 @@ group :development, :test do
   gem 'byebug'
   gem 'factory_bot_rails'
   gem 'guard' # NOTE: this is necessary in newer versions
-  gem 'guard-livereload'
-  gem 'guard-minitest'
+  # gem 'guard-livereload'
+  # gem 'guard-minitest'
   gem 'pry'
-  gem 'rack-livereload'
+  # gem 'rack-livereload'
   # gem 'sqlite3'
   gem 'fabrication'
   gem 'faker', '~> 1.7', '>= 1.7.3'
@@ -79,7 +79,7 @@ group :development do
   gem 'web-console'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'letter_opener'
-  gem 'meta_request'
+  # gem 'meta_request'
   gem 'rufo'
   gem 'spring'
   gem 'spring-watcher-listen'
