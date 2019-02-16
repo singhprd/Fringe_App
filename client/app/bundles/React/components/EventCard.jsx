@@ -100,7 +100,7 @@ export class EventCard extends Component {
                   className='btn btn-default'
                   type='button'
                   >
-                  📍
+                  🗺️
                   </button>
 
                   <button
@@ -108,7 +108,7 @@ export class EventCard extends Component {
                   className='btn btn-default'
                   type='button'
                   >
-                  💭
+                  💬
                   </button>
 
                   {this.reviews_button()}
