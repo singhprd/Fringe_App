@@ -63,6 +63,9 @@ export class EventCard extends Component {
     (this.props.currentUserId !== undefined)
   }
   signedIn(e, v) {
+    var iconStyle = {
+        color: '#DF1F1F'
+      };
     if (this.props.short === true) {
       return;
     }
@@ -99,8 +102,9 @@ export class EventCard extends Component {
                   onClick={() => this.requestWell("map")}
                   className='btn btn-default'
                   type='button'
+                  style={iconStyle}
                   >
-                  🗺️
+                  <i className="glyphicon glyphicon-map-marker"></i>
                   </button>
 
                   <button
