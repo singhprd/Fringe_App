@@ -37,4 +37,6 @@ Rails.application.routes.draw do
 
   # resources :search
   devise_for :users, controllers: { sessions: 'users/sessions' }
+
+  get 'home/:year' => 'home#events', :constraints => { :year => /\d{4}/ }
 end
