@@ -1,3 +1,3 @@
 # frozen_string_literal: true
 
-json.partial! 'favourites/favourite', favourite: @favourite
+json.partial! "favourites/favourite", favourite: @favourite

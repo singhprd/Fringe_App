@@ -13,9 +13,9 @@ class Users::SessionsController < Devise::SessionsController
   def create
     # super
     if user_signed_in?
-      render 'success.js'
+      render "success.js"
     else
-      render 'failure.js'
+      render "failure.js"
     end
   end
 
@@ -30,7 +30,7 @@ class Users::SessionsController < Devise::SessionsController
   def destroy
     # super
     sign_out @user
-    redirect_to '/'
+    redirect_to "/"
   end
 
   # protected

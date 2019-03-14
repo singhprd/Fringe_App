@@ -10,7 +10,7 @@ class SearchesController < ApplicationController
     end
 
     # Search defaults
-    @search_params = { 'title_string' => '', 'artist' => '', 'year' => '2018', 'festival_string' => 'fringe' }
+    @search_params = { "title_string" => "", "artist" => "", "year" => "2018", "festival_string" => "fringe" }
   end
 
   def create
@@ -30,7 +30,7 @@ class SearchesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def search_params
-    params.permit('title_string', 'artist', 'year', 'festival_string')
+    params.permit("title_string", "artist", "year", "festival_string")
   end
 
   # Use callbacks to share common setup or constraints between actions.

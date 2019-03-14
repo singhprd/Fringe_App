@@ -2,7 +2,7 @@
 
 Rails.application.configure do
   # Verifies that versions and hashed value of the package contents in the project's package.json
-config.webpacker.check_yarn_integrity = false
+  config.webpacker.check_yarn_integrity = false
 
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -21,7 +21,7 @@ config.webpacker.check_yarn_integrity = false
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
-  config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
+  config.public_file_server.enabled = ENV["RAILS_SERVE_STATIC_FILES"].present?
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
@@ -62,14 +62,13 @@ config.webpacker.check_yarn_integrity = false
   # config.active_job.queue_name_prefix = "fringe_#{Rails.env}"
   config.action_mailer.perform_caching = false
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.default_url_options = { :host => 'edinfringe.co.uk' }
+  config.action_mailer.default_url_options = { host: "edinfringe.co.uk" }
   config.action_mailer.delivery_method = :mailgun
 
   config.action_mailer.mailgun_settings = {
     api_key: ENV["FRINGE_MAILGUN_API_KEY"],
-    domain: 'mg.edinfringe.co.uk',
+    domain: "mg.edinfringe.co.uk",
   }
-
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
@@ -89,7 +88,7 @@ config.webpacker.check_yarn_integrity = false
   # require 'syslog/logger'
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
 
-  if ENV['RAILS_LOG_TO_STDOUT'].present?
+  if ENV["RAILS_LOG_TO_STDOUT"].present?
     logger           = ActiveSupport::Logger.new(STDOUT)
     logger.formatter = config.log_formatter
     config.logger = ActiveSupport::TaggedLogging.new(logger)

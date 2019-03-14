@@ -12,18 +12,18 @@ class Search < ApplicationRecord
   end
 
   def persist_params(params_hash)
-    self.festival_string = params_hash['festival_string']
-    self.title_string = params_hash['title_string']
-    self.artist = params_hash['artist']
-    self.year = params_hash['year']
+    self.festival_string = params_hash["festival_string"]
+    self.title_string = params_hash["title_string"]
+    self.artist = params_hash["artist"]
+    self.year = params_hash["year"]
   end
 
   def retrieve_params
     params_hash = {}
-    params_hash['festival_string'] = festival_string
-    params_hash['title_string'] = title_string
-    params_hash['artist'] = artist
-    params_hash['year'] = year
+    params_hash["festival_string"] = festival_string
+    params_hash["title_string"] = title_string
+    params_hash["artist"] = artist
+    params_hash["year"] = year
     params_hash
   end
 
@@ -32,9 +32,9 @@ class Search < ApplicationRecord
       festival_string: festival_string,
       title_string: title_string,
       year: year,
-      artist: artist
+      artist: artist,
     ).where(
-      'created_at > ?', 1.days.ago
+      "created_at > ?", 1.days.ago
     ).limit(10_000).last
   end
 

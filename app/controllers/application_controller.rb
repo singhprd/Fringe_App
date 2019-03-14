@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   # before_action :authenticate_user!
 
   def check_admin
-    raise 'User is not Admin!' unless current_user.try(:admin?)
+    raise "User is not Admin!" unless current_user.try(:admin?)
   end
 
   protected

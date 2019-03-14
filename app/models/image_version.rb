@@ -4,6 +4,6 @@ class ImageVersion < ApplicationRecord
   belongs_to :image
 
   def remote_url
-    'https:' + url
+    "https:" + url
   end
 end

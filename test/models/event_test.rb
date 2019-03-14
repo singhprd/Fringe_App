@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'test_helper'
+require "test_helper"
 
 class EventTest < ActiveSupport::TestCase
   setup do
@@ -10,30 +10,30 @@ class EventTest < ActiveSupport::TestCase
     5.times { Fabricate(:vote, event: @event, user: @user, value: -1) }
   end
 
-  test 'favourited?' do
+  test "favourited?" do
     assert_equal(false, Event.favourited?(@user, @event.id))
   end
 
-  test 'count upvotes' do
+  test "count upvotes" do
     assert_equal(10, @event.upvotes)
   end
 
-  test 'count downvotes' do
+  test "count downvotes" do
     assert_equal(5, @event.downvotes)
   end
 
-  test 'tally votes' do
+  test "tally votes" do
     assert_equal(5, @event.tally_votes)
   end
 
-  test 'to_fringebot_hash' do
+  test "to_fringebot_hash" do
     result =
       {
         title: @event.title,
         festival: @event.festival,
         year: @event.festival_year,
         artist: @event.artist,
-        code: @event.code
+        code: @event.code,
       }
     assert_equal(result, @event.to_fringebot_hash)
   end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'json'
+require "json"
 class EventsController < ApplicationController
   before_action :set_event, only: %i[show edit update destroy comments reviews]
   before_action :check_admin, only: %i[destroy update edit]
@@ -11,9 +11,9 @@ class EventsController < ApplicationController
   def comments
     # puts Comment.event_json(@event, current_user)
 
-    comments_json = @event.comments
-                          .sort_by(&:votes).reverse
-                          .map do |comment|
+    comments_json = @event.comments.
+      sort_by(&:votes).reverse.
+      map do |comment|
       comment.comment_json_with_user_vote(current_user)
     end
 
@@ -75,7 +75,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
+        format.html { redirect_to @event, notice: "Event was successfully created." }
         format.json { render :show, status: :created, location: @event }
       else
         format.html { render :new }
@@ -89,7 +89,7 @@ class EventsController < ApplicationController
   def update
     respond_to do |format|
       if @event.update(event_params)
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
+        format.html { redirect_to @event, notice: "Event was successfully updated." }
         format.json { render :show, status: :ok, location: @event }
       else
         format.html { render :edit }
@@ -108,7 +108,7 @@ class EventsController < ApplicationController
   def destroy
     @event.destroy
     respond_to do |format|
-      format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
+      format.html { redirect_to events_url, notice: "Event was successfully destroyed." }
       format.json { head :no_content }
     end
   end

@@ -1,18 +1,18 @@
 # frozen_string_literal: true
 
-require 'test_helper'
+require "test_helper"
 
 class CommentTest < ActiveSupport::TestCase
-  test 'the truth' do
+  test "the truth" do
     assert true
   end
-  test 'the truth 2' do
+  test "the truth 2" do
     assert true
   end
-  test 'the truth 4' do
+  test "the truth 4" do
     assert true
   end
-  test 'the truth 10' do
+  test "the truth 10" do
     assert true
   end
 end

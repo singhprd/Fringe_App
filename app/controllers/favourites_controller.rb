@@ -29,7 +29,7 @@ class FavouritesController < ApplicationController
 
     respond_to do |format|
       if @favourite.save
-        format.json { render json: { notice: 'Event added to favourites.' } }
+        format.json { render json: { notice: "Event added to favourites." } }
       else
         format.html { render :new }
         format.json { render json: @favourite.errors, status: :unprocessable_entity }
@@ -42,7 +42,7 @@ class FavouritesController < ApplicationController
   def update
     respond_to do |format|
       if @favourite.update(favourite_params)
-        format.html { redirect_to @favourite, notice: 'Favourite was successfully updated.' }
+        format.html { redirect_to @favourite, notice: "Favourite was successfully updated." }
         format.json { render :show, status: :ok, location: @favourite }
       else
         format.html { render :edit }
@@ -55,7 +55,7 @@ class FavouritesController < ApplicationController
   # DELETE /favourites/1.json
   def destroy
     if @favourite.destroy
-      render plain: 'OK', status: :ok
+      render plain: "OK", status: :ok
     else
       format.json { render json: @favourite.errors, status: :unprocessable_entity }
     end

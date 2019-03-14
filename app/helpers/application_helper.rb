@@ -3,6 +3,7 @@
 module ApplicationHelper
   def navbar_button_class(year)
     return "btn btn-primary navbar-btn btn-sm" unless current_page?(year: year)
+
     "btn btn-primary navbar-btn btn-sm active"
   end
 

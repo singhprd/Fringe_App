@@ -28,7 +28,7 @@ class PerformancesController < ApplicationController
 
     respond_to do |format|
       if @performance.save
-        format.html { redirect_to @performance, notice: 'Performance was successfully created.' }
+        format.html { redirect_to @performance, notice: "Performance was successfully created." }
         format.json { render :show, status: :created, location: @performance }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class PerformancesController < ApplicationController
   def update
     respond_to do |format|
       if @performance.update(performance_params)
-        format.html { redirect_to @performance, notice: 'Performance was successfully updated.' }
+        format.html { redirect_to @performance, notice: "Performance was successfully updated." }
         format.json { render :show, status: :ok, location: @performance }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class PerformancesController < ApplicationController
   def destroy
     @performance.destroy
     respond_to do |format|
-      format.html { redirect_to performances_url, notice: 'Performance was successfully destroyed.' }
+      format.html { redirect_to performances_url, notice: "Performance was successfully destroyed." }
       format.json { head :no_content }
     end
   end

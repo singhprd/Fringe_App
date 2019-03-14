@@ -61,7 +61,7 @@ class HomeController < ApplicationController
         "title_string" => params["term"],
         "year" => params["year"],
         "artist" => "",
-        "festival_string" => ""
+        "festival_string" => "",
       }
 
       params[:favourites] ||= "false"

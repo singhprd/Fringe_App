@@ -4,7 +4,7 @@
 # role :name, %{[user]@[IP adde.]}
 
 # Define server(s)
-server '178.128.173.170', user: 'deploy', roles: %w[app db web]
+server "178.128.173.170", user: "deploy", roles: %w[app db web]
 
 # SSH Options
 # See the example commented out section in the file

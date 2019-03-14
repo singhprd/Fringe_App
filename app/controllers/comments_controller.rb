@@ -34,7 +34,7 @@ class CommentsController < ApplicationController
 
     @comment.save!
 
-    render json: { 'valid' => @comment.valid? }, status: 200
+    render json: { "valid" => @comment.valid? }, status: 200
 
     # respond_to do |format|
     #   if @comment.valid?
@@ -50,7 +50,7 @@ class CommentsController < ApplicationController
   def update
     respond_to do |format|
       if @comment.update(comment_params)
-        format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
+        format.html { redirect_to @comment, notice: "Comment was successfully updated." }
         format.json { render json: @comment, status: :ok }
       else
         format.html { render :edit }
@@ -64,7 +64,7 @@ class CommentsController < ApplicationController
   def destroy
     @comment.destroy
     respond_to do |format|
-      format.html { redirect_to comments_url, notice: 'Comment was successfully destroyed.' }
+      format.html { redirect_to comments_url, notice: "Comment was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -84,7 +84,7 @@ class CommentsController < ApplicationController
 
   def check_permissions
     unless @comment.user == current_user || current_user.try(:admin?)
-      raise 'You are not permitted to edit this comment!'
+      raise "You are not permitted to edit this comment!"
     end
   end
 end
