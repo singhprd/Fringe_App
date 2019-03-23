@@ -1,17 +1,15 @@
-<div data-controller="event-voting" data-event-id="<%= @event.id %>" data-target="eventVoting">
+<div data-controller="button-bar" data-event-id="<%= @event.id %>" data-latitude="<%= @event.latitude %>" data-longitude="<%= @event.longitude %>">
   <div role="toolbar" class="btn-toolbar">
     <div class="btn-group">
-      <div class="btn-group">
-        <button class="btn btn-default" data-action="event-voting#upvote">👍</button>
-        <button class="btn btn-default disabled" data-target="event-voting.eventVoteCount"> <%= @event.tally_votes %> </button>
-        <button class="btn btn-default" data-action="event-voting#downvote">👎</button>
-      </div>
+      <%= render :partial => "voting_buttons" %>
       
-      <button class="btn btn-default">💙</button>
-      <button class="btn btn-default" type="button">🗓️</button>
-      <button class="btn btn-default" type="button" style="color: rgb(223, 31, 31);"><i class="glyphicon glyphicon-map-marker"></i></button>
-      <button class="btn btn-default" type="button">💬</button>
+<!--       <button class="btn btn-default">💙</button> -->
+      <button class="btn btn-default" type="button" data-action="button-bar#performances">🗓️</button>
+      <button class="btn btn-default" type="button" data-action="button-bar#map" style="color: rgb(223, 31, 31);"><i class="glyphicon glyphicon-map-marker"></i></button>
+      <!-- <button class="btn btn-default" type="button">💬</button> -->
     </div>
   </div>
-  <div class="well well-sm collapse" id="well-content-box"></div>
+
+  <div class="well well-sm collapse" id="well-content-box" aria-expanded="true" style="" data-target="button-bar.contentBox">
+  </div>
 </div>

@@ -24,8 +24,10 @@ class VotesController < ApplicationController
   # POST /votes
   # POST /votes.json
   def create
+    vote_tally = Event.find(params["event_id"]).tally_votes
+
     if current_user.nil?
-      render json: { notice: "Sign in to vote" }
+      render json: { notice: "Please sign in to vote", votes: vote_tally }
       return
     end
     params["user_id"] = current_user.id
@@ -35,7 +37,6 @@ class VotesController < ApplicationController
       @vote = Vote.new(vote_params)
       respond_to do |format|
         if @vote.save
-          vote_tally = Event.find(params["event_id"]).tally_votes
           format.json { render json: { votes: vote_tally, notice: "Votes left: #{user.votes_left}", status: :success } }
           # flash.now[:notice]="You cannot edit this Page"
           # flash.now[:alert]="You cannot edit this Page"

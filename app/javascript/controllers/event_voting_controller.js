@@ -36,8 +36,8 @@ export default class extends Controller {
   }
 
   optimisticVoteUpdate(value) {
-    this.eventVoteCountTarget.innerText =
-      parseInt(this.eventVoteCountTarget.innerText) + value;
+    // this.eventVoteCountTarget.innerText =
+    //   parseInt(this.eventVoteCountTarget.innerText) + value;
   }
 
   eventId() {
@@ -45,20 +45,21 @@ export default class extends Controller {
   }
 
   updateVoteCount(newVoteText, value) {
-    const currentVoteCount = parseInt(this.eventVoteCountTarget.innerText);
-    const newVoteCount = parseInt(newVoteText);
+    this.eventVoteCountTarget.innerText = newVoteText;
+    
+    // const currentVoteCount = parseInt(this.eventVoteCountTarget.innerText);
+    // const newVoteCount = parseInt(newVoteText);
 
-    if (value > 0) {
-      if (newVoteCount > currentVoteCount) {
-        this.eventVoteCountTarget.innerText = newVoteCount;
-      }
-    }
+    // if (value > 0) {
+    //   if (newVoteCount > currentVoteCount) {
+    //     this.eventVoteCountTarget.innerText = newVoteCount;
+    //   }
+    // }
 
-    if (value < 0) {
-      if (newVoteCount < currentVoteCount) {
-        this.eventVoteCountTarget.innerText = newVoteCount;
-      } 
-    }
-
+    // if (value < 0) {
+    //   if (newVoteCount < currentVoteCount) {
+    //     this.eventVoteCountTarget.innerText = newVoteCount;
+    //   } 
+    // }
   }
 }

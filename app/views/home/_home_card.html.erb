@@ -1,4 +1,8 @@
-<%= render :partial => "event_card", locals: { event: @events.first } %>
+<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDiKvrb_NLftxFX2UHIfXlPY0vhh4baQrw"></script>
+
+<% @events.each do |event| %>
+  <%= render :partial => "event_card", locals: { event: event } %>
+<% end %>
 
 <%= paginate @events -%>
 
