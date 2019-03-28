@@ -13,8 +13,7 @@ class PerformancesController < ApplicationController
   # GET /performances/1
   # GET /performances/1.json
   def show
-    # params[:event_id]
-    @event = Event.find 204
+    @event = Event.find(params[:id])
   end
 
   # # GET /performances/new

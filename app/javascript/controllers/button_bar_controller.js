@@ -52,18 +52,12 @@ export default class extends Controller {
   }
 
   fetchAndFillPerformance() {
-    $.get("/performances/1").done((data) => {
+    $.get("/performances/" + this.element.dataset.eventId).done((data) => {
       this.fillContent(data);
     })
   }
 
   toggleIfNeeded(newWellContent) {
-    console.log("newWellContent");
-    console.log(newWellContent);
-
-    console.log("this.wellContent");
-    console.log(this.wellContent);
-
     if (this.wellContent === newWellContent || this.wellContent === "") {
       $(this.contentBoxTarget).collapse('toggle');
     }
