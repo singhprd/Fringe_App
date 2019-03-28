@@ -4,7 +4,11 @@
       <%= render :partial => "voting_buttons" %>
       
 <!--       <button class="btn btn-default">💙</button> -->
-      <button class="btn btn-default" type="button" data-action="button-bar#performances">🗓️</button>
+
+      <% if @event.performances.count > 1 %>
+        <button class="btn btn-default" type="button" data-action="button-bar#performances">🗓️</button>
+      <% end %>
+
       <button class="btn btn-default" type="button" data-action="button-bar#map" style="color: rgb(223, 31, 31);"><i class="glyphicon glyphicon-map-marker"></i></button>
       <!-- <button class="btn btn-default" type="button">💬</button> -->
     </div>
