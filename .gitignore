@@ -22,7 +22,7 @@ public/assets/**
 
 # Ignore Byebug command history file.
 .byebug_history
-# React on Rails
+
 npm-debug.log*
 node_modules
 

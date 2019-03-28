@@ -44,7 +44,6 @@ gem "bootstrap_form"
 gem "festivals_lab", git: "https://github.com/singhprd/festivals_lab", branch: "fix-get-single-event-by-uuid"
 # gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 # gem 'sqlite3'
-# gem 'react_on_rails', '~> 7'
 # gem 'mini_racer', platforms: :ruby
 # gem 'libv8', "~> 5.0"
 gem "acts_as_list"
