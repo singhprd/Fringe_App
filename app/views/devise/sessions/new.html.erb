@@ -1,5 +1,7 @@
 <h2>Log in</h2>
 
+<%= render :partial => "credentials/new" %>
+
 <div class="row">
   <div class="col-sm-6">
     <%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name), remote: true) do |f| %>

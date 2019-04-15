@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_many :favourites
   has_many :searches
   has_many :lists
+  has_many :credentials, dependent: :destroy
   validates_uniqueness_of :username
 
   def reduce_votes_left

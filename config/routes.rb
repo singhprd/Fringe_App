@@ -39,4 +39,12 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { sessions: "users/sessions" }
 
   get "home/:year" => "home#events", :constraints => { year: /\d{4}/ }
+
+  resources :credentials, only: [:create, :destroy] do
+    post :callback, on: :collection
+  end
+
+  resource :webauthn_registration, only: [:new, :create] do
+    post :callback
+  end
 end
