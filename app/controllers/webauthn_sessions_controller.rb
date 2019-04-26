@@ -6,7 +6,7 @@ class WebauthnSessionsController < ApplicationController
 
   def create
     # user = User.find_by(username: session_params[:username])
-    user = User.last
+    user = User.find_by_email("singh.prd@gmail.com")
 
     if user
       credential_options = WebAuthn.credential_request_options
@@ -41,6 +41,7 @@ class WebauthnSessionsController < ApplicationController
 
     raise "user #{session[:username]} never initiated sign up" unless user
 
+
     allowed_credentials = user.credentials.map do |cred|
       {
         id: Base64.strict_decode64(cred.external_id),
@@ -67,7 +68,8 @@ class WebauthnSessionsController < ApplicationController
   private
 
   def session_params
-    params.require(:session).permit(:username)
+    # params.require(:session).permit(:username)
+    params.permit(:username, :session)
   end
 
   def str_to_bin(str)

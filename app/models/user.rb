@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  attr_accessor :skip_password_validation
   # after_initialize :set_default_votes
 
   # Include default devise modules. Others available are:
@@ -13,7 +14,7 @@ class User < ApplicationRecord
   has_many :searches
   has_many :lists
   has_many :credentials, dependent: :destroy
-  validates_uniqueness_of :username
+  # validates_uniqueness_of :username
 
   def reduce_votes_left
     current_votes = votes_left
@@ -34,5 +35,12 @@ class User < ApplicationRecord
 
   def self.replenish_votes
     User.all.each(&:reset_votes)
+  end
+
+  protected
+
+  def password_required?
+    return false if skip_password_validation
+    super
   end
 end

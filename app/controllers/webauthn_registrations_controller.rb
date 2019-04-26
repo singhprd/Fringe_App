@@ -6,14 +6,19 @@ class WebauthnRegistrationsController < ApplicationController
 
   def create
     # user = User.new(username: registration_params[:email])
-    user = User.find_by_email(registration_params[:email])
+    # user = User.find_by_email("singh.prd@gmail.com")
 
-    if user
+
+    email = registration_params[:email]
+    if User.find_by_email(email)
       # format.json {
         render json: { errors: "User already exists" }, status: :unprocessable_entity and return
       # }
     end
 
+    user = User.new({email: email})
+    user.skip_password_validation = true
+    user.save
 
     credential_options = WebAuthn.credential_creation_options
     credential_options[:user][:id] = Base64.strict_encode64(registration_params[:email])

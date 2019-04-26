@@ -21,7 +21,7 @@ export default class extends Controller {
       method: 'POST',
       success: function(data, status, xhr) {
         // console.log(data);
-        var [data, status, xhr] = event.detail;
+        // var [data, status, xhr] = event.detail;
         console.log(status);
         var credentialOptions = data;
         credentialOptions["challenge"] = Encoder.strToBin(credentialOptions["challenge"]);

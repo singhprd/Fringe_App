@@ -32,10 +32,15 @@ function create(callbackUrl, credentialOptions) {
 }
 
 function get(credentialOptions) {
-  navigator.credentials.get({ "publicKey": credentialOptions }).then(function(credential) {
-    var assertionResponse = credential.response;
 
-    callback("/session/callback", {
+  console.warn(credentialOptions)
+
+  navigator.credentials.get({ "publicKey": credentialOptions }).then(function(credential) {
+    console.warn(credential)
+    var assertionResponse = credential.response;
+    console.warn(assertionResponse)
+
+    callback("/webauthn_session/callback", {
       id: Encoder.binToStr(credential.rawId),
       response: {
         clientDataJSON: Encoder.binToStr(assertionResponse.clientDataJSON),
