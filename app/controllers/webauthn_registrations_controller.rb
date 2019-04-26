@@ -5,18 +5,25 @@ class WebauthnRegistrationsController < ApplicationController
   end
 
   def create
-    # user = User.new(username: registration_params[:username])
-    user = User.last
+    # user = User.new(username: registration_params[:email])
+    user = User.find_by_email(registration_params[:email])
+
+    if user
+      # format.json {
+        render json: { errors: "User already exists" }, status: :unprocessable_entity and return
+      # }
+    end
+
 
     credential_options = WebAuthn.credential_creation_options
-    credential_options[:user][:id] = Base64.strict_encode64(registration_params[:username])
-    credential_options[:user][:name] = registration_params[:username]
-    credential_options[:user][:displayName] = registration_params[:username]
+    credential_options[:user][:id] = Base64.strict_encode64(registration_params[:email])
+    credential_options[:user][:name] = registration_params[:email]
+    credential_options[:user][:displayName] = registration_params[:email]
 
     credential_options[:challenge] = bin_to_str(credential_options[:challenge])
 
     if user.update(current_challenge: credential_options[:challenge])
-      session[:username] = registration_params[:username]
+      session[:username] = registration_params[:email]
 
       respond_to do |format|
         format.json { render json: credential_options }
@@ -57,7 +64,7 @@ class WebauthnRegistrationsController < ApplicationController
   private
 
   def registration_params
-    params.require(:registration).permit(:username)
+    params.require(:registration).permit(:email)
   end
 
   def str_to_bin(str)

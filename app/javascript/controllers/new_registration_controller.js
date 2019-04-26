@@ -7,17 +7,18 @@ import $ from 'jquery';
 // import { MDCTextField } from '@material/textfield';
 
 export default class extends Controller {
-  static targets = ["usernameField"]
+  static targets = ["usernameField", "emailField"]
 
   create(event) {
     const url = this.data.element.dataset.url;
+    const email = this.emailFieldTarget.value;
 
     // var that = this;
     $.ajax({
       url: url,
       data: { 
         authenticity_token: $('[name="csrf-token"]')[0].content,
-        registration: { username: "john" }
+        registration: { email: email }
       },
       method: 'POST',
       success: function(data, status, xhr) {
@@ -34,6 +35,9 @@ export default class extends Controller {
 
           Credential.create(encodeURI(callback_url), credentialOptions);
         }
+      },
+      error: function(data, status, xhr) {
+        flash.innerHTML = data.responseJSON["errors"];
       }
     });
 

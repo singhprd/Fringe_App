@@ -39,6 +39,12 @@
     <% end %>
 
     <br>
+
+    <% @user.credentials.each do |cred| %>
+      <%= cred.created_at %>
+      <%= cred.public_key %>
+    <% end %>
+
     <!-- 
     <h3>Cancel my account</h3>
 

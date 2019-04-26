@@ -47,4 +47,12 @@ Rails.application.routes.draw do
   resource :webauthn_registration, only: [:new, :create] do
     post :callback
   end
+
+  resources :credentials, only: [:create, :destroy] do
+    post :callback, on: :collection
+  end
+
+  resource :webauthn_session, only: [:new, :create, :destroy] do
+    post :callback
+  end
 end
