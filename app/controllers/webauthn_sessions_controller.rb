@@ -17,7 +17,8 @@ class WebauthnSessionsController < ApplicationController
       credential_options[:challenge] = bin_to_str(credential_options[:challenge])
       user.update!(current_challenge: credential_options[:challenge])
 
-      session[:username] = session_params[:username]
+      # session[:username] = session_params[:username]
+      session[:email] = user.email
 
       respond_to do |format|
         format.json { render json: credential_options }
@@ -37,10 +38,8 @@ class WebauthnSessionsController < ApplicationController
       signature: str_to_bin(params[:response][:signature])
     )
 
-    user = User.find_by(username: session[:username])
-
+    user = User.find_by(email: session[:email])
     raise "user #{session[:username]} never initiated sign up" unless user
-
 
     allowed_credentials = user.credentials.map do |cred|
       {
