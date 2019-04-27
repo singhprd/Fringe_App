@@ -6,7 +6,8 @@ class WebauthnSessionsController < ApplicationController
 
   def create
     # user = User.find_by(username: session_params[:username])
-    user = User.find_by_email("singh.prd@gmail.com")
+    email = registration_params[:email]
+    user = User.find_by_email(email)
 
     if user
       credential_options = WebAuthn.credential_request_options
@@ -69,6 +70,10 @@ class WebauthnSessionsController < ApplicationController
   def session_params
     # params.require(:session).permit(:username)
     params.permit(:username, :session)
+  end
+
+  def registration_params
+    params.require(:registration).permit(:email)
   end
 
   def str_to_bin(str)
