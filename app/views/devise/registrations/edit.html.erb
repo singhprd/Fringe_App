@@ -40,12 +40,59 @@
 
     <br>
 
-    <% @user.credentials.each do |cred| %>
-      <%= cred.created_at %>
-      <%= cred.public_key %>
-    <% end %>
+    <table>
+      <thead>
+        <tr>
+          <td>Created at</td>
+          <td>Cred</td>
+          <td>Nickname</td>
+          <td>External ID</td>
+        </tr>
+      </thead>
 
-    <!-- 
+      <tbody>
+        <% @user.credentials.each do |cred| %>
+          <td><%= cred.created_at.to_date %></td>
+          <td><%= cred.public_key.first(10) %></td>
+          <td><%= cred.nickname %></td>
+          <td><%= cred.external_id.first(5) %></td>
+          <td><%= link_to() %></td>
+        <% end %>
+      </tbody>
+    </table>
+
+
+<div class="row">
+  <div class="col-sm-6">
+<%= content_tag(:div, { data: {
+  controller: "new-registration new-session",
+  url: webauthn_registration_path,
+  sessionUrl: webauthn_session_path
+}}) do %>
+  <%= email_field(
+    "user", "email",
+    value: @user.email,
+    class: "form-control",
+    data: {
+      target: "new-registration.emailField new-session.emailField"
+    }
+  ) %>
+
+<%= button_tag("Add WebAuthn Key", {
+class: "btn btn-success",
+data: {action: "click->new-registration#create"}
+}) %>
+
+<%= button_tag("Test WebAuthn", {
+class: "btn btn-success",
+data: {action: "click->new-session#create"}
+}) %>
+
+<% end %>
+</div>
+</div>
+
+    <!--
     <h3>Cancel my account</h3>
 
     <div><%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, :class => "btn" %></div>
