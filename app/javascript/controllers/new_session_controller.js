@@ -8,13 +8,15 @@ export default class extends Controller {
   static targets = ["usernameField", "emailField"]
 
   create(event) {
-    const url = this.data.element.dataset.sessionUrl;
+    // const url = this.data.element.dataset.sessionUrl;
     const email = this.emailFieldTarget.value;
 
-    // var that = this;
+    console.log("new session controller #create");
+
+    var that = this;
     $.ajax({
       url: "/webauthn_session",
-      data: { 
+      data: {
         authenticity_token: $('[name="csrf-token"]')[0].content,
         registration: { email: email }
       },
@@ -24,9 +26,9 @@ export default class extends Controller {
         // var [data, status, xhr] = event.detail;
         console.log(status);
         var credentialOptions = data;
-        credentialOptions["challenge"] = Encoder.strToBin(credentialOptions["challenge"]);
+        credentialOptions["challenge"] = that.strToBin(credentialOptions["challenge"]);
         credentialOptions["allowCredentials"].forEach(function(cred, i){
-          cred["id"] = Encoder.strToBin(cred["id"]);
+          cred["id"] = that.strToBin(cred["id"]);
         })
         Credential.get(credentialOptions);
       }
@@ -40,4 +42,15 @@ export default class extends Controller {
     usernameField.valid = false;
     usernameField.helperTextContent = response["errors"][0];
   }
+
+  binToStr(bin) {
+      return btoa(new Uint8Array(bin).reduce(
+        (s, byte) => s + String.fromCharCode(byte), ''
+      ));
+    }
+
+  strToBin(str) {
+      console.log(str);
+      return Uint8Array.from(atob(str), c => c.charCodeAt(0));
+    }
 }
