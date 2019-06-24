@@ -2,8 +2,10 @@
 
 <h2><%= @list.name %></h2>
 
-<%= @list.list_items %>
-<%= @list.events %>
+<% @list.list_items.map(&:event_id).each do |event_id| %>
+    <% event = Event.find(event_id) %>
+    <%= render :partial => "home/event_card", locals: { event: event } %>
+<% end %>
 
 
 <div class=' col-xs-12'>
