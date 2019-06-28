@@ -1,0 +1,33 @@
+<div class="row" data-controller="friend-requests">
+  <div class="col-md-7">
+    <h1>Friends</h1>
+    <table class="table table-striped">
+      <% @user.friends.each do |friend| %>
+      <tr>
+        <td><%= friend.email %></td>
+      </tr>
+    <% end %>
+    </table>
+  </div>
+
+  <div class="col-md-5">
+    <h3>Pending Requests</h3>
+    <table class="table table-striped">
+      <% @user.pending_friend_requests.each do |request| %>
+        <tr>
+          <td><%= request.sender.email %> <a style="cursor: pointer" data-action="friend-requests#acceptRequest" data-request-id="<%= request.id %>" class="pull-right">Accept</a><span class="pull-right">&nbsp;|&nbsp;</span><span class="pull-right">Delete</span></td>
+        </tr>
+      <% end %>
+    </table>
+    <br>
+    <h3>Friend Requests</h3>
+    <table class="table table-striped">
+      <% @user.sent_friend_requests.each do |request| %>
+        <tr>
+          <td><%= request.recipient.email %> <span class="pull-right">Delete</span></td>
+        </tr>
+      <% end %>
+    </table>
+    <%= render :partial => "friend_request/new" %>
+  </div>
+</div>

@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   resources :comments
   resources :comment_vote
   resources :list_items
+  resources :friends
+  resources :friend_requests
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 

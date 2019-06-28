@@ -13,8 +13,14 @@ class User < ApplicationRecord
   has_many :favourites
   has_many :searches
   has_many :lists
+
+  has_many :friendships, dependent: :destroy
+  has_many :friends, through: :friendships
+
+  has_many :sent_friend_requests, :class_name => 'FriendRequest', :foreign_key => 'sender_id'
+  has_many :pending_friend_requests, :class_name => 'FriendRequest', :foreign_key => 'recipient_id'
   has_many :credentials, dependent: :destroy
-  # validates_uniqueness_of :username
+  validates_uniqueness_of :username
 
   def reduce_votes_left
     current_votes = votes_left

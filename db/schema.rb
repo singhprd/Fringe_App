@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190415231342) do
+ActiveRecord::Schema.define(version: 20190628002220) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,6 +84,24 @@ ActiveRecord::Schema.define(version: 20190415231342) do
     t.index ["event_id"], name: "index_favourites_on_event_id"
     t.index ["user_id", "event_id"], name: "index_favourites_on_user_id_and_event_id", unique: true
     t.index ["user_id"], name: "index_favourites_on_user_id"
+  end
+
+  create_table "friend_requests", force: :cascade do |t|
+    t.bigint "sender_id"
+    t.bigint "recipient_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recipient_id"], name: "index_friend_requests_on_recipient_id"
+    t.index ["sender_id"], name: "index_friend_requests_on_sender_id"
+  end
+
+  create_table "friendships", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "friend_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["friend_id"], name: "index_friendships_on_friend_id"
+    t.index ["user_id"], name: "index_friendships_on_user_id"
   end
 
   create_table "fringebots", id: :serial, force: :cascade do |t|
@@ -238,6 +256,8 @@ ActiveRecord::Schema.define(version: 20190415231342) do
   add_foreign_key "events", "venues"
   add_foreign_key "favourites", "events"
   add_foreign_key "favourites", "users"
+  add_foreign_key "friendships", "users"
+  add_foreign_key "friendships", "users", column: "friend_id"
   add_foreign_key "image_versions", "images"
   add_foreign_key "images", "events"
   add_foreign_key "list_items", "events"

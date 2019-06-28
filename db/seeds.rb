@@ -13,4 +13,5 @@
 # 10.times { Fabricate(:favourite).save }
 # 10.times { Fabricate(:review).save }
 # 10.times { Fabricate(:vote).save }
-user = User.create! username: "Peter Singh", email: "singh.prd@gmail.com", password: "password", password_confirmation: "password"
+user = User.create! username: "singh.prd", email: "singh.prd@gmail.com", password: "password", password_confirmation: "password"
+user = User.create! username: "p99rds", email: "p99rds@gmail.com", password: "password", password_confirmation: "password"
