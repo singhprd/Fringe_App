@@ -20,7 +20,7 @@ class User < ApplicationRecord
   has_many :sent_friend_requests, :class_name => 'FriendRequest', :foreign_key => 'sender_id'
   has_many :pending_friend_requests, :class_name => 'FriendRequest', :foreign_key => 'recipient_id'
   has_many :credentials, dependent: :destroy
-  validates_uniqueness_of :username
+  validates_uniqueness_of :username, :unless => :unregistered?
 
   def reduce_votes_left
     current_votes = votes_left
@@ -41,6 +41,14 @@ class User < ApplicationRecord
 
   def self.replenish_votes
     User.all.each(&:reset_votes)
+  end
+
+  def unregistered?
+    password.blank?
+  end
+
+  def send_invite_email!
+    InvitedUserEmail.with(user: user).weekly_summary.deliver_now
   end
 
   protected

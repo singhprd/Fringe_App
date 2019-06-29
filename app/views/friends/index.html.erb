@@ -24,7 +24,7 @@
     <table class="table table-striped">
       <% @user.sent_friend_requests.each do |request| %>
         <tr>
-          <td><%= request.recipient.email %> <span class="pull-right">Delete</span></td>
+          <td><%= request.recipient.email %> <span style="cursor: pointer" data-action="click->friend-requests#deleteRequest" data-request-id="<%= request.id %>" class="pull-right">Delete</span></td>
         </tr>
       <% end %>
     </table>

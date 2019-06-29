@@ -30,6 +30,20 @@ export default class extends Controller {
     });
   }
 
+  deleteRequest(e) {
+    let requestId = e.target.dataset.requestId
+    var stimulusController = this;
+
+    $.ajax({
+      type: "DELETE",
+      url: "/friend_requests/" + requestId,
+      context: this,
+      success: () => {
+        Turbolinks.visit(window.location, { action: 'replace' })
+      }
+    });
+  }
+
   // stopClose(e) {
   //   e.stopPropagation();
   // }

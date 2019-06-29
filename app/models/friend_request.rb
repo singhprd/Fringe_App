@@ -10,6 +10,16 @@ class FriendRequest < ApplicationRecord
     destroy!
   end
 
-  # belongs_to :user, :primary_key => "id", :foreign_key => "recipient", :class_name => "User"
-  # belongs_to :user, :primary_key => "id", :foreign_key => "sender", :class_name => "User"
+  def self.create_for_newly_invited_user(sender, new_user_email)
+    invited_user = User.new(email: new_user_email)
+    invited_user.skip_password_validation = true
+    invited_user.save
+
+    invited_user.send_invite_email!
+
+    FriendRequest.create(
+      sender: sender,
+      recipient: invited_user.reload
+    )
+  end
 end

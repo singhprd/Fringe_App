@@ -1,13 +1,22 @@
 class FriendRequestsController < ApplicationController
   def create
-    recipient = User.find_by_email(params[:email])
+    email = params[:email]
+    recipient = User.find_by_email(email)
 
-    return false unless recipient
+    if recipient && current_user.friends.where(id: recipient.id)
+      flash[:notice] = "You're already friends!"
+      return false
+    end
 
-    FriendRequest.create(
-      sender: current_user,
-      recipient: recipient
-    )
+    if recipient
+      FriendRequest.create(
+        sender: current_user,
+        recipient: recipient
+      )
+    else
+      # flash[:notice] = "No users with that email address"
+      FriendRequest.create_for_newly_invited_user(current_user, email)
+    end
   end
 
   def update
@@ -16,5 +25,9 @@ class FriendRequestsController < ApplicationController
       raise unless request.recipient == current_user
       request.accept!
     end
+  end
+
+  def destroy
+    FriendRequest.find(params[:id]).destroy
   end
 end
