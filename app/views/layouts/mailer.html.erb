@@ -1,13 +1,30 @@
 <!DOCTYPE html>
+<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 <html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <style>
-      /* Email styles need to be inline */
-    </style>
-  </head>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <style>
+    /* Email styles need to be inline */
+  </style>
+</head>
 
-  <body>
+<body style="border:20px solid white; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+  <div class="container-fluid" style=" background: white;">
     <%= yield %>
-  </body>
+
+    <br>
+
+    <div class="row">
+      <div class="col-md-8">
+        <div id="image-div" style="height: 20vh; margin-bottom: -20px" class="center-block">
+          <%= image_tag("cutout.png", :id => "footer-image") %>
+        </div>
+      </div>
+      <div class="col-md-4">
+      </div>
+    </div>
+
+  </div>
+</body>
+
 </html>

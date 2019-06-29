@@ -48,7 +48,7 @@ class User < ApplicationRecord
   end
 
   def send_invite_email!
-    InvitedUserEmail.with(user: user).weekly_summary.deliver_now
+    UserInviteMailer.with(user: user).weekly_summary.deliver_now
   end
 
   protected
