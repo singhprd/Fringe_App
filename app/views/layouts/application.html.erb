@@ -32,7 +32,9 @@
 <link rel="apple-touch-icon" href= <%= image_path("cutout.png") %> >
 
 <body>
-  <%= render "./layouts/bootstrap_nav_bar" %>
+  <% unless @no_header %>
+    <%= render "./layouts/bootstrap_nav_bar" %>
+  <% end %>
 
   <div id="flash-container">
     <div id="flash">

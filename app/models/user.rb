@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :votes
@@ -47,8 +47,12 @@ class User < ApplicationRecord
     password.blank?
   end
 
+  def friends_with?(friend)
+    Friendship.exists?(user: self, friend: friend)
+  end
+
   def send_invite_email!
-    UserInviteMailer.with(user: user).weekly_summary.deliver_now
+    UserInviteMailer.with(user: self).weekly_summary.deliver_now
   end
 
   protected

@@ -3,7 +3,7 @@ class FriendRequestsController < ApplicationController
     email = params[:email]
     recipient = User.find_by_email(email)
 
-    if recipient && current_user.friends.where(id: recipient.id)
+    if recipient && current_user.friends_with?(recipient)
       flash[:notice] = "You're already friends!"
       return false
     end
@@ -15,7 +15,13 @@ class FriendRequestsController < ApplicationController
       )
     else
       # flash[:notice] = "No users with that email address"
-      FriendRequest.create_for_newly_invited_user(current_user, email)
+      # FriendRequest.create_for_newly_invited_user(current_user, email)
+      recipient = User.invite!(email: email)
+
+      FriendRequest.create(
+        sender: current_user,
+        recipient: recipient
+      )
     end
   end
 

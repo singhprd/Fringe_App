@@ -11,8 +11,15 @@
   </div>
 
   <div class="col-md-5">
-    <h3>Pending Requests</h3>
     <table class="table table-striped">
+      <thead>
+        <td><h3>Pending Requests</h3></td>
+      </thead>
+      <% if @user.pending_friend_requests.empty? %>
+        <tr>
+          <td>Go add some pals, eh?</td>
+        </tr>
+      <% end %>
       <% @user.pending_friend_requests.each do |request| %>
         <tr>
           <td><%= request.sender.email %> <a style="cursor: pointer" data-action="friend-requests#acceptRequest" data-request-id="<%= request.id %>" class="pull-right">Accept</a><span class="pull-right">&nbsp;|&nbsp;</span><span class="pull-right">Delete</span></td>
@@ -20,7 +27,6 @@
       <% end %>
     </table>
     <br>
-    <h3>Friend Requests</h3>
     <table class="table table-striped">
       <% @user.sent_friend_requests.each do |request| %>
         <tr>

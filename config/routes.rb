@@ -39,7 +39,7 @@ Rails.application.routes.draw do
   get "/home/search" => "home#search", as: "home_page_search"
 
   # resources :search
-  devise_for :users, controllers: { sessions: "users/sessions" }
+  devise_for :users, controllers: { sessions: "users/sessions", invitations: 'users/invitations' }
 
   get "home/:year" => "home#events", :constraints => { year: /\d{4}/ }
 
