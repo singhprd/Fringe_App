@@ -4,7 +4,7 @@
     <table class="table table-striped">
       <% @user.friends.each do |friend| %>
       <tr>
-        <td><%= friend.email %></td>
+        <td><%= friend.email %><a style="cursor: pointer" class="pull-right">Unfriend</a></td>
       </tr>
     <% end %>
     </table>
