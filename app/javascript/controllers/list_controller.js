@@ -1,7 +1,7 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = [ "content" ]
+  static targets = [ "content", "addToListButton" ]
 
   initialize() {
     console.log("obj");
@@ -22,7 +22,8 @@ export default class extends Controller {
       url: "/list_items/" + list_item_id,
       context: this,
       success: (data) => {
-        this.contentTarget.innerHTML = data;
+        this.addToListButtonTarget.innerText = "🔥"
+        setTimeout(this.setListHtml, 600, data, stimulusController)
       }
     });
   }
@@ -44,9 +45,14 @@ export default class extends Controller {
       data: data,
       context: this,
       success: (data) => {
-        this.contentTarget.innerHTML = data;
+        this.addToListButtonTarget.innerText = "👍"
+        setTimeout(this.setListHtml, 600, data, stimulusController)
       }
     });
+  }
+
+  setListHtml(data, stimulusController) {
+    stimulusController.contentTarget.innerHTML = data;
   }
 
   // handleResponse(data, textStatus, qjXHR) {
