@@ -8,6 +8,9 @@ export default class extends Controller {
   }
 
   stopClose(e) {
+    if (e.target.nodeName === "I") {
+      return
+    }
     e.stopPropagation();
   }
 
