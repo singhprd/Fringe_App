@@ -4,7 +4,7 @@
   <div class="col-xs-12 col-md-6">
     <ul class="list-group">
       <% @lists.map do |list| %>
-      <a href="/lists/<%= list.id %>"> 
+      <a href="/lists/<%= list.id %>">
         <li class="list-group-item panel-title"><%= list.name %></li>
       </a>
       <% end %>

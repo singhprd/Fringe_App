@@ -45,8 +45,8 @@ class ListsController < ApplicationController
   # PATCH/PUT /lists/1.json
   def update
     if params[:add_user] == "true" || params[:remove_user] == "true"
-      @list.users << User.find(params[:user_id]) if params[:add_user]
-      @list.users.delete(User.find(params[:user_id])) if params[:remove_user]
+      @list.add_user(User.find(params[:user_id])) if params[:add_user]
+      @list.remove_user(User.find(params[:user_id]), current_user) if params[:remove_user]
 
       respond_to do |format|
         format.html { redirect_to action: "show", notice: "List was successfully updated." }

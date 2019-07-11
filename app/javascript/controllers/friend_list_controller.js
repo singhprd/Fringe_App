@@ -22,8 +22,6 @@ export default class extends Controller {
       type: 'PUT',
       data: updateData,
       success: function(result,status,xhr) {
-        console.log(votes);
-        debugger;
       }.bind(this),
       error: function() {
         console.log('failed');
@@ -45,7 +43,6 @@ export default class extends Controller {
       type: 'PUT',
       data: updateData,
       success: function(result,status,xhr) {
-        console.log(votes);
       }.bind(this),
       error: function() {
         console.log('failed');
