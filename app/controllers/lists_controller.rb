@@ -3,6 +3,7 @@
 class ListsController < ApplicationController
   before_action :set_list, only: %i[show edit update destroy]
   before_action :authenticate_user!
+  before_action :check_for_access, except: [:index, :new, :create]
 
   # GET /lists
   # GET /lists.json
@@ -28,6 +29,7 @@ class ListsController < ApplicationController
   # POST /lists.json
   def create
     @list = List.new(list_params)
+    @list.owner = current_user
     @list.users << current_user
 
     respond_to do |format|
@@ -45,8 +47,9 @@ class ListsController < ApplicationController
   # PATCH/PUT /lists/1.json
   def update
     if params[:add_user] == "true" || params[:remove_user] == "true"
-      @list.add_user(User.find(params[:user_id])) if params[:add_user]
-      @list.remove_user(User.find(params[:user_id]), current_user) if params[:remove_user]
+      subject = User.find(params[:user_id])
+      @list.add_user(subject, current_user) if params[:add_user] && !@list.users.include?(subject)
+      @list.remove_user(subject, current_user) if params[:remove_user] && @list.owner == current_user
 
       respond_to do |format|
         format.html { redirect_to action: "show", notice: "List was successfully updated." }
@@ -111,5 +114,11 @@ class ListsController < ApplicationController
 
   def list_swap_params
     params.permit(:oldIndex, :newIndex, :listId)
+  end
+
+  def check_for_access
+    if !@list.users.include?(current_user)
+      redirect_to lists_path
+    end
   end
 end
