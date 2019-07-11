@@ -12,7 +12,8 @@ class User < ApplicationRecord
   has_many :votes
   has_many :favourites
   has_many :searches
-  has_many :lists
+  has_and_belongs_to_many :lists
+  # has_many :lists, through: :list_contributions
 
   has_many :friendships, dependent: :destroy
   has_many :friends, through: :friendships

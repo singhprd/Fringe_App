@@ -28,7 +28,7 @@ class ListsController < ApplicationController
   # POST /lists.json
   def create
     @list = List.new(list_params)
-    @list.user = current_user
+    @list.users << current_user
 
     respond_to do |format|
       if @list.save
@@ -44,6 +44,17 @@ class ListsController < ApplicationController
   # PATCH/PUT /lists/1
   # PATCH/PUT /lists/1.json
   def update
+    if params[:add_user] == "true" || params[:remove_user] == "true"
+      @list.users << User.find(params[:user_id]) if params[:add_user]
+      @list.users.delete(User.find(params[:user_id])) if params[:remove_user]
+
+      respond_to do |format|
+        format.html { redirect_to action: "show", notice: "List was successfully updated." }
+        format.json { render :show, status: :ok, location: @list }
+      end
+      return
+    end
+
     respond_to do |format|
       if @list.update(list_params)
         format.html { redirect_to action: "index", notice: "List was successfully updated." }
