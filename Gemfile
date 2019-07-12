@@ -32,6 +32,9 @@ gem "jbuilder", "~> 2.5"
 # gem 'bcrypt', '~> 3.1.7'
 
 gem "devise"
+gem 'omniauth-google-oauth2'
+gem 'google-api-client'
+
 gem "gemoji"
 gem "json"
 gem "kaminari"

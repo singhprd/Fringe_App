@@ -58,4 +58,6 @@ Rails.application.routes.draw do
   resource :webauthn_session, only: [:new, :create, :destroy] do
     post :callback
   end
+
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 end
