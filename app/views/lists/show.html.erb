@@ -39,8 +39,7 @@
             <% (@list.users - [current_user]).each do |user| %>
               <li class="list-group-item"><%= user.email %>
                 <%= user_list_action(user) %>
-<!--                 <a data-action="click->friend-list#removeUser" data-user-id="<%= user.id %>" style="cursor: pointer" class="pull-right">Remove</a>
- -->              </li>
+              </li>
             <% end %>
           </ul>
         </div>
