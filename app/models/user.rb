@@ -35,6 +35,8 @@ class User < ApplicationRecord
       user.expires = auth.credentials.expires
       user.expires_at = auth.credentials.expires_at
       user.refresh_token = auth.credentials.refresh_token
+      user.email = auth.extra.id_info.email
+      user.skip_password_validation = true
     end
   end
 

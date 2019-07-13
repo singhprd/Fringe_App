@@ -39,7 +39,10 @@ Rails.application.routes.draw do
   get "/home/search" => "home#search", as: "home_page_search"
 
   # resources :search
-  devise_for :users, controllers: { sessions: "users/sessions", invitations: 'users/invitations' }
+  devise_for :users, controllers: {
+    sessions: "users/sessions", invitations: 'users/invitations',
+    omniauth_callbacks: "users/omniauth_callbacks"
+  }
 
   get "home/:year" => "home#events", :constraints => { year: /\d{4}/ }
 
@@ -59,5 +62,4 @@ Rails.application.routes.draw do
     post :callback
   end
 
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 end

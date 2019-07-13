@@ -327,11 +327,15 @@ Devise.setup do |config|
   # config.omniauth_path_prefix = '/my_engine/users/auth'
 
   # Add the credentials from your Google application to your secrets
-  client_id = Rails.application.secrets[:google_client_id]
-  client_secret = Rails.application.secrets[:google_secret]
+
+  # client_id = Rails.application.secrets[:google_client_id]
+  client_id = "509102014051-u95nbon34nfd8jt977vsde2cji2m6e05.apps.googleusercontent.com"
+  # client_secret = Rails.application.secrets[:google_secret]
+  client_secret = "IsC8EH14KMk5QQdV7WxRBcLp"
+
   # Configure Google omniauth with proper scope
   config.omniauth :google_oauth2, client_id, client_secret, {
-    scope: "contacts.readonly,userinfo.email"
+    scope: "userinfo.email"
   }
 
 end
