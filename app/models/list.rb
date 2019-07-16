@@ -5,6 +5,9 @@ class List < ApplicationRecord
   has_many :events, through: :list_items
   belongs_to :owner, class_name: "User", foreign_key: "owner_id"
 
+  validates_length_of :name, :minimum => 1
+
+
   has_and_belongs_to_many :users
 
   # belongs_to :user
