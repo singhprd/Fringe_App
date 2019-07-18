@@ -65,6 +65,8 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: "edinfringe.co.uk" }
   config.action_mailer.delivery_method = :mailgun
 
+  config.action_mailer.asset_host = "https://www.edinfringe.co.uk"
+
   config.action_mailer.mailgun_settings = {
     api_key: ENV["FRINGE_MAILGUN_API_KEY"],
     domain: "mg.edinfringe.co.uk",
