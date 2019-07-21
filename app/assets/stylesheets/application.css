@@ -64,7 +64,7 @@
 	border-radius: 4px;
 }
 
-#bs-example-navbar-collapse-1 #dropdown-menu {	
+#bs-example-navbar-collapse-1 #dropdown-menu {
 	background-color: white;
 	color: black;
 }
@@ -100,7 +100,7 @@
   overflow: hidden;
   display: inline-block;
   vertical-align: bottom;
-  -webkit-animation: ellipsis steps(4,end) 900ms infinite;      
+  -webkit-animation: ellipsis steps(4,end) 900ms infinite;
   animation: ellipsis steps(4,end) 900ms infinite;
   content: "\2026"; /* ascii code for the ellipsis character */
   width: 0px;
@@ -108,13 +108,13 @@
 
 @keyframes ellipsis {
   to {
-    width: 1.25em;    
+    width: 1.25em;
   }
 }
 
 @-webkit-keyframes ellipsis {
   to {
-    width: 1.25em;    
+    width: 1.25em;
   }
 }
 
@@ -231,8 +231,8 @@ a {
 
 
 /*Remove ALL button highlighting when clicked*/
-a, a:active, a:focus, 
-button, button:focus, button:active, 
+a, a:active, a:focus,
+button, button:focus, button:active,
 .btn, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn.focus:active, .btn.active.focus {
     outline: none;
     outline: 0;
