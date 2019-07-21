@@ -104,6 +104,8 @@ GEM
     cose (0.6.1)
       cbor (~> 0.5.9)
     crass (1.0.4)
+    css_parser (1.7.0)
+      addressable
     declarative (0.0.10)
     declarative-option (0.1.0)
     devise (4.6.2)
@@ -162,6 +164,7 @@ GEM
       thor (>= 0.18.1)
     guess_html_encoding (0.0.11)
     hashie (3.6.0)
+    htmlentities (4.3.4)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     httpclient (2.8.3)
@@ -260,6 +263,13 @@ GEM
       ast (~> 2.4.0)
     pg (1.1.4)
     powerpack (0.1.2)
+    premailer (1.11.1)
+      addressable
+      css_parser (>= 1.6.0)
+      htmlentities (>= 4.0.0)
+    premailer-rails (1.10.3)
+      actionmailer (>= 3)
+      premailer (~> 1.7, >= 1.7.9)
     pry (0.12.2)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
@@ -446,6 +456,7 @@ DEPENDENCIES
   mailgun-ruby (~> 1.1.6)
   omniauth-google-oauth2
   pg
+  premailer-rails
   pry
   puma (~> 3.0)
   rails (~> 5.1.2)

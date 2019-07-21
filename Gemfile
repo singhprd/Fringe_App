@@ -95,3 +95,4 @@ gem "capistrano-rbenv", "~> 2.1"
 gem "mailgun-ruby", "~>1.1.6"
 gem "webauthn", "~> 1.13.0"
 gem 'devise_invitable', '~> 2.0.0'
+gem 'premailer-rails'
