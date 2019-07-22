@@ -26,6 +26,11 @@ class ApplicationDeviseMailer < Devise::Mailer
     super
   end
 
+  def invitation_instructions(record, token, opts={})
+    set_organization_of record
+    super
+  end
+
   private
   ##
   # Sets organization of the user if available
