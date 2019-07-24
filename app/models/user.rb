@@ -24,7 +24,7 @@ class User < ApplicationRecord
   has_many :sent_friend_requests, :class_name => 'FriendRequest', :foreign_key => 'sender_id'
   has_many :pending_friend_requests, :class_name => 'FriendRequest', :foreign_key => 'recipient_id'
   has_many :credentials, dependent: :destroy
-  validates_uniqueness_of :username, :unless => :unregistered?
+  # validates_uniqueness_of :username, :unless => :unregistered?
 
   devise :omniauthable, :omniauth_providers => [:google_oauth2]
 

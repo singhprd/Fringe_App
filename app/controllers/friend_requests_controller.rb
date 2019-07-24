@@ -27,8 +27,8 @@ class FriendRequestsController < ApplicationController
 
   def update
     if params[:friend_request_action] == "ACCEPT"
+      # raise unless request.recipient == current_user
       request = FriendRequest.find(params[:id])
-      raise unless request.recipient == current_user
       request.accept!
     end
   end

@@ -4,4 +4,8 @@ class FriendsController < ApplicationController
   def index
     @user = current_user
   end
+
+  def destroy
+    Friendship.destroy_reciprocal_for_ids(current_user.id, params[:friendId])
+  end
 end

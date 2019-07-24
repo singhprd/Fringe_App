@@ -82,6 +82,25 @@ export default class extends Controller {
     });
   }
 
+  unfriend(e) {
+    let friendId = e.target.dataset.friendId;
+
+    let data = {
+      friend_request_action: "DELETE",
+      friendId: friendId,
+    }
+
+    $.ajax({
+      type: "DELETE",
+      url: "/friends/" + friendId,
+      data: data,
+      context: this,
+      success: () => {
+        Turbolinks.visit(window.location, { action: 'replace' })
+      }
+    });
+  }
+
   // // handleResponse(data, textStatus, qjXHR) {
   // //   debugger;
   // }
