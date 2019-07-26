@@ -109,7 +109,7 @@ class ListsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def list_params
-    params.require(:list).permit(:user_id, :name)
+    params.require(:list).permit(:user_id, :name, :year)
   end
 
   def list_swap_params

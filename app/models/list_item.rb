@@ -7,6 +7,13 @@ class ListItem < ApplicationRecord
   validates :event, presence: true
   validates :list, presence: true
   validates_uniqueness_of :event, scope: :list
+  validate :event_is_same_year_as_list
+
+  def event_is_same_year_as_list
+    unless self.event.festival_year == self.list.year
+      errors.add(:event, "must be in the same year as the list")
+    end
+  end
 
   def self.swap_positions(list_id, position1, position2)
     list = List.find(list_id)

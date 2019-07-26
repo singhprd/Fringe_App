@@ -6,7 +6,10 @@ class List < ApplicationRecord
   belongs_to :owner, class_name: "User", foreign_key: "owner_id"
 
   validates_length_of :name, :minimum => 1
+  validates_inclusion_of :year, in: Fringebot::YEARS
 
+  # validates :year, inclusion: { in: Fringebot::YEARS,
+    # message: "%{value} is not a valid year" }
 
   has_and_belongs_to_many :users
 
