@@ -25,7 +25,8 @@ class Fringebot
     storytelling: { code: "storytelling", full: "Edinburgh International Storytelling Festival" },
   }.freeze
 
-  YEARS = %w[2015 2016 2017 2018 2019].freeze
+  YEARS = %w[2017 2018 2019].freeze
+  # YEARS = %w[2015 2016 2017 2018 2019].freeze
 
   def initialize(my_hash)
     @params = my_hash
