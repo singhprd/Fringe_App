@@ -10,7 +10,7 @@
       <span class="sr-only">Toggle Dropdown</span>
     </button>
     <ul class="dropdown-menu" style="min-width: 300px;">
-      <% current_user.lists.each do |list| %>
+      <% current_user.lists.for_year(@event.festival_year).each do |list| %>
         <li>
           <% unless list.list_items.map(&:event_id).include?(@event.id) %>
             <a style="cursor: pointer" data-event-id="<%= @event.id %>" data-list-id="<%= list.id %>" data-action="list#click"><%= list.name %> </a>

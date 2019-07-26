@@ -5,8 +5,10 @@ class List < ApplicationRecord
   has_many :events, through: :list_items
   belongs_to :owner, class_name: "User", foreign_key: "owner_id"
 
-  validates_length_of :name, :minimum => 1
+  validates_length_of :name, minimum: 1
   validates_inclusion_of :year, in: Fringebot::YEARS
+
+  scope :for_year, ->(year) { where(year: year) }
 
   # validates :year, inclusion: { in: Fringebot::YEARS,
     # message: "%{value} is not a valid year" }
