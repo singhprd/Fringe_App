@@ -22,7 +22,7 @@
       <% end %>
       <% @user.pending_friend_requests.each do |request| %>
         <tr>
-          <td><%= request.sender.email %> <a style="cursor: pointer" data-action="friend-requests#acceptRequest" data-request-id="<%= request.id %>" class="pull-right">Accept</a><span class="pull-right">&nbsp;|&nbsp;</span><span class="pull-right">Delete</span></td>
+          <td><%= request.sender.email %> <a style="cursor: pointer" data-action="friend-requests#acceptRequest" data-request-id="<%= request.id %>" class="pull-right">Accept</a><span class="pull-right">&nbsp;|&nbsp;</span><span style="cursor: pointer" data-action="click->friend-requests#deleteRequest" data-request-id="<%= request.id %>" class="pull-right">Delete</span></td>
         </tr>
       <% end %>
       <% @user.sent_friend_requests.each do |request| %>
