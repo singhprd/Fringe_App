@@ -26,7 +26,6 @@ class Fringebot
   }.freeze
 
   YEARS = %w[2017 2018 2019].freeze
-  # YEARS = %w[2015 2016 2017 2018 2019].freeze
 
   def initialize(my_hash)
     @params = my_hash
@@ -92,8 +91,23 @@ class Fringebot
     # Images
     create_images(params, event)
 
+    create_performances(params, event)
+
     event
-end
+  end
+
+  def create_performances(params, event)
+    perf_params = create_performances_params_array(params)
+    performances = []
+
+    perf_params.each do |perf_param|
+      performance = Performance.create(perf_param)
+      performance.update_attributes(event_id: event.id)
+      performances << performance
+    end
+
+    performances
+  end
 
   def create_images(params, event)
     return if params["images"].nil?
@@ -122,19 +136,19 @@ end
     end
   end
 
-  def performances(event_id)
-    params = @api.event(@params["uuid"])
-    perf_params = create_performances_params_array(params)
-    performances = []
+  # def performances(event_id)
+  #   params = @api.event(@params["uuid"])
+  #   perf_params = create_performances_params_array(params)
+  #   performances = []
 
-    perf_params.each do |perf_param|
-      performance = Performance.create(perf_param)
-      performance.update_attributes(event_id: event_id)
-      performances << performance
-    end
+  #   perf_params.each do |perf_param|
+  #     performance = Performance.create(perf_param)
+  #     performance.update_attributes(event_id: event_id)
+  #     performances << performance
+  #   end
 
-    performances
-  end
+  #   performances
+  # end
 
   def create_or_find_venue(params)
     params = create_venue_params(params)
