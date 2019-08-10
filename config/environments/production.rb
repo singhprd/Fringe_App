@@ -63,13 +63,23 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
   config.action_mailer.perform_deliveries = true
   config.action_mailer.default_url_options = { host: "edinfringe.co.uk" }
-  config.action_mailer.delivery_method = :mailgun
 
   config.action_mailer.asset_host = "https://www.edinfringe.co.uk"
 
-  config.action_mailer.mailgun_settings = {
-    api_key: ENV["FRINGE_MAILGUN_API_KEY"],
-    domain: "mg.edinfringe.co.uk",
+  # config.action_mailer.delivery_method =  :mailgun
+  # config.action_mailer.mailgun_settings = {
+  #   api_key: ENV["FRINGE_MAILGUN_API_KEY"],
+  #   domain: "mg.edinfringe.co.uk",
+  # }
+
+  ActionMailer::Base.smtp_settings = {
+    user_name: "singh.prd@gmail.com",
+    password: ENV["FRINGE_SENDGRID_PASSWORD"],
+    domain: "edinfringe.co.uk",
+    address: "smtp.sendgrid.net",
+    port: 587,
+    authentication: :plain,
+    enable_starttls_auto: true,
   }
 
   # Ignore bad email addresses and do not raise email delivery errors.
