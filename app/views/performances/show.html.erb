@@ -10,9 +10,9 @@
     <tr>
       <% @event.performances.each do |performance| %>
       <tr>
-        <td><%= performance.start_time %></td>
-        <td><%= performance.start_time %></td>
-        <td><%= performance.end_time %></td>
+        <td><%= fringe_time_date(performance) %></td>
+        <td><%= fringe_start_time(performance) %></td>
+        <td><%= fringe_end_time(performance) %></td>
       </tr>
       <% end %>
     </tr>
